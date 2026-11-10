@@ -302,7 +302,7 @@ def t1c(ts, close, asset, side):
     with np.errstate(divide="ignore", invalid="ignore"):
         r = np.where(ok, np.log(close[pe_c] / close[pp_c]), np.nan)
     keep = ok & np.isfinite(r) & (r != 0) & (np.sign(r) == side)
-    f = pd.DataFrame({"pos": pe[keep], "ref_ns": ref[1:][keep], "signal": r[keep]})
+    f = pd.DataFrame({"pos": pe[keep], "ref_ns": ref[1:][keep] - T1C_ENTRY_OFFSET_NS, "signal": r[keep]})  # entry clock time
     return f.sort_values("pos").reset_index(drop=True)
 
 

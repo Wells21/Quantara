@@ -20,9 +20,27 @@ scripts -> run `portfolio_live/` scripts -> trade, **without redoing any edge re
 - `portfolio_live/local_live_settings.json` (credentials -- re-enter on the new VPS), `live_state/`, `live_bars/`,
   `live_logs/`, `outputs/` (rebuilt by the scripts).
 
+## Repo and keys (2026-11-10)
+- Repo: `Wells21/Quantara` (private), branch `main`. Fresh start commit fcc501a (no old history; the old repo
+  `trading_models` hit the 10 GB LFS limit with ~13.7 GB of old LFS versions). Full old history: git bundle
+  `trading_models_full_history.bundle` (owner keeps a copy).
+- Push/pull key: a deploy key with write access on Quantara only. This VPS: `~/.ssh/quantara_deploy_ed25519`,
+  used through `git config core.sshCommand` (repo setting). A new VPS needs its own deploy key added in
+  Quantara -> Settings -> Deploy keys (read-only is enough if it only pulls).
+- Clone: `git clone git@github.com:Wells21/Quantara.git` (with that key), then `git lfs pull`.
+
+## New-VPS run order (verified on a fresh clone 2026-11-10)
+1. Python venvs (venv39 for portfolio_allocator / Phase C-D; venv312 for research) -- not in git.
+2. MT5 + broker login: `portfolio_live/local_live_settings.json` (credentials, never in git) and step 00a.
+3. Allocator: 01 -> 02 -> 03 -> 04b -> 04bb -> 04c -> 04d -> 05 -> 06 all PASS on a fresh clone with one edge.
+   07 (HRP) and everything after it need >= 2 edges in config/edge_universe.json (MIN_COLUMNS_FOR_HRP = 2).
+4. Step 00d (re-price every edge's trades at the current broker's costs) replays trades on CURATED TICKS
+   (41 GB for XAUUSD alone), so it runs on the research VPS and its per-edge output
+   `portfolio_allocator/outputs/broker_repricing/<firm>/<ASSET>__<edge>.csv` (~0.5-1 MB) is committed. A new VPS
+   starts at 04b. If the broker or its costs change, 00d must be rerun on re-downloaded, curated ticks for the
+   deployed assets.
+
 ## Status 2026-11-10
-- XAUUSD/roundlevelcascade_long: all whitelisted allocator inputs committed (d5cd748a).
-- History-extended bars / FFD / regime files (~1.5 GB, all 10 assets): modified locally, NOT yet committed
-  (GitHub LFS storage quota -- owner decision).
-- Not yet proven by a fresh clone. Proof step: clone into an empty folder, `git lfs pull`, run the allocator and live
-  preflight checks, list anything missing.
+- Fresh-clone test: LFS 34/34 files downloaded, `git lfs fsck` OK; allocator 01-06 PASS (with the 00d file
+  copied in); 07 stops by design with one edge.
+- Pending: .gitignore line 203 change so the 00d CSVs can be committed (owner approval asked).
