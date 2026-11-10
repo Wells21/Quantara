@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/JPN/bars/ffd/jpn_ffd_features.csv",
+      "sha256": "fa6751dff98944ecea4d0568e329d664431330b76e9cac172e128d741c28b890",
+      "size_bytes": 42336986
+    },
+    "state_bundle": {
+      "path": "assets/JPN/bars/ffd/jpn_ffd_state_bundle.pkl",
+      "sha256": "c363048eeac93588e3b4fa27b46b0cea67ab46712434c1bbe264a9bca65b6950",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "JPN",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 173301,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 173301,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 208.17,
+  "end_output": "2026-07-03 15:06:07.427000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.328125,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.9892822637404719,
+    "High_orig_vs_ffd_corr": 0.9896675374046433,
+    "Low_orig_vs_ffd_corr": 0.989320925186368,
+    "Open_orig_vs_ffd_corr": 0.9892815474396625
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9892815474396625,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/JPN/bars/ffd/jpn_ffd_features.csv",
+    "manifest": "assets/JPN/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/JPN/bars/ffd/jpn_ffd_state_bundle.pkl"
+  },
+  "rows_input": 173301,
+  "rows_output": 172302,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/JPN/bars/standard_quote_tick/jpn_standard_quote_tick_bars.csv",
+  "start_output": "2015-02-11 18:58:24.755000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -6.050853654523736,
+      "lags": 66,
+      "nobs": 86084,
+      "p_value": 1.2786598329437834e-07
+    },
+    "full": {
+      "adf_stat": -2.9191830781640036,
+      "lags": 77,
+      "nobs": 172224,
+      "p_value": 0.043162310678394954
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -2.662024869472467,
+      "lags": 66,
+      "nobs": 86084,
+      "p_value": 0.08084328120155343
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

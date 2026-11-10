@@ -1,0 +1,79 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — JPN/rangestructure_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\research_dataset\jpn_rangestructure_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\feature_surgery\jpn_rangestructure_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\model\jpn_rangestructure_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\oof
+AFML Ch.4 weights | source=assets/JPN/bars/standard_quote_tick/jpn_standard_quote_tick_bars.csv | events=4,470 | mean_uniqueness=0.180029 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,461/4,470 rows retained (mldp_target_eligible==True); 9 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,470
+Rows after selected-feature NaN filter : 4,470
+Date range: 2022-06-15 19:32:28.395000+00:00 -> 2026-06-25 13:14:01.305000+00:00
+Rows used: 4,461
+Selected feature count: 176
+Target mean: 0.403945
+CPCV: C(10, 2) splits; every backtest path kept separately (AFML s.12.4, D052)
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=3,469 test=892 thr=0.56 train_f1=0.5765 test_f1=0.5671 precision=0.3957 recall=1.0000 logloss=0.78426
+Fold 02: train=3,351 test=892 thr=0.56 train_f1=0.5787 test_f1=0.5886 precision=0.4170 recall=1.0000 logloss=0.76424
+Fold 03: train=3,354 test=892 thr=0.56 train_f1=0.5681 test_f1=0.5864 precision=0.4153 recall=0.9973 logloss=0.76602
+Fold 04: train=3,368 test=892 thr=0.56 train_f1=0.5764 test_f1=0.5785 precision=0.4074 recall=0.9973 logloss=0.76988
+Fold 05: train=3,358 test=892 thr=0.55 train_f1=0.5857 test_f1=0.5350 precision=0.3686 recall=0.9754 logloss=0.78173
+Fold 06: train=3,364 test=892 thr=0.56 train_f1=0.5892 test_f1=0.5317 precision=0.3629 recall=0.9938 logloss=0.78842
+Fold 07: train=3,352 test=892 thr=0.55 train_f1=0.5764 test_f1=0.5855 precision=0.4158 recall=0.9892 logloss=0.76027
+Fold 08: train=3,360 test=892 thr=0.56 train_f1=0.5919 test_f1=0.5332 precision=0.3656 recall=0.9847 logloss=0.78531
+Fold 09: train=3,466 test=893 thr=0.54 train_f1=0.5863 test_f1=0.5425 precision=0.3775 recall=0.9641 logloss=0.76846
+Fold 10: train=3,463 test=892 thr=0.56 train_f1=0.5759 test_f1=0.6095 precision=0.4383 recall=1.0000 logloss=0.76008
+Fold 11: train=3,348 test=892 thr=0.57 train_f1=0.5568 test_f1=0.6089 precision=0.4377 recall=1.0000 logloss=0.76632
+Fold 12: train=3,362 test=892 thr=0.56 train_f1=0.5653 test_f1=0.6008 precision=0.4294 recall=1.0000 logloss=0.76952
+Fold 13: train=3,352 test=892 thr=0.56 train_f1=0.5742 test_f1=0.5546 precision=0.3877 recall=0.9738 logloss=0.78525
+Fold 14: train=3,358 test=892 thr=0.57 train_f1=0.5778 test_f1=0.5523 precision=0.3824 recall=0.9941 logloss=0.79373
+Fold 15: train=3,346 test=892 thr=0.56 train_f1=0.5639 test_f1=0.6089 precision=0.4382 recall=0.9974 logloss=0.75767
+Fold 16: train=3,354 test=892 thr=0.57 train_f1=0.5815 test_f1=0.5535 precision=0.3852 recall=0.9826 logloss=0.78681
+Fold 17: train=3,460 test=893 thr=0.56 train_f1=0.5740 test_f1=0.5599 precision=0.3976 recall=0.9462 logloss=0.77354
+Fold 18: train=3,451 test=892 thr=0.57 train_f1=0.5545 test_f1=0.6277 precision=0.4579 recall=0.9976 logloss=0.74866
+Fold 19: train=3,350 test=892 thr=0.56 train_f1=0.5643 test_f1=0.6213 precision=0.4507 recall=1.0000 logloss=0.75150
+Fold 20: train=3,340 test=892 thr=0.55 train_f1=0.5722 test_f1=0.5800 precision=0.4103 recall=0.9890 logloss=0.76508
+Fold 21: train=3,346 test=892 thr=0.57 train_f1=0.5769 test_f1=0.5763 precision=0.4057 recall=0.9944 logloss=0.77332
+Fold 22: train=3,334 test=892 thr=0.56 train_f1=0.5645 test_f1=0.6291 precision=0.4604 recall=0.9927 logloss=0.74244
+Fold 23: train=3,342 test=892 thr=0.57 train_f1=0.5800 test_f1=0.5728 precision=0.4069 recall=0.9670 logloss=0.76955
+Fold 24: train=3,448 test=893 thr=0.56 train_f1=0.5749 test_f1=0.5817 precision=0.4227 recall=0.9328 logloss=0.75181
+Fold 25: train=3,454 test=892 thr=0.56 train_f1=0.5626 test_f1=0.6203 precision=0.4496 recall=1.0000 logloss=0.75367
+Fold 26: train=3,343 test=892 thr=0.55 train_f1=0.5620 test_f1=0.5772 precision=0.4080 recall=0.9862 logloss=0.76922
+Fold 27: train=3,349 test=892 thr=0.57 train_f1=0.5687 test_f1=0.5733 precision=0.4036 recall=0.9888 logloss=0.77473
+Fold 28: train=3,337 test=892 thr=0.56 train_f1=0.5528 test_f1=0.6284 precision=0.4602 recall=0.9902 logloss=0.74253
+Fold 29: train=3,345 test=892 thr=0.57 train_f1=0.5726 test_f1=0.5728 precision=0.4045 recall=0.9807 logloss=0.77255
+Fold 30: train=3,451 test=893 thr=0.55 train_f1=0.5646 test_f1=0.5875 precision=0.4207 recall=0.9730 logloss=0.75690
+Fold 31: train=3,468 test=892 thr=0.55 train_f1=0.5758 test_f1=0.5684 precision=0.4007 recall=0.9775 logloss=0.77416
+Fold 32: train=3,363 test=892 thr=0.56 train_f1=0.5779 test_f1=0.5656 precision=0.3952 recall=0.9943 logloss=0.78051
+Fold 33: train=3,351 test=892 thr=0.56 train_f1=0.5638 test_f1=0.6049 precision=0.4454 recall=0.9428 logloss=0.74373
+Fold 34: train=3,359 test=892 thr=0.57 train_f1=0.5828 test_f1=0.5599 precision=0.3965 recall=0.9522 logloss=0.77709
+Fold 35: train=3,465 test=893 thr=0.55 train_f1=0.5741 test_f1=0.5786 precision=0.4114 recall=0.9753 logloss=0.76297
+Fold 36: train=3,458 test=892 thr=0.54 train_f1=0.5874 test_f1=0.5192 precision=0.3510 recall=0.9968 logloss=0.79056
+Fold 37: train=3,341 test=892 thr=0.54 train_f1=0.5701 test_f1=0.5776 precision=0.4080 recall=0.9890 logloss=0.75931
+Fold 38: train=3,349 test=892 thr=0.57 train_f1=0.5897 test_f1=0.5208 precision=0.3561 recall=0.9685 logloss=0.80218
+Fold 39: train=3,455 test=893 thr=0.56 train_f1=0.5838 test_f1=0.5114 precision=0.3694 recall=0.8308 logloss=0.76669
+Fold 40: train=3,464 test=892 thr=0.56 train_f1=0.5794 test_f1=0.5691 precision=0.4009 recall=0.9805 logloss=0.76807
+Fold 41: train=3,355 test=892 thr=0.57 train_f1=0.5921 test_f1=0.5159 precision=0.3496 recall=0.9840 logloss=0.80867
+Fold 42: train=3,461 test=893 thr=0.56 train_f1=0.5859 test_f1=0.5189 precision=0.3615 recall=0.9190 logloss=0.78005
+Fold 43: train=3,452 test=892 thr=0.56 train_f1=0.5775 test_f1=0.5663 precision=0.4033 recall=0.9505 logloss=0.76803
+Fold 44: train=3,449 test=893 thr=0.55 train_f1=0.5723 test_f1=0.5770 precision=0.4210 recall=0.9167 logloss=0.74552
+Fold 45: train=3,559 test=893 thr=0.56 train_f1=0.5881 test_f1=0.5183 precision=0.3657 recall=0.8896 logloss=0.77506
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,461 / 4,461
+Coverage rate: 1.0000
+Raw log loss: 0.769530
+Raw Brier: 0.287030
+Raw ROC AUC: 0.506878
+Raw PR AUC: 0.409243
+Diagnostic global F1 threshold: 0.54
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\oof\jpn_rangestructure_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

@@ -1,0 +1,39 @@
+schema_feature_names from 63f4a570:trading_models_v2/assets/GBPJPY/edges/dailyrangecompletionfade_long/contracts/feature_schema.json -> 168 features
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: GBPJPY/dailyrangecompletionfade_long
+entry_delay_ms: 5700
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - H8_E200_V168_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+spread_model: broker
+Exact quote replay events: 4050
+  250/4050 elapsed=38.1s
+  500/4050 elapsed=80.8s
+  750/4050 elapsed=111.1s
+  1000/4050 elapsed=141.6s
+  1250/4050 elapsed=164.5s
+  1500/4050 elapsed=182.1s
+  1750/4050 elapsed=202.9s
+  2000/4050 elapsed=220.7s
+  2250/4050 elapsed=239.8s
+  2500/4050 elapsed=268.0s
+  2750/4050 elapsed=286.7s
+  3000/4050 elapsed=313.8s
+  3250/4050 elapsed=342.2s
+  3500/4050 elapsed=357.1s
+  3750/4050 elapsed=379.5s
+  4000/4050 elapsed=411.7s
+  4050/4050 elapsed=414.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage | guard_blocked
+H8_E200_V168_PT2_SL1 | +0.098088 | [-0.025825,+0.228424] | 1.1561 | 34.162 | 142.901 | +0.068910 | +1.847747 | nan | nan | 1.0000 | 0
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H8_E200_V168_PT2_SL1 | meanR=+0.098088 | R/occupied_day=+0.068910 | R/week=+1.847747 | mean_hold_h=34.162
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20261103T225329Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20261103T225329Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

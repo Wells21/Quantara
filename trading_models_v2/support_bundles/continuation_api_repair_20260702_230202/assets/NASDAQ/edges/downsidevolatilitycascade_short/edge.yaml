@@ -1,0 +1,162 @@
+schema_version: v2.1
+edge_id: NASDAQ/downsidevolatilitycascade_short
+asset: NASDAQ
+family: downsidevolatilitycascade
+side_name: short
+side_value: -1
+edge_stem: nasdaq_downsidevolatilitycascade_short
+status: deployability_pass
+runtime_py: runtime.py
+
+bar_contract:
+  bar_type: standard_quote_tick
+  threshold_unit: ticks
+  proxy_value_policy: backward_compatible_tick_count_only
+
+alpha_contract:
+  candidate_event_generator: downsidevolatilitycascade_short_v3_high_recall_signed_semivariance_impulses
+  primary_side_rule: negative completed-bar impulses inside downside variance share >=0.60 and non-overlapping volatility acceleration >=1.10 map to side=-1 short; both initial state entries and spaced renewed impulses are valid
+  raw_candidate_side: 0
+  mapped_side: -1
+  event_known_after_close: true
+  uses_future_information: false
+  edge_specific_features_allowed: false
+  requires_ffd: true
+  requires_regime: true
+  price_only_event_gate: true
+  context_not_hard_filters:
+    - FFD direction and slopes
+    - HMM regime state, probabilities, entropy and duration
+    - trend and momentum indicators
+    - candle body, wick and close-location geometry
+    - jump score and downside-variance concentration
+  forbidden_volume_proxy_inputs:
+    - Ticks
+    - Proxy_Value
+    - Tick_Activity_Ratio
+    - Proxy_Value_Ratio
+    - Activity_Impulse
+
+cascade_event_contract:
+  return_measure: causal_bar_to_bar_log_return
+  semivariance_window: 20
+  supporting_context_windows:
+    - 5
+    - 10
+    - 20
+  downside_variance_share_threshold: 0.60
+  bad_vol_ratio_equivalent: 1.50
+  baseline_window: 100
+  baseline_excludes_recent_bars: 20
+  baseline_comparison: current_20_bar_mean_squared_return_vs_prior_non_overlapping_100_bar_mean_squared_return
+  vol_acceleration_threshold: 1.10
+  current_return_must_be_negative: true
+  sampling_mode: spaced_negative_impulses_inside_active_cascade
+  initial_state_entry_events: true
+  renewed_impulse_events: true
+  minimum_event_gap_bars: 3
+  full_state_rearm_required_between_events: false
+  overlap_policy:
+    downsidejumpcontinuation_short: preserve jump and concentration fields as context; do not exclude jump-like events before overlap analysis
+    volatilitycarry_short: complementary; this edge requires active accelerating downside risk rather than calm negative drift
+  event_volatility:
+    lookback_bars: 50
+    ewm_span: 100
+    floor: 1.0e-8
+    use_signed_semivariance_directly_as_barrier_target: false
+
+labeling:
+  row_builder: downsidevolatilitycascade_short_v3_1p5r_1000_triple_barrier_model_rows
+  geometry_status: selected_from_grid_scan
+  geometry_selection_source: label_geometry_grid_scan
+  vertical_horizon: 1000
+  pt_multiplier: 1.5
+  sl_multiplier: 1.0
+  reward_risk_ratio: 1.5
+  tie_policy: sl_first
+  tick_resolution_price: mid
+  short_barrier_contract: pt_price_below_entry_sl_price_above_entry
+  live_scoring_must_not_use_label_columns: true
+  selected_grid_cell:
+    rank_by_net_mean_R: 2
+    rows: 2953
+    net_mean_R: 0.03285
+    gross_mean_R: 0.03285
+    vertical_rate: 0.0000
+    median_hold_bars: 27.00
+  grid_scan_summary:
+    best_net_mean_R_cell:
+      horizon: 1000
+      pt_multiplier: 2.0
+      sl_multiplier: 1.0
+      rows: 2953
+      net_mean_R: 0.03889
+      gross_mean_R: 0.03889
+      vertical_rate: 0.0003
+      median_hold_bars: 34.00
+    selected_cell:
+      horizon: 1000
+      pt_multiplier: 1.5
+      sl_multiplier: 1.0
+      rows: 2953
+      net_mean_R: 0.03285
+      gross_mean_R: 0.03285
+      vertical_rate: 0.0000
+      median_hold_bars: 27.00
+
+research:
+  cv: combinatorial_purged_cv
+  n_folds: 5
+  n_test_folds: 2
+  manual_embargo_size: 100
+  weights: class_weight_mode_x_event_vol_x_average_uniqueness
+  early_rejection_guidance:
+    minimum_net_unconditional_expectancy_R: 0.03
+    preferred_net_unconditional_expectancy_R: 0.05
+    require_neighbouring_geometry_plateau: true
+    require_realistic_costs: true
+    require_time_block_stability: true
+    inspect_overlap_with:
+      - NASDAQ/downsidejumpcontinuation_short
+      - NASDAQ/compressionbreakoutcontinuation_short
+
+probability:
+  flow: raw_probability -> sigmoid calibrated_probability -> AFML bet size -> calibrated-threshold decision
+  final_edge_threshold_space: calibrated_probability
+  final_live_threshold_source: allocator_live_manifest
+
+runtime_contract:
+  required_functions:
+    - load_contract
+    - validate_environment
+    - build_features
+    - generate_candidate_events
+    - build_model_rows
+    - load_model
+    - load_calibrator
+    - score
+    - explain_missing_features
+  dashboard_may_call:
+    - validate_environment
+    - build_features
+    - generate_candidate_events
+    - build_model_rows
+    - score
+  dashboard_must_not_compute_features: true
+  research_and_live_share_runtime_feature_path: true
+  scorer: shared.scoring.edge_scorer.EdgeScorer
+  fail_closed_until_artifacts_pass: true
+
+notes:
+  - This is not a bearish-candle volatility-expansion edge. It identifies an active state of elevated, asymmetrically negative realised variance.
+  - Downside and upside semivariances are calculated from causal log returns. The bounded downside-variance share is the primary asymmetry gate; the raw bad-vol ratio is context only.
+  - Volatility acceleration compares the current 20-bar variance rate with the immediately preceding, non-overlapping 100-bar baseline ending 20 bars before the current bar.
+  - High recall is achieved by sampling negative completed-bar impulses inside the active cascade, with a causal three-bar minimum spacing rule.
+  - Cascade_State_Entry identifies impulses on the first active bar; Cascade_Renewed_Impulse identifies later spaced impulses in the same active state.
+  - FFD, HMM, trend, candle quality, jump concentration and current-return contribution remain audit and meta-model context, not primary-event filters.
+  - Candidate events are side-pending with side=0; primary_side.py validates the causal structural fields and maps valid events to side=-1.
+  - Generic model features remain owned by runtime.py and the canonical NASDAQ feature schema. Event-context fields must not automatically become model inputs.
+  - Same-bar PT/SL ambiguity must use raw NASDAQ MID-tick first-touch where available, with sl_first fallback only when ticks are missing or unresolved.
+  - The selected label geometry is 1000 bars, 1.5R PT and 1R SL, based on the completed grid scan.
+  - The selected cell produced 2,953 rows, net mean R 0.03285, zero vertical exits and a median holding period of 27 bars.
+  - The edge remains non-deployable until feature surgery, CPCV, OOF, calibration, threshold selection, feature lock, replay, validation and manifest export pass.

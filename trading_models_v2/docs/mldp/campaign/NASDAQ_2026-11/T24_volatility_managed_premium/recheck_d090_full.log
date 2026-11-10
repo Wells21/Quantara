@@ -1,0 +1,49 @@
+NASDAQ {"LONG": {"drift_month_matched": [-0.01238, false]}, "SHORT": {"drift_month_matched": [-0.02753, false]}} 3.0
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 5687,
+   "drift_month_matched": {
+    "diff": -0.01219,
+    "se": 0.02733,
+    "lower_bound_1p645": -0.05715,
+    "PASS": false,
+    "lower_bound_tiered": -0.05715,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.05573,
+     "se": 0.03607,
+     "lower_bound_1p645": -0.00361,
+     "PASS": false,
+     "n": 5711
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 5711,
+   "drift_month_matched": {
+    "diff": -0.02778,
+    "se": 0.0296,
+    "lower_bound_1p645": -0.07647,
+    "PASS": false,
+    "lower_bound_tiered": -0.06567,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.06284,
+     "se": 0.03574,
+     "lower_bound_1p645": 0.00405,
+     "PASS": true,
+     "n": 5687
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}

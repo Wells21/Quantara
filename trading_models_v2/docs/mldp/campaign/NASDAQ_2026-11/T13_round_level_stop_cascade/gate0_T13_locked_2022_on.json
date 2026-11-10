@@ -1,0 +1,305 @@
+{
+ "thesis": "T13",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T13_round_level_stop_cascade/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 150,
+  "vertical_h": 4.0,
+  "pt": 1.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "XAUUSD": {
+   "both_touch_bars": 27,
+   "LONG": {
+    "n_edge": 672,
+    "edge_mean_R": 0.09831,
+    "random_all_mean_R": 0.00707,
+    "drift_month_matched": {
+     "diff": 0.06921,
+     "se": 0.04072,
+     "lower_bound_1p645": 0.00223,
+     "PASS": true
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.08674,
+     "se": 0.04042,
+     "lower_bound_1p645": 0.02025,
+     "PASS": true
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.04139,
+      "se": 0.02739,
+      "lower_bound_1p645": -0.00367,
+      "PASS": false,
+      "n": 755,
+      "inverted_mean_R": 0.05693
+     },
+     "C2": {
+      "diff": 0.04659,
+      "se": 0.03475,
+      "lower_bound_1p645": -0.01058,
+      "PASS": false,
+      "n": 902,
+      "inverted_mean_R": 0.05173
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": NaN,
+     "se": 0.03067,
+     "lower_bound_1p645": NaN,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 522,
+    "edge_mean_R": -0.00304,
+    "random_all_mean_R": -0.02431,
+    "drift_month_matched": {
+     "diff": 0.00912,
+     "se": 0.04828,
+     "lower_bound_1p645": -0.07029,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.01719,
+     "se": 0.04872,
+     "lower_bound_1p645": -0.06296,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.01615,
+      "se": 0.03386,
+      "lower_bound_1p645": -0.03955,
+      "PASS": false,
+      "n": 492,
+      "inverted_mean_R": -0.01919
+     },
+     "C2": {
+      "diff": 0.02282,
+      "se": 0.04554,
+      "lower_bound_1p645": -0.05209,
+      "PASS": false,
+      "n": 652,
+      "inverted_mean_R": -0.02587
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": NaN,
+     "se": 0.03804,
+     "lower_bound_1p645": NaN,
+     "PASS": false
+    }
+   }
+  }
+ },
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK",
+  "XAUUSD",
+  "GBPJPY",
+  "USDMXN",
+  "USOIL",
+  "BTCUSD"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": "2022-01-01",
+  "end": null
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 672,
+   "drift_month_matched": {
+    "diff": 0.06874,
+    "se": 0.03972,
+    "lower_bound_1p645": 0.00341,
+    "PASS": true,
+    "lower_bound_tiered": 0.0034,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.04139,
+     "se": 0.02739,
+     "lower_bound_1p645": -0.00367,
+     "PASS": false,
+     "n": 755
+    },
+    "C2": {
+     "diff": 0.04659,
+     "se": 0.03475,
+     "lower_bound_1p645": -0.01058,
+     "PASS": false,
+     "n": 902
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 522,
+   "drift_month_matched": {
+    "diff": 0.0096,
+    "se": 0.04665,
+    "lower_bound_1p645": -0.06714,
+    "PASS": false,
+    "lower_bound_tiered": -0.06714,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.01615,
+     "se": 0.03386,
+     "lower_bound_1p645": -0.03955,
+     "PASS": false,
+     "n": 492
+    },
+    "C2": {
+     "diff": 0.02282,
+     "se": 0.04554,
+     "lower_bound_1p645": -0.05209,
+     "PASS": false,
+     "n": 652
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "NO_EVENTS",
+  "SHORT": "NO_EVENTS"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  },
+  "SHORT": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "XAUUSD": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "GBPJPY": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "USDMXN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "USOIL": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "BTCUSD": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "XAUUSD": {
+   "LONG": "PASS",
+   "SHORT": "FAIL"
+  },
+  "GBPJPY": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "USDMXN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "USOIL": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "BTCUSD": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "window_tests_d090": {
+  "XAUUSD": {
+   "LONG": {
+    "verdict": "PASS",
+    "n_edge": 672,
+    "C1_diff": 0.04139,
+    "C1_se": 0.02739,
+    "C1_z": 1.511,
+    "C1_pass_90": true,
+    "other_cf_diffs": {
+     "C2": 0.04659
+    },
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": 0.06921,
+    "in_card_universe": true
+   },
+   "SHORT": {
+    "verdict": "FAIL",
+    "n_edge": 522,
+    "C1_diff": 0.01615,
+    "C1_se": 0.03386,
+    "C1_z": 0.477,
+    "C1_pass_90": false,
+    "other_cf_diffs": {
+     "C2": 0.02282
+    },
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": 0.00912,
+    "in_card_universe": true
+   }
+  }
+ },
+ "seconds": 1.6
+}

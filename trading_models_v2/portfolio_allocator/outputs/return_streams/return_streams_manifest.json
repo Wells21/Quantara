@@ -1,0 +1,174 @@
+{
+  "broker_min_lot_validation": {
+    "artifact_file_hash_coupling": "none",
+    "broker_executable_risk_required": true,
+    "ledger_broker_invalid_risk_row_count": 0,
+    "ledger_broker_min_executable_risk_amount_max": 184.00985084683907,
+    "ledger_broker_min_executable_risk_amount_median": 2.7248569305348296,
+    "ledger_broker_min_executable_risk_amount_min": 0.4651263753204363,
+    "ledger_broker_min_executable_risk_amount_p90": 13.983448674611326,
+    "ledger_broker_risk_per_1_lot_median": 23.655480227753227,
+    "ledger_broker_risk_per_min_lot_median": 2.7248569305348296,
+    "ledger_broker_risk_status_summary": "{\"ok\": 14662}",
+    "ledger_broker_symbols": "GBPJPY|HK50|Nikkei225|XAUUSD",
+    "ledger_broker_valid_risk_row_count": 14662,
+    "ledger_broker_valid_risk_row_rate": 1.0,
+    "required_columns": [
+      "risk_per_1_lot",
+      "broker_min_lot",
+      "broker_lot_step",
+      "broker_contract_size",
+      "risk_per_min_lot",
+      "risk_per_lot_step",
+      "min_executable_risk_amount",
+      "broker_min_lot_risk_status",
+      "has_valid_broker_min_lot_risk"
+    ],
+    "return_streams_remain_r_space": true,
+    "risk_sizing_applied_here": false
+  },
+  "candidate_matrices": {
+    "core_afml_weighted_r": {
+      "columns": 6
+    },
+    "core_plus_watchlist_afml_weighted_r": {
+      "columns": 6
+    },
+    "core_plus_watchlist_raw_r": {
+      "columns": 6
+    },
+    "core_raw_r": {
+      "columns": 6
+    },
+    "watchlist_afml_weighted_r": {
+      "columns": 0
+    },
+    "watchlist_raw_r": {
+      "columns": 0
+    }
+  },
+  "counts": {
+    "daily_rows": 1511,
+    "ledger_rows_loaded": 14662,
+    "representatives_loaded": 6,
+    "unique_edges": 6,
+    "unique_representatives": 6
+  },
+  "created_at": "2026-10-17T20:18:31+00:00",
+  "date_aggregation": "exit_date",
+  "date_end": "2026-06-30 00:00:00+00:00",
+  "date_start": "2022-05-12 00:00:00+00:00",
+  "fill_missing_returns_with_zero": true,
+  "input_ledger": "portfolio_allocator/outputs/v2_representative_trade_ledger_core_plus_watchlist.csv",
+  "input_representatives": "portfolio_allocator/outputs/v2_representative_threshold_candidates_core_plus_watchlist.csv",
+  "notes": [
+    "Only compound_velocity profile matrices are produced.",
+    "Raw R files keep backward-compatible names; AFML-weighted files use _afml_weighted_r suffix.",
+    "Step 06 keeps return streams in R-space for HRP/correlation analysis; broker-dollar sizing is still deferred to Steps 08+.",
+    "Broker min-lot metadata from Step 05 is required and validated fail-closed before return streams are built."
+  ],
+  "output_dir": "portfolio_allocator/outputs/return_streams",
+  "outputs": {
+    "candidate_corr_core_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_core_afml_weighted_r.csv",
+    "candidate_corr_core_plus_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_core_plus_watchlist_afml_weighted_r.csv",
+    "candidate_corr_core_plus_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_core_plus_watchlist.csv",
+    "candidate_corr_core_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_core.csv",
+    "candidate_corr_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_watchlist_afml_weighted_r.csv",
+    "candidate_corr_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_corr_watchlist.csv",
+    "candidate_cov_core_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_core_afml_weighted_r.csv",
+    "candidate_cov_core_plus_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_core_plus_watchlist_afml_weighted_r.csv",
+    "candidate_cov_core_plus_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_core_plus_watchlist.csv",
+    "candidate_cov_core_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_core.csv",
+    "candidate_cov_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_watchlist_afml_weighted_r.csv",
+    "candidate_cov_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_cov_watchlist.csv",
+    "candidate_diagnostics_all_universes": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_all_universes.csv",
+    "candidate_diagnostics_core_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_core_afml_weighted_r.csv",
+    "candidate_diagnostics_core_plus_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_core_plus_watchlist_afml_weighted_r.csv",
+    "candidate_diagnostics_core_plus_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_core_plus_watchlist.csv",
+    "candidate_diagnostics_core_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_core.csv",
+    "candidate_diagnostics_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_watchlist_afml_weighted_r.csv",
+    "candidate_diagnostics_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_diagnostics_watchlist.csv",
+    "candidate_matrix_core_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_core_afml_weighted_r.csv",
+    "candidate_matrix_core_plus_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_core_plus_watchlist_afml_weighted_r.csv",
+    "candidate_matrix_core_plus_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_core_plus_watchlist.csv",
+    "candidate_matrix_core_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_core.csv",
+    "candidate_matrix_watchlist_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_watchlist_afml_weighted_r.csv",
+    "candidate_matrix_watchlist_raw_r": "portfolio_allocator\\outputs\\return_streams\\candidate_return_streams_daily_watchlist.csv",
+    "portfolio_summary": "portfolio_allocator\\outputs\\return_streams\\return_streams_portfolio_summary.csv",
+    "profile_corr_core_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_core_compound_velocity_afml_weighted_r.csv",
+    "profile_corr_core_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_core_compound_velocity.csv",
+    "profile_corr_core_plus_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_core_plus_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_corr_core_plus_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_core_plus_watchlist_compound_velocity.csv",
+    "profile_corr_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_corr_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_corr_watchlist_compound_velocity.csv",
+    "profile_cov_core_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_core_compound_velocity_afml_weighted_r.csv",
+    "profile_cov_core_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_core_compound_velocity.csv",
+    "profile_cov_core_plus_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_core_plus_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_cov_core_plus_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_core_plus_watchlist_compound_velocity.csv",
+    "profile_cov_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_cov_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_cov_watchlist_compound_velocity.csv",
+    "profile_diagnostics_all": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_all.csv",
+    "profile_diagnostics_core_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_core_compound_velocity_afml_weighted_r.csv",
+    "profile_diagnostics_core_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_core_compound_velocity.csv",
+    "profile_diagnostics_core_plus_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_core_plus_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_diagnostics_core_plus_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_core_plus_watchlist_compound_velocity.csv",
+    "profile_diagnostics_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_diagnostics_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_diagnostics_watchlist_compound_velocity.csv",
+    "profile_matrix_core_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_compound_velocity_afml_weighted_r.csv",
+    "profile_matrix_core_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_compound_velocity.csv",
+    "profile_matrix_core_plus_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_plus_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_matrix_core_plus_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_plus_watchlist_compound_velocity.csv",
+    "profile_matrix_watchlist_compound_velocity_afml_weighted_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_watchlist_compound_velocity_afml_weighted_r.csv",
+    "profile_matrix_watchlist_compound_velocity_raw_r": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_watchlist_compound_velocity.csv",
+    "profile_representative_selection": "portfolio_allocator\\outputs\\return_streams\\profile_representative_selection.csv",
+    "representative_broker_minlot_metadata_summary": "portfolio_allocator\\outputs\\return_streams\\representative_broker_minlot_metadata_summary.csv"
+  },
+  "pipeline_mode": "v2_manifest_driven_calibrated_afml_compound_velocity_broker_minlot_validated",
+  "profile_matrices": {
+    "core_compound_velocity_afml_weighted_r": {
+      "columns": 6
+    },
+    "core_compound_velocity_raw_r": {
+      "columns": 6
+    },
+    "core_plus_watchlist_compound_velocity_afml_weighted_r": {
+      "columns": 6
+    },
+    "core_plus_watchlist_compound_velocity_raw_r": {
+      "columns": 6
+    },
+    "watchlist_compound_velocity_afml_weighted_r": {
+      "columns": 0
+    },
+    "watchlist_compound_velocity_raw_r": {
+      "columns": 0
+    }
+  },
+  "profile_roles": [
+    "compound_velocity"
+  ],
+  "return_modes": {
+    "afml_weighted_r": {
+      "description": "Daily sum of executed_r * afml_bet_size.",
+      "output_suffix": "_afml_weighted_r"
+    },
+    "raw_r": {
+      "description": "Daily sum of executed_r.",
+      "output_suffix": ""
+    }
+  },
+  "return_stream_status": "PASS",
+  "schema_version": "v2.2",
+  "universes": {
+    "core": [
+      "core"
+    ],
+    "core_plus_watchlist": [
+      "core",
+      "watchlist"
+    ],
+    "watchlist": [
+      "watchlist"
+    ]
+  }
+}

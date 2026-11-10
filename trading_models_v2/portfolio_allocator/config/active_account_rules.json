@@ -1,0 +1,58 @@
+{
+  "schema_version": "v1",
+  "profile_label": "current_prop_account",
+  "description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name.",
+  "account_stage": "phase1",
+  "initial_balance": 25000.0,
+  "current_balance": 23558.12,
+  "current_high_watermark": 25146.73,
+  "assume_fresh_daily_reset_at_simulation_start": true,
+  "profit_target": {
+    "enabled": true,
+    "pct": 0.05,
+    "stop_immediately_when_eligible": true
+  },
+  "overall_drawdown": {
+    "enabled": true,
+    "type": "static",
+    "pct": 0.10,
+    "breach_basis": "lower_of_balance_or_equity",
+    "high_watermark_basis": "balance",
+    "trailing_stops_at_initial_balance": false
+  },
+  "daily_drawdown": {
+    "enabled": true,
+    "pct": 0.05,
+    "mode": "pct_of_higher_day_start_balance_or_equity",
+    "breach_basis": "lower_of_balance_or_equity",
+    "reset_timezone": "UTC boundary corresponding to the prop rule; verify DST before each run",
+    "reset_hour_utc": 22
+  },
+  "minimum_trading_days": {
+    "enabled": true,
+    "required_days": 3,
+    "day_count_mode": "minimum_profit",
+    "minimum_day_profit_pct": 0.005
+  },
+  "maximum_risk_per_trade": {
+    "enabled": false,
+    "pct": null
+  },
+  "daily_symbol_risk": {
+    "enabled": false,
+    "max_pct": null,
+    "internal_operating_pct": null
+  },
+  "floating_loss_guard": {
+    "enabled": false,
+    "pct": null,
+    "internal_operating_pct": null,
+    "action": "block_new_trades"
+  },
+  "operational_permissions": {
+    "news_trading_allowed": true,
+    "weekend_holding_allowed": true,
+    "vps_allowed": true,
+    "automation_allowed": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "afml_ch18_entropy_encoding_v1",
+  "asset": "GBPJPY",
+  "created_at": "2026-11-07T21:16:10+00:00",
+  "source_bars_path": "assets/GBPJPY/bars/standard_quote_tick/gbpjpy_standard_quote_tick_bars.csv",
+  "source_bars_sha256": "b833aa615601fd3b24dd54946203abe38bdd59c4f6463aa961ba7f56e4df9b94",
+  "source_bars_rows": 226895,
+  "source_first_datetime": "2012-03-04 23:19:13.472000+00:00",
+  "source_last_datetime": "2026-07-03 20:44:04.698000+00:00",
+  "return_definition": "r_t = numpy.diff(numpy.log(Close)) on the research bars",
+  "returns": 226894,
+  "estimation_policy": "full_research_history_then_freeze (as the FFD d); sealed holdout and live never used",
+  "quantile_letters": 10,
+  "quantile_levels": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "quantile_method": "numpy.quantile default (linear)",
+  "quantile_boundaries": [
+    -0.0009103560547870869,
+    -0.0005464292296055717,
+    -0.0003212146530136906,
+    -0.00014468447345610224,
+    7.795083976080974e-06,
+    0.00016289226724950354,
+    0.0003370157050516906,
+    0.0005573148111226446,
+    0.0009086734324974978
+  ],
+  "quantile_in_sample_letter_shares": [
+    0.10000264440663922,
+    0.09999823706224052,
+    0.09999823706224052,
+    0.10000264440663922,
+    0.09999823706224052,
+    0.09999823706224052,
+    0.10000264440663922,
+    0.09999823706224052,
+    0.09999823706224052,
+    0.10000264440663922
+  ],
+  "sigma": 0.0008686515785123086,
+  "sigma_definition": "standard deviation of all research-history bar returns (AFML exercise 18.1(c)), numpy ddof=0",
+  "zero_return_share": 0.0021199326557775878,
+  "book": "AFML s.18.5.2 p.270 (quantile boundaries from the in-sample period), s.18.5.3 p.270-271 (sigma encoding), exercise 18.1(b)-(c) p.277"
+}

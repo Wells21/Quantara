@@ -1,0 +1,226 @@
+{
+ "thesis": "T24",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T24_volatility_managed_premium/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 200,
+  "vertical_h": 24.0,
+  "pt": 2.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "NASDAQ": {
+   "both_touch_bars": 42,
+   "LONG": {
+    "n_edge": 2426,
+    "edge_mean_R": 0.0759,
+    "random_all_mean_R": 0.02697,
+    "drift_month_matched": {
+     "diff": -0.01357,
+     "se": 0.04631,
+     "lower_bound_1p645": -0.08976,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.03862,
+     "se": 0.0465,
+     "lower_bound_1p645": -0.03787,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.06007,
+      "se": 0.05657,
+      "lower_bound_1p645": -0.03299,
+      "PASS": false,
+      "n": 2429,
+      "inverted_mean_R": 0.01583
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.00968,
+     "se": 0.07779,
+     "lower_bound_1p645": -0.13765,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 2429,
+    "edge_mean_R": 0.01475,
+    "random_all_mean_R": -0.0112,
+    "drift_month_matched": {
+     "diff": -0.04134,
+     "se": 0.04878,
+     "lower_bound_1p645": -0.12157,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.01918,
+     "se": 0.04867,
+     "lower_bound_1p645": -0.06087,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.04132,
+      "se": 0.05567,
+      "lower_bound_1p645": -0.05025,
+      "PASS": false,
+      "n": 2426,
+      "inverted_mean_R": -0.02657
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.04252,
+     "se": 0.08416,
+     "lower_bound_1p645": -0.09591,
+     "PASS": false
+    }
+   }
+  }
+ },
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": "2022-01-01",
+  "end": null
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 2426,
+   "drift_month_matched": {
+    "diff": -0.01359,
+    "se": 0.04305,
+    "lower_bound_1p645": -0.08441,
+    "PASS": false,
+    "lower_bound_tiered": -0.08441,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.06007,
+     "se": 0.05657,
+     "lower_bound_1p645": -0.03299,
+     "PASS": false,
+     "n": 2429
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 2429,
+   "drift_month_matched": {
+    "diff": -0.04099,
+    "se": 0.04514,
+    "lower_bound_1p645": -0.11525,
+    "PASS": false,
+    "lower_bound_tiered": -0.11525,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.04132,
+     "se": 0.05567,
+     "lower_bound_1p645": -0.05025,
+     "PASS": false,
+     "n": 2426
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  },
+  "SHORT": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "NASDAQ": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "NASDAQ": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "window_tests_d090": {
+  "NASDAQ": {
+   "LONG": {
+    "verdict": "FAIL",
+    "n_edge": 2426,
+    "C1_diff": 0.06007,
+    "C1_se": 0.05657,
+    "C1_z": 1.062,
+    "C1_pass_90": false,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": -0.01357,
+    "in_card_universe": true
+   },
+   "SHORT": {
+    "verdict": "FAIL",
+    "n_edge": 2429,
+    "C1_diff": 0.04132,
+    "C1_se": 0.05567,
+    "C1_z": 0.742,
+    "C1_pass_90": false,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": -0.04134,
+    "in_card_universe": true
+   }
+  }
+ },
+ "seconds": 1.9
+}

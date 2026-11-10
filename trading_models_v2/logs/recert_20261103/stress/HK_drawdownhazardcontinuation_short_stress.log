@@ -1,0 +1,39 @@
+schema_feature_names from 63f4a570:trading_models_v2/assets/HK/edges/drawdownhazardcontinuation_short/contracts/feature_schema.json -> 168 features
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/drawdownhazardcontinuation_short
+entry_delay_ms: 5700
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - H8_E150_V168_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+spread_model: broker
+Exact quote replay events: 4206
+  250/4206 elapsed=5.4s
+  500/4206 elapsed=13.4s
+  750/4206 elapsed=18.3s
+  1000/4206 elapsed=22.6s
+  1250/4206 elapsed=26.7s
+  1500/4206 elapsed=30.8s
+  1750/4206 elapsed=34.9s
+  2000/4206 elapsed=40.0s
+  2250/4206 elapsed=44.3s
+  2500/4206 elapsed=50.7s
+  2750/4206 elapsed=57.2s
+  3000/4206 elapsed=66.1s
+  3250/4206 elapsed=72.8s
+  3500/4206 elapsed=79.7s
+  3750/4206 elapsed=87.9s
+  4000/4206 elapsed=98.1s
+  4206/4206 elapsed=103.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage | guard_blocked
+H8_E150_V168_PT2_SL1 | +0.090089 | [-0.037992,+0.210445] | 1.1399 | 35.723 | 130.465 | +0.060525 | +1.856663 | nan | nan | 1.0000 | 0
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H8_E150_V168_PT2_SL1 | meanR=+0.090089 | R/occupied_day=+0.060525 | R/week=+1.856663 | mean_hold_h=35.723
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20261103T224818Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20261103T224818Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

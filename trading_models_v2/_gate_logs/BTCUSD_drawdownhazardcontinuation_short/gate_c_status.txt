@@ -1,0 +1,51 @@
+asset=BTCUSD edge=drawdownhazardcontinuation_short gate_c_exit=0 elapsed_seconds=540
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: BTCUSD/drawdownhazardcontinuation_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V1000_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 5879
+  250/5879 elapsed=42.5s
+  500/5879 elapsed=79.1s
+  750/5879 elapsed=101.1s
+  1000/5879 elapsed=121.9s
+  1250/5879 elapsed=140.9s
+  1500/5879 elapsed=169.6s
+  1750/5879 elapsed=195.4s
+  2000/5879 elapsed=212.4s
+  2250/5879 elapsed=223.4s
+  2500/5879 elapsed=245.1s
+  2750/5879 elapsed=268.6s
+  3000/5879 elapsed=305.0s
+  3250/5879 elapsed=334.6s
+  3500/5879 elapsed=364.5s
+  3750/5879 elapsed=385.7s
+  4000/5879 elapsed=409.3s
+  4250/5879 elapsed=427.1s
+  4500/5879 elapsed=445.2s
+  4750/5879 elapsed=458.5s
+  5000/5879 elapsed=473.2s
+  5250/5879 elapsed=488.7s
+  5500/5879 elapsed=512.1s
+  5750/5879 elapsed=526.3s
+  5879/5879 elapsed=532.7s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V1000_PT1_SL1 | -0.323011 | [-0.384733,-0.266312] | 0.5242 | 2.136 | 8.180 | -3.629847 | -9.445799 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.102690 | [-0.201393,-0.008125] | 0.8546 | 17.706 | 68.972 | -0.139192 | -3.002955 | 0.038 | 0.121 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.130204 | [-0.213302,-0.049580] | 0.8017 | 13.855 | 51.465 | -0.225537 | -3.807539 | 0.062 | 0.154 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.136013 | [-0.228793,-0.047334] | 0.8105 | 13.348 | 51.791 | -0.244558 | -3.977405 | 0.067 | 0.160 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T230450Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T230450Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\drawdownhazardcontinuation_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,214 @@
+{
+ "thesis": "T28",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T28_halloween_season/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 200,
+  "vertical_h": 24.0,
+  "pt": 2.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "DAX": {
+   "both_touch_bars": 13,
+   "LONG": {
+    "n_edge": 5652,
+    "edge_mean_R": 0.10304,
+    "random_all_mean_R": 0.06525,
+    "drift_month_matched": {
+     "diff": -0.01155,
+     "se": 0.03151,
+     "lower_bound_1p645": -0.06339,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.03863,
+     "se": 0.0313,
+     "lower_bound_1p645": -0.01286,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.08371,
+      "se": 0.03671,
+      "lower_bound_1p645": 0.02333,
+      "PASS": true,
+      "n": 5351,
+      "inverted_mean_R": 0.01933
+     }
+    }
+   },
+   "SHORT": {
+    "n_edge": 5351,
+    "edge_mean_R": -0.01125,
+    "random_all_mean_R": 0.00303,
+    "drift_month_matched": {
+     "diff": -0.02661,
+     "se": 0.03009,
+     "lower_bound_1p645": -0.0761,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.02519,
+     "se": 0.03021,
+     "lower_bound_1p645": -0.07488,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.01958,
+      "se": 0.0369,
+      "lower_bound_1p645": -0.04111,
+      "PASS": false,
+      "n": 5652,
+      "inverted_mean_R": -0.03083
+     }
+    }
+   }
+  }
+ },
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": null,
+  "end": null
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 5652,
+   "drift_month_matched": {
+    "diff": -0.0114,
+    "se": 0.02958,
+    "lower_bound_1p645": -0.06007,
+    "PASS": false,
+    "lower_bound_tiered": -0.04926,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.08371,
+     "se": 0.03671,
+     "lower_bound_1p645": 0.02333,
+     "PASS": true,
+     "n": 5351
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 5351,
+   "drift_month_matched": {
+    "diff": -0.02668,
+    "se": 0.02873,
+    "lower_bound_1p645": -0.07395,
+    "PASS": false,
+    "lower_bound_tiered": -0.07394,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.01958,
+     "se": 0.0369,
+     "lower_bound_1p645": -0.04111,
+     "PASS": false,
+     "n": 5652
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "NO_EVENTS",
+  "SHORT": "NO_EVENTS"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.28,
+   "reason": "every counterfactual passes at 95 %"
+  },
+  "SHORT": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  }
+ },
+ "window_tests_d090": {
+  "DAX": {
+   "LONG": {
+    "verdict": "PASS",
+    "n_edge": 5652,
+    "C1_diff": 0.08371,
+    "C1_se": 0.03671,
+    "C1_z": 2.28,
+    "C1_pass_90": true,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": -0.01155,
+    "in_card_universe": true
+   },
+   "SHORT": {
+    "verdict": "FAIL",
+    "n_edge": 5351,
+    "C1_diff": 0.01958,
+    "C1_se": 0.0369,
+    "C1_z": 0.531,
+    "C1_pass_90": false,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": -0.02661,
+    "in_card_universe": true
+   }
+  }
+ },
+ "seconds": 2.6
+}

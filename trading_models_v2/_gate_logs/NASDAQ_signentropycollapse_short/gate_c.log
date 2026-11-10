@@ -1,0 +1,31 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: NASDAQ/signentropycollapse_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - H20_E100_V1000_PT1_SL1 
+ - H20_E50_V1000_PT1_SL1 
+ - H20_E50_V1000_PT1.5_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 1519
+  250/1519 elapsed=146.5s
+  500/1519 elapsed=259.9s
+  750/1519 elapsed=363.8s
+  1000/1519 elapsed=441.1s
+  1250/1519 elapsed=520.8s
+  1500/1519 elapsed=622.4s
+  1519/1519 elapsed=632.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+H20_E100_V1000_PT1_SL1 | -0.009785 | [-0.096991,+0.075672] | 0.9808 | 11.254 | 56.437 | -0.020868 | -0.075449 | nan | nan | 1.0000
+H20_E50_V1000_PT1_SL1 | -0.011860 | [-0.096490,+0.068240] | 0.9768 | 10.677 | 58.587 | -0.026658 | -0.091443 | nan | nan | 1.0000
+H20_E50_V1000_PT1.5_SL1 | -0.035012 | [-0.138128,+0.070739] | 0.9438 | 15.222 | 69.647 | -0.055203 | -0.269958 | nan | nan | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\signentropycollapse_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260915T132347Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\signentropycollapse_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260915T132347Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\signentropycollapse_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/USDMXN/bars/ffd/usdmxn_ffd_features.csv",
+      "sha256": "cff08d4f6852b13e707d1cbbb34b41471f0318a2e4271e70a5de46b92362c964",
+      "size_bytes": 56820027
+    },
+    "state_bundle": {
+      "path": "assets/USDMXN/bars/ffd/usdmxn_ffd_state_bundle.pkl",
+      "sha256": "0bd28c84f2e5053691a601979559c85c06fb5b58a998fbab63d70da313134f8c",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "USDMXN",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 227597,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 227597,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 348.09,
+  "end_output": "2026-07-08 22:10:48.233000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.203125,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.9971564346014625,
+    "High_orig_vs_ffd_corr": 0.9971437148557457,
+    "Low_orig_vs_ffd_corr": 0.9972146623734226,
+    "Open_orig_vs_ffd_corr": 0.9971564781245571
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9971437148557457,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/USDMXN/bars/ffd/usdmxn_ffd_features.csv",
+    "manifest": "assets/USDMXN/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/USDMXN/bars/ffd/usdmxn_ffd_state_bundle.pkl"
+  },
+  "rows_input": 227597,
+  "rows_output": 226598,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/USDMXN/bars/standard_quote_tick/usdmxn_standard_quote_tick_bars.csv",
+  "start_output": "2012-03-27 19:08:50.817000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -1.8055358581921181,
+      "lags": 70,
+      "nobs": 113228,
+      "p_value": 0.3777167780086935
+    },
+    "full": {
+      "adf_stat": -2.914698333559628,
+      "lags": 83,
+      "nobs": 226514,
+      "p_value": 0.043665285109876065
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -3.906420507575736,
+      "lags": 68,
+      "nobs": 113230,
+      "p_value": 0.0019881005331181235
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

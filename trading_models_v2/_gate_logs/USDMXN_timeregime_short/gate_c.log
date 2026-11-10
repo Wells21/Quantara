@@ -1,0 +1,45 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: USDMXN/timeregime_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H10_E100_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 4675
+  250/4675 elapsed=18.8s
+  500/4675 elapsed=39.5s
+  750/4675 elapsed=58.0s
+  1000/4675 elapsed=81.4s
+  1250/4675 elapsed=101.6s
+  1500/4675 elapsed=118.6s
+  1750/4675 elapsed=145.3s
+  2000/4675 elapsed=159.1s
+  2250/4675 elapsed=169.3s
+  2500/4675 elapsed=185.5s
+  2750/4675 elapsed=223.5s
+  3000/4675 elapsed=255.5s
+  3250/4675 elapsed=276.0s
+  3500/4675 elapsed=291.4s
+  3750/4675 elapsed=306.4s
+  4000/4675 elapsed=329.0s
+  4250/4675 elapsed=341.5s
+  4500/4675 elapsed=367.5s
+  4675/4675 elapsed=381.1s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H10_E100_V1000_PT2_SL1 | -0.161896 | [-0.218912,-0.104832] | 0.7809 | 10.892 | 62.219 | -0.356730 | -3.615799 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.096308 | [-0.168836,-0.019322] | 0.8650 | 19.980 | 84.217 | -0.115686 | -2.150949 | 0.324 | 0.545 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.095120 | [-0.150842,-0.037171] | 0.8533 | 15.196 | 69.686 | -0.150226 | -2.124427 | 0.421 | 0.717 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.124778 | [-0.189448,-0.060152] | 0.8279 | 17.263 | 75.340 | -0.173473 | -2.786811 | 0.486 | 0.631 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\timeregime_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T212853Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\timeregime_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T212853Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\timeregime_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

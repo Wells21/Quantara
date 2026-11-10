@@ -1,0 +1,179 @@
+{
+ "schema_version": "v2.1",
+ "asset": "BTCUSD",
+ "description": "Gate A-D edge search ledger for BTCUSD, following the same workflow as JPN/US500/XAUUSD/NASDAQ/DAX/HK/GBPJPY/USDMXN/USOIL. BTCUSD is a reference-template asset (like XAUUSD): per explicit user instruction, killed edges' source folders are NEVER deleted from disk regardless of gate outcome -- only config/edge_universe.json registry entries are removed.",
+ "pre_session_retirements": {
+  "note": "upsidebreakoutfailure_short was missing runtime/.py source on disk (only __pycache__/artifacts present) -- not tested, treated as already-resolved, not a bug.",
+  "edges": [
+   "upsidebreakoutfailure_short"
+  ]
+ },
+ "gate_a_2026-09-18": {
+  "cost_bps": 46.9,
+  "cost_bps_source": "BTCUSD empirical p95-p99 bid/ask spread band, pooled/tick-volume-weighted midpoint per config/us500_edge_search_ledger.json per_asset_empirical_spread_bps_2026-09-14 method_caveat note (BTCUSD's two computation methods diverged significantly; pooled method used).",
+  "kill_bar": "gross_mean_R >= 0.05",
+  "edges_tested": 21,
+  "results": {
+   "trend_long": {
+    "verdict": "PASS"
+   },
+   "absorption_long": {
+    "verdict": "KILL"
+   },
+   "absorption_short": {
+    "verdict": "KILL"
+   },
+   "rangestructure_long": {
+    "verdict": "PASS"
+   },
+   "volatilitycarry_long": {
+    "verdict": "KILL"
+   },
+   "volatilityregime_long": {
+    "verdict": "PASS"
+   },
+   "trendpullbackcontinuation_long": {
+    "verdict": "KILL"
+   },
+   "trend_short": {
+    "verdict": "KILL"
+   },
+   "rangestructure_short": {
+    "verdict": "PASS"
+   },
+   "reversal_short": {
+    "verdict": "KILL"
+   },
+   "volatilityregime_short": {
+    "verdict": "KILL"
+   },
+   "volatilitycarry_short": {
+    "verdict": "PASS"
+   },
+   "downsidejumpcontinuation_short": {
+    "verdict": "KILL"
+   },
+   "breakdownretestfailure_short": {
+    "verdict": "PASS"
+   },
+   "signentropycollapse_short": {
+    "verdict": "PASS"
+   },
+   "drawdownhazardcontinuation_short": {
+    "verdict": "PASS"
+   },
+   "downsidevolatilitycascade_short": {
+    "verdict": "KILL"
+   },
+   "compressionbreakoutcontinuation_short": {
+    "verdict": "KILL"
+   },
+   "drawupreversalhazard_short": {
+    "verdict": "KILL"
+   },
+   "timeregime_short": {
+    "verdict": "KILL"
+   },
+   "trendpullbackcontinuation_short": {
+    "verdict": "PASS"
+   }
+  },
+  "note": "9 of 21 tested edges passed Gate A: trend_long, rangestructure_long, volatilityregime_long, rangestructure_short, volatilitycarry_short, breakdownretestfailure_short, signentropycollapse_short, drawdownhazardcontinuation_short, trendpullbackcontinuation_short."
+ },
+ "gate_b_2026-09-18": {
+  "rule": "Rank Gate A survivors' finalists by net_R_per_mean_hold_bar at cost_bps=46.90. Top-3 finalists per edge carried to Gate C. Not a kill gate.",
+  "finalists_computed_for": [
+   "breakdownretestfailure_short",
+   "rangestructure_long",
+   "rangestructure_short",
+   "drawdownhazardcontinuation_short",
+   "signentropycollapse_short",
+   "trend_long",
+   "trendpullbackcontinuation_short",
+   "volatilitycarry_short",
+   "volatilityregime_long"
+  ]
+ },
+ "gate_c_2026-09-18": {
+  "rule": "Exact bid/ask tick replay on Gate B's top-3 finalists + control geometry. Filter to executable_r (meanR) STRICTLY > 0. Winner = argmax(R/occupied_day) among positive finalists. KILL if none positive. Applied to all 9 Gate A survivors.",
+  "results": {
+   "breakdownretestfailure_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "rangestructure_long": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "rangestructure_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "drawdownhazardcontinuation_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "signentropycollapse_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "trend_long": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "trendpullbackcontinuation_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "volatilitycarry_short": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   },
+   "volatilityregime_long": {
+    "verdict": "KILL",
+    "note": "all finalists + control negative meanR"
+   }
+  },
+  "note": "0 of 9 Gate A survivors passed Gate C -- zero deployable edges for BTCUSD, same outcome as USDMXN and USOIL. BTCUSD's extreme cost_bps (46.90, roughly 5-16x the other assets' spread costs) overwhelmed every candidate's gross edge at exact bid/ask execution.",
+  "recurring_bugs_fixed": "wrong dict-key schema (start/end instead of start_date/end_date/filename) in build_tick_file_catalog() on drawdownhazardcontinuation_short and signentropycollapse_short. Same recurring per-edge scaffold gap as every prior asset, fixed identically each time."
+ },
+ "final_disposition_2026-09-18": {
+  "deployable": [],
+  "killed_gate_a": [
+   "absorption_long",
+   "absorption_short",
+   "volatilitycarry_long",
+   "trendpullbackcontinuation_long",
+   "trend_short",
+   "reversal_short",
+   "volatilityregime_short",
+   "downsidejumpcontinuation_short",
+   "downsidevolatilitycascade_short",
+   "compressionbreakoutcontinuation_short",
+   "drawupreversalhazard_short",
+   "timeregime_short"
+  ],
+  "killed_gate_c": [
+   "trend_long",
+   "rangestructure_long",
+   "volatilityregime_long",
+   "rangestructure_short",
+   "volatilitycarry_short",
+   "breakdownretestfailure_short",
+   "signentropycollapse_short",
+   "drawdownhazardcontinuation_short",
+   "trendpullbackcontinuation_short"
+  ],
+  "pre_retired_not_tested": [
+   "upsidebreakoutfailure_short"
+  ],
+  "summary": "0 of 21 BTCUSD edges deployable (0%). Third consecutive zero-survivor asset (after USDMXN and USOIL), and the final asset in the roster. All 17 tested-and-registered edges removed from config/edge_universe.json. Per explicit user instruction, BTCUSD is a reference-template asset (like XAUUSD): NO edge folders were deleted from disk -- only registry entries were removed."
+ },
+ "GATE_C_EXTRA0_RERUN_CHECK_2026-10-15": {
+  "date": "2026-10-15",
+  "double_charge_check": "All 10 saved BTCUSD Gate C audits (2026-08-31, 2026-09-17) used extra_cost_bps=0.0 and entry_delay_ms=0; every one had 0 executable-positive configs. Not affected by the 2026-09-29..10-14 double-charge bug; nothing to re-run.",
+  "stale_cost_found": "BTCUSD Gate A/B grids (2026-09-17, 21 edges x 180 cells) were run at cost_bps=46.9 (old p95-p99 tail assumption), never re-graded after the 2026-09-24 switch to the Dukascopy median (17.17).",
+  "regrade_at_17.17": "net = gross_mean_R - cost_mean_R*(17.17/46.9) (cost_r is linear in cost_bps; gross-cost=net identity verified to 4e-16). Result: 0/3780 cells positive. Best: volatilitycarry_short -0.043, rangestructure_short -0.059, volatilityregime_long -0.071. Typical cost at 17.17 bps ~0.22-0.25 R/trade vs best gross 0.107 R.",
+  "verdict": "BTCUSD has no Gate-B-positive cell under either cost assumption; all prior verdicts stand. 0 BTCUSD edges. Consistent with user's 2026-10-14 call to drop BTCUSD on cost grounds."
+ }
+}

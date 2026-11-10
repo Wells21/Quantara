@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/GBPJPY/bars/ffd/gbpjpy_ffd_features.csv",
+      "sha256": "a8de401a3e44b04ae08f4511eebb85592f639056a18c50f139f1ccb57fa31d5f",
+      "size_bytes": 56931103
+    },
+    "state_bundle": {
+      "path": "assets/GBPJPY/bars/ffd/gbpjpy_ffd_state_bundle.pkl",
+      "sha256": "cff089e9974bf2aff3f84887dfe568a9f6ad38887c18d2ca6648c007ba81f5c6",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "GBPJPY",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 226895,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 226895,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 766.0,
+  "end_output": "2026-07-03 20:44:04.698000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.25,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.994240650495668,
+    "High_orig_vs_ffd_corr": 0.9943526963922236,
+    "Low_orig_vs_ffd_corr": 0.9942131707796982,
+    "Open_orig_vs_ffd_corr": 0.9942407046046328
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9942131707796982,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/GBPJPY/bars/ffd/gbpjpy_ffd_features.csv",
+    "manifest": "assets/GBPJPY/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/GBPJPY/bars/ffd/gbpjpy_ffd_state_bundle.pkl"
+  },
+  "rows_input": 226895,
+  "rows_output": 225896,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/GBPJPY/bars/standard_quote_tick/gbpjpy_standard_quote_tick_bars.csv",
+  "start_output": "2012-03-27 08:25:28.118000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -3.1343912571650794,
+      "lags": 70,
+      "nobs": 112877,
+      "p_value": 0.02411057061415155
+    },
+    "full": {
+      "adf_stat": -2.920276415969535,
+      "lags": 83,
+      "nobs": 225812,
+      "p_value": 0.043040423832459394
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -1.922132849130499,
+      "lags": 70,
+      "nobs": 112877,
+      "p_value": 0.3217218164690072
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

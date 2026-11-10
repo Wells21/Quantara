@@ -1,0 +1,40 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: BTCUSD/rangestructure_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V1000_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3357
+  250/3357 elapsed=47.9s
+  500/3357 elapsed=87.6s
+  750/3357 elapsed=125.5s
+  1000/3357 elapsed=173.8s
+  1250/3357 elapsed=199.8s
+  1500/3357 elapsed=267.4s
+  1750/3357 elapsed=309.7s
+  2000/3357 elapsed=349.1s
+  2250/3357 elapsed=390.9s
+  2500/3357 elapsed=419.5s
+  2750/3357 elapsed=451.1s
+  3000/3357 elapsed=480.1s
+  3250/3357 elapsed=510.3s
+  3357/3357 elapsed=520.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V1000_PT1_SL1 | -0.216506 | [-0.282057,-0.154402] | 0.6487 | 1.967 | 7.195 | -2.641373 | -3.614956 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.075555 | [-0.189920,+0.038857] | 0.8914 | 15.873 | 65.020 | -0.114241 | -1.261520 | 0.043 | 0.124 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.105289 | [-0.203368,-0.006676] | 0.8370 | 12.491 | 45.903 | -0.202301 | -1.757994 | 0.077 | 0.157 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.114052 | [-0.224258,-0.005744] | 0.8395 | 12.242 | 46.915 | -0.223591 | -1.904307 | 0.085 | 0.161 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\rangestructure_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T230250Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\rangestructure_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T230250Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\rangestructure_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

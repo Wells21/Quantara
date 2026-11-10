@@ -1,0 +1,170 @@
+{
+  "edge": "XAUUSD/rangestructure_long",
+  "test": "AFML Ch.10 plan step A: remaining-return forecast vs martingale (research period only)",
+  "population": "approved_only",
+  "rows": {
+    "n_trades": 2251,
+    "n_trades_with_rows": 2237,
+    "n_rows": 54498,
+    "rows_dropped_after_barrier_touch": 302,
+    "rows_dropped_nan_features": 0,
+    "n_features": 157,
+    "share_positive": 0.632353480861683,
+    "n_rows_after_state": 54498
+  },
+  "avg_uniqueness": 0.020802839104435873,
+  "embargo_rows": 544,
+  "state_cols": [
+    "s_random_walk",
+    "time_left_frac",
+    "entry_oof_prob",
+    "r_so_far",
+    "best_r_so_far",
+    "worst_r_so_far",
+    "hours_in_trade",
+    "vol_since_over_pre",
+    "z_to_tp",
+    "z_to_sl",
+    "hour_of_week",
+    "hours_to_weekend",
+    "hours_to_2100utc"
+  ],
+  "n_features": 157,
+  "tree": {
+    "max_features": "sqrt",
+    "min_weight_fraction_leaf": 0.05
+  },
+  "n_estimators": 1000,
+  "mean_r_rem_weighted": 0.05472798231691226,
+  "pooled_oos_mse": {
+    "zero": 1.1018680124764844,
+    "drift": 1.1014190717265997,
+    "b": 1.0937620253465143,
+    "c": 1.0980753348593246
+  },
+  "r2_oos_vs_zero": {
+    "drift": 0.000407436049328358,
+    "b": 0.0073565863045170765,
+    "c": 0.0034420434881629047
+  },
+  "gains": {
+    "mse_gain_b_over_zero": 0.008105987129970203,
+    "mse_gain_b_over_drift": 0.007657046380085587,
+    "mse_gain_c_over_b": -0.00431330951281027
+  },
+  "bootstrap_95ci": {
+    "mse_gain_b_over_zero": [
+      -0.006283725341464845,
+      0.021971731939379725
+    ],
+    "mse_gain_b_over_drift": [
+      -0.005150375921524562,
+      0.02023545407263795
+    ],
+    "mse_gain_c_over_b": [
+      -0.014889732181597493,
+      0.0073074114836703796
+    ]
+  },
+  "mean_r_rem_by_prediction_quintile": {
+    "b": [
+      -0.06055447404570319,
+      0.06472665109427146,
+      0.06999258029915968,
+      0.15388562540322673,
+      0.12765862762873978
+    ],
+    "c": [
+      0.04370329908518214,
+      -0.005287991002727066,
+      0.01904712770191153,
+      0.03290300649016848,
+      0.20930653117516693
+    ]
+  },
+  "GO_state": false,
+  "GO_features": false,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 5450,
+      "mse_zero": 0.7106875060698868,
+      "mse_drift": 0.7269467284169879,
+      "mse_b": 0.7178469750205335,
+      "mse_c": 0.7129869021832324
+    },
+    {
+      "fold": 1,
+      "n_test": 5450,
+      "mse_zero": 1.0019437065113113,
+      "mse_drift": 1.0166589056588249,
+      "mse_b": 1.0205719500915085,
+      "mse_c": 1.017559457432133
+    },
+    {
+      "fold": 2,
+      "n_test": 5450,
+      "mse_zero": 1.107067210929288,
+      "mse_drift": 1.1082053491769117,
+      "mse_b": 1.1131087776666266,
+      "mse_c": 1.11870871220983
+    },
+    {
+      "fold": 3,
+      "n_test": 5450,
+      "mse_zero": 1.295670116139614,
+      "mse_drift": 1.285095582705427,
+      "mse_b": 1.3188445636549366,
+      "mse_c": 1.3129072485018298
+    },
+    {
+      "fold": 4,
+      "n_test": 5450,
+      "mse_zero": 1.2020040273619121,
+      "mse_drift": 1.194322529698782,
+      "mse_b": 1.1877751091986013,
+      "mse_c": 1.195730801758106
+    },
+    {
+      "fold": 5,
+      "n_test": 5450,
+      "mse_zero": 1.3383815323987134,
+      "mse_drift": 1.3322027142132813,
+      "mse_b": 1.3771477241282024,
+      "mse_c": 1.3721696398234742
+    },
+    {
+      "fold": 6,
+      "n_test": 5450,
+      "mse_zero": 1.1628099036263582,
+      "mse_drift": 1.1476359628504107,
+      "mse_b": 1.1256883192156555,
+      "mse_c": 1.111158985530841
+    },
+    {
+      "fold": 7,
+      "n_test": 5450,
+      "mse_zero": 0.9704351715260654,
+      "mse_drift": 0.9943369684070175,
+      "mse_b": 0.9465913500505109,
+      "mse_c": 0.9796637302176764
+    },
+    {
+      "fold": 8,
+      "n_test": 5449,
+      "mse_zero": 1.2548535887320016,
+      "mse_drift": 1.2349634121051174,
+      "mse_b": 1.1895122364703266,
+      "mse_c": 1.2092606897269782
+    },
+    {
+      "fold": 9,
+      "n_test": 5449,
+      "mse_zero": 1.1073481588652665,
+      "mse_drift": 1.099763905938821,
+      "mse_b": 1.0484509296899798,
+      "mse_c": 1.0654061142091065
+    }
+  ],
+  "elapsed_s": 354.2
+}

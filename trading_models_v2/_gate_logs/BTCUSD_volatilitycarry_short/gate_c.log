@@ -1,0 +1,42 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: BTCUSD/volatilitycarry_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V1000_PT1.5_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3779
+  250/3779 elapsed=56.3s
+  500/3779 elapsed=96.5s
+  750/3779 elapsed=129.4s
+  1000/3779 elapsed=173.7s
+  1250/3779 elapsed=195.1s
+  1500/3779 elapsed=224.8s
+  1750/3779 elapsed=268.7s
+  2000/3779 elapsed=316.3s
+  2250/3779 elapsed=359.1s
+  2500/3779 elapsed=401.3s
+  2750/3779 elapsed=424.9s
+  3000/3779 elapsed=455.8s
+  3250/3779 elapsed=483.1s
+  3500/3779 elapsed=516.5s
+  3750/3779 elapsed=538.8s
+  3779/3779 elapsed=540.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V1000_PT1.5_SL1 | -0.349982 | [-0.432678,-0.271237] | 0.5457 | 3.383 | 12.816 | -2.482886 | -6.577297 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.072226 | [-0.184666,+0.035734] | 0.8963 | 19.085 | 69.906 | -0.090826 | -1.357364 | 0.037 | 0.177 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.089881 | [-0.190422,+0.004113] | 0.8597 | 15.698 | 55.626 | -0.137414 | -1.689158 | 0.055 | 0.216 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.097636 | [-0.210807,+0.010983] | 0.8617 | 15.226 | 58.591 | -0.153893 | -1.834890 | 0.062 | 0.222 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T230343Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T230343Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\volatilitycarry_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

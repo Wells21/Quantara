@@ -1,0 +1,898 @@
+{
+  "register_version": "quantara_mldp_deviation_register_v1",
+  "generated_by_patch": "quantara_mldp_task1_foundation_v1",
+  "items": [
+    {
+      "id": "D001",
+      "priority": "P0",
+      "title": "Gross-model probability is calibrated against executable target",
+      "status": "SUPERSEDED_2026-10-27 (AFML Ch.14 close, legacy review) by LABEL_DEFINITION_DECISION_2026-10-17 (config/us500_edge_search_ledger.json): the meta-model trains on the Dukascopy MID-path triple-barrier label and Step 04 calibrates on the same label (no target switch); costs are applied only at decision layers. Verified: quote_executable_meta_label == (label_r > 0) on 100 % of OOF rows (HK, XAUUSD).",
+      "resolution": "Decided in docs/mldp/A2_TARGET_CALIBRATION_ARCHITECTURE_DECISION.md: the secondary model trains directly on quote_executable_meta_label (execution resolved before training, not retargeted after); Step 04 becomes same-target calibration with no target switch. The two-model (gross alpha + execution-survival model) alternative was considered and not adopted for now. This is a frozen doctrine decision, not yet applied to any edge's code -- that is Task 2C (pilot edge rebuild)."
+    },
+    {
+      "id": "D002",
+      "priority": "P0",
+      "title": "Ambiguous realized_r/executed_r ontology",
+      "status": "CLOSED_2026-10-27 (AFML Ch.14 close, legacy review): shared/labels/outcome_ontology.py defines the layers; gross_r, label_r, quote_executable_r, executed_r are distinct columns and 04b refuses realized_r as executed_r. NAMING DEBT flagged: the column quote_executable_meta_label holds the MID-path label since 2026-10-17 (rename = code-wide change, owner to decide later).",
+      "resolution": "Use gross_r, quote_executable_r, net_executable_r, live_realized_r and matching t1/labels. Which layer is the frozen training target is now specified precisely in docs/mldp/A2_TARGET_CALIBRATION_ARCHITECTURE_DECISION.md (quote_executable_meta_label; net_executable deferred to P1 pending a defensible cost model)."
+    },
+    {
+      "id": "D003",
+      "priority": "P0",
+      "title": "Shared CPCV helper used min/max test-start approximation",
+      "status": "RESOLVED_BY_TASK1",
+      "resolution": "Use exact interval-overlap purge against testing information intervals."
+    },
+    {
+      "id": "D004",
+      "priority": "P1",
+      "title": "Hard-coded 100-row edge embargo lacks methodology certificate",
+      "status": "SUPERSEDED_2026-10-27 (AFML Ch.14 close, legacy review) by D036: embargo max(100, 1 % of rows) per AFML s.7.4.2 p.107, with the cv_leakage_audit evidence.",
+      "resolution": "Select/document unit, rationale and leakage sensitivity."
+    },
+    {
+      "id": "D005",
+      "priority": "P0",
+      "title": "No global immutable research-trial authority",
+      "status": "SUPERSEDED_2026-10-31 (runbook Rev 29 review, owner approval) by D054 / D050-A: the DSR trial count is each edge's replayed Gate C trials (Level 1, gating at the RECERT) plus the thesis count from git history (Level 2, reported); per-edge artifacts/model/*_research_trial_ledger.jsonl files are written by Step 02 and every walkthrough test; the global config/research_trial_ledger.jsonl stays empty and unused; historical backfill not done -- older trials' Sharpe ratios are not recoverable (D054 known_limits). Previous status: WRITER_BUILT_AND_TESTED_LEDGER_EMPTY_HISTORICAL_BACKFILL_PENDING",
+      "resolution": "shared/colab_portable/trial_ledger_snippet.py (canonical, dependency-free, Colab-portable) plus shared/research/trial_ledger.py (local wrapper with real-schema-file validation and a merge utility for Colab-downloaded records) are built and tested (see docs/mldp/A6_TRIAL_LEDGER_LOGGING.md, 15 passing tests). The ledger itself (config/research_trial_ledger.jsonl) remains empty -- correctly, since no outcome-informed research choice has been made yet under this migration; the first real entries will come from Task 2C's pilot-edge rebuild. Historical backfill (reconstructing V3's existing Optuna/geometry-scan trial history) remains a separate, larger, unstarted effort and does not block Stage B."
+    },
+    {
+      "id": "D006",
+      "priority": "P0",
+      "title": "Barrier/Event_Vol/horizon scans were selected from gross economics",
+      "status": "SUPERSEDED_2026-10-31 (runbook Rev 29 review, owner approval) by D050-A: barrier / Event_Vol / horizon are searched over the 405-cell grid on executable (broker-cost) economics at Gate C and the whole search is paid for -- full-N PBO (D051), all-trials DSR / FWER (D054), strategy risk (D055); trials accumulate across re-selection. Previous status: OPEN_RESCAN_REQUIRED",
+      "resolution": "Re-run theory-constrained executable-economics research with trial counting, stability tests and locked final evaluation."
+    },
+    {
+      "id": "D007",
+      "priority": "P0",
+      "title": "Quantara payoff-adjusted sizing is labelled as AFML in current pipeline",
+      "status": "KEPT_2026-10-26 (owner, AFML Ch.10): payoff-aware s.10.3 stays; the clean OOS benchmark (book formula vs ours on rows none of calibrator / p_be / threshold saw, trials counted) is deferred until the owner asks",
+      "resolution": "shared/sizing/afml_ch10_reference.py's canonical binary/one-vs-rest formulas are now fixture-tested with exact scipy.stats.norm.cdf cross-checks (tests/test_mldp_afml_ch10_reference.py, 17 tests). A real, unforced duplicate of the canonical binary formula was found inside shared/calibration/sigmoid_afml.py (afml_probability_bet_size) and consolidated to delegate to the single canonical reference instead of recomputing it (verified numerically identical across 200 points first). shared/calibration/sigmoid_afml.py's payoff_aware_afml_components remains the named Quantara extension (empirical break-even rescaling), now with its own dedicated test suite (tests/test_sigmoid_afml_sizing_extension.py) proving it is mathematically sound on its own terms AND that it is not accidentally numerically identical to the canonical reference (guarding against future silent collapse). See docs/mldp/A5_SIZING_VERIFICATION.md. Still open: the actual out-of-sample, trial-count-corrected benchmark comparing the extension against the canonical reference (blueprint Phase 7/8) has not been run -- that is downstream work, not resolved by this hardening pass."
+    },
+    {
+      "id": "D008",
+      "priority": "P0",
+      "title": "Signal-age contract drifted from intended 120s to 1000s",
+      "status": "RESOLVED_BY_TASK1_SOURCE_CHANGE_ARTIFACT_REBUILD_PENDING",
+      "resolution": "Set dashboard/execution source defaults to 120s and invalidate executable outcomes downstream."
+    },
+    {
+      "id": "D009",
+      "priority": "P1",
+      "title": "FFD minimum-d stationarity/memory decision not fully certified",
+      "status": "SUPERSEDED_2026-10-27 (AFML Ch.14 close, legacy review) by D031: minimum d passing ADF at 95 % on the full research history (Snippet 5.4), frozen, memory recorded (min corr 0.970-1.000); the train-only-d idea was decided against in D031.",
+      "resolution": "Persist train-only d candidates, stationarity criterion and memory-retention curve."
+    },
+    {
+      "id": "D010",
+      "priority": "P1",
+      "title": "Feature/portfolio covariance matrices are not MLAM-denoised/ONC governed",
+      "status": "CODE_DONE_2026-10-30 (AFML Ch.16, owner approved (a')/(b')); takes effect at the RECERT allocator re-run (07 outputs and the live manifest are stale until then)",
+      "resolution": "Marcenko-Pastur denoising (constant-residual-eigenvalue method), detoning, and the full two-stage ONC algorithm are now implemented and tested at shared/colab_portable/denoise_onc_snippet.py (canonical, dependency-free, Colab-portable per the Step 01/02 execution constraint) with a local re-export at shared/models/denoise_onc.py; verified against MLAM's own described experiments (Marcenko-Pastur factor recovery under a diluted signal, denoising's condition-number improvement, and ONC's block-structure recovery after shuffling -- see docs/mldp/A4_DENOISE_ONC_UTILITY.md). NOT yet wired into any consumer: Step 01's clustered feature importance still uses a fixed Ward-linkage distance threshold on raw correlation, and the portfolio allocator's clustering layer still uses raw empirical correlation. Wiring this in (and adding a Colab drift-detection test for Step 01's copy, per the pattern in tests/test_colab_portable_snippet_sync.py) is scoped to the edge-rebuild and portfolio-construction-upgrade stages of the migration, not this station. Benchmark NCO against HRP once the portfolio-allocator wiring happens; do not replace HRP blindly. UPDATE (Task 2C rollout): Step 01's build_feature_clusters now uses this denoise+ONC utility directly (inlined per the Colab-portable pattern), propagated identically to all 141 asset/edge Step 01 scripts via a sync-test-verified patcher. The portfolio allocator's clustering layer still uses raw empirical correlation -- that wiring remains open. UPDATE 2026-10-30 (AFML Ch.16 walkthrough s.4P.3): portfolio_allocator/07 hrp_allocation now denoises exactly as MLAM Snippets 2.4-2.5 (p.27-29: Marcenko-Pastur fit with the book's var=1 fallback, nFacts = eigenvalues above lambda+ with no floor of 1, constant residual eigenvalue; nFacts=0 gives the identity, HRP = IVP) and detones the clustering matrix only if a market component exists (s.2.6 p.30 'a hypothesis that can be tested statistically'): first eigenvalue > lambda+ AND first-eigenvector loadings of one sign in >= 95% of 1,000 iid row-bootstrap resamples (seed 0) -- the bootstrap and the 95% cutoff are the project's operationalisation (the book names no test; a single-sample sign check calls two equal clusters a market). Rule id mlam_ch2_book_v2; tests tests/test_afml_ch16_hrp.py. The superseded always-on denoise+detone (with the floor of 1 signal factor) is gone.",
+      "evidence": "2026-10-30: live 6 columns: lambda+ 1.130, eigenvalues 1.686 / 1.618 above it (nFacts 2), bootstrap same-sign share 0.011 -> no detone; weights GBPJPY 0.098, HK 0.111, JPN rs 0.033, JPN vc 0.194, XAU rs 0.195, XAU vc 0.369 (live manifest 0.076 / 0.096 / 0.038 / 0.246 / 0.192 / 0.352). Current 4 edges: fitted var 0.961, lambda+ 1.062, lambda1 1.128 (nFacts 1), share 0.002 -> no detone; XAU 0.509."
+    },
+    {
+      "id": "D011",
+      "priority": "P1",
+      "title": "No uniform DSR/PBO/false-discovery promotion firewall",
+      "status": "SUPERSEDED_2026-10-31 (runbook Rev 29 review, owner approval) by D051 (PBO over every Gate C trial, in force), D054 (Level 1 DSR > 0.95 and FWER alpha_K < 0.05) and D055 (strategy risk on bets); D054 / D055 gate at the RECERT. Previous status: OPEN",
+      "resolution": "Add trial-aware selection-risk evidence before promotion."
+    },
+    {
+      "id": "D012",
+      "priority": "P1",
+      "title": "AFML portfolio-oversight lifecycle not explicit end to end",
+      "status": "SUPERSEDED_2026-10-27 (AFML Ch.14 close, legacy review) by the AFML Ch.1 decisions: embargo / holdout D023, paper + graduation D018, reallocation D019, versions D020, decommission D021 (applied automatically by the execution bot).",
+      "resolution": "Research -> embargo -> paper -> small-capital graduation -> reallocation -> decommission."
+    },
+    {
+      "id": "D013",
+      "priority": "P1",
+      "title": "Purge/embargo logic is correct but duplicated 423 times instead of centralized",
+      "status": "RESOLVED_VIA_SYNC_TEST_COLAB_EXECUTION_PREVENTS_SHARED_IMPORT",
+      "resolution": "shared/models/financial_cv.py's purge_overlapping_train_indices and embargo_after_test_blocks were fuzz-tested (500 randomized trials plus the AFML Snippet 7.1 three named overlap conditions individually) against a literal, independent brute-force implementation of getTrainTimes and found to be exact -- zero mismatches. A hash-scan of assets/*/edges/*/research/*.py found the identical purge_train_overlaps/apply_embargo function pair copy-pasted verbatim across 423 files (one hash each for purge and embargo across all 423 occurrences -- no divergent forks found, and the edge-local copy was independently fuzz-tested against the same brute-force reference with zero mismatches, so today's math is not wrong). IMPORTANT CONSTRAINT (confirmed by the user): edge Step 01/02 research scripts are not run from this repo checkout -- they are uploaded standalone to Google Colab (only the single script plus data files travel there) and results are downloaded back. These scripts therefore CANNOT import shared.models.financial_cv at runtime; the earlier resolution text suggesting a shared import during Stage B/C edge rebuilds was wrong and has been superseded. The actual fix: a single canonical copy of the verified-correct function pair now lives at shared/colab_portable/purge_embargo_snippet.py, and tests/test_colab_portable_snippet_sync.py automatically re-parses every edge script and asserts its local copy matches that canonical file byte-for-byte, catching silent drift via the test suite rather than via a runtime import. Status: RESOLVED as of this sync test passing (all 423 copies currently in agreement); stays resolved as long as the sync test keeps passing on every future edit."
+    },
+    {
+      "id": "D014",
+      "priority": "P0",
+      "title": "Meta-model was XGBoost (boosting), a named deviation from AFML's explicit bagging preference",
+      "status": "CODE_MIGRATED_ALL_141_EDGES_ARTIFACT_REGENERATION_PENDING",
+      "resolution": "AFML SS6.6 (p.100-101): 'It could be argued that in financial applications bagging is generally preferable to boosting... because of the low signal-to-noise ratio.' Blueprint SS4.6 had already flagged Quantara's XGBoost choice as an explicit deviation from this stated preference (P1, 'requires stronger overfit controls'). Concrete motivating evidence found this session: re-scoring US500/volatilitycarry_long's and BTCUSD/absorption_long's historical rows with the saved final (100%-data-refit) XGBoost model produced raw-probability distributions shifted ~0.15 (mean) below their own OOF (CPCV) estimate -- large enough to push the entire calibrated-probability distribution under the OOF-selected deployment threshold, i.e. the deployed model would rarely or never fire despite a seemingly-reasonable OOF-based threshold. Root cause: Step05-09's replay/smoke-test machinery can only re-score historical (= training) data against the final model, which is structurally in-sample for a 100%-data refit -- there is no way, within the old architecture, to distinguish 'this threshold works' from 'this threshold only worked on the model's own training data.' Fix (read directly from the AFML PDF, not a secondhand summary; both source chapters extracted and hand-verified against the book's own worked example before implementation): (1) shared/models/sequential_bootstrap.py implements AFML Ch.4 SS4.5's sequential bootstrap (Snippets 4.3-4.6) -- the book's own 'third and better [best]' solution to bagging under overlapping financial labels -- verified bit-for-bit against a brute-force reference and numerically exact against the book's own SS4.5.3 worked example, then optimized (sqrt-decomposition) for tractability at Quantara's scale (~7x speedup, measured). (2) shared/models/sequential_bootstrap_bagging.py implements AFML Ch.6 Snippet 6.2's clf1 bagging ensemble (DecisionTreeClassifier, criterion=entropy, max_features=sqrt [renamed from removed sklearn 'auto', not a deviation], class_weight=balanced), sequential-bootstrap resampled instead of plain bootstrap, mean-of-probabilities inference (AFML p.94). (3) 02_train_meta_model_optuna.py now follows AFML Ch.9 Snippet 9.1's clfHyperFit two-stage pattern exactly: Optuna tunes a single tree's hyperparameters via the SAME purged CPCV already in place (stage 1, unchanged), then the validated hyperparameters build the bagging ensemble for the deployed final model (stage 2). Optuna itself is not a deviation -- AFML Ch.9 mandates a purged CV underneath hyperparameter search, not a specific search algorithm; Optuna's TPE search is a legitimate, more efficient substitute for the book's own GridSearchCV/RandomizedSearchCV, doing the identical job. (4) 03_generate_oof_predictions.py's CPCV folds now use the SAME bagged-ensemble estimator (not a plain single tree) so OOF predictions come from a structurally identical kind of model to what is actually deployed -- this is the direct fix for the divergence, and is a considered extension of AFML's principles to Quantara's OOF-then-deploy architecture (the book's own clfHyperFit workflow does not have a separate OOF-calibration stage to reconcile). (5) n_estimators is currently 100 (pilot validation value), not yet AFML's own illustrative 1000 (Snippet 6.2) -- the book does not derive 1000 from a formula (its own Figure 6.1 plots variance reduction only over N in [5,30]; its own Snippet 6.1 worked accuracy example uses N=100); Step02 now prints a realized rho_bar (mean pairwise bagged-tree correlation) and projects, via AFML's own SS6.3.1 variance formula V=sigma_bar^2*(rho_bar+(1-rho_bar)/N), how much benefit raising to 1000 would actually give on real data, rather than copying the book's example number. All 141 edges' Step02/Step03 scripts were propagated via patch_backups/_patcher_step_script_rollout.py (same byte-identical-template mechanism already used for the executable-target migration) and verified byte-identical to each other via tests/test_sequential_bootstrap_bagging_sync.py (which also executes the inlined block and re-proves the AFML SS4.5.3 worked example, not just a text-equality check). CODE is migrated everywhere; ARTIFACTS (model.pkl, best_params.json, OOF predictions, manifests) for any edge that already completed Step01-04 under the old XGBoost architecture are now stale relative to the new code and must be regenerated (Step01/02 on Colab, Step03/04 locally) before Step05+ will run against them -- in progress overnight for US500/volatilitycarry_long and BTCUSD/absorption_long specifically; the other 139 edges have not yet had Step01 run at all under either architecture, so there is no stale-artifact exposure for them, only the (already-complete) code migration. ADDENDUM (found during the overnight regeneration runs, both fixed and propagated to all 141 edges before any edge's artifacts were treated as final): (a) joblib.dump'ing a SequentialBootstrapBaggingClassifier instance directly is unpicklable from any other process (Step05-09, EdgeScorer, live scoring) -- Step02 defines the class inline (Colab constraint) so pickle records it as __main__.SequentialBootstrapBaggingClassifier; overriding __module__ on the inline class does NOT fix this either, pickle's save_global does a strict class-identity check. Fixed by persisting a plain portable dict (real DecisionTreeClassifier objects + plain data, not the wrapper instance) and reconstructing the real class in EdgeScorer.load_model(), the one place that already imports the canonical module -- verified with a genuine subprocess-based producer/consumer test (an in-process pickle round trip does not exercise this bug at all), now a permanent regression test (test_model_pkl_survives_genuine_cross_process_load). (b) Optuna's study was not using a seeded sampler, so re-running 02_train_meta_model_optuna.py (e.g. to regenerate an artifact after an unrelated fix, which is exactly what surfaced this) finds a DIFFERENT best_params.json each time, silently orphaning any already-generated Step03/04 output built from the previous run's best_params. Fixed with optuna.samplers.TPESampler(seed=RANDOM_STATE), making the full Step02 search (and therefore Step03's per-fold bagged ensembles, which consume Step02's best_params) deterministic given the same input data -- the same fixed-seed discipline already used everywhere else in this pipeline (RANDOM_STATE=42 for every tree/bagging draw)."
+    },
+    {
+      "id": "D015",
+      "priority": "P0",
+      "title": "calibrated_probability (CAL_PROB_COL) is a CPCV-fold-averaged research diagnostic, NOT the live-consistent probability -- do not use it for anything meant to reflect live/allocator-facing scoring",
+      "status": "RESOLVED_AND_DOCUMENTED_2026-09-18",
+      "resolution": "shared/calibration/fit_sigmoid_calibrator_and_thresholds.py:98-109 defines two distinct output columns on every calibrated_oof_predictions.csv: CAL_PROB_COL='calibrated_probability' is an AVERAGE across several different per-fold sigmoid calibrator fits from CPCV (cpcv_calibrate_edge) -- per-fold sigmoid coefficients were empirically shown to vary wildly fold-to-fold (e.g. coef ranging 0.03-0.48 across 10 folds on one edge), so this column does not track raw_probability faithfully; it is retained ONLY for the calibration-quality bucket/ECE diagnostics it was designed for (see code comment tagged QUANTARA_V3_LIVE_CONSISTENT_CALIBRATION_ARTIFACT, 2026-09-15). LIVE_CAL_PROB_COL='live_calibrated_probability' is raw_probability passed through the SINGLE final live sigmoid calibrator (fit_final_live_sigmoid's probability_calibrator_sigmoid_side_<side>.json) -- this is what live scoring and the portfolio_allocator's threshold grid actually use (commit d13ecea9, 2026-09-15: 'Updated the calibration to use the final single fit calibration ... reran the 04 script of every promoted edge so that its live_calibrated_probability column can reside in the calibrated_oof_prediction.csv file'). Each edge's own artifacts/thresholds/*_selected_threshold.json declares its own probability_column (currently 'calibrated_probability' for every edge, by design -- that threshold is explicitly an 'edge-default diagnostic/admissibility threshold; allocator 04C owns final representative/live threshold selection', not the live one) -- any downstream consumer MUST read that field dynamically per edge rather than hardcoding a probability column name, so the threshold value and the column it was computed against always stay in the same probability space. This was found and fixed in shared/independence/asset_independence_lab.py (the v3 statistical edge-independence lab, 2026-09-18) which already read probability_column dynamically per edge (verified correct against all 21 currently-deployed edges) and had its PROBABILITY_CANDIDATES fallback list updated to include live_calibrated_probability with an explanatory comment, so a future missing-field fallback does not silently pick the wrong (fold-averaged) column. STANDING RULE GOING FORWARD: any code written for the portfolio_allocator threshold-selection stage (04B/04C) or any other live-facing/allocator-facing consumer MUST use live_calibrated_probability, never calibrated_probability. calibrated_probability may only be used for the CPCV calibration-quality bucket/ECE diagnostics it was built for, or where an edge's own selected_threshold.json artifact explicitly declares it as that artifact's probability_column (the edge-level diagnostic-threshold case, which is intentionally not live-consistent). Do not rediscover this distinction from scratch again -- check this entry first."
+    },
+    {
+      "id": "D016",
+      "priority": "P0",
+      "title": "Meta-label is the firm-neutral DUKASCOPY MID-path triple-barrier outcome; economics (executed_r / quote_executable_r) are the research firm's broker-cost-model net R",
+      "status": "IMPLEMENTED_2026-10-17",
+      "resolution": "shared/execution/executable_target_dataset.py (Task 2A) replays every event twice: (1) economics at the research firm's broker cost model (portfolio_allocator/config/broker_repricing.json research_firm + entry_delay_ms; spread + swap per rollover + commission) -> executed_r = quote_executable_r = quote_executable_t1/entry/exit columns; (2) label on the Dukascopy mid (zero spread, no carry, 0 ms) -> label_r/label_t1, quote_executable_meta_label = int(label_r > 0). Eligibility = both replays resolved. portfolio_allocator/04b derives executed_meta_label from executed_r (economic win), never from the training label.",
+      "evidence": "9-edge head-to-head (ledger LABEL_DEFINITION_DECISION_2026-10-17; docs/mldp/label_experiment_2026-10-17/): mid labels and Moneta-cost labels gave identical Gate D verdicts on 9/9 edges and statistically indistinguishable selected net R; the previous Dukascopy-bid/ask labels produced false Gate D passes on 4 BTCUSD edges + NASDAQ/sequentialpressure_long because Dukascopy's fixed-$ spread made labels encode the era. AFML Snippet 3.7 (pp.50-51) labels from price; AFML 2.4.1 (p.34) keeps transaction costs out of the series.",
+      "supersedes": "Task 2A labels/economics computed from Dukascopy's own bid/ask with 0 ms entry delay."
+    },
+    {
+      "id": "D017",
+      "priority": "P1",
+      "title": "Bet sizing composes AFML 10.3 (size from meta-label probability) with the SECTION 10.2 budgeting approach per independent bracket order, instead of Snippet 10.1's 10.3 -> 10.4 averaging -> 10.5 discretization of one netted position",
+      "status": "IMPLEMENTED_2026-10-17 (live 2026-10-19); CONFIRMED 2026-10-26 against s.10.4 averaging on data (D047)",
+      "book": "AFML Ch.10: SS10.2 p.141-142 budgeting ('compute the maximum number (or some other quantile) of concurrent long bets... the maximum position is not reached before the last concurrent signal is triggered'); SS10.3 p.142-143; Snippet 10.1 getSignal p.143-144 = 10.3 -> avgActiveSignals (Snippet 10.2, SS10.4 p.144) -> discreteSignal (Snippet 10.3, SS10.5 p.144-145). Ch.10 sizes ONE position per strategy/instrument (m_i,t p.141; q_t, Q p.146).",
+      "resolution": "portfolio_allocator/afml_concurrency_sizing.py: risk_i = base x hrp_weight x afml_bet_size_i / c_q(edge), c_q = 0.95-quantile of the edge's concurrent signals at arrival (representative ledger); carried 08/08c/09/10/11 -> portfolio_live/00 risk_caps.afml_concurrency_divisor -> portfolio_execution_bot (target /= divisor). Edge exposure with c open bets = base x weight x mean(m) x c / c_q: equals the 10.4 averaged position at c = c_q, scales linearly below, edge cap above. Reference transcriptions of 10.4/10.5 stay in shared/sizing/afml_ch10_reference.py, uncalled.",
+      "why": "Quantara executes every meta-labelled event as its own MT5 position with real triple-barrier SL/TP (hedging account) and never resizes open trades, so each live trade equals its training label and Task 2A / Gate C economics match live trade-for-trade. 10.4 averaging needs one netted position re-targeted at every bet start/end (and 10.5 exists only to damp that re-targeting jitter); applying it would require resizing/partially closing open trades, i.e. a netting position-keeping layer and a position-level backtester. Before D017 the single-trade cap flattened 10.3 sizes and 48-54% of signals were dropped (67-92% of an edge's signals arrive while it already has a trade open).",
+      "evidence": "2026-10-17 allocator Steps 08-11 (option A afmlconc_q95_cap3p50_budget50_trade50, STRESS_PASS); existing candidates bit-for-bit unchanged with quantile 0; bot unit-tested (absent = 1.0, divisor 6 = /6, <1 refused). Live week 2026-10-19: HK drawdownhazard 25/25 approved signals executed (0 rejected) vs 13/29 the week before, median risk 0.023% vs 0.064% of balance.",
+      "supersedes": "Direct-weight sizing min(base x hrp_weight x afml_bet_size, max_single) with no concurrency term."
+    },
+    {
+      "id": "D018",
+      "priority": "P2",
+      "title": "Paper-trading and graduation stages (AFML Ch.1 cursus honorum stages 2-3) are served by the prop-firm challenge account, not a separate paper-trading account",
+      "status": "ACCEPTED_2026-10-23 (user decision, AFML Ch.1 walkthrough)",
+      "book": "AFML Ch.1 s.1.3.1.6 Portfolio Oversight, p.8-9: cursus honorum = 1 embargo, 2 paper trading, 3 graduation, 4 re-allocation ('re-assessed frequently and automatically... allocation follows a concave function. The initial allocation (at graduation) is small'), 5 decommission; 'it is preferable to release new variations of a strategy and run them in parallel with old versions'.",
+      "resolution": "No separate paper-trading stage. The prop-firm challenge account is the live-feed stage: it captures parsing, calculation and execution latency (measured 5.7 s median / 8.5 s p95) on real broker fills, and its capital is not the user's own investment capital. Stage 1 (embargo) is implemented separately as the holdout run (Chapter 1 decision 2); stage 5 (decommission) as the decommission rule (decision 5).",
+      "why": "User decision 2026-10-22/23: the challenge account 'can as well present itself as paper trading'. Paper trading exists to measure live frictions without risking real allocation; a challenge account does that with real fills at bounded, fee-sized risk.",
+      "evidence": "User instruction in the AFML Ch.1 walkthrough, 2026-10-23.",
+      "supersedes": "Implicit: no documented stage 2/3."
+    },
+    {
+      "id": "D019",
+      "priority": "P2",
+      "title": "Re-allocation (AFML Ch.1 stage 4) implements only the decay side: allocation shrinks as live performance decays; the small-at-graduation ramp-up is not used, on any account",
+      "status": "ACCEPTED_2026-10-23 (user decision); shrink rule to be implemented with the decommission rule",
+      "book": "AFML Ch.1 s.1.3.1.6 Portfolio Oversight, p.8-9: cursus honorum = 1 embargo, 2 paper trading, 3 graduation, 4 re-allocation ('re-assessed frequently and automatically... allocation follows a concave function. The initial allocation (at graduation) is small'), 5 decommission; 'it is preferable to release new variations of a strategy and run them in parallel with old versions'.",
+      "resolution": "Edges start at their full allocator weight. A graded shrink (full -> reduced -> off) driven by the same statistic as the decommission rule reduces an edge's allocation when its live results become inconsistent with its certified backtest. No ramp-up, no account-type split.",
+      "why": "Objective is passing the prop challenge fastest without failing. With a few trades per edge per week, a ramp-up keeps size small for most of the challenge (slower pass) while barely reducing failure risk; failure is driven by drawdown from decaying edges, which the shrink side addresses. The holdout (embargo) run supplies pre-live evidence that the ramp-up would otherwise collect.",
+      "evidence": "User instruction 2026-10-23: 'implement the shrink for any account, instead of the start small and grow, throw that away'.",
+      "supersedes": "Fixed allocator weights with no live-performance adjustment."
+    },
+    {
+      "id": "D020",
+      "priority": "P3",
+      "title": "New strategy versions replace old versions instead of running in parallel with them (AFML Ch.1 p.9)",
+      "status": "ACCEPTED_2026-10-23 (user decision)",
+      "book": "AFML Ch.1 s.1.3.1.6 Portfolio Oversight, p.8-9: cursus honorum = 1 embargo, 2 paper trading, 3 graduation, 4 re-allocation ('re-assessed frequently and automatically... allocation follows a concave function. The initial allocation (at graduation) is small'), 5 decommission; 'it is preferable to release new variations of a strategy and run them in parallel with old versions'.",
+      "resolution": "A re-certified edge version replaces the previous version of the same asset/family/side. Nothing is run in parallel.",
+      "why": "On a single prop account an old and a new version of the same asset and side double the same exposure and count twice against the daily/overall drawdown limits. Revisit if several accounts are run.",
+      "evidence": "User instruction in the AFML Ch.1 walkthrough, 2026-10-23.",
+      "supersedes": "n/a"
+    },
+    {
+      "id": "D021",
+      "priority": "P2",
+      "title": "Decommission/shrink rule: PSR-based, 5 shrink levels (100/80/60/40/20%), off only at PSR[0] <= 0.05, 30-bet minimum -- the book gives the statistic and the principle, not these numbers",
+      "status": "IMPLEMENTED_2026-10-23; APPLIED AUTOMATICALLY by the execution bot (owner approval 2026-10-23)",
+      "book": "AFML Ch.1 s.1.3.1.6 p.8-9 (allocations become 'gradually smaller' as performance decays; decommission when below expectations long enough that the theory is not backed by evidence); AFML s.14.7.2 p.203 PSR; 0.95 significance p.205-206; AFML p.211 strategy risk on bets actually taken; s.15.4 p.216-218 strategy risk.",
+      "resolution": "portfolio_live/decommission_rule.py + portfolio_live/config/decommission_rule.json. Per edge, on realized bets of the current certified version only (version start + meta-model sha256 in config; a changed model blocks the verdict): PSR[SR*=0] <= 0.05 -> off; else PSR[SR*=SR_backtest] bands >0.25/0.15/0.10/0.05/else -> 100/80/60/40/20%. Verdicts are recomputed on every run and move back up when evidence improves (no ratchet). Benchmark SR_backtest = per-bet Sharpe of meta-approved bets at the live threshold with broker costs (allocator representative trade ledger). Strategy risk (s.15.4) is reported as a diagnostic only. Tests: tests/test_decommission_rule.py. Live: portfolio_execution_bot.build_order_plan -> edge_decommission_allocation() -> decommission_rule.live_allocations() (recomputed at most hourly, last-good verdicts on disk as fallback, fail closed if none); compute_candidate_sizing multiplies target risk by the allocation. Tests: tests/test_decommission_live.py.",
+      "why": "User decisions 2026-10-23. PSR compares live results with a benchmark and gains certainty with the sample; s.15.4 strategy risk measures design fragility (an edge exactly on its backtest scores ~0.45 vs the 0.05 limit) so it cannot detect decay. Five evidence-graded levels give the 'gradual' reduction without killing an edge that only needs time: off requires 95% evidence of losing money, independent of the shrink level.",
+      "evidence": "First run 2026-10-23: all 6 edges insufficient_sample (0-25 bets since the 2026-10-19 deployment of the 2026-10-17 models). Known limits: the benchmark ledger's threshold was selected on the same OOF rows, so SR_backtest is optimistic (shrink errs early); overlapping same-side bets are treated as separate bets (AFML p.196 merging revisited at Ch.14).",
+      "supersedes": "No decommission rule; drift dashboard KS diagnostics only."
+    },
+    {
+      "id": "D022",
+      "priority": "P2",
+      "title": "An edge switched off by the decommission rule keeps running in shadow mode, and shadow bets count as evidence so it can be switched back on; the book describes decommission as final",
+      "status": "IMPLEMENTED_2026-10-23 (owner request: off must not be permanent)",
+      "book": "AFML Ch.1 s.1.3.1.6 p.8-9: decommission when performance is below expectations 'for a sufficiently extended period of time'; stage 2 paper trading runs a strategy on a live feed without capital. The book gives no re-entry path; shadow tracking applies the paper-trading idea to a decommissioned edge.",
+      "resolution": "portfolio_live/shadow_bets.py. An off edge places no orders; build_order_plan records each refused approved signal (entry, SL, TP, side, vertical hours, live_manifest_hash) to outputs/decommission/shadow_signals.jsonl; decommission_rule resolves them on live closed bars (sl_first ties, vertical exit at first bar closing at/after the deadline) and judges them together with real bets of the same edge version. When PSR[0] rises above 0.05 the edge returns at the shrink level its PSR vs backtest implies. Same threshold both ways (no extra hysteresis).",
+      "why": "Owner, 2026-10-23: some edges need more time to play out; an edge switched off must be able to come back. Without shadow bets an off edge produces no new evidence and stays off forever.",
+      "evidence": "tests/test_decommission_live.py: barrier resolution (TP, SL, same-bar SL-first, vertical, short side, pending), off edge returns after winning shadow bets, bot off path records the shadow signal and places nothing.",
+      "supersedes": "n/a",
+      "known_limits": "Shadow bets are resolved on closed live bars, not ticks, and charged the active broker's modelled costs (spread = FIXED_POINTS or TABLE hour-of-week mean without the volatility-state multiplier; swap and commission via _xef_apply_carry_costs), not real fills; no slippage beyond the quote."
+    },
+    {
+      "id": "D023",
+      "priority": "P1",
+      "title": "Gate E (embargo / holdout) decision rule: consistency of the holdout with the backtest's own same-length outcomes; the book states the stage but gives no numeric test",
+      "status": "IMPLEMENTED_2026-10-23 (owner decision)",
+      "book": "AFML Ch.1 s.1.3.1.6 p.8 ('If embargoed performance is consistent with backtest results, the strategy is promoted'; the historical path is one of many possible outcomes); s.11.6 p.155 (a backtest is a single path); s.12.4 p.166 (CPCV judges a strategy by the distribution of its outcomes across paths).",
+      "resolution": "shared/research/holdout_replay.py judge: windows of the holdout's span stepped every 7 days through the backtest (allocator representative ledger: meta-approved bets at the live threshold, broker costs, >= 20 bets per window); share_as_bad = fraction of windows with mean R <= holdout mean R. PASS if >= 30 holdout bets and share_as_bad >= 0.05; FAIL if < 0.05; INCONCLUSIVE below 30 bets. PSR[0]/PSR[backtest] reported as diagnostics. Failed edges are removed from config/edge_universe.json; their folders stay untouched. | 2026-11-04 (owner, RECERT): Gate E is a DEPLOYMENT-stage gate (AFML s.1.3.1.6 p.8: the cursus honorum begins 'Once a strategy is deployed'; the embargo is its first stage), run after the allocator on the live threshold -- not an edge-level gate; a FAIL means not deployed and removal from config/edge_universe.json. Runbook Revision 43.",
+      "why": "The first rule (PSR of the holdout vs the multi-year backtest Sharpe) compared 3.5-6.5 months with a 4-year average and treated that average as exact; the backtests themselves had losing stretches of the same length in 12-38% of periods. The owner asked for the book's meaning of 'consistent'.",
+      "evidence": "2026-10-23 re-judgement on the same holdout (no new look): HK 17.8%, JPN rangestructure 16.3%, GBPJPY 8.0%, XAUUSD rangestructure 19.9% -> PASS; XAUUSD volatilitycarry 0.0% -> FAIL (removed from edge_universe.json); JPN volatilitycarry 3 bets -> INCONCLUSIVE. Report portfolio_live/outputs/gate_e_holdout/gate_e_holdout_20261023T102834Z.json",
+      "known_limits": "Windows overlap (weekly step), so the share is coarse (4 years hold ~8-14 independent windows of 3-6 months). The backtest benchmark is itself optimistic (geometry/threshold chosen on the same data) -- the Deflated Sharpe (Ch.14) and strategy risk (Ch.15) remain to be applied.",
+      "supersedes": "First Gate E rule of 2026-10-23 (PSR[0] and PSR[backtest] > 0.05)."
+    },
+    {
+      "id": "D024",
+      "priority": "P2",
+      "title": "One bar type for all 10 assets: quote-tick bars (N quote updates, mid prices, causal daily-adaptive threshold); no volume, dollar or information-driven bars",
+      "status": "ACCEPTED_2026-10-23 (owner decision, AFML Ch.2 walkthrough)",
+      "book": "AFML s.2.3.1 p.25-28 (time bars to be avoided; tick bars sample per transaction; volume and dollar bars preferred); s.2.3.2 p.29-32 (tick/volume/dollar imbalance and runs bars, built with the tick rule).",
+      "resolution": "shared/bars/standard_quote_tick_builder.py: a bar closes every N quote updates (bid/ask changes; OTC FX and CFDs have no transactions); OHLC from the mid; N for day D = EWMA of prior completed days' quote counts / 50 bars per day (causal), which also keeps the daily bar count stable across years as dollar bars aim to. Same bar type for every asset so the allocator, dashboard and live run one contract. Exercise 2.1 diagnostic (bar-quality report) checks the choice per asset.",
+      "why": "No traded volume exists for OTC FX/CFDs (Dukascopy bid/ask volumes are quoted liquidity, not trades), so volume, dollar, VIB/DIB and VRB/DRB bars are impossible. TIB/TRB could use the tick rule on quote mids, but quote changes are not trades, and these bars depend most on the exact tick sequence, which differs between the research feed (Dukascopy) and the live feed (Moneta) -- the standing rule keeps theses at bar level. Owner: one general bar type for all 10 assets.",
+      "evidence": "Exercise 2.1 on 2025 data (tick vs equal-count time bars): XAUUSD and GBPJPY better on serial correlation, Jarque-Bera and monthly-variance stability; JPN and HK better serial correlation but fatter tails and less stable variance. Full 10-asset report: shared/bars/bar_quality_report.py.",
+      "supersedes": "n/a"
+    },
+    {
+      "id": "D025",
+      "priority": "P3",
+      "title": "No ETF trick or PCA hedge weights (AFML s.2.4.1-2.4.2); single-instrument edges only",
+      "status": "ACCEPTED_2026-10-23 (owner decision)",
+      "book": "AFML s.2.4.1 p.33-34 (ETF trick for baskets/spreads: $1-invested series with carry, rebalance costs, bid-ask, volume); s.2.4.2 p.35-36 (PCA weights, Snippet 2.1).",
+      "resolution": "Every edge trades one CFD/FX instrument; there are no spreads or baskets to transform. Carry (swap) and costs enter through the broker cost model (Gate C, allocator 00d, shadow bets). Single-futures rolls (s.2.4.3) are handled separately: USOIL roll adjustment in shared/data/tick_curation.py.",
+      "why": "The ETF trick and PCA weights solve multi-instrument series, which Quantara does not trade.",
+      "evidence": "config/edge_universe.json: single-asset edges only.",
+      "supersedes": "n/a"
+    },
+    {
+      "id": "D026",
+      "priority": "P1",
+      "title": "Curated tick layer: causal bad-quote filter (research and live) and multiplicative backward roll adjustment for futures-based CFDs (USOIL); every research consumer reads curated ticks",
+      "status": "IMPLEMENTED_2026-10-23 (owner decision, AFML Ch.2 walkthrough)",
+      "book": "AFML Ch.1 s.1.3.1.1 p.7 (data curators); Ch.2 s.2.1 p.23 (process raw data yourself); s.2.4.3 p.36-37 (single futures roll: Snippet 2.2 roll gaps, Snippet 2.3 returns over the previous raw price / $1-investment series).",
+      "resolution": "shared/data/tick_curation.py writes assets/{A}/curated/ticks (hard links where a file is unchanged), quality_report.json, roll_calendar.json, curation_manifest.json; config/asset_data_policy.json selects curated ticks for all 10 assets and roll adjustment for USOIL; AssetLayout.tick_root follows the policy and fails closed when curated ticks are missing; vol cache and broker cost panels use it. Filter: reject a quote whose mid jumps more than max(3%, 10 x the asset's EWMA daily sigma) from the last accepted mid; a level that persists 4 hours is accepted. Live: portfolio_live_dashboard_orchestrator.apply_tick_quality_filter applies the same filter to Moneta ticks before bars and daily tick counts; its state is part of the per-asset transaction snapshot. Rolls: detected from the CFD's early-stop daily break (quotes stop 8-21 minutes early, 66-90 minute break), one per month; undetected months reported, never guessed; prices before a roll scaled by resume_mid/stop_mid (backward, latest = raw).",
+      "why": "2025-08-26 06:34-09:10 UTC Dukascopy served JPN quotes ~64% below the market; they entered bars, Event_Vol (~60x), FFD, HMM and ~40 model rows per JPN edge and nothing filtered them. USOIL contained 43 unadjusted roll jumps (-0.5% to -4.7%). The additive Snippet 2.2 series was tried first and rejected: the 43 gaps sum to -30.64 USD, lowering 2022 prices from ~86 to ~56 and inflating their percentage returns ~1.5x; the multiplicative form keeps every percentage return, as Snippet 2.3 intends.",
+      "evidence": "Report mode over 1.55 billion ticks of all 10 assets: one rejected episode (JPN 2025-08-26 06:34:21-09:09:58, 5,048 quotes, up to 103% from the last good mid, limit 10.4%), zero elsewhere (BTCUSD crashes and USOIL spikes untouched). Rebuilt JPN bars identical before the episode; USOIL roll-bar returns -1.44/-2.81/-1.98/-3.43% become -0.09/-0.87/+0.11/-0.17%, largest bar return unchanged at 12.25%. Tests: tests/test_tick_curation.py (venv39). Previous JPN/USOIL bars archived at ../archive_bars_pre_curation_20261023.",
+      "known_limits": "11 of 58 USOIL months show no roll signature (mostly 2022-early 2023) and are left unadjusted. Moneta's live USOIL roll handling is not yet checked. JPN edges' research datasets predate the cleaned bars: both JPN edges must be re-certified (planned once after Ch.3-4, new version, fresh holdout).",
+      "supersedes": "Research read raw Dukascopy ticks; live had no quote-quality filter."
+    },
+    {
+      "id": "D027",
+      "priority": "P3",
+      "title": "No minRet filter on triple-barrier events (Event_Vol floored at 1e-8 only)",
+      "status": "ACCEPTED_DEVIATION_2026-10-23 (owner decision, AFML Ch.3 walkthrough)",
+      "book": "AFML Ch.3 s.3.5 p.48, Snippet 3.3 / Snippet 3.6 p.50: getEvents drops events with trgt <= minRet (the minimum target return required for running a triple-barrier search).",
+      "resolution": "No minRet. Costs are charged per trade in R (broker cost model, Gate C / Step 04-05 / allocator), so a narrow barrier is already penalised by its own cost; shared/research/label_audit.py reports cost per R by Event_Vol quintile at every certification so the question is re-checked with each edge.",
+      "why": "Choosing a minRet cutoff from the backtest would be another selection trial on data already used. The measured cost does not justify one.",
+      "evidence": "2026-10-23, all 6 edges, cost per R (label_r - executed_r) by Event_Vol quintile: 0.02-0.07R; the narrowest quintile is net positive on 5/6 edges (HK -0.03R). Per-edge numbers in assets/*/edges/*/artifacts/label_audit/label_audit.json.",
+      "revisit": "If an edge's narrowest quintile turns cost-dominated (mean executed_r < 0 while mean label_r > 0 by a clear margin), propose a cost-anchored floor fixed in advance: Event_Vol >= k x round-trip cost, k set before looking at outcomes.",
+      "supersedes": "Undocumented absence of minRet."
+    },
+    {
+      "id": "D028",
+      "priority": "P1",
+      "title": "Meta-models do not raise F1 over the primary model (AFML s.3.7 purpose not met); XAUUSD meta-models approve ~100% of events",
+      "status": "OPEN_FINDING (updated 2026-10-26, Ch.10): entry OOF AUC 0.518-0.563 (CI excludes 0.5 on GBPJPY, HK, JPN vc); the approval filter lifts mean executed R +0.06..+0.26 on 5 of 6; edge features carry no in-trade information; revisit at Ch.14 (DSR) and the retrain; 2026-10-31 (Rev 29 review): Ch.14 closed without the comparison -- the approved test (s.4N.1: DSR of the meta-filtered strategy vs taking every primary signal) runs on the retrained models at the RECERT; Ch.14 14.8 finding: JPN rs take rate 1.000 at its live threshold",
+      "book": "AFML Ch.3 s.3.7 pp.51-53: build a high-recall primary, then meta-labeling raises F1 by filtering out false positives. Ch.9 p.130 (Snippets 9.1/9.3): scoring='f1' for meta-labeling. Exercises 3.4/3.5 p.55: report primary vs secondary accuracy/precision/recall/F1.",
+      "resolution": "Recorded. shared/research/label_audit.py now reports primary vs primary+meta (Exercise 3.5) and Step 02 CPCV F1 vs the approve-all baseline for every edge at every certification. The scoring objective (Ch.9), probability-based bet sizing (Ch.10) and F1/precision as reported metrics (Ch.14) are examined in those chapters; no retraining before then.",
+      "why": "Step 02 maximises CPCV F1 with base rates of 38-48% positives; F1 of approve-all is then 2p/(1+p) = 0.55-0.65, which a weak classifier (OOF AUC 0.52-0.56) cannot beat, so tuning drifts toward approving everything. Edges passed on economics (Gates C/D/E), not on F1, so they are not invalidated; the ML layer adds little.",
+      "evidence": "2026-10-23 OOF at final_live_threshold (precision primary -> meta; F1 primary -> meta; approved): GBPJPY .381->.405, .551->.518, 68%; HK .385->.407, .556->.532, 73%; JPN rangestructure .406->.428, .578->.166, 10%; JPN volatilitycarry .377->.483, .548->.251, 13%; XAUUSD rangestructure .481->.483, .650->.650, 99%; XAUUSD volatilitycarry .467->.467, .636->.636, 100%. Step 02 CPCV F1 minus approve-all: -0.0027, -0.0030, -0.0010, +0.0015, -0.0022, 0.0000.",
+      "supersedes": "Unreported; Step 02 logged the approve-all baseline as diagnostic only."
+    },
+    {
+      "id": "D029",
+      "priority": "P3",
+      "title": "Time decay of sample weights wired but set to c = 1 (no decay) until the Ch.9 hyper-parameter review",
+      "status": "CLOSED_2026-10-24: keep c = 1 (no decay), decided on data in the AFML Ch.9 nested-CV test",
+      "book": "AFML Ch.4 s.4.7 pp.70-71, Snippet 4.11: piecewise-linear decay on cumulative uniqueness, user parameter c in (-1, 1]; c = 1 means no decay.",
+      "resolution": "shared/models/afml_sample_weights.get_time_decay implements Snippet 4.11 (tests/test_afml_ch4_weights.py); every edge's Steps 02/03 multiply the AFML return weight by _time_decay_factors with TIME_DECAY_C = 1.0 (identity).",
+      "why": "Choosing c from the backtest is a tuning trial; the book leaves c to the user, and Ch.9 (purged CV hyper-parameter search) is where it is chosen with the trial counted.",
+      "revisit": "AFML Ch.9 walkthrough.",
+      "supersedes": "No time decay code existed.",
+      "evidence": "Nested-CV test 2026-10-24 (outer purged 5-fold, inner purged 5-fold, 30 trials, bagged stage 2, 4 edges): OOS weighted neg log loss vs current A|TPE: B|random +0.0065 [t 4.0] GBPJPY, -0.0013 HK, -0.0013 XAUUSD rs, +0.0004 XAUUSD vc; no configuration better on more than 2 of 4 edges; mean AUC 0.518-0.521 for all; time decay c = 0.5 / 0 worse on 3 of 4 edges (c = 0 XAUUSD rs t -3.1). docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4I.1."
+    },
+    {
+      "id": "D030",
+      "priority": "P1",
+      "title": "Current edge models were trained with class balancing applied twice and with sample-weight spans on gross_t1; code fixed, retraining deferred to one batch",
+      "status": "CODE_FIXED_2026-10-23; MODELS_PENDING_RETRAIN (owner decision, AFML Ch.4 walkthrough)",
+      "book": "AFML Ch.4 s.4.8 pp.71-72 (class_weight='balanced', 'balanced_subsample' when bagging); s.4.4 p.61-62 and Snippet 4.10 p.69 (spans are the label's [t0, t1]).",
+      "resolution": "docs/tools/patch_afml_ch4_sample_weights.py patched Steps 01-03 of all 6 edges: make_train_weights carries only the AFML return weight (x time decay); the trees' class_weight='balanced' (recomputed per sequential-bootstrap draw) is the single class balance; uniqueness, return attribution and the sequential bootstrap end each event at Task 2A label_t1 (fallback gross_t1) snapped to the bar that contains it. Weight contract bumped to quantara_afml_ch4_bar_clock_return_attribution_v2_label_t1. Purge/embargo still use gross_t1 (Ch.7 review).",
+      "why": "Steps 02/03 set class_weight='balanced' on every tree AND multiplied compute_sample_weight('balanced') into sample_weight; sklearn multiplies them, so a no-information leaf with 38% positives predicted 0.62 instead of the book's 0.50 - a pull toward approving trades (see D028).",
+      "evidence": "Verified on XAUUSD x2, GBPJPY, HK after the patch: shared and flat_colab weight tables identical (max diff 0.0); make_train_weights == return weight; no-information leaf P(win) 0.495-0.503. label_t1 vs gross_t1 differ by ~1 bar on 4-6% (GBPJPY/HK) and ~40% (XAUUSD vertical exits) of rows; mean uniqueness 0.2220 -> 0.2207 (XAUUSD rangestructure).",
+      "known_limits": "The deployed models (and their Gate C/D/E results) come from the old code. All edges are retrained once, after the Ch.6/7/9 reviews, as new versions with Gates C/D/E re-run (Gate E: one holdout look per version). JPN research datasets no longer map onto the curated JPN bar clock and must be re-exported first.",
+      "supersedes": "class_weight='balanced' x compute_sample_weight('balanced'); gross_t1 spans for weights."
+    },
+    {
+      "id": "D031",
+      "priority": "P0",
+      "title": "FFD d was chosen on the first 20,000 bars only; now the minimum ADF-passing d on the full research history, frozen",
+      "status": "FIXED_2026-10-23 (owner decision, AFML Ch.5 walkthrough); edges pending re-export/retrain",
+      "book": "AFML Ch.5 s.5.6 pp.84-85, Snippet 5.4: minimum d such that FFD(log price) passes ADF at 95%, on the whole series; s.5.7 p.88 (minimum d with ADF p-value below 5%).",
+      "resolution": "shared/ffd/fractional_differentiation.py: FracdiffStat (statsmodels default ADF, AIC lags; owner chose this over the book example's maxlag=1, written for daily data) on log Close of the full research history, window 1,000; the build fails if the estimated d's Close_FFD fails ADF; manifest records ADF full/first-half/second-half. --frozen-d flag; holdout_replay passes the repo's frozen d (the workspace holds holdout bars and never re-estimates). Verifier rejects the retired policy. FFD and HMM rebuilt for all 10 assets (logs/ch5_ffd_hmm_rebuild_20261023/; previous artifacts archived at ../archive_ffd_hmm_pre_ch5_20261023). Tests: tests/test_afml_ch5_ffd.py (venv312 + venv39).",
+      "why": "The first ~1.3 years were range-bound for most assets, so d came out 0-0.26 and Close_FFD failed ADF on the full history for 8 of 10 assets (GBPJPY d = 0: Close_FFD was the log price). Raw FFD levels are selected features of HK, JPN rangestructure and XAUUSD rangestructure, and Close_FFD is an input of every asset's HMM regime model.",
+      "evidence": "Old d / full-history ADF p -> new d / p: BTCUSD 0.258/0.29 -> 0.344/0.042; DAX 0.188/0.66 -> 0.359/0.038; GBPJPY 0.000/0.60 -> 0.258/0.048; HK 0.063/0.27 -> 0.172/0.049; JPN 0.016/0.98 -> 0.352/0.041; NASDAQ 0.055/0.90 -> 0.336/0.042; US500 0.023/0.94 -> 0.344/0.045; USDMXN 0.211/0.005 -> 0.141/0.050; USOIL 0.094/0.001 -> 0.000/0.030; XAUUSD 0.211/0.92 -> 0.438/0.047. Memory kept: min corr(log OHLC, FFD) 0.970-1.000. Half-sample ADF (diagnostic) fails in at least one half for GBPJPY, HK, USDMXN, USOIL.",
+      "known_limits": "Choosing d on the full research history uses later research data for one scalar per asset (as Snippet 5.4 does); the holdout is never used. d is minimal by construction, so the full-sample ADF p sits just under 0.05. Every edge's research dataset, model and gates predate this and must be redone (planned batch after Ch.6/7/9).",
+      "supersedes": "initial_training_segment_only_then_freeze (first 20,000 bars)."
+    },
+    {
+      "id": "D032",
+      "priority": "P3",
+      "title": "FFD weights truncated at a fixed 1,000 terms instead of the tau = 1e-5 weight threshold",
+      "status": "ACCEPTED_DEVIATION_2026-10-23 (owner decision, AFML Ch.5 walkthrough)",
+      "book": "AFML Ch.5 s.5.5.2 pp.82-84, Snippet 5.3 (thres default 1e-5); Snippet 5.4 p.85 itself uses thres=.01.",
+      "resolution": "Keep the fixed 1,000-bar window for all assets (live pins it via LIVE_RESEARCH_FFD_WINDOW_BARS; live_settings.py untouched).",
+      "why": "Measured on all 10 assets: tau = 1e-5 needs 1,369-4,092 bars and a 0.02-0.06 lower d, but at the same d the two features correlate 0.993-0.9996 and memory (corr with log price) differs by < 0.01; both pass the same ADF rule. The book's own example uses a far shorter window (thres .01). Following tau would cost 2-6% more warm-up history and per-asset live windows.",
+      "supersedes": "Undocumented."
+    },
+    {
+      "id": "D033",
+      "priority": "P3",
+      "title": "Cumsum-then-FFD of non-price features (AFML s.5.7) not adopted",
+      "status": "ACCEPTED_DEVIATION_2026-10-23 (owner decision, AFML Ch.5 walkthrough)",
+      "book": "AFML Ch.5 s.5.7 p.88: suggested experiment - cumulative sum of a feature, FFD for various d, keep the minimum-d ADF-passing series.",
+      "resolution": "FFD only on log OHLC (which is the same recipe applied to returns). No long-memory twins of other features.",
+      "why": "The book frames it as an experiment; ~160 features would gain twins (more trials against edges near the noise floor, AUC 0.52-0.56); each needs live incremental-engine parity; cumulative sums of bounded oscillators trend unless demeaned, which the book does not specify.",
+      "supersedes": "Not previously considered."
+    },
+    {
+      "id": "D034",
+      "priority": "P0",
+      "title": "Bagged trees shared one random_state and drew n rows each; now per-tree seeds, avgU x n rows, N = 1,000",
+      "status": "FIXED_2026-10-24 (owner decision, AFML Ch.6 walkthrough); models pending retrain",
+      "book": "AFML Ch.6 s.6.4 p.98 (random feature subset per split, to decorrelate trees; Snippet 6.2 p.99 clf1 = bagged entropy trees, max_features='auto', n_estimators=1000); s.6.3.3 p.97 (overlapping labels: sample about avgU of the observations per estimator, 'but not more'); s.6.3.1 pp.94-95 (V = sigma^2 (rho + (1 - rho)/N)); Snippet 4.5 sLength.",
+      "resolution": "docs/tools/patch_afml_ch6_ensemble.py patched every edge's Steps 02/03 inline SequentialBootstrapBaggingClassifier and shared/models/sequential_bootstrap_bagging.py: each tree gets its own seed from the seeded ensemble rng (as sklearn BaggingClassifier); max_samples='avgU' -> sequential-bootstrap sample length = round(avgU x n) with avgU of the training set's own events (avg_uniqueness_, sample_length_ recorded; Step 02 manifest records them); N_ESTIMATORS_BAGGING = 1000. Tests: tests/test_afml_ch6_ensemble.py, tests/test_sequential_bootstrap_bagging_sync.py.",
+      "why": "With one shared random_state every tree drew the same random feature subsets: deployed GBPJPY trees all split the root on one feature (XAUUSD volatilitycarry 98/100); the models used 10-24 of 42-157 features. Drawing n rows with avgU ~0.22 put ~5 overlapping copies of each outcome into every tree.",
+      "evidence": "Patched Step 02 on current data, 1,000 trees: XAUUSD rangestructure 1,000 distinct seeds, 138 distinct root features, 157/157 features used, avgU 0.2207 -> 966 rows per tree, rho_bar 0.237 (deployed model: 5 root features, 23/157 used); GBPJPY 39 root features, 49/50 used, 965 rows per tree, rho_bar 0.642 (deployed: 1 root feature, 10/50). Fit 76 s per model. Portable payload round trip identical.",
+      "known_limits": "rho_bar is measured in-sample. All 6 deployed models predate the fix; retrain batch after Ch.7/9.",
+      "supersedes": "tree random_state = RANDOM_STATE for every tree; sample_length = n; N = 100."
+    },
+    {
+      "id": "D035",
+      "priority": "P2",
+      "title": "Step 02 trial-ledger records listed a stale XGBoost search space instead of the decision-tree space actually searched",
+      "status": "FIXED_2026-10-24 in code; historical records left as written (append-only ledger) and corrected here",
+      "book": "AFML Ch.14 s.14.7.3 / Ch.11 (trial accounting); the trial record must describe the trial that was run.",
+      "resolution": "Step 02 defines OPTUNA_SEARCH_SPACE once and both the Optuna objective and log_optuna_study_trial read it. Every Step 02 optuna_hyperparameter_search record written before 2026-10-24 in assets/*/edges/*/artifacts/model/*_research_trial_ledger.jsonl has the WRONG parameters.search_space: the real space was DecisionTreeClassifier (entropy, max_features='sqrt', class_weight='balanced') with max_depth [2, 8], min_samples_leaf [5, 200] log, min_samples_split [10, 400] log, min_weight_fraction_leaf [0, 0.05], ccp_alpha [1e-6, 1e-2] log; n_trials = 30.",
+      "why": "The logging block was copied from the older XGBoost Step 02 and never updated when the model became the AFML Snippet 6.2 bagged tree.",
+      "supersedes": "Hard-coded XGBoost search_space in the ledger record."
+    },
+    {
+      "id": "D036",
+      "priority": "P3",
+      "title": "Purged CV: purge on the training label's own t1 and embargo max(100, 1% of rows) in Steps 01-04",
+      "status": "IMPLEMENTED_2026-10-24 (owner decision, AFML Ch.7 walkthrough); takes effect at the retrain batch",
+      "book": "AFML Ch.7 s.7.4.1 pp.105-107, Snippet 7.1 (purge any train label overlapping a test label); s.7.4.2 p.107, Snippet 7.2 (embargo after each test set, h ~ .01T; performance must not keep rising as k -> T).",
+      "resolution": "docs/tools/patch_afml_ch7_cv.py: every edge's Steps 01/02/03 and shared/calibration/fit_sigmoid_calibrator_and_thresholds.py purge with label_t1 (fallback gross_t1; same t1 as the Ch.4 weights) and embargo embargo_size_for(n) = max(MANUAL_EMBARGO_SIZE = 100, ceil(0.01 n)); manifests record embargo_rule and purge_t1. New diagnostic shared/research/cv_leakage_audit.py (Ex 7.2/7.3 + p.107 k-sweep) run at each certification. Tests: tests/test_afml_ch7_cv.py.",
+      "why": "Consistency with the label actually trained on, and an embargo that stays >= the book's 1% as datasets grow (a flat 100 would fall below 1% beyond 10,000 rows).",
+      "evidence": "label_t1 is later than gross_t1 for 3-40% of rows by a median 0.15-4.5 s; 0-4 overlaps per edge differ. CV leakage audit 2026-10-24 (AUC, Ch.6 bagging, 50 trees): GBPJPY plain 0.531 / shuffled 0.530 / purged k=5,10,20,40 0.532, 0.530, 0.532, 0.532; HK 0.541 / 0.553 / 0.533, 0.543, 0.536, 0.535; XAUUSD rangestructure 0.511 / 0.526 / 0.523, 0.519, 0.512, 0.510; XAUUSD volatilitycarry 0.503 / 0.511 / 0.501, 0.505, 0.500, 0.501; all verdict OK (no rise with k); shuffling inflates AUC by up to +0.011.",
+      "supersedes": "purge on gross_t1; flat 100-observation embargo."
+    },
+    {
+      "id": "D037",
+      "priority": "P2",
+      "title": "Test-fold scoring is unweighted F1; the book's cvScore uses sample-weighted negative log loss",
+      "status": "CLOSED_2026-10-24: tuning uses the book's scoring='f1' for meta-labeling (Snippet 9.1), unweighted as in the book; weighted neg log loss stays a diagnostic (cv_leakage_audit, feature importance)",
+      "book": "AFML Ch.7 s.7.5 pp.109-110, Snippet 7.4 cvScore (neg_log_loss with sample_weight on the test fold, labels=clf.classes_); Ch.9 s.9.4 p.134 (neg_log_loss for investment strategies; f1 for meta-labeling, p.130).",
+      "resolution": "Deferred to Ch.9, where the scoring function and the F1-vs-approve-all problem (D028) are decided together. cv_leakage_audit.py already reports the weighted neg log loss as a second metric.",
+      "why": "The Optuna objective, OOF diagnostics and calibration folds score with unweighted metrics, so redundant (low-uniqueness) test events count as much as unique ones.",
+      "supersedes": "—"
+    },
+    {
+      "id": "D038",
+      "priority": "P3",
+      "title": "Reduced-size synthetic unit test kept alongside the book-exact MLAM Ch.6 replication",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough); DONE (reduced test in tests/test_afml_ch8_clustered_importance.py; book-exact run shared/research/mlam_ch6_synthetic_replication.py), no further work",
+      "book": "MLAM s.6.6 pp.87-90, Snippets 6.1/6.6-6.8: getTestData(40, 5, 30, 10000, sigmaStd=.1), 1,000 trees, KFold(10).",
+      "resolution": "Validation = shared/research/mlam_ch6_synthetic_replication.py, book-exact (10,000 rows, sklearn BaggingClassifier 1,000 trees, KFold 10): 6 clusters as MLAM Fig 6.4, noise cluster clustered MDA 0.0006 +/- 0.0016 vs 0.14-0.23 for the real clusters (Fig 6.6), noise features ranked last by MDA (Fig 6.3); output docs/mldp/feature_importance/mlam_ch6_synthetic_replication.json. tests/test_afml_ch8_clustered_importance.py is an extra regression check at reduced size (2,000 rows, 100 trees, 5 folds), labelled as reduced.",
+      "why": "The book-exact run takes ~8 minutes; the reduced test keeps the unit-test suite fast.",
+      "supersedes": "—"
+    },
+    {
+      "id": "D039",
+      "priority": "P2",
+      "title": "Feature importance on edge data uses the sequential bootstrap (avgU x n) and purged, embargoed CV instead of MLAM's plain bootstrap and KFold",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough; extends D030/D034/D036)",
+      "book": "MLAM Snippets 6.2-6.8 (pp.79-90) use BaggingClassifier(max_samples=1.) and KFold on IID synthetic data; AFML s.8.3.2 point 5 p.116 (MDA CV must be purged and embargoed), Ch.4 s.4.5 (sequential bootstrap), Ch.6 s.6.3.3 (avgU samples), Ch.7 (purged CV).",
+      "resolution": "shared/features/clustered_feature_importance.py: trees fit on sequential-bootstrap draws of round(avgU x n) rows; purged_kfold_splits purges on label_t1 and embargoes max(100, 1% of rows). The book-exact MLAM setup is kept for the synthetic replication (D038).",
+      "why": "Edge labels overlap (mean uniqueness 0.19-0.28); MLAM is silent on overlapping labels, so AFML Ch.4/6/7 apply.",
+      "supersedes": "—"
+    },
+    {
+      "id": "D040",
+      "priority": "P3",
+      "title": "Seeded k-means in ONC (MLAM's k-means calls are unseeded)",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough)",
+      "book": "MLAM Snippet 4.1 p.56: KMeans(n_clusters=i, n_jobs=1, n_init=1) inside n_init outer loops, no random_state.",
+      "resolution": "onc_base draws each k-means random_state from a seeded generator (seed recorded), so clusterings are reproducible and auditable; the double loop over initialisations and k is unchanged.",
+      "why": "Unseeded runs give different clusters each time, which breaks provenance of the selected feature set.",
+      "supersedes": "—"
+    },
+    {
+      "id": "D041",
+      "priority": "P2",
+      "title": "Feature-importance trees use early stopping min_weight_fraction_leaf = 0.05 instead of MLAM Snippet 6.8's 0",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough, on data evidence)",
+      "book": "MLAM Snippets 6.2/6.3/6.7/6.8 (pp.79-90): min_weight_fraction_leaf=0 (fully grown trees). AFML Ch.6 s.6.4 p.98 option 2: 'Early stopping: Set the regularization parameter min_weight_fraction_leaf to a sufficiently large value (e.g., 5%)'.",
+      "resolution": "shared/features/clustered_feature_importance.py TREE_PARAMS min_weight_fraction_leaf = 0.05 for clustered MDI/MDA in Step 01.",
+      "why": "Fully grown trees are overconfident on our weak signal: their OOS log loss is worse than a coin flip, which buries the cluster importances.",
+      "evidence": "Config test 2026-10-24 (VI clusters, rule B, 1,000 trees, 10-fold purged + embargoed, same bootstrap draws): OOS weighted neg log loss, raw features, mwfl 0 -> 0.05: GBPJPY -0.703 -> -0.678, XAUUSD rangestructure -0.705 -> -0.668 (a constant 0.5 forecast scores -0.693); cluster MDA t-stats up to 15.1 vs 4.9. Residualised features, mwfl 0.05: GBPJPY -0.695 (vs raw -0.678), XAUUSD rs -0.676 (vs raw -0.668). Output: assets/*/edges/*/artifacts/feature_importance_audit/config_test_min_weight_fraction_leaf.json.",
+      "supersedes": "min_weight_fraction_leaf = 0 (MLAM Snippet 6.8)."
+    },
+    {
+      "id": "D042",
+      "priority": "P3",
+      "title": "MLAM p.85 residual features not used in clustered feature importance",
+      "status": "APPROVED_2026-10-24 (owner, on data evidence; earlier 'on' decision reversed)",
+      "book": "MLAM s.6.5.2 p.85: 'the following transformation may help reduce the multicollinearity ... this transformation is not necessary if the silhouette scores clearly indicate that features belong to their respective clusters.'",
+      "resolution": "Clustered MDI/MDA run on the raw (stationary) features; residualize() stays in the module for diagnostics.",
+      "why": "On our edges residualising removed out-of-sample skill in every pairing tested; MLAM presents it as optional.",
+      "evidence": "Config test 2026-10-24 (VI clusters, rule B, 1,000 trees, 10-fold purged + embargoed, same bootstrap draws): OOS weighted neg log loss, raw features, mwfl 0 -> 0.05: GBPJPY -0.703 -> -0.678, XAUUSD rangestructure -0.705 -> -0.668 (a constant 0.5 forecast scores -0.693); cluster MDA t-stats up to 15.1 vs 4.9. Residualised features, mwfl 0.05: GBPJPY -0.695 (vs raw -0.678), XAUUSD rs -0.676 (vs raw -0.668). Output: assets/*/edges/*/artifacts/feature_importance_audit/config_test_min_weight_fraction_leaf.json.",
+      "supersedes": "Owner decision 3 of 2026-10-24 (residualise on)."
+    },
+    {
+      "id": "D043",
+      "priority": "P3",
+      "title": "SFI (AFML Snippet 8.4) dropped from routine certification; tool kept",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough)",
+      "book": "AFML s.8.4.1 pp.117-118 and p.127 ('SFI is useful as a complement to MDI and MDA'); MLAM s.6.5.2 p.84 replaces substitution handling with clustered importance and does not use SFI.",
+      "resolution": "Step 01 computes clustered MDI and MDA only. shared/features/clustered_feature_importance.sfi() and shared/research/feature_importance_audit.py remain available for one-off explanation of a feature.",
+      "why": "Clustered importance already addresses the substitution effects SFI exists for (owner rule 6, MLAM in full); on our edges SFI ranks disagreed with MDA (Spearman -0.43..+0.02) and SFI took ~half of each audit (~4,400 s per edge).",
+      "supersedes": "—"
+    },
+    {
+      "id": "D044",
+      "priority": "P0",
+      "title": "Step 01 feature selection replaced: MLAM Ch.6 clustered importance (VI clusters, rule B, single pass) instead of iterative XGBoost clustered MDA",
+      "status": "IMPLEMENTED_2026-10-24 (owner decisions, AFML Ch.8 walkthrough); takes effect at the retrain batch",
+      "book": "AFML Ch.8 pp.113-127 (MDI Snippet 8.2, MDA Snippet 8.3, Snippet 8.8 estimator); MLAM s.6.5.2 p.84 ('A better approach ... is to cluster similar features'), Snippets 6.4/6.5 (pp.86-87), 6.8 (p.90), ONC Snippets 4.1-4.2 (pp.56-58), observation matrix s.4.4.1 pp.54-55, VI Snippet 3.3 p.46, p.89 (discard clusters with essentially zero importance), p.79 (CLT significance).",
+      "resolution": "shared/features/clustered_feature_importance.select_features_clustered, called by every edge's Step 01 (docs/tools/patch_afml_ch8_step01.py): ONC on the normalised-VI observation matrix PCA-reduced to the number of eigenvalues of X's correlation matrix above lambda+ (MLAM p.55); clustered MDA (OOS AFML-weighted neg log loss, 10-fold purged + embargoed) and clustered MDI; keep clusters with MDA mean - 1.645 se > 0; fail closed if none survives; folds in parallel (QUANTARA_STEP01_WORKERS, default 4). Step 01 flat-Colab mode retired. Validation: book-exact MLAM replication (docs/mldp/feature_importance/mlam_ch6_synthetic_replication.json); tests/test_afml_ch8_clustered_importance.py.",
+      "why": "The old Step 01 clustered 157 features into 2 clusters of ~80 on 3 of 6 edges and could then remove nothing (HK, JPN rangestructure, XAUUSD rangestructure kept all 157); it used XGBoost (boosting, AFML Ch.6 p.101 prefers bagging) and up to 50 refits.",
+      "evidence": "Wiring check XAUUSD rangestructure (2026-10-24, 3 min): 2 VI clusters, 119 features (MDA t 8.9) kept, 38 (t 1.6) dropped; OOS weighted neg log loss -0.668, AUC 0.520; Step 02 manifest validation PASS; original artifacts restored (logs/ch8_step01_wiring_check_20261024/).",
+      "known_limits": "Clusters near the rule-B line are sensitive to the single random permutation per fold (the 38-feature XAUUSD cluster scored t 2.3 in the config test and t 1.6 here). MDI is close to each cluster's size share with max_features=1, so selection rests on MDA.",
+      "supersedes": "Iterative XGBoost clustered MDA on Marcenko-Pastur denoised Spearman correlation (ONC capped at 30, up to 50 iterations)."
+    },
+    {
+      "id": "D045",
+      "priority": "P3",
+      "title": "Clustered MDA averages 5 shuffles per fold instead of MLAM's single shuffle",
+      "status": "APPROVED_2026-10-24 (owner, AFML Ch.8 walkthrough, on data evidence)",
+      "book": "MLAM Snippet 6.5 p.87 (featImpMDA_Clustered): each cluster's features shuffled once per fold.",
+      "resolution": "shared/features/clustered_feature_importance.STEP01_N_SHUFFLES = 5: per fold and cluster the shuffled score scr1 is the mean of 5 independent shuffles; importance (scr0 - scr1)/(-scr1); rule B unchanged. Step 01 manifests record mda_shuffles_per_fold.",
+      "why": "With one shuffle the rule-B selection depended on the random permutation for clusters near the line.",
+      "evidence": "Shuffle-stability test 2026-10-24 (trees fitted once per fold, 10 permutation seeds): same selection across seeds with 1 / 5 / 10 shuffles: GBPJPY 70% / 100% / 100%, HK 100/100/100, XAUUSD rangestructure 90/100/100, XAUUSD volatilitycarry 100/100/100; borderline t-stat spread down 2-3x at 5 shuffles. Step 01 re-run XAUUSD rangestructure: 2 min 49 s, 38-feature cluster t 1.95 (kept), 119-feature cluster t 9.5.",
+      "supersedes": "One shuffle per fold."
+    },
+    {
+      "id": "D046",
+      "priority": "P1",
+      "title": "Step 02 tuning now follows AFML Snippets 9.1/9.3: purged 5-fold CV, F1 at the classifier's decision, randomized search, max_depth 1-8",
+      "status": "IMPLEMENTED_2026-10-24 (owner decisions, AFML Ch.9 walkthrough); takes effect at the retrain batch",
+      "book": "AFML Ch.9 Snippet 9.1 p.130 (inner_cv = PurgedKFold; scoring='f1' when labels are {0,1} = meta-labeling; stage 2 bagging), Snippet 9.3 pp.131-132 (RandomizedSearchCV), s.9.3.1 (log-uniform), s.14.8 pp.206-207 (F1 for meta-labeling; label swap only if positives dominate - ours are 38-48%).",
+      "resolution": "docs/tools/patch_afml_ch9_step02.py on every edge's Step 02: TUNING_N_SPLITS = 5 contiguous purged + embargoed folds on label_t1 (replaces CPCV(5, 2), which stays for Ch.12 backtest paths); F1 at p > 0.5 (SCORING_DECISION_THRESHOLD) replaces the train-fold-optimised 0.30-0.80 threshold; optuna RandomSampler(seed) replaces TPE (30 trials); max_depth (1, 8). Tests: tests/test_afml_ch9_tuning.py.",
+      "why": "The tuned threshold and TPE were not in the book and the data gave no reason to keep them; depth 2 was the search bound on every edge.",
+      "evidence": "Nested-CV test 2026-10-24 (outer purged 5-fold, inner purged 5-fold, 30 trials, bagged stage 2, 4 edges): OOS weighted neg log loss vs current A|TPE: B|random +0.0065 [t 4.0] GBPJPY, -0.0013 HK, -0.0013 XAUUSD rs, +0.0004 XAUUSD vc; no configuration better on more than 2 of 4 edges; mean AUC 0.518-0.521 for all; time decay c = 0.5 / 0 worse on 3 of 4 edges (c = 0 XAUUSD rs t -3.1). docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4I.1.",
+      "known_limits": "At p > 0.5 test recall is still 0.92-1.00 on XAUUSD rangestructure: the tuning score does not create signal the features lack (D028 stays open as a finding).",
+      "supersedes": "CPCV(5, 2) tuning; F1 at a train-fold-optimised threshold; Optuna TPE; max_depth 2-8."
+    },
+    {
+      "id": "D047",
+      "priority": "P1",
+      "title": "Concurrency handled by D017 budgeting per order, not AFML s.10.4 averaging / s.10.5 discretisation",
+      "status": "APPROVED_2026-10-26 (owner, AFML Ch.10 walkthrough); no code change (D017 already live design)",
+      "book": "AFML Snippet 10.1 p.143 step #2 (avgActiveSignals s.10.4 Snippet 10.2 p.144, discreteSignal s.10.5 Snippet 10.3 pp.144-145); s.10.2 p.142 budgeting is one of three alternative approaches.",
+      "resolution": "Sizing stack = payoff-aware s.10.3 size (D007) -> D017 budgeting per order (risk / c_q) -> fixed broker-side TP/SL per order. s.10.4/s.10.5 not used.",
+      "why": "Book-literal 10.3 -> 10.4 -> 10.5 had the lower daily Sharpe on all 6 edges and lower net/maxDD on 5 (XAUUSD vc tie) with Moneta costs: an averaged position is full size with one bet open (mean concurrency 2.5-7.4 vs c_q 6-18, so 3-4x more risk) and a stopped bet only re-weights the average.",
+      "evidence": "shared/research/ch10_averaging_cost_sim.py; docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4J.3 (Sharpe D017 vs best AVG: GBPJPY 0.84/0.33, HK 0.78/0.49, JPN rs 0.73/0.52, JPN vc 1.14/0.74, XAUUSD rs 1.42/1.38, XAUUSD vc 1.14/1.15).",
+      "known_limits": "Research period; thresholds and bet sizes fitted on the same rows; Q refreshed weekly in the averaging arm."
+    },
+    {
+      "id": "D048",
+      "priority": "P1",
+      "title": "AFML s.10.6 dynamic position sizing not used: tested on our data (approved trades) and rejected",
+      "status": "APPROVED_2026-10-26 (owner); re-test after the retrain or when stronger in-trade information exists",
+      "book": "AFML s.10.6 pp.145-148, Snippet 10.4 (betSize, getTPos, invPrice, limitPrice, getW); forecasts updated while the bet is open (p.145).",
+      "resolution": "Open orders keep their s.10.3 x D017 size until the fixed TP / SL / vertical barrier. Research tools kept: shared/research/ch10_intrade_forecast_test.py, ch10_remaining_return_test.py (--approved-only), ch10_dynamic_sizing_sim.py (--approved-only).",
+      "why": "Fixed brackets beat every s.10.6 version on the three edges whose in-trade forecast carries information, before and after costs: taking profit step by step gives up the 2:1 payoff (in-trade continuation: winning trades tend to keep winning), and the updated forecast (R2 1-3 %) closes 75-98 % of bets early.",
+      "evidence": "docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4J.2, 4J.4, 4J.5. Approved-only forecaster, daily Sharpe fixed / frozen f=TP / updated: GBPJPY 0.84/0.54/0.01, HK 0.81/0.57/-0.52, JPN vc 1.15/0.87/0.56. Edge features add nothing in-trade (step 2 NO-GO on all 6). Rule: in-trade forecasters are trained and judged on live-approved trades only.",
+      "known_limits": "One forecaster family (bagged trees, AFML s.6.4), current features (pre-retrain), research period; holdout not used."
+    },
+    {
+      "id": "D049",
+      "priority": "P2",
+      "title": "AFML s.10.6 limit price on entry orders not implemented (tested: neutral)",
+      "status": "DECIDED_2026-10-26 (owner): not implemented, no effect on our data",
+      "book": "AFML s.10.6 p.146 breakeven limit price, Snippet 10.4 limitPrice.",
+      "resolution": "Entries stay market orders after the 5.7 s live latency. Test tool kept: shared/research/ch10_limit_price_test.py.",
+      "why": "Design f = SL + p (TP - SL), omega calibrated so the s.10.6 size equals the s.10.3 size at the signal price, size recomputed at the fill: 99.3-100 % of fills within the book limit, size kept 91-99 %, daily Sharpe change -0.02..+0.02 on all 6 edges.",
+      "evidence": "docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4J.4.",
+      "known_limits": "Research period; live slippage was measured ~0 beyond the quote (reference_live_execution_latency)."
+    },
+    {
+      "id": "D050",
+      "priority": "P1",
+      "title": "GEOMETRY RULE D050-A: Gates A-C search the 405-cell geometry grid and pay for every trial (book path 2)",
+      "status": "DECIDED_2026-10-29 (owner: 'I want us to go back and use this option 2, i prefer to search the 405 grid cells and pay for it'); IN FORCE; canonical text docs/mldp/rules/GEOMETRY_RULE_D050A.md; runbook Revision 24 Section 6A Step 7 [RULE D050-A]; payment enforced by D051 (PBO all trials, in force), D054 (DSR / FWER gate at the RECERT), D055 (strategy risk at the RECERT); no further work",
+      "book": "AFML s.11.4 p.153 (backtesting is not a research tool; never backtest until the model is fully specified; the purpose of a backtest is to discard bad models, not to improve them), s.11.5 #3 and #6 p.154, Snippet 11.1.",
+      "resolution": "Option A = the book's second legitimate path: search the runbook's 405-cell grid, select by Gate C compound velocity, and measure / deflate the search -- PBO / CSCV over every replayed configuration (AFML s.11.6, D051), Level-1 DSR over every Gate C trial with ONC E[K] (AFML s.14.7.3, MLAM s.8.7, D054), strategy risk on bets (D055). Trials accumulate across an edge's runs, including re-selection after cost / label changes (third law, p.205). Thesis cards stay pre-registered before the first backtest (geometry not on the card).",
+      "why": "The book prefers not to calibrate the trading rule on history (AFML Ch.13 p.170) but builds PBO and DSR for researchers who do search; the owner chose to keep searching (the method used for every previous edge) and pay for it. Same-day drafts D050-B (geometry fixed on the card) and D050-C (2-3 pre-registered geometries) were reverted.",
+      "evidence": "D050 analysis 2026-10-29 (logs/d050_comparison_20261029.txt): best of 405 vs median cell and share of profitable cells -- GBPJPY +0.087 / -0.008 / 34 %, HK +0.074 / -0.042 / 8 %, JPN +0.099 / +0.008 / 68 %, XAUUSD +0.135 / +0.050 / 100 %; PSR[0] without search vs DSR with the 406 trials 0.955/0.685, 0.945/0.650, 0.981/0.938, 1.000/0.998 (the price of the search).",
+      "known_limits": "Chooses the book's second path, not its preferred one (p.170); the search raises every edge's DSR bar."
+    },
+    {
+      "id": "D051",
+      "priority": "P1",
+      "title": "Gate C PBO / CSCV over EVERY configuration tried (the book's N), not only the positive Gate C cells",
+      "status": "IMPLEMENTED_2026-10-26 (owner, AFML Ch.11): shared/research/gate_c_pbo.py; positive-only PBO kept as diagnostic_positive_only",
+      "book": "AFML s.11.6 p.155: M collects the performance series of the N trials (each column a model configuration tried); PBO p.156; Figure 11.1 p.157.",
+      "resolution": "PBO matrix = every replayed configuration of the Gate C run, controls included; winner still argmax compound velocity among Gate C-eligible cells; PASS = PBO < 0.5 AND Prob[OOS <= 0] < 0.5 (project convention). The full 405-cell replay (Gate-B-negative cells) was skipped by owner decision.",
+      "why": "The old candidate set (exec_mean_R > 0 and coverage >= 0.99) was a selection on full-sample performance before CSCV, not the book's N.",
+      "evidence": "shared/research/pbo_all_trials.py, logs/ch11_pbo_all_trials_20261026: recorded PBO reproduced exactly, then book-N PBO GBPJPY 0.454 -> 0.273, HK 0.254 -> 0.093, JPN rs 0.401 -> 0.366, JPN vc 0.507 -> 0.245, XAUUSD rs 0.085 -> 0.085, XAUUSD vc 0.305 -> 0.288; Prob[OOS<=0] within 0.03. tests.test_gate_c_pbo_regression (TestGateCPboAllTrials).",
+      "known_limits": "PBO is a rank statistic: weak configurations in N lower it, so Prob[OOS <= 0] must also pass; N excludes Gate-B-negative cells that were never replayed."
+    },
+    {
+      "id": "D052",
+      "priority": "P1",
+      "title": "Use the CPCV backtest-path distribution (AFML s.12.4.2 step 5) instead of one averaged OOF series",
+      "status": "APPROVED_2026-10-26 (owner, AFML Ch.12); CODE DONE 2026-10-26, awaiting retrain (Steps 03/04 on every edge) + allocator re-run (04b-11)",
+      "book": "AFML s.12.4 pp.163-166 (phi[N,k] paths; step 5: one Sharpe ratio per path -> empirical distribution; rule of thumb k = 2, N = phi + 1), s.12.5 pp.166-167 (mean over paths has variance phi^-1 sigma^2 (1 + (phi-1) rho)).",
+      "resolution": "Step 03: CombinatorialPurgedCV N = 10, k = 2 (45 splits, 9 paths), save every path's predictions; Step 04: calibrator fitted on all path predictions together; portfolio_allocator 04b scores each threshold of its grid on every path, 04c selects by the mean across paths and reports worst path + share of losing paths; Ch.14 PSR/DSR use the path distribution.",
+      "why": "Step 03 already ran CPCV(5, 2) but averaged each row's 4 path forecasts into one series that calibration, thresholds, the allocator and Gate E used: a single path (AFML s.12.2-12.3 weaknesses). Owner: adopt the book's way whether or not paths agree.",
+      "evidence": "shared/research/cpcv_path_backtest.py, logs/ch12_cpcv_paths_20261026 (9-path daily Sharpe: JPN rs 0.74 sd 0.01; XAUUSD rs 1.58 sd 0.04; GBPJPY 0.67 sd 0.06; XAUUSD vc 0.90 sd 0.07; HK 0.52 sd 0.17; JPN vc 0.06 sd 0.34, 33 % paths <= 0). docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4L.",
+      "known_limits": "Step 03 costs 4.5x more fits; current calibrators / thresholds were fitted on older OOF and must be refit before levels are compared; the 04c selection score is the allocator's own (drawdown-adjusted broker compound velocity), only its aggregation across paths is from the book.",
+      "implementation": "Step 03 (docs/tools/patch_afml_ch12_step03_cpcv_paths.py, inlined marker QUANTARA_AFML_CH12_CPCV_PATHS_V1, all 6 edges): CombinatorialPurgedCV(10, 2), cpcv_path_00..08_raw_probability columns, raw_probability kept as the averaged diagnostic. shared/models/cpcv_paths.py. Step 04 fit_final_live_sigmoid fits on all paths stacked, fails closed without paths. 04b: path columns through the same live calibrator, payoff profile and broker-risk columns -> outputs/v2_threshold_grid_cpcv_path_trade_ledger.csv; fail closed unless --allow-legacy-single-path. 04c: every (threshold, path) scored with the main growth formula at the main path's optimized f* (signed: a losing path scores < 0, an empty path 0); compound_velocity_score = mean across paths; gates on the main path; edge report adds worst path, median, sd, losing-path share, single-path score and the threshold a single path would have picked; fail closed unless --allow-legacy-single-path. Tests: tests/test_afml_ch12_cpcv_paths.py (10, incl. skfolio CPCV(10,2): 45 splits, 9 complete paths). 04b smoke on GBPJPY real artifacts: path 0 = main ledger exactly.",
+      "implementation_choice_flagged": "f* per threshold comes from the main (averaged) path and is held fixed across paths (the book scores one Sharpe per path for a fixed strategy, s.12.4.2 step 5); re-optimising f on each path would be an extra fit per path. Gates (trade count, PF, LCB, survival) stay on the main path. CONFIRMED by owner 2026-10-26 (f* once on the main path, as the book scores one fixed strategy per path)."
+    },
+    {
+      "id": "D053",
+      "priority": "P2",
+      "title": "Optimal trading rule (AFML Ch.13) tested: none exists; PT/SL/vertical not tuned on history",
+      "status": "CLOSED_2026-10-26 (owner, AFML Ch.13): no code change; decision carried into D050 (decided after Ch.14), no further work here",
+      "book": "AFML s.13.4-13.5 pp.172-176 (O-U eq. 13.2, OLS 13.5-13.7, Snippets 13.1-13.2); s.13.6 pp.178, 180, 182, 187 (phi -> 1: flat surface, 'there is no optimal trading rule', optimising is backtest overfitting); footnote 2 p.172; s.13.7 p.192 (other processes, OTR conjecture); exercise 13.1(b).",
+      "resolution": "Keep the current geometry for now; do not tune PT/SL on history; future geometry fixed by thesis / risk and pre-registered (D050); edge must come from entry information. No alternative-process test (exercise 13.1(b)): phi ~ 1 was measured from the full paths, so another volatility model on the same paths would not create in-trade mean reversion.",
+      "evidence": "shared/research/ch13_optimal_trading_rule.py v2 (full paths to the vertical, random-walk null, 100k paths); logs/ch13_otr_20261026; per-edge artifacts/feature_importance_audit/ch13_optimal_trading_rule.json; phi 0.9996-1.0007 inside the null, surface best - median 0.02-0.06, optima at mesh corners, per-trade E0 from p closes 2-11 % of the gap. docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4M, 4M.1.",
+      "known_limits": "The current 2:1 geometry was itself chosen by the Gate A/C grid; its search is penalised by the full-N PBO (D051) until D050 is decided."
+    },
+    {
+      "id": "D054",
+      "priority": "P0",
+      "title": "DSR / PSR / FWER over ALL trials (AFML s.14.7 third law; MLAM s.8.7-8.8; Lopez de Prado & Lewis 2018 robust weights); DSR > 0.95 gate",
+      "status": "APPROVED_2026-10-26 (owner, AFML Ch.14): method implemented. Owner 2026-10-27: gate applies at the RECERT (after the book walkthrough and the retrain) -- remove nothing before; gate on Level 1 (each edge's own Gate C trials: DSR > 0.95 and FWER alpha_K < 0.05), Level 2 (thesis search) reported alongside, not gating",
+      "book": "AFML s.14.7.2-14.7.4 pp.203-206 (PSR, DSR, third law p.205, > 0.95 p.206); MLAM s.8.5-8.8 pp.108-123 (False Strategy theorem, ONC E[K], cluster variance, FWER / Sidak, Type II); Lopez de Prado & Lewis (2018) SSRN 3167017 s.8.2 p.11 and Appendix A.4 Snippet 4 pp.17-18.",
+      "resolution": "Per edge at the Gate C stage: shared/research/dsr_all_trials.py over every replayed Gate C trial (ONC E[K], getIVP-extended cluster series, V of annualised cluster SRs) -> artifacts/feature_importance_audit/ch14_dsr_all_trials.json; portfolio_allocator/07b applies each edge's record to its allocator stream and uses the Step 07 HRP scenarios as the portfolio's trials; pass = DSR > 0.95 and FWER alpha_K < 0.05.",
+      "evidence": "docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4N.2-4N.3; Level 1: XAUUSD rs 0.998 pass, JPN rs 0.938, GBPJPY 0.685, HK 0.650 fail; Level 2 (flagged approximation): all fail DSR. Old 07b (deployed edges as trials, K = 2): 6 / 7 'significant'.",
+      "known_limits": "E[K] = 2 per edge from ONC on 406 highly correlated trials; V from two cluster SRs is noisy; Level 2 uses E[K] = 2 x theses and the current edge's V (older trials' SRs not recoverable); allocator streams used in the 07b dry run are from the 2026-10-17 run (pre-retrain)."
+    },
+    {
+      "id": "D055",
+      "priority": "P0",
+      "title": "Strategy risk P[p < p_theta*] by the AFML s.15.4.1 bootstrap on BETS; .05 rule as a gate at the RECERT",
+      "status": "APPROVED_2026-10-27 (owner, AFML Ch.15): implemented; theta* = 0 and k = 2 approved (config/strategy_risk.json); gate P[p < p_theta*] <= .05 on bets applies at the RECERT (nothing removed before)",
+      "book": "AFML s.15.2-15.3 pp.211-216 (binomial Sharpe, binSR / binHR / binFreq, Snippets 15.1-15.4); s.15.4-15.4.2 pp.216-217 (p_theta*, strategy risk vs portfolio risk, bootstrap algorithm, '.05 ... too risky'); Snippet 15.5 p.218; exercises 15.1-15.6 p.219.",
+      "resolution": "shared/backtest_statistics/afml_ch14_ch15_reference.py: bin_sr, bin_hr (relative-tolerance discriminant), bin_freq (literal binSR check), sr_symmetric, implied_precision_symmetric, bet_outcome_parameters (pi- over <= 0), prob_precision_below / prob_strategy_failure (floor(n k) bootstrap + KDE), strategy_sensitivity (ex. 15.1-15.2), psr_vs_annual_target (p.218 complement), mix_gaussians; Snippet 15.5's p(1 - p) shortcut kept only as a flagged diagnostic. 07c: strategy risk on bets (+ trades), theta* / k from config/strategy_risk.json, gate flag. portfolio_live/decommission_rule.py: strategy_risk_diagnostic = live bet precision vs p_theta* from the backtest bets (diagnostic; allocation unchanged). Tests: tests/test_afml_ch15_strategy_risk.py (book numbers), tests/test_decommission_rule.py. | 2026-11-04 (owner, RECERT): strategy risk is a DEPLOYMENT-stage gate, computed in allocator 07c on the bets taken at the allocator's live threshold -- AFML p.216: the bet frequency n is 'set by the portfolio manager, as she decides what constitutes an opportunity worth betting on' -- not an edge-level gate; a failure means the edge is not deployed and returns to research (removed from config/edge_universe.json). Runbook Revision 43.",
+      "evidence": "docs/mldp/AFML_MLAM_WALKTHROUGH.md s.4O-4O.1; logs/ch15_audit_evidence_20261027.txt, logs/ch15_strategy_risk_07c_20261027.csv. Pre-retrain, bets, theta* = 0, k = 2: GBPJPY 0.023, HK 0.022, JPN 0.057 (fail), XAUUSD 0.000; theta* = 1: 0.27 / 0.27 / 0.44 / 0.005; trades: all <= 0.0001 (not independent).",
+      "known_limits": "Book-internal inconsistency: Snippet 15.5's spread p(1 - p) contradicts its own s.15.4.1 algorithm; the algorithm is followed. Bets with several trades violate the book's unit-bet / IID assumption less than trades do, not entirely. EF3M (the book's alternative for pi-, pi+) not implemented (optional in the book)."
+    },
+    {
+      "id": "D056",
+      "priority": "P1",
+      "title": "Live decommission PSR (D021) counts overlapping TRADES as bets",
+      "status": "IMPLEMENTED_2026-10-27 (owner approval, AFML Ch.15): portfolio_live/decommission_rule.py computes PSR[0], PSR[SR_bt], the 30-bet minimum and the backtest benchmark on Snippet 14.1 bets (to_bets); shadow bets keep entry / exit / side so they group too; verdicts report n_bets and n_trades; no further work",
+      "book": "AFML Ch.14 p.196 (a same-side run of positions is one bet; trade counts overestimate independent opportunities); Ch.15 s.15.2 (n IID bets).",
+      "resolution": "Proposal: compute the decommission PSR and the 30-bet minimum on Snippet 14.1 bets (to_bets in decommission_rule.py) instead of trades.",
+      "evidence": "Live closed trades before the stop: HK 60 trades = 9 bets, GBPJPY 12 = 6, JPN 14 = 6, XAUUSD 9 = 8. Backtest benchmark: trades -> bets GBPJPY 2,738 -> 529, HK 2,571 -> 400, JPN 4,428 -> 366, XAUUSD 2,251 -> 459; SR per bet 0.096 / 0.100 / 0.084 / 0.172 (per trade 0.103 / 0.106 / 0.077 / 0.165). Tests: tests/test_decommission_rule.py (test_d056_minimum_sample_counts_bets_not_trades)."
+    },
+    {
+      "id": "D057",
+      "priority": "P1",
+      "title": "Audit the allocator's threshold selection (04c picks one probability threshold out of a grid) with PBO",
+      "status": "DIAGNOSTIC_2026-10-30 (owner: 'dont make it a gate just a diagnostic'): threshold-selection PBO (shared/research/allocator_threshold_pbo.py) and the threshold-inclusive DSR are reported at every RECERT beside the D054 gate; the D054 DSR gate keeps its Gate C-only trial count; recorded, re-run at RECERT",
+      "book": "AFML s.11.6 pp.155-157 (PBO measures the selection of one configuration out of N trials); s.14.7.3 / MLAM s.8.7 (the threshold grid is part of the trial count).",
+      "resolution": "Proposal to decide then: CSCV / PBO over the 04b threshold grid per edge (every threshold = one trial), and count the threshold trials in the edge's DSR record.",
+      "evidence": "portfolio_allocator/04c_select_representative_threshold_candidates.py select_representatives_for_edge (one threshold per edge by compound_velocity_score); no PBO today. 2026-10-29 results (AFML Ch.16 walkthrough s.4P.2): PBO XAU 0.230, GBPJPY 0.510, HK 0.567, JPN 0.815 (Prob[OOS<=0] 0.005 / 0.036 / 0.106 / 0.434); live threshold = 04c argmax in all 4."
+    },
+    {
+      "id": "D058",
+      "priority": "P2",
+      "title": "07 built the HRP tree on d instead of d~ (AFML Snippet 16.4); 07b / 07c validated the average-linkage portfolio while live trades single",
+      "status": "FIXED_2026-10-30 (owner approved, AFML Ch.16): 07 links on pdist(D) = d~; 07b / 07c default to the single-linkage portfolio file; takes effect with the RECERT allocator re-run; no further work",
+      "book": "AFML s.16.4.1 pp.224-229 and Snippet 16.4 (sch.linkage(dist, 'single') on the square D clusters on d~, the Euclidean distance between columns of D).",
+      "resolution": "07 hrp_allocation: linkage(pdist(dist.values, 'euclidean'), method); manifest linkage_input d_tilde_afml_snippet_16_4. 07b DEFAULT_PORTFOLIO_RETURNS and 07c default -> hrp_portfolio_returns_raw_r_core_plus_watchlist_compound_velocity_single.csv.",
+      "evidence": "Book data: d vs d~ moves HRP weights by up to 7.83 pp; our data: identical weights and order. tests/test_afml_ch16_hrp.py test_07_linkage_input_is_the_books."
+    },
+    {
+      "id": "D059",
+      "priority": "P1",
+      "title": "Return alignment for the allocator covariance (AFML exercise 16.1(a)): exit-day booking vs the average bet frequency",
+      "status": "CODE_DONE_2026-10-30 (owner: 'Approved, switch 06 to mark-to-market'): 06 books daily mark-to-market and applies the bet-frequency rule on every run; takes effect at the RECERT allocator re-run (06 -> 07 -> 07b / 07c)",
+      "book": "AFML exercise 16.1(a) p.244: 'Align them to the average frequency of their bets ... downsampling'; bets per AFML p.196 / s.14.3 (D056).",
+      "resolution": "Rule (shared/research/ch16_allocation_tests.py bet_frequency_rule): average over edges of the s.14.3 bet frequency -> average interval between bets -> observation period = the largest of daily / weekly / monthly not longer than it (floor daily). Mark-to-market (stream_mtm): open trades marked at each UTC day's last bar close, costs on the exit day, sums exactly to executed_r. UPDATE 2026-10-30: portfolio_allocator/06 DATE_AGGREGATION = mark_to_market_daily (mark_to_market_bookings, ported from the tool's stream_mtm; fails closed on bad trade rows or a trade-sum mismatch > 1e-9); afml_weighted_r = daily R x afml_bet_size; bet_frequency_alignment runs every time and stops 06 if it selects a period other than daily (owner decision); exit_date kept only to reproduce pre-D059 outputs. Tool S0 rebuilds with the booking named in 06's manifest.",
+      "evidence": "Current 4 edges: 529 / 400 / 366 / 459 bets, average 110.6 bets/year, interval 3.30 days -> daily. MTM vs exit-day daily correlation per edge 0.84-0.90. 2026-10-30 verification (scratch outputs): exit_date reproduces all 12 current daily matrices bit-for-bit; MTM profile matrix = tool E to 1.4e-14; trade sums = executed_r to 6.7e-16 (14,662 trades, 30,139 booking rows); rule on 6 profile edges 107.2 bets/year, 3.41 days -> daily; 07 on MTM (4 edges) GBPJPY 0.218, JPN 0.079, HK 0.204, XAU 0.499. Test tests/test_afml_ch16_hrp.py test_06_mark_to_market_booking_by_hand."
+    },
+    {
+      "id": "D060",
+      "priority": "P2",
+      "title": "Allocation method: HRP kept, max-Sharpe methods rejected for now (MLAM s.7.8 'apply opportunistically')",
+      "status": "APPROVED_2026-10-30 (owner: 'okay for now'): HRP stays; T1-T4 (shared/research/ch16_allocation_tests.py) re-run as a diagnostic at every universe change, since the planned book grows to >= 20 edges (1 long + 1 short per asset)",
+      "book": "MLAM s.7.4 p.95, s.7.6-7.8 pp.98-104 and footnote 24 p.101 (Monte Carlo on your own inputs); AFML s.16.6.",
+      "resolution": "Re-run T1-T4 on the deployable edge set whenever config/edge_universe.json changes (and at RECERT); a method replaces HRP only under the s.4P.1 decision rule and with owner approval.",
+      "evidence": "2026-10-29 T3: no method beats HRP-current (all risk-based methods within ~1% OOS variance; max-Sharpe +255x to +79,412x variance)."
+    },
+    {
+      "id": "D061",
+      "priority": "P1",
+      "title": "SADF_ct_50 research/live skew: stride-10 forward-fill made research rows 0-9 bars stale while live was always 9 bars stale",
+      "status": "CODE_DONE_2026-10-30 (owner approved, AFML Ch.17): SADF computed at every bar on the window ending at the current bar, identical in research and live; takes effect at the RECERT retrain (re-export, Steps 01-09, Gate D, Phase C regeneration)",
+      "book": "AFML s.17.4.2 p.253: SADF_t is computed at each t in [tau, T] (the stride was a speed shortcut, not the book's).",
+      "resolution": "shared/features/afml_ch17_structural_breaks.structural_break_features (every bar, window ending at t inclusive; sadf_series and its stride removed); all 6 feature_expansion.py call it; native_one_row_feature_engine uses the 49 previous closes + the current close (ENGINE_VERSION v1_5); portfolio_live/phase_c_02 no longer treats SADF as horizon-sensitive (compared with the research batch every step) and adds an independent research-rule oracle (structural_break_research_rule_parity).",
+      "evidence": "Audit (logs/ch17_audit_evidence_20261030.txt): research = live on 10.0-10.5 % of model rows, correlation 0.43-0.46, mean |gap| 0.50-0.55 vs std 0.69-0.75 (HK dhc, JPN rs, XAU rs, XAU vc); SADF_ct_50 MDA within one std of 0, MDI = 1/157. After the fix: Phase C.2 PASS on GBPJPY / HK / JPN / XAUUSD (128 steps, SADF_ct_50 in the 168 core features compared every step, 0 failures; run on venv312 because the FFD bundles do not load on venv39 -- see RECERT). tests/test_afml_ch17_sadf.py (9). 2026-10-30 after D065: Phase C.2 PASS on venv39 for all 4 assets on the current contract."
+    },
+    {
+      "id": "D062",
+      "priority": "P3",
+      "title": "SADF searches start points within the last 50 bars, not over the whole sample [1, t - tau]",
+      "status": "APPROVED_DEVIATION_2026-10-30 (owner): kept as is (50 bars, tau = minSL 10, 'ct', 1 lag), not tuned; docstring corrected; no further work",
+      "book": "AFML s.17.4.2 p.253 (t0 in [1, t - tau]); pp.254-255 and Table 17.1 (full SADF is O(T^3); HPC / Ch.20).",
+      "resolution": "Rolling-window SADF: the supremum is taken over a different set, so it is a different statistic from the book's. Reasons: the book's cost analysis and live parity (live holds a bounded bar window, so a whole-sample start point cannot be reproduced). Each ADF regression inside the window is the book's (Snippets 17.1-17.4).",
+      "evidence": "Snippets 17.1-17.4 run verbatim vs the port: identical designs, sup equal within 1e-9 on every non-degenerate case (tests/test_afml_ch17_sadf.py test_port_equals_verbatim_snippets)."
+    },
+    {
+      "id": "D063",
+      "priority": "P3",
+      "title": "QADF and CADF (the book's robustness measures for SADF) added as features",
+      "status": "CODE_DONE_2026-10-30 (owner approved, AFML Ch.17): QADF_ct_50, QADF_Dispersion_ct_50, CADF_ct_50, CADF_Dispersion_ct_50 in all 6 edges (uniform feature_schema, 186 entries with D064); judged by Step 01 at the RECERT retrain",
+      "book": "AFML s.17.4.2.4 p.255 (Q_t,q, Q._t,q,v; example q 0.95, v 0.025) and s.17.4.2.5 p.256 (C_t,q, C._t,q; example q 0.95): SADF_t is sensitive to outliers; outliers in s_t bias SADF upwards.",
+      "resolution": "Computed from the same s_t (the 40 ADF values SADF takes the supremum of; no extra regressions). The book names no quantile estimator (numpy linear used) and defines CADF on f[x], here the empirical distribution of s_t (mean / population std of values >= Q_t,q).",
+      "evidence": "Hand checks in tests/test_afml_ch17_sadf.py (s = 0..39: Q 37.05, Q. 1.95, C 38.5, C. 0.5); C_t,q <= SADF_t on every bar."
+    },
+    {
+      "id": "D064",
+      "priority": "P3",
+      "title": "CSW CUSUM (up / down) and SMT (4 specs x phi 0 / 0.5 / 1) added as features; BDE not added",
+      "status": "CODE_DONE_2026-10-30 (owner: 'Add CSW and SMT, skip BDE'): 14 columns in all 6 edges (uniform feature_schema, 186 entries); judged by Step 01 at the RECERT retrain",
+      "book": "AFML s.17.3.2 p.251 (CSW: S_n,t, sigma_t, S_t = sup over n; one-sided); s.17.4.3 pp.259-261 (SM-Poly1 / Poly2 / Exp / Power, SMT_t = sup |beta| / sigma_beta, penalised by (t - t0)^phi; 'features ... may include SMT_t estimated from a wide range of phi values'); exercise 17.5 (reciprocal for bursts); s.17.3.1 p.250 (BDE).",
+      "resolution": "Same 50-bar window as SADF (D062). CSW: sigma_t^2 = mean squared log change; n < t (n = t is 0 / 0); CSW_Down = the same on -log y = log(1/y) (ex. 17.5). SMT: start points t0 in [1, t - tau], tau = 10 (samples of 11-50 closes), time counted from the sample start (the book fixes no origin; it matters only for Power's log t), Exp / Power fitted in their linearised log form as printed, Poly1 on raw Close as printed, OLS standard error as Snippet 17.4; phi in {0, 0.5, 1} fixed before any data (0 = unpenalised SMT_t; 0.5 and 1 = the exercise values). BDE not added: the book gives no regressors x_t for a price series, its start point is arbitrary (p.250) and without x_t it reduces to CSW (p.251).",
+      "evidence": "tests/test_afml_ch17_sadf.py: CSW by hand; SMT = an independent least-squares fit for every spec and phi (7 places); 12 pass on venv39, venv312. Cost 6.7 ms per bar for all 19 Ch.17 columns (SADF 3.7, SMT 2.8)."
+    },
+    {
+      "id": "D065",
+      "priority": "P1",
+      "title": "pandas-3 pickles (venv312) of the FFD / HMM bundles and live continuation states could not be loaded on venv39 (pandas 2.3.3)",
+      "status": "FIXED_2026-10-30 (owner: 'fix the FFD files now'); no further work beyond the RECERT pickle scan (backlog RECERT)",
+      "book": "-- (environment defect found during the AFML Ch.17 audit; blocks Phase C, which must run on venv39)",
+      "resolution": "shared/io/portable_pickle.py: dump stores every DataFrame / Series / Index / Timestamp as numpy arrays + metadata (datetime unit and time zone kept; object columns never re-inferred; text columns restored as each pandas' native text dtype); load rebuilds them and passes old payloads through. All writers and readers of the FFD state bundles, HMM live bundles and FFD / HMM streaming states use it (fractional_differentiation, verify_asset_ffd_manifest, hmm_regime, build_asset_hmm_regime_features, verify_asset_hmm_regime_manifest, live_streaming/continuation, live_feature_continuation_guard). The 31 unreadable files were rewritten in the portable format (originals archived at ../archive_pandas3_pickles_20261030); the 20 bundle hashes / sizes in ffd_manifest.json / hmm_regime_manifest.json updated. docs/tools/scan_pickles_loadable.py checks every pickle loads.",
+      "evidence": "Before: 31 of 72 artifacts failed on venv39 (10 FFD bundles, 10 HMM bundles, 11 live states); Phase C.2 FAIL on all 4 assets. After: value + dtype fingerprints identical to the originals for all 31 (and the 9 legacy live states) when written on venv312 and read on venv39 or venv312, and written on venv39 and read on venv312 (HMM model and scaler parameters included); scan 76 files, 0 failures on venv39; all 20 manifest hashes match; Phase C.2 PASS on venv39 for GBPJPY / HK / JPN / XAUUSD; tests/test_portable_pickle.py 4 pass on both interpreters; FFD tests pass on both."
+    },
+    {
+      "id": "D066",
+      "priority": "P1",
+      "title": "Entropy: match_length off by one (port returned the matched length, book / Gao 1 + it); fixed match window len/4 (not from the book); window stopped one bar back",
+      "status": "CODE_DONE_2026-10-31 (owner: 'Approved, proceed with (a) through (f)'); takes effect at the RECERT retrain",
+      "book": "AFML Snippet 18.3 p.267 (return len(subS)+1); Gao, Kontoyiannis and Bienenstock (2008) p.6; Snippet 18.4 p.268-269 (window=None = expanding, the default); p.268-269 (even length; remove the first bit of an odd message); Gao s.3.2 (increasing-window estimators at least as good). Lag 0 as D061.",
+      "resolution": "shared/features/afml_ch18_entropy.match_length = 1 + longest match, computed letter by letter (same pair as the snippet's every-length loop, ~10x faster); kontoyiannis_entropy with window=None on the 100 returns ending at the current bar; odd messages lose the first letter. entropy_row is the single rule for research (entropy_features, all 6 feature_expansion.py) and live (native_one_row_feature_engine v1_6, close_hist[-100:] + current close; _compute_one takes asset); phase_c_02 adds entropy_research_rule_parity.",
+      "evidence": "Audit logs/ch18_audit_evidence_20261030.txt: old port failed the p.269 example (1.34 / 1.34 vs 0.97 / 0.84) and differed from the snippet in 295/300 cases. After: tests/test_afml_ch18_entropy.py (19, venv39 + venv312) -- match_length = verbatim Snippet 18.3 on > 10,000 cases (2-, 10-, 16-letter alphabets), kontoyiannis = verbatim Snippet 18.4 (expanding and fixed windows), p.269 example 0.968 / 0.843 (book truncates to 0.96 / 0.84), 10000111 = 10000110. Phase C.2 (venv39, scratch C.1 contract compiled from the current schemas, forced PASS only for the assets that compile: GBPJPY drc, JPN vc): PASS, 188 core features incl. the 3 entropy columns compared with the research batch every step for 128 steps plus entropy_research_rule_parity, 0 failures; values finite at every bar."
+    },
+    {
+      "id": "D067",
+      "priority": "P3",
+      "title": "pmf1 counts all len-w+1 words; Snippet 18.1 counts len-w (drops the last word)",
+      "status": "APPROVED_DEVIATION_2026-10-31 (owner): kept; no feature uses pmf1 / plug_in; no further work",
+      "book": "AFML Snippet 18.1 p.265 (for i in xrange(w, len(msg)); pmf = len(msg) - w).",
+      "resolution": "Kept the full count (every word of the message counted once; probabilities sum to 1 either way). Docstring states the difference.",
+      "evidence": "tests/test_afml_ch18_entropy.py: the only count difference vs the verbatim snippet is the last word."
+    },
+    {
+      "id": "D068",
+      "priority": "P2",
+      "title": "Entropy encodes log returns of Close, not the fractionally differentiated series p.270 advises; the old feature (sign of Close_FFD.diff()) removed",
+      "status": "APPROVED_DEVIATION_2026-10-31 (owner, proposal (d)); takes effect at the RECERT retrain",
+      "book": "AFML p.270 ('it is advisable to encode information from fractionally (rather than integer) differentiated series'); s.18.5.1 p.270 (binary encoding natural only for price bars, |r| about constant).",
+      "resolution": "Entropy_Kontoyiannis_100 removed from all 6 edges; replaced by Entropy_Kontoyiannis_Binary_100 / _Quantile10_100 / _Sigma_100 on r_t = diff(log Close). Uniform 188-entry feature_schema; Step 01 selects at the retrain.",
+      "evidence": "Close_FFD.diff() has order d*+1 (about 1.35), so it is no longer a fractional series; the FFD level quantile-encoded gives one letter in 29 % (JPN) to 57 % (XAU) of 100-bar windows; tick bars |r| p90/p10 = 15-16 (binary alone discards size, p.270). Old feature MDA ~0 (GBPJPY +0.000054 +- 0.000133, HK -0.000423 +- 0.000227, XAU rs -0.000094 +- 0.000235). Consequence: the current HK dhc / JPN rs / XAU rs / XAU vc models select the removed column, so Phase C.1 cannot compile them until the RECERT retrain (live stopped; 8 tests that require the current live manifest to compile fail for this reason until then)."
+    },
+    {
+      "id": "D069",
+      "priority": "P2",
+      "title": "Quantile boundaries (10 letters) and sigma frozen per asset on the research history",
+      "status": "CODE_DONE_2026-10-31 (owner, proposal (d)); re-run the builder only if the research history changes",
+      "book": "AFML s.18.5.2 p.270 (quantile boundaries from the in-sample period); s.18.5.3 p.270-271 (sigma step from min{r}, ceil[(max-min)/sigma] codes); exercise 18.1(b)-(c) p.277 (10 letters; sigma = std of all bar returns).",
+      "resolution": "shared/features/build_asset_entropy_encoding.py writes assets/{A}/bars/entropy/entropy_encoding_manifest.json from the FFD manifest's source bars (same policy as frozen_d; holdout and live never used): numpy linear quantiles at 0.1..0.9, bins [b_k-1, b_k); sigma = numpy std (ddof 0); sigma codes counted from the message's own minimum, the maximum on the last edge goes to the last code. load_entropy_encoding validates (9 sorted finite boundaries, sigma > 0) and fails closed.",
+      "evidence": "All 10 assets: in-sample letter shares 0.100 each; zero-return share 0.0001-0.0088 (USOIL highest). Cost 0.8 ms per bar for all three features."
+    },
+    {
+      "id": "D070",
+      "priority": "P3",
+      "title": "Effective number of bets / Meucci concentration (s.18.8.3) reported by allocator Step 07",
+      "status": "CODE_DONE_2026-10-31 (owner, proposal (f)); report only",
+      "book": "AFML s.18.8.3 p.275-276 (V W = W Lambda, f = W' w, theta_i = f_i^2 Lambda_ii / sum f_n^2 Lambda_nn, H = 1 - exp(-sum theta log theta) / N); Meucci (2009).",
+      "resolution": "portfolio_allocator/07_hrp_linkage_robustness.principal_component_concentration on the sample covariance of the streams and the HRP weights -> pc_effective_number_of_bets, pc_meucci_concentration in the portfolio summary; in no score, warning or gate.",
+      "evidence": "tests/test_afml_ch18_portfolio_concentration.py (4, venv39; exercise 18.5(a) H = 0; equals the formula by hand). Current pre-RECERT core streams (6 edges, single linkage): 3.39 bets, concentration 0.44 (1/sum w^2 = 4.26)."
+    },
+    {
+      "id": "D071",
+      "priority": "P3",
+      "title": "Ch.19 High/Low estimators: warm-up rows were set to 0 instead of NaN",
+      "status": "CODE_DONE_2026-10-31 (owner: 'Approved, proceed with (a) through (e)'); takes effect at the RECERT retrain",
+      "book": "AFML Snippet 19.1 getAlpha p.285 (alpha[alpha<0]=0 leaves NaN; corwinSchultz drops them); Snippet 19.2 getSigma p.286 (sigma[sigma<0]=0).",
+      "resolution": "shared/features/afml_ch19_microstructure: .where(x >= 0, 0) (NaN -> 0) replaced by .mask(x < 0, 0) (NaN kept) in _get_alpha and becker_parkinson_volatility.",
+      "evidence": "Port = Snippets 19.1-19.2 as printed to 2.2e-16 on all 10 assets; before the fix the only difference was research bar 0 of every asset (0 instead of NaN; sl = 2 / 20: 2 / 20 rows). Live never affected (always has a previous bar). tests/test_afml_ch19_microstructure.py: equality with the snippets for sl = 1, 2, 20 and NaN on every row the book drops. logs/ch19_audit_evidence_20261031.txt; shared/research/ch19_microstructure_audit/ (Snippets 19.1-19.2 as printed, per-asset results)"
+    },
+    {
+      "id": "D072",
+      "priority": "P2",
+      "title": "Corwin_Schultz_Spread_1 removed: on mid-quote bars the Corwin-Schultz statistic is not a bid-ask spread",
+      "status": "APPROVED_DEVIATION_2026-10-31 (owner, proposal (b), removal); takes effect at the RECERT retrain",
+      "book": "AFML s.19.3.4 p.284-285 ('high prices are almost always matched against the offer, and low prices ... against the bid'); Snippet 19.1 p.285; Corwin and Schultz (2012) s.1.",
+      "resolution": "Column removed from all 6 feature_expansion.py, feature_schema.json (uniform, 187 entries) and native_one_row_feature_engine (ENGINE_VERSION v1_7). corwin_schultz_spread stays in shared/features/afml_ch19_microstructure.py as the book's code (Becker-Parkinson uses the same beta / gamma), feeding no feature.",
+      "evidence": "Bars are OHLC of the mid quote (shared/bars/standard_quote_tick_builder.py), so the bar range holds no spread. All 10 assets: 37-41 % of bars exactly 0 (alpha clipped); Spearman with the quoted spread of the bar -0.03..+0.11 (rebuilt from ask-High / bid-Low -0.01..+0.11); median 0.6x-6.5x the quoted spread; daily 0.23-0.98 % vs quoted 0.005-0.07 %. Step 01 MDA within about 1-2 std of 0 (GBPJPY -0.000104, HK +0.000009, XAU rs +0.000101, XAU vc -0.000044). An observed-spread replacement would be Dukascopy's spread, not the live broker's. Consequence: the current models of HK dhc, JPN rs, XAU rs and XAU vc select it (as well as the Ch.18 column), so Phase C.1 cannot compile them until the RECERT retrain. logs/ch19_audit_evidence_20261031.txt; shared/research/ch19_microstructure_audit/ (Snippets 19.1-19.2 as printed, per-asset results)"
+    },
+    {
+      "id": "D073",
+      "priority": "P3",
+      "title": "Snippet 19.2 (Becker-Parkinson sigma) kept as printed; it uses k2 = sqrt(8/pi) where Corwin-Schultz eq.(12) uses sqrt(4 log 2)",
+      "status": "NOTE_2026-10-31 (owner, proposal (c)): book kept; no code change",
+      "book": "AFML Snippet 19.2 p.286; Corwin and Schultz (NBER 2009 version) eq.(12) sigma = sqrt(k beta / 2) - sqrt(k) alpha, k = 1/(4 log 2) (footnote 3).",
+      "resolution": "Becker_Parkinson_Vol_1 = Snippet 19.2 as printed (MLAM silent; book by default). Schema description states the difference.",
+      "evidence": "Zero spread (beta = gamma = 2 k1 sigma^2): paper sigma = 1.0000, Snippet 19.2 = 1.0435 = sqrt(4 log 2) / sqrt(8/pi) (tests/test_afml_ch19_microstructure.py). A constant factor: no effect on tree splits."
+    },
+    {
+      "id": "D074",
+      "priority": "P2",
+      "title": "Gate A-C geometry grid EWM spans 20,50,100 -> 100,150,200 (still 405 cells); recorded runbook deviation chosen against the pre-registered decision rule",
+      "status": "DECIDED_2026-10-31 (owner: 'Go with option 2'); IN FORCE for every new Gate A-C run; existing edges re-select on the new grid at the RECERT (pending) | grid narrowed by D093 (owner 2026-11-10): EWM fixed at 150, 168 h vertical dropped -> 120 cells",
+      "book": "AFML Snippet 3.1 p.44 (getDailyVol, span0=100: the book's own span, kept in the grid); AFML s.11.6 pp.155-157 and s.14.7.3 pp.204-205 (D050-A: search and pay for every trial; third law). The book prescribes no span grid; this changes the runbook grid, not a book method.",
+      "resolution": "Runbook grid = lookbacks 1,2,4,6,8 h x EWM 100,150,200 (bars) x verticals 1,2,4,8,16,24,48,96,168 h x barriers 1:1,1.5:1,2:1 = 405 cells. D050-A unchanged (PBO over all replayed cells, all-trials DSR/FWER, strategy risk). Trials: the EWM span test cells (2026-10-31 grids GBPJPY 20261031T140642Z, HK 20261031T140644Z, JPN rs 20261031T140656Z, JPN vc 20261031T141642Z, XAU rs 20261031T140731Z, XAU vc 20261031T142307Z; 540 cells each) and every earlier runbook replay stay in each edge's trial record.",
+      "evidence": "EWM span test (logs/ewm_span_test_20261031/PREREGISTRATION.md; results shared/research/grid_dimension_sensitivity/results/ewm_span_test_all6.json): spans 20/50 never won; grid A winner vs runbook winner compound velocity HK x1.46 (E150), GBPJPY x1.17 (E200), JPN rs x1.00 (E100, same cell), JPN vc x1.19 (killed edge), XAU rs x1.23 (E200), XAU vc x1.22 (E200). PBO / Prob[OOS<=0] runbook -> A: HK 0.013/0.338 -> 0.008/0.273; GBPJPY 0.153/0.430 -> 0.164/0.344; JPN rs 0.349/0.400 -> 0.360/0.323; JPN vc 0.119/0.527 -> 0.145/0.524 (still FAIL); XAU rs 0.085/0.058 -> 0.073/0.043; XAU vc 0.288/0.171 -> 0.422/0.155. Pre-registered rule NOT met (higher spans best on 5/6, but PBO worse on JPN vc and XAU vc); owner chose A as a recorded deviation. Caveat: XAU vc PBO 0.42 (< 0.5, passes). Gross R rises with span on HK (to 150) and XAU; flat on JPN / GBPJPY (cost-in-R effect).",
+      "why": "Owner 2026-10-31: drop spans that never win, test longer spans; test run first, then decide."
+    },
+    {
+      "id": "D075",
+      "priority": "P1",
+      "title": "THEORY CHECK RULE: Gate 0 (counterfactuals + same-month random-entry drift baseline) before Gate A for every new thesis; drift re-check at the locked geometry after Gate C; both one-sided 95 %; all edges re-checked at the RECERT (model-filtered check deleted 2026-11-04)",
+      "status": "DECIDED_2026-11-02 (owner: 'i agree and approve'); IN FORCE for every new thesis; existing edges at the RECERT (pending); Gate 0 tool code pending; 2026-11-02 2nd round: joint-clustered counterfactual rule APPROVED, both raw Gate 0 and filtered promotion check KEPT, Gate 0 reference geometry PROVISIONAL pending the 9-cell panel (logs/gate0_geometry_panel_20261102/); 2026-11-02 3rd round: leniency A + B + C APPROVED (\"Approved A + B + C, save it everywhere\"); geometry panel STABLE (all 6 edges fail in all 9 cells); AMENDED 2026-11-04 (owner): item 4 (model-filtered drift test at the allocator's final_live_threshold) DELETED -- edge-level gates must not depend on the allocator, and on 2026-11-02 it gave the raw verdict on all 6 edges; the theory check runs only at the edge level (Gate 0 + post-Gate C re-check), both one-sided 1.645 ('lets do 1.645 at both'); RECERT re-runs both before any gate that removes edges; RECERT 2026-11-04: all 4 edges failed, owner removed them; rule C AMENDED 2026-11-04 (owner 'approved'): cards pre-register their asset universe and Gate 0 pools over it (all assets still reported); T1 / T1b (NASDAQ campaign) failed Gate 0 (T1b post-hoc, owner-ordered); TIERED DRIFT BAR 2026-11-04 (owner 'approved'): drift one-sided 90 % (z 1.28) when every counterfactual passes at 95 %, else 95 %; applied post-hoc by owner order to T1b (NASDAQ SHORT passes Gate 0, LONG fails); research history stays ~4 years (owner: no space for 10) | Gate 0 pass rule REPLACED by D090 (owner 2026-11-09)",
+      "book": "MLAM s.1.1 p.2 (no testable theory -> likely no edge; backtest is not a theory; counterfactual 'absence of y implies absence of x'); s.1.2.1 p.3 (backtesting is not a research tool); s.1.2.2 p.4 (theory explains positives and negatives); s.1.4.2 pp.8-9 (backtest-tweak-backtest futile; backtests are not a controlled experiment; test theories for facts and counterfacts); AFML s.1.3.1.3 p.7. The book sets no gate or threshold: this is a runbook addition (our operationalisation), not a change to a book method.",
+      "resolution": "Canonical text docs/mldp/rules/THEORY_CHECK_RULE_D075.md. Card counterfactuals testable on research data; Gate 0 at a fixed reference geometry (lookback 4 h, EWM 100, vertical 24 h, 1:1; never searched): drift baseline PASS = (edge - month-matched random same-side) 95% CI lower > 0; every counterfactual PASS = (edge - inverted) 95% CI lower > 0 (one week-clustered SE over both sets -- joint clustering, owner approved 2026-11-02); < 100 inverted events = INCONCLUSIVE (card must be made testable or owner decides). Gate 0 FAIL kills the thesis as written; no re-tuning (MLAM p.8); revised mechanism = new card + new attempt. Not strategy trials (no PBO/DSR entry) but logged. Drift baseline repeated at the locked geometry after Gate C (must pass before Gate D); model-filtered drift test before promotion to edge_universe. RECERT: all edges re-checked, failures to the owner (no automatic retirement). AMENDED 2026-11-02 (owner approved): A: Gate 0 cell pre-registered on the card from the panel (1:1, EWM 100, lookback 1/4/8 h x vertical 4/24/96 h, matched to the thesis horizon; default H4_V24; never changed after a result). B: Gate 0 one-sided 95% (diff - 1.645 SE > 0) for the drift baseline, counterfactuals and the post-Gate C drift confirmation; the model-filtered promotion check stays two-sided 95% (1.96). C: Gate 0 runs the thesis on all assets at once per side and tests the pooled diff (week clusters shared across assets); each asset proceeds only if its own diff > 0. | 2026-11-04 amendment: runbook Revision 43 (Section 2, Section 6A Steps 7 / 13 / KEY RULES, Section 16C, Appendix 60); run_drift_filtered.py retired; RECERT driver shared/research/recert_step5_theory.py.",
+      "evidence": "6 Gate C edges (walkthrough §4W.1-4W.3; logs/counterfactual_tests_20261031/): counterfactuals 3 PASS / 5 FAIL / 4 INCONCLUSIVE (inverted triggers earn about the edge's R on 4/6 cards); raw event sets 6/6 NOT DISTINGUISHABLE from month-matched random same-side entries (edge minus random -0.017..+0.057 R, all CIs include 0; random entries alone +0.07..+0.10 gross mid R); model-filtered results in §4W.3. Geometry panel (logs/gate0_geometry_panel_20261102/, §4W.5): 6 edges x 9 symmetric cells, verdicts identical in every cell (all FAIL); edge minus random -0.004..+0.046 R; short cells tightest CIs.",
+      "why": "Gates A-D measure whether trades made money and whether that is overfit; none asks why. Edges that carry the instruments' drift fail together when the drift turns (2026-10-15 drawdown, 5/6 long bias). Owner 2026-11-02: save as a standing rule everywhere before the edge search resumes after MLAM."
+    },
+    {
+      "id": "D076",
+      "priority": "P2",
+      "title": "Backtest-trial ONC clusters on the denoised (+ conditionally detoned) correlation, not the raw one; denoise_correlation nFacts floor of 1 removed; KDE bWidth .01 kept",
+      "status": "DECIDED_2026-11-02 (owner: 'Approved 1, 2 and 3'); code done 2026-11-02; stored all-trials DSR records and 07b outputs re-run at the RECERT (pending)",
+      "book": "MLAM s.2.1 p.24 ('Throughout this Element, we assume that empirical covariance and correlation matrices have been subjected to this procedure'); p.87 ('the researcher should denoise and detone the correlation matrix before clustering'); s.2.6 pp.30-32 (detone if a market component exists, 'a hypothesis that can be tested statistically'); p.54 (strong common component); Snippet 2.4 p.28 (nFacts = N - searchsorted, no floor); Snippets 2.2/2.4 bWidth .01, Exercise 7 p.37. Corrects walkthrough s.4N.1 ('no denoising: the section does not ask for it').",
+      "resolution": "1: shared/backtest_statistics/afml_ch14_dsr.py trial_clustering_corr / onc_trial_clusters (rule mlam_ch2_denoise_conditional_detone_v1): Snippets 2.4-2.5 (bWidth .01, nFacts no floor, constant residual eigenvalue), detone 1 component only if first eigenvalue > lambda+ AND first-eigenvector loadings one-signed in >= 95% of 1,000 iid row bootstraps (seed 0) -- Step 07's test; T <= N keeps the raw correlation (reported). Used by shared/research/dsr_all_trials.py (raw-correlation E[K] kept as a diagnostic), portfolio_allocator/07b_dsr_psr_validation.py portfolio trials, shared/research/allocator_threshold_pbo.py. 2: shared/colab_portable/denoise_onc_snippet.py denoise_correlation (and the 6 verbatim Step 01 copies) drop max(n_facts, 1); nFacts 0 gives the identity and skips detoning. 3: bWidth .01 kept everywhere.",
+      "evidence": "logs/mlam_ch2_tests_20261102/ (pre-registered; walkthrough s.4X.1): denoising alone changes nothing (E[K] 2 on all 4 edges, DSR within 0.001); market component in all 4 trial matrices (first eigenvalue 308-325 of 406, same-sign share 1.000); denoised+detoned E[K]/DSR/FWER: GBPJPY 4/0.370/0.168 (was 2/0.685/0.088), HK 2/0.738/0.108 (2/0.650/0.108), JPN rs 3/0.707/0.057 (2/0.938/0.038, FWER pass -> fail), XAU rs 3/0.998/0.0002 (unchanged); DSR > 0.95 verdict unchanged on all 4. T2: nFacts identical at bWidth 0.005-0.1 and the CV bandwidth on all 5 matrices.",
+      "chapter": "MLAM Ch.2 (2026-11-02)"
+    },
+    {
+      "id": "D077",
+      "priority": "P2",
+      "title": "Step 01 feature ONC: best-q partition over 20 restarts of onc_top at n_init 50 (1,000 initialisations), ties to the lowest seed; trial ONC unchanged (D076, n_init 10, no p.55 PCA reduction)",
+      "status": "DECIDED_2026-11-02/03 (owner: 'Approved 1 and 2', 'Approved A', 'Approved, close Ch.4'); code done 2026-11-03; stored Step 01 outputs re-run at the RECERT (pending)",
+      "book": "MLAM Snippet 4.1 p.56 (ONC keeps the highest silhouette-quality q = E[S]/sqrt(V[S]) partition over n_init initialisations x k; default n_init 10); Snippet 4.2 p.57-58; p.55 (PCA-reduce large observation matrices: optional, not adopted); s.3.10 (partition VI as the stability measure).",
+      "resolution": "shared/features/clustered_feature_importance.py: STEP01_ONC_N_INIT 50, STEP01_ONC_RESTARTS 20, onc_best_of_restarts (onc_top at seeds seed..seed+19 in parallel, max q, ties to lowest seed; search recorded in cluster_summary.onc_search); select_features_clustered uses it; CFI_VERSION v2. Trial ONC (afml_ch14_dsr.onc_trial_clusters) unchanged. shared/research/feature_importance_audit.py (Ch.8 diagnostic) still uses one onc_top run at n_init 10 -- diagnostic only.",
+      "evidence": "logs/mlam_ch4_tests_20261102/ (pre-registered T1-T9; walkthrough s.4Z-4Z.4): T1 book Monte Carlo reproduced; T2/T7 trial ONC seed-stable at n_init 10 and 50 (identical E[K]/DSR/FWER); T6 p.55-reduced trial ONC unstable at 10, E[K] 2 at 50 (JPN rs FWER pass only under reduction); T3 Step 01 cluster count 2-26 across seeds at n_init 10; T5 count 2 at 50/100 but membership VI 0.13-0.21; T8 kept set seed-dependent at n_init 50 on 3/6 edges (JPN vc 126/30/28, XAU vc 111/28/155); T9 best-of-20 (seeds 0-59, 3 blocks): same kept set in every block on all 6 edges (partition converges on 4/6; HK, JPN rs near-tied optima all keep 155). Max-q selection: JPN vc 123, XAU vc 32 (vs 126 / 111 at n_init 10 seed 0).",
+      "chapter": "MLAM Ch.4 (2026-11-02/03)"
+    },
+    {
+      "id": "D078",
+      "priority": "P0",
+      "title": "Gate D v4.1: the meta-model must do what meta-labelling is for -- D1 F1 act/pass (calibrated P(win) > b) + D2 weighted calibrated log-loss sizing test (AUC demoted to a diagnostic)",
+      "status": "APPROVED_2026-11-04 (owner: 'Gate D replaced by D1 + D2 ... approved'; D1 decision point 'approved'; D2 'weighted throughout ... approved'); IN FORCE as v4.1 (shared/edges/gate_d_calibration_monotonicity.py, tests/test_gate_d_v4.py); runbook Revision 45; no further work | NO LONGER A GATE (D091, owner 2026-11-09): reported diagnostic",
+      "book": "AFML s.3.6 p.50, s.3.7 pp.52-53 ('Meta-labeling will increase your F1-score by filtering out the false positives ... whether we should act or pass'), s.14.8 pp.206-207 (accuracy, precision, recall, F1 of the overlay), s.9.4 p.134 (log loss: 'investment strategies profit from predicting the right label with high confidence'), Snippet 9.1 (scoring='f1' at predict), Ch.10 (size from probability). The book never uses AUC as its test.",
+      "resolution": "Canonical text docs/mldp/rules/GATE_D_V4_D078.md (v4.1). Cross-fitted calibration: Platt on stacked CPCV paths WITH AFML return-attribution weights (= the D082 live calibrator), 10 purged + embargoed time blocks, b = weighted base rate. D1: F1(meta acting when calibrated P(win) > b) - F1(primary = 2b/(1+b)), unweighted counts, ISO-week block bootstrap 10,000 draws seed 20261104, PASS if 5th pct > 0. D2: d_i = log loss(b) - log loss(calibrated), return-attribution weighted, PASS if mean - 1.645 week-clustered SE > 0. Gate D = D1 AND D2. AUC / MWU, raw and in-sample live-calibrator log loss, Kendall tau reported.",
+      "evidence": "RECERT edges 2026-11-04 (already removed by D075): all 4 FAIL D1 (F1 meta - primary: GBPJPY -0.010, HK 0.000, JPN 0.000, XAUUSD -0.053; HK / JPN act on 100 % of events, GBPJPY 87 %, XAUUSD 74 %) -- reports <edge>/reports/gate_d_calibration_monotonicity_report.json, logs/recert_20261103/step3/gate_d_v4_*.log.",
+      "known_limits": "OPEN (found at the first run, before any rule in force decided anything): (1) D2 as first coded scores a calibrator fitted UNWEIGHTED (the live method) with AFML-WEIGHTED loss and base rate -- inconsistent and biased against the model; consistent variants disagree on all 4 RECERT edges: all unweighted -> all fail (gain -0.0003..+0.0013), all weighted -> all pass (gain +0.007..+0.037). (2) On our edges the AFML return-attribution weights correlate with the label (2:1 winners carry 1.5-1.9x the weight), so the balanced classifier's neutral point is about 0.60-0.65, not 0.5; p > 0.5 acts on 74-100 % of events. Owner decision on both before Gate D v4 gates any edge. | 2026-11-04 owner review: D1 decision point approved as calibrated P(win) > b. D2: the owner asked what the books say; AFML scores with return-attribution-weighted log loss (Snippet 7.4 cvScore; s.9.4: 'sample weighted cross-entropy loss estimates the classifier's performance in terms of variables involved in a PnL ... calculation') and sizes from the classifier's probability (s.10.3, no separate calibrator) -> the book-consistent D2 is weighted throughout; question put to the owner: also make the live calibrator weighted (book-consistent sizing) or keep it unweighted."
+    },
+    {
+      "id": "D079",
+      "priority": "P1",
+      "title": "Gate C stress is a KILL gate: exec mean R <= 0 at broker spread x (1 + level_uncertainty_pct) kills the edge (was: flagged fragile)",
+      "status": "APPROVED_2026-11-04 (owner: 'approved'); CODE DONE 2026-11-04 (shared/research/gate_c_stress.py, exit 1 = KILL); runbook Revision 43; no further work",
+      "book": "Runbook addition (robustness of the locked Gate C winner to a realistic broker widening; AFML s.14.6 execution costs). The book sets no such gate.",
+      "resolution": "gate_c_stress.py --edge-root --cell H:E:V:PT:SL --base-stamp <Gate C stamp>: scaled copy of the firm's cost model, winner replayed (5700 ms, bootstrap 2000), verdict KILL if exec mean R <= 0; break-even spread multiple recorded for the live per-trade guard. Runbook Section 6A Step 7 STRESS.",
+      "evidence": "Tool check 2026-11-04: HK H8_E150_V168 2:1 at x1.033 -> 0.0901 R (= the RECERT step 1 stress), PASS."
+    },
+    {
+      "id": "D080",
+      "priority": "P1",
+      "title": "CV leakage audit LEAK_SUSPECT is a formal stop before Gate D (was: 'stop and investigate')",
+      "status": "APPROVED_2026-11-04 (owner: 'approved'); CODE DONE 2026-11-04 (shared/research/cv_leakage_audit.py exits 1 on LEAK_SUSPECT); runbook Revision 43; no further work",
+      "book": "AFML Ch.7 pp.103-111 (Exercises 7.2-7.3; p.107: purged performance must not keep rising with k).",
+      "resolution": "cv_leakage_audit.py runs after Step 03 and before Gate D; LEAK_SUSPECT -> exit 1, the edge does not proceed until the leak is found and fixed (a new version). Runbook Section 6A Step 12E.",
+      "evidence": "RECERT 2026-11-04: OK on all 4 edges (shuffle inflation 0.008-0.025)."
+    },
+    {
+      "id": "D081",
+      "priority": "P2",
+      "title": "Edge-level label audit is threshold-free; the live-threshold Exercise 3.5 comparison runs only at the allocator stage (report); the Step 04 selected_threshold is used nowhere in the audit",
+      "status": "APPROVED_2026-11-04 (owner: 'approved'; 'that edges own threshold step 04 prints is not reliable ... i dont want us to use that'); CODE DONE 2026-11-04 (shared/research/label_audit.py --live-threshold); runbook Revision 43; no further work",
+      "book": "AFML Ch.3 s.3.7 pp.51-53, Exercises 3.4-3.5 p.55; Ch.4 overlap pp.59-68.",
+      "resolution": "Default (edge level): label population, PT / SL / vertical shares, cost per R by Event_Vol quintile (D027), overlap / uniqueness, Step 02 CPCV F1 vs approve-all; no threshold. --live-threshold (after the allocator): adds Exercise 3.5 at the allocator's final_live_threshold. The primary vs meta judgement at the edge level is Gate D v4 D1 (D078).",
+      "evidence": "RECERT 2026-11-04: the old audit read the stale 2026-10-17 allocator thresholds against the new calibrators (approved share 1.0) -- meaningless."
+    },
+    {
+      "id": "D082",
+      "priority": "P1",
+      "title": "Live probability calibrator (Step 04 fit_final_live_sigmoid) fitted with the AFML Ch.4 return-attribution weights (was unweighted)",
+      "status": "APPROVED_2026-11-04 (owner: 'fit it weighted too'); CODE DONE 2026-11-04 (shared/calibration/fit_sigmoid_calibrator_and_thresholds.py afml_return_weights + fit_sigmoid_params(sample_weight); shared/models/cpcv_paths.stacked_path_fit_weights); takes effect at the next Step 04 of any edge (no deployable edges now); runbook Revision 45; no further work",
+      "book": "AFML s.4.6 pp.68-69 (weight labels by absolute return), Snippet 7.4 (cvScore: weighted log loss), s.9.4 pp.134-135 (sample-weighted cross-entropy is 'the right ML performance metric ... for financial applications'), s.10.3 (the bet size comes from the classifier's own probability -- the book has no separate calibrator; the Platt calibrator is a Quantara addition).",
+      "resolution": "The live Platt sigmoid is fitted on all CPCV paths stacked (D052) with sample_weight = each OOF row's return_attribution_weight (Snippet 4.10, class balance excluded, mean 1), built by the shared AFML weight engine from Task 2A's resolution CSV on the standard_quote_tick bar clock; recorded in the calibrator JSON ('sample_weight'). The per-fold calibrated_probability diagnostic (D015) stays unweighted. Gate D v4.1 cross-fits the same weighted method, so live sizes with the probability Gate D approves.",
+      "why": "Owner 2026-11-04: the model is trained with return-attribution weights and Gate D v4.1 D2 scores with them; an unweighted live calibrator would size live bets with probabilities different from those the gate approved."
+    },
+    {
+      "id": "D083",
+      "priority": "P2",
+      "title": "Gate 0 cell H1_V1 (1 h lookback, EWM 100, 1 h vertical, 1:1) allowed for intraday theses (rule A listed verticals 4 / 24 / 96 h only)",
+      "status": "APPROVED_2026-11-04 (owner: 'approved'); IN FORCE, pre-registered on the card; no further work",
+      "book": "Runbook addition (D075 rule A operationalisation); AFML s.3.5 p.48 (symmetric barriers to learn the side) unchanged.",
+      "resolution": "A thesis whose stated horizon is about 1 hour pre-registers H1_V1 on its card; the other D075 rules are unchanged. First use: NASDAQ campaign T1 (docs/mldp/campaign/NASDAQ_2026-11/).",
+      "why": "Session-anchored intraday mechanisms (e.g. the close hedging flow) resolve within an hour; a 4-24 h vertical would test a different claim."
+    },
+    {
+      "id": "D084",
+      "priority": "P1",
+      "title": "Mechanism features added uniformly to every edge's feature_schema: day's move to entry time, realised volatility, options-expiry calendar (monthly third Friday, daily 0DTE), days to month-end",
+      "status": "APPROVED_2026-11-04 (owner: 'approved'); code pending (built with the first NASDAQ thesis that passes Gate 0)",
+      "book": "AFML Ch.3 s.3.7 (the meta-model needs features that tell true from false primary positives); MLAM Ch.1 (features tied to the theory).",
+      "resolution": "To be built in the shared feature pipeline (research = live) and added identically to every edge schema (feature_schema uniformity rule), judged by Step 01.",
+      "why": "Gate D v4.1 requires the meta-model to raise F1; price features carried no in-trade information so far (D028)."
+    },
+    {
+      "id": "D085",
+      "priority": "P1",
+      "title": "Model-row floor (>= 2000 rows, runbook rule since 2026-09-29) REMOVED: an edge goes through the pipeline with the event count its own thesis produces",
+      "status": "APPROVED_2026-11-04 (owner); IN FORCE; runbook Revision 46 (Section 6A Step 7, Step 13, KEY RULES; Appendix 63)",
+      "book": "Runbook addition retired. AFML / MLAM set no minimum sample size; thin samples are penalised by the book's own statistics (PSR / DSR use the track length, AFML s.14.7; PBO / CSCV, s.11.6).",
+      "resolution": "No code enforced the floor (checked 2026-11-04: export, Task 2A, Steps 01-09, gate tools). Unchanged: a counterfactual needs >= 100 inverted events (D075), the per-asset consistency check counts assets with >= 100 events, the CV embargo stays max(100, ceil(1 % of rows)). Every gate record quotes the model-row count; the label audit quotes the effective number of independent outcomes.",
+      "why": "Owner 2026-11-04: 'now that we have changed a lot of rules and gates, i dont think the edge floor matters anymore, because we have gates that will kill it regardless ... any edge with its own thesis floor gets to go through the pipeline'. Gate 0 / drift re-check (clustered SE), PBO + Prob[OOS <= 0], Gate D v4.1 (bootstrap, clustered SE) and DSR / FWER all judge a thin sample. Trigger: NASDAQ/closehedgingflow_short (once per down day, ceiling 451 events on ~4 years)."
+    },
+    {
+      "id": "D086",
+      "priority": "P1",
+      "title": "Economic event calendar (FOMC, CPI, NFP release times; timing only) as a research = live input",
+      "status": "APPROVED_2026-11-05 (owner: 'yes start stage 1'); calendar + shared module + tests DONE; live incremental-engine features pending (with D084)",
+      "book": "Runbook addition (new information source beyond price). AFML Ch.1 / MLAM Ch.1: theses tied to a mechanism; scheduled information release is an observable mechanism clock.",
+      "resolution": "config/economic_event_calendar.json (180 events, official Fed / BLS schedules, actual release dates incl. the 2025 shutdown changes; coverage FOMC to 2026-12-09, CPI / NFP to 2027-12); shared/features/economic_calendar.py (hours_to_next, hours_since_last, fail-closed CalendarCoverageError past coverage); tests/test_economic_calendar.py (passes on venv312 and venv39). Live: calendar TRIGGERS run through the edge runtime (AUTHORITATIVE path, no live-code change); calendar FEATURES for the meta-model need the live incremental engine + Phase C certification before deployment (owner shown the change first).",
+      "why": "Owner 2026-11-05: price-only theses do not clear the gates (T1-T7 Gate 0 failures); scheduled releases add information price alone cannot express."
+    },
+    {
+      "id": "D087",
+      "priority": "P1",
+      "title": "Gate leniency after the honest gate review (5 changes) + bars-only history extension",
+      "status": "APPROVED_2026-11-05 (owner: 'approve all 5'); items 1, 2, 4, 5 IN FORCE; item 3 (primary-only deployment on a Gate D fail) DESIGN PENDING (sizing + allocator, show design first); item 2's Gate 0 part superseded by D090 on 2026-11-09 | item 3 superseded by D091 (no primary-only design; the allocator threshold decides)",
+      "book": "Runbook additions. AFML s.11.5 p.153 and MLAM s.8.1 p.105 (trials are never reset); MLAM s.8.8.4 p.121 (type II errors).",
+      "resolution": "1 history extended (raw ticks kept in full; gold from 2005, indices 2013-15, USOIL from 2020-03; bars rebuilt 2026-11-07; tick-timestamp parser fix shared/io/timeparse.py). 2 Gate 0 and the post-Gate C drift re-check: pooled drift + main counterfactual C1 at one-sided 90 % (z 1.28), other counterfactuals and the asset's own diffs > 0, plus recency (own drift diff > 0 on 2022+) [the Rev 47 rule; replaced by D090]. 3 Gate D v4.1 fail -> PRIMARY-ONLY deployment (fixed size, no meta filter) -- design pending. 4 FWER report-only; DSR > 0.95 stays. 5 strategy-risk deployment threshold 0.05 -> 0.10. Trials NOT reset after the extension (owner 2026-11-07: \"ok don't reset\").",
+      "why": "Owner 2026-11-05: price-only data and ~4 years made the gates kill everything; 14 Gate 0 z-scores looked like noise."
+    },
+    {
+      "id": "D088",
+      "priority": "P1",
+      "title": "Gate C on the FULL history with an era-scaled broker spread decides; 2022+ is a sign check",
+      "status": "APPROVED_2026-11-09 (owner: 'It should be the standing rule now since the whole raw ticks are kept'; 'yes i approve the era-scaled cost'; points-ratio cap 'i approve your recommendation'); IN FORCE",
+      "book": "AFML s.11.6 pp.155-157 (CSCV over all trials), s.14.7 (DSR); more history = more independent outcomes.",
+      "resolution": "Gate C, PBO / CSCV and DSR run on the full tick history. Broker half-spread x factor[UTC month], factor = max(1, min(Dukascopy monthly median spread / Dukascopy fit-window median in the same vol state, cost-model ref_price / monthly median mid)); tables portfolio_allocator/config/broker_profiles/moneta_cost_models/era_scale/<ASSET>.json built by docs/tools/build_era_spread_scale.py (all 10, cap applied 2026-11-09; pre-cap tables logs/era_scale_cap_20261109/before_cap). The locked cell's 2022+ exec mean (plain broker model, no era factor) must be > 0. A Gate C that failed PBO stays killed. Speed: v3_horizon_lab --execution-workers (parallel contiguous chunks, identical rows; tests/test_gate_c_speed_exactness.py), --batch-size 405.",
+      "why": "The broker model is fitted on 2025-26 broker ticks; older years had wider spreads. The cost LEVEL is always the broker's; Dukascopy only supplies the old-month multiplier. The points-ratio cap removes Dukascopy pricing cliffs (NASDAQ 2025->26, BTCUSD 2018-20)."
+    },
+    {
+      "id": "D089",
+      "priority": "P1",
+      "title": "Firing rate: every edge fires >= 3 times a week (2022+)",
+      "status": "APPROVED_2026-11-09 (owner: 'we need an edge that at least can fire up to 3 times a week ... save this firing rate as a standing rule'); IN FORCE | threshold LOWERED to >= 2/week by D092 (owner 2026-11-10)",
+      "book": "AFML s.3.6 (high-recall primary model; meta-labeling raises precision).",
+      "resolution": "Each card states the expected events/week per asset before Gate 0; Gate 0 (D090 item 5) requires >= 3 edge events per week on 2022-01-01 onward. Reference: XAUUSD/roundlevelcascade_long 3.0/week.",
+      "why": "Owner 2026-11-09: a prop-firm book needs turnover; MLDP's primary event is broad (high recall) and the meta-model filters it."
+    },
+    {
+      "id": "D090",
+      "priority": "P0",
+      "title": "Gate 0 tests the theory per asset: the drift-neutral counterfactual decides; month-matched drift is a diagnostic; no pooling requirement",
+      "status": "APPROVED_2026-11-09 (owner: 'i approve this, this is what we should work on'; 'all assets must not agree for an edge in a particular asset to work'); IN FORCE for cards from 2026-11-09; stored results re-read read-only (post-hoc: Gate A only by owner order)",
+      "book": "MLAM s.1.2.2 p.4 and s.1.4.2 p.9 (test a theory for facts and counterfacts); MLAM s.1.4.2 p.8 (no backtest-tweak-backtest); AFML s.3.6 (high-recall primary). The thresholds are ours.",
+      "resolution": "Per asset and side, own events only: C1 own diff - 1.28 SE > 0 (full history); other counterfactuals > 0; own C1 diff > 0 on 2022+; >= 100 events in the edge and in every counterfactual; >= 2 events/week on 2022+ (D089 as amended by D092); a verdict only inside the card's universe (others PLACEBO). C1 must be drift-neutral (same asset, side, period, comparable frequency; only the stated cause removed). Month-matched drift, all-months, hour-matched and the pooled result are diagnostics. Post-Gate C re-check and RECERT = the same test at the locked cell. Canonical: docs/mldp/rules/THEORY_CHECK_RULE_D075.md (D090 section). Tools: shared/research/gate0/gate0_tool.py (window_tests_d090, GATE0_CELL / GATE0_ASSETS) + gate0_verdict_d090.py.",
+      "why": "The month-matched drift test (ours, 2026-11-02) cannot credit monthly-scale effects (T22) and tests the raw trigger's average, which AFML's high-recall primary does not require; pooling + every-asset agreement let other assets veto an asset's own evidence. 35 Gate 0 tests, 2 passes under the old rule."
+    },
+    {
+      "id": "D091",
+      "priority": "P0",
+      "title": "Gate D is no longer a gate: reported for every edge, a FAIL never blocks edge_universe; the allocator's threshold choice decides how the meta-model is used",
+      "status": "APPROVED_2026-11-09 (owner: 'we just need to make Gate D not a Gate anymore, because whatever the model learns its his busniess'); IN FORCE",
+      "book": "AFML s.3.6 p.50 (size includes no bet), s.3.7 pp.52-53 ('You can always add a meta-labeling layer to any primary model'), s.14.8 pp.206-207 (overlay statistics, no pass mark); MLAM s.5.5 pp.69-70.",
+      "resolution": "Gate D v4.1 (D078) still runs after Steps 01-09 and its D1 / D2 / AUC are quoted in the promotion note as diagnostics. The edge-level chain no longer includes Gate D. The allocator decides use: 04b sweeps live-calibrated thresholds from the lowest calibrated probability (= every trade, the primary alone) upward and 04c keeps the best DD-adjusted compound velocity; sizing stays payoff-aware AFML s.10.3 on the live calibrated probability (D007, D082). Supersedes D087 item 3 (no separate primary-only design). No code enforced a Gate D PASS; only the runbook / promotion procedure changes.",
+      "why": "The primary has already passed Gate 0, Gates A-C, PBO, stress, the D090 re-check and DSR on every event at a fixed size; a meta-model that adds nothing should be ignored, not kill the edge. Evidence: XAUUSD/roundlevelcascade_long passes every primary test (DSR 0.992) but Gate D D1 fails (AUC 0.52); the 4 RECERT edges failed D1 the same way."
+    },
+    {
+      "id": "D092",
+      "priority": "P1",
+      "title": "Firing rate lowered: every edge fires >= 2 times a week (2022+), was >= 3 (D089)",
+      "status": "APPROVED_2026-11-10 (owner: 'lets make the standing rule a fire rate greater than or equal to 2 instead of the current 3 because like you said the fire rate is becoming the bottlekneck'); IN FORCE",
+      "book": "None -- the firing rate is our turnover rule for a prop-firm book, not a book test (AFML s.3.6 asks only for a high-recall primary).",
+      "resolution": "Gate 0 item 5 (D090) requires >= 2 edge events per week on 2022-01-01 onward (shared/research/gate0/gate0_verdict_d090.py MIN_PER_WEEK = 2.0). Stored D090 verdicts re-read read-only under the new threshold; the firing rate does not select on returns, so the newly passing (asset, side) pairs go to Gate A: T1c DAX LONG 2.56/wk + SHORT 2.28/wk; T13 XAUUSD SHORT 2.35/wk; T22 HK LONG 2.28/wk + SHORT 2.52/wk, XAUUSD SHORT 2.45/wk. Their trials accumulate as usual (D050-A).",
+      "why": "Under D090 most recent Gate 0 fails were firing-rate fails at about 2.3-2.5 events/week (one side, once a day). Every other Gate 0 item and all later gates are unchanged."
+    },
+    {
+      "id": "D093",
+      "priority": "P1",
+      "title": "Search grid narrowed: EWM span fixed at 150, 168 h vertical barrier dropped (405 -> 120 cells)",
+      "status": "APPROVED_2026-11-10 (owner: 'yes approve EWM fixed at 150 and drop 168h. Leave the band stuff out'); IN FORCE for Gate A runs started from 2026-11-10 (T29, already running at 405, keeps its 405 paid trials)",
+      "book": "AFML Ch.11-14 / MLAM s.8: every trial tried is paid for (D050-A unchanged); the grid itself is ours. DSR counts ONC clusters of trials (MLAM s.8.7.1 p.114), so the narrowing mostly saves run time; DSR changes little.",
+      "resolution": "Grid = event-vol lookbacks 1,2,4,6,8 h x EWM 150 x verticals 1,2,4,8,16,24,48,96 h x PT:SL 1:1,1.5:1,2:1 = 120 cells, all searched and all paid (full-N PBO, all-trials DSR). Canonical: shared/research/gate_a_grid.sh (GRID_ARGS). No per-card holding-period band (owner declined). New Gate 0 cards pre-register the D075 cell with EWM 150 (4 h lookback, 24 h vertical, 1:1). Trials already spent stay counted.",
+      "why": "Evidence 2026-11-10 over 50 full Gate C runs / 21 edges: EWM 100/150/200 cell results correlate 0.978-0.992 and every ONC cluster held the three spans equally (gold goldsessionflow DSR file); the 168 h vertical was reached by 0.3 % of trades (max 3.1 %) and its results track 96 h (corr 0.996, mean |diff| 0.003 R). Removing near-duplicates cuts Gate A/C run time ~3.4x."
+    }
+  ]
+}

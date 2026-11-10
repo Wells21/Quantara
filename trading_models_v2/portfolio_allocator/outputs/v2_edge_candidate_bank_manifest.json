@@ -1,0 +1,48 @@
+{
+  "candidate_bank_status": "PASS",
+  "candidate_rows": 30,
+  "created_at": "2026-10-17T20:15:12+00:00",
+  "expected_side_gates": {
+    "min_calmar_r": 0.5,
+    "min_cumulative_r": 0.0,
+    "min_expectancy_r": 0.0,
+    "min_local_positive_ratio": 0.6,
+    "min_profit_factor": 1.02,
+    "min_trade_abs": 100,
+    "min_trade_frac_of_side_max": 0.08
+  },
+  "failures": [],
+  "geometry_columns": [
+    "geometry_contract_version",
+    "pt_multiplier",
+    "sl_multiplier",
+    "reward_risk_ratio",
+    "vertical_horizon_bars",
+    "barrier_reference",
+    "barrier_reference_units",
+    "entry_timing",
+    "tie_policy",
+    "tick_resolution_price",
+    "barrier_contract",
+    "geometry_hash"
+  ],
+  "geometry_contract_version": "trade_geometry_v1",
+  "input_active_edge_universe": "portfolio_allocator/outputs/active_edge_universe.json",
+  "local_window": 5,
+  "notes": [
+    "Port of V1 Step 03 core logic using V2 deployability-PASS edge manifests as inputs.",
+    "Candidate thresholds are selected in calibrated_probability space only.",
+    "Finalized trade geometry is metadata-only here and does not alter candidate ranking or gates.",
+    "This step does not select final live thresholds or weights.",
+    "File-content hashes are optional compatibility metadata and are not validated or used for candidate selection.",
+    "geometry_hash remains a semantic trade-geometry fingerprint, not an artifact-file invalidation hash."
+  ],
+  "outputs": {
+    "candidate_bank_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank.csv",
+    "candidate_bank_json": "portfolio_allocator/outputs/v2_edge_candidate_bank.json",
+    "manifest_json": "portfolio_allocator/outputs/v2_edge_candidate_bank_manifest.json",
+    "viability_report_csv": "portfolio_allocator/outputs/v2_edge_viability_report.csv"
+  },
+  "schema_version": "v2.2",
+  "unique_edges": 6
+}

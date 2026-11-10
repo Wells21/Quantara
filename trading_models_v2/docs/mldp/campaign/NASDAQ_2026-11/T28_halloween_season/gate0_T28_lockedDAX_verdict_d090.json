@@ -1,0 +1,67 @@
+{
+ "thesis": "T28",
+ "rule": "D090 (owner 2026-11-09)",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 200,
+  "vertical_h": 24.0,
+  "pt": 2.0,
+  "sl": 1.0
+ },
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T28_halloween_season/PREREGISTRATION.md",
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK"
+ ],
+ "by_asset": {
+  "DAX": {
+   "LONG": {
+    "full": {
+     "verdict": "PASS",
+     "n_edge": 5652,
+     "C1_diff": 0.08371,
+     "C1_se": 0.03671,
+     "C1_z": 2.28,
+     "C1_pass_90": true,
+     "other_cf_diffs": {},
+     "other_cf_ok": true,
+     "thin_counterfactuals": [],
+     "diag_drift_month_matched": -0.01155,
+     "in_card_universe": true
+    },
+    "recent_n_edge": 2276,
+    "recent_events_per_week": 9.69,
+    "recent_C1_diff": 0.10886,
+    "recent_diag_drift": -0.00221,
+    "recency_ok": true,
+    "firing_ok": true,
+    "verdict": "PASS"
+   },
+   "SHORT": {
+    "full": {
+     "verdict": "FAIL",
+     "n_edge": 5351,
+     "C1_diff": 0.01958,
+     "C1_se": 0.0369,
+     "C1_z": 0.531,
+     "C1_pass_90": false,
+     "other_cf_diffs": {},
+     "other_cf_ok": true,
+     "thin_counterfactuals": [],
+     "diag_drift_month_matched": -0.02661,
+     "in_card_universe": true
+    },
+    "recent_n_edge": 2088,
+    "recent_events_per_week": 8.89,
+    "recent_C1_diff": 0.04902,
+    "recent_diag_drift": -0.01655,
+    "recency_ok": true,
+    "firing_ok": true,
+    "verdict": "FAIL"
+   }
+  }
+ }
+}

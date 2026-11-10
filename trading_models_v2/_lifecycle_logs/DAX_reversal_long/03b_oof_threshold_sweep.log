@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — DAX/reversal_long
+================================================================================
+Edge: DAX/reversal_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\oof\dax_reversal_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,514
+Date range: 2022-06-13 14:27:58.816000+00:00 -> 2026-06-10 22:14:11.337000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    DAX/reversal_long
+segment                        reversal_long
+threshold                               0.86
+candidate_count                         4514
+take_rate                           0.023261
+trade_count                              105
+win_rate                            0.447619
+avg_win_r                                2.0
+avg_loss_r                          -1.00616
+expectancy_r                        0.339454
+payoff_ratio                        1.987755
+profit_factor                       1.610767
+gross_profit_r                          94.0
+gross_loss_r                       58.357291
+cumulative_r                       35.642709
+max_drawdown_r                    -11.144262
+sharpe_r                            0.226004
+sortino_r                          60.084571
+calmar_r                            3.198302
+selected_precision                  0.447619
+selected_recall                          1.0
+selected_f1                         0.618421
+clf_precision                       0.447619
+clf_recall                          0.029634
+clf_f1                              0.055588
+clf_accuracy                        0.646212
+clf_balanced_accuracy               0.504913
+predicted_positive_rate             0.023261
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\oof\dax_reversal_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\oof\dax_reversal_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\oof\dax_reversal_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

@@ -1,0 +1,132 @@
+{
+  "gate_d_version": "v4.1_D078_f1_logloss_weighted",
+  "rule": "docs/mldp/rules/GATE_D_V4_D078.md",
+  "edge_id": "XAUUSD/roundlevelcascade_long",
+  "oof_predictions_csv": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\edges\\roundlevelcascade_long\\artifacts\\oof\\xauusd_roundlevelcascade_long_oof_predictions.csv",
+  "n_rows": 1909,
+  "n_positive": 1071,
+  "n_negative": 838,
+  "positive_rate": 0.5610267155578837,
+  "D1_act_or_pass": {
+    "decision": "act when the cross-fitted calibrated P(win) > the weighted base rate b (approved 2026-11-04)",
+    "n_events": 1909,
+    "n_weeks": 795,
+    "base_rate": 0.5610267155578837,
+    "acted_share": 0.4463069669984285,
+    "f1_primary": 0.7187919463087249,
+    "f1_meta": 0.5096203848153926,
+    "precision_meta": 0.5751173708920188,
+    "recall_meta": 0.45751633986928103,
+    "precision_primary": 0.5610267155578837,
+    "delta_f1": -0.20917156149333227,
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 20261104,
+      "unit": "ISO week",
+      "delta_p05": -0.23578371020263014,
+      "delta_p50": -0.20865959252681887,
+      "delta_p95": -0.1822086988513003
+    },
+    "PASS": false
+  },
+  "D2_sizing": {
+    "n_blocks": 10,
+    "blocks": [
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7489356594254284,
+        "coef": 1.6740461366201782,
+        "intercept": -0.3425213436810457,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7461390899473048,
+        "coef": 1.4765056684222406,
+        "intercept": -0.19279923494107215,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7642056961490185,
+        "coef": 1.7762418318361222,
+        "intercept": -0.3550383585824884,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.759285362138828,
+        "coef": 2.193601984697266,
+        "intercept": -0.7333371759666195,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7485406299749287,
+        "coef": 2.1606536815867283,
+        "intercept": -0.7788340016848403,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7575534454379615,
+        "coef": 1.6119528690115004,
+        "intercept": -0.26075522899749276,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7581540963234851,
+        "coef": 1.8142946446905655,
+        "intercept": -0.4291989107950755,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7562801686781063,
+        "coef": 1.8986998351214213,
+        "intercept": -0.5248595848419817,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 191,
+        "rows_train": 1618,
+        "base_rate_train_weighted": 0.7568426598733252,
+        "coef": 1.7122608957584111,
+        "intercept": -0.3720341339937943,
+        "method": "sigmoid_platt_logit"
+      },
+      {
+        "rows_test": 190,
+        "rows_train": 1717,
+        "base_rate_train_weighted": 0.7587683666887062,
+        "coef": 1.7227467047508052,
+        "intercept": -0.375728697611842,
+        "method": "sigmoid_platt_logit"
+      }
+    ],
+    "weights": "AFML Ch.4 return attribution (Snippet 4.10), mean 1; calibrator, base rate and loss all weighted",
+    "weighted_logloss_model_crossfit": 0.5509462190826229,
+    "weighted_logloss_base_rate": 0.5571359858452395,
+    "mean_d": 0.006189766762616555,
+    "se_week_clustered": 0.0030754598624796532,
+    "lower_bound_1p645": 0.0011306352888375256,
+    "PASS": true,
+    "diagnostic_weighted_logloss_raw_paths": 0.5563947040142829,
+    "diagnostic_weighted_logloss_live_calibrator_in_sample": 0.5485909351219448
+  },
+  "verdict": "FAIL",
+  "reason": "D1 FAIL: F1 meta 0.5096 vs primary 0.7188, bootstrap 5th pct delta -0.2358; D2 PASS: log-loss gain +0.00619, lower bound +0.00113",
+  "diagnostic_v3_auc": 0.521512025653539,
+  "diagnostic_v3_mannwhitney_p": 0.05311983237579487,
+  "diagnostic_kendall_tau_raw_probability_vs_realized_r": 0.01157926757618387,
+  "diagnostic_kendall_tau_p_value": 0.44833798359568955
+}

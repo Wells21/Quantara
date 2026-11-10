@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — XAUUSD/timeregime_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\research_dataset\xauusd_timeregime_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\feature_surgery\xauusd_timeregime_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\model\xauusd_timeregime_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\oof
+AFML Ch.4 weights | source=assets/XAUUSD/bars/standard_quote_tick/xauusd_standard_quote_tick_bars.csv | events=4,447 | mean_uniqueness=0.410021 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,447/4,447 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,447
+Rows after selected-feature NaN filter : 4,447
+Date range: 2022-06-13 13:15:32.683000+00:00 -> 2026-03-17 15:35:31.358000+00:00
+Rows used: 4,447
+Selected feature count: 157
+Target mean: 0.364291
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,569 test=1,778 thr=0.53 train_f1=0.5477 test_f1=0.5127 precision=0.3487 recall=0.9675 logloss=1.04066
+Fold 02: train=2,466 test=1,778 thr=0.60 train_f1=0.5365 test_f1=0.5281 precision=0.3724 recall=0.9079 logloss=1.02168
+Fold 03: train=2,466 test=1,778 thr=0.53 train_f1=0.5518 test_f1=0.5300 precision=0.3646 recall=0.9704 logloss=1.00365
+Fold 04: train=2,566 test=1,780 thr=0.62 train_f1=0.5391 test_f1=0.5307 precision=0.3704 recall=0.9356 logloss=0.97413
+Fold 05: train=2,569 test=1,778 thr=0.61 train_f1=0.5412 test_f1=0.5186 precision=0.3665 recall=0.8866 logloss=1.00674
+Fold 06: train=2,466 test=1,778 thr=0.55 train_f1=0.5516 test_f1=0.5117 precision=0.3506 recall=0.9470 logloss=1.00964
+Fold 07: train=2,566 test=1,780 thr=0.60 train_f1=0.5383 test_f1=0.5225 precision=0.3611 recall=0.9448 logloss=0.98758
+Fold 08: train=2,566 test=1,778 thr=0.53 train_f1=0.5376 test_f1=0.5402 precision=0.3759 recall=0.9596 logloss=0.99707
+Fold 09: train=2,563 test=1,780 thr=0.62 train_f1=0.5246 test_f1=0.5439 precision=0.3852 recall=0.9250 logloss=0.97903
+Fold 10: train=2,664 test=1,780 thr=0.59 train_f1=0.5306 test_f1=0.5411 precision=0.3755 recall=0.9681 logloss=0.97131
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,447 / 4,447
+Coverage rate: 1.0000
+Raw log loss: 0.996566
+Raw Brier: 0.375954
+Raw ROC AUC: 0.514033
+Raw PR AUC: 0.367298
+Diagnostic global F1 threshold: 0.49
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\oof\xauusd_timeregime_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\timeregime_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

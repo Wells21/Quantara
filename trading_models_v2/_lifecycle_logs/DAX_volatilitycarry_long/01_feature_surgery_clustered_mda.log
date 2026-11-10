@@ -1,0 +1,64 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — DAX/volatilitycarry_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\research_dataset\dax_volatilitycarry_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\feature_surgery
+Task 2B eligibility filter: 5,055/5,141 rows retained (mldp_target_eligible==True); 86 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 5,055
+Rows after feature NaN filter : 5,055
+Date range: 2022-06-14 07:20:01.955000+00:00 -> 2026-06-12 11:59:02.659000+00:00
+Schema allowed features: 168
+Fixed features: []
+Candidate features for clustering: 157
+
+------------------------------------------------------------------------
+ITERATION 1
+Current candidate feature count: 157
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=5,141 | mean_uniqueness=0.681297 | mean_return_weight=1.000000
+ cluster_id  n_features   avg_mda  std_mda
+          6          45  0.013050 0.006621
+          7          32  0.001205 0.007051
+          0           5  0.000138 0.002194
+          3           8 -0.000294 0.002012
+          4           8 -0.000399 0.002719
+          2           8 -0.000984 0.001421
+          1          12 -0.001976 0.003759
+          5          39 -0.002666 0.003195
+Base F1=0.351268 | Precision=0.331721 | Recall=0.383813 | Mean train-selected threshold=0.5200 | Folds=10
+Removing worst cluster 5 | avg_mda=-0.002666
+Features removed: ['MACD', 'Log_Return_5', 'Log_Return_10', 'Log_Return_20', 'Abs_Log_Return_10', 'Dist_EMA_10', 'Dist_EMA_20', 'Dist_EMA_50', 'EMA_10_20_Gap', 'MACD_Signal', 'Stoch_K', 'Stoch_D', 'Williams_R_14', 'ROC_10', 'ROC_20', 'Trend_Slope_20', 'Trend_R2_20', 'Efficiency_Ratio_20', 'Channel_Position_20', 'Channel_Position_50', 'BBP_20_2', 'Donchian_Position_20', 'Dist_Kalman', 'RSI_14_Delta_5', 'RSI_14_Delta_10', 'MACD_Hist_Delta_5', 'RVGI_Signal', 'STC', 'Upside_Downside_Vol_Ratio_20', 'Trend_Slope_10', 'Efficiency_Ratio_10', 'Dist_20_Low', 'Channel_Position_100', 'Dist_BB_Lower', 'Dist_Donchian_Lower', 'Div_Price_RSI_20', 'Close_FFD_Z_20', 'Close_FFD_Z_50', 'Close_FFD_Momentum_20']
+
+------------------------------------------------------------------------
+ITERATION 2
+Current candidate feature count: 118
+ cluster_id  n_features   avg_mda  std_mda
+          5           7  0.013544 0.004275
+          1          39  0.003314 0.004680
+          3           2  0.001417 0.001185
+          8           8  0.001241 0.002830
+          7           8  0.001069 0.001403
+          4           4  0.000564 0.000856
+          6           6  0.000485 0.002932
+          2          27 -0.001781 0.005675
+          0          17 -0.001977 0.003685
+Base F1=0.342306 | Precision=0.327254 | Recall=0.369138 | Mean train-selected threshold=0.5260 | Folds=10
+Removing worst cluster 0 | avg_mda=-0.001977
+Features removed: ['Abs_Log_Return_1', 'Abs_Body_Bps', 'Body_Share', 'Range_ATR_Ratio_14', 'Range_Bps_Z_20', 'Range_Ratio_20', 'Body_ATR_Ratio_14', 'Abs_Return_Z_20', 'Range_Bps_Z_50', 'Body_Bps_Z_20', 'Body_To_Range_Z_20', 'Range_Ratio_50', 'Regime_State', 'Regime_Entropy', 'Prob_State_1', 'Prob_State_2', 'Prob_State_3']
+
+------------------------------------------------------------------------
+ITERATION 3
+Current candidate feature count: 101
+ cluster_id  n_features  avg_mda  std_mda
+          0          63 0.018339 0.009499
+          1          38 0.004367 0.006600
+Base F1=0.351273 | Precision=0.333910 | Recall=0.374103 | Mean train-selected threshold=0.5210 | Folds=10
+Stopping: no negative MDA clusters remain.
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 101
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\feature_surgery\dax_volatilitycarry_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py

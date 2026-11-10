@@ -1,0 +1,35 @@
+asset=BTCUSD edge=breakdownretestfailure_short gate_c_exit=0 elapsed_seconds=537
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: BTCUSD/breakdownretestfailure_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V1000_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 1843
+  250/1843 elapsed=95.2s
+  500/1843 elapsed=185.5s
+  750/1843 elapsed=245.3s
+  1000/1843 elapsed=338.7s
+  1250/1843 elapsed=398.3s
+  1500/1843 elapsed=449.6s
+  1750/1843 elapsed=513.5s
+  1843/1843 elapsed=531.1s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V1000_PT1_SL1 | -0.245036 | [-0.305544,-0.186863] | 0.6119 | 2.218 | 8.077 | -2.650928 | -2.246568 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.103364 | [-0.200336,-0.011916] | 0.8535 | 15.379 | 57.843 | -0.161307 | -0.947674 | 0.061 | 0.144 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.125853 | [-0.208517,-0.044526] | 0.8076 | 12.321 | 47.218 | -0.245150 | -1.153857 | 0.092 | 0.180 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.148692 | [-0.247703,-0.056910] | 0.7943 | 12.175 | 47.220 | -0.293114 | -1.363255 | 0.111 | 0.182 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T230255Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T230255Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,34 @@
+asset=HK edge=downsidevolatilitycascade_short gate_c_exit=0 elapsed_seconds=126
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/downsidevolatilitycascade_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V1000_PT2_SL1 [CONTROL]
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E20_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 1728
+  250/1728 elapsed=15.6s
+  500/1728 elapsed=27.4s
+  750/1728 elapsed=40.8s
+  1000/1728 elapsed=55.5s
+  1250/1728 elapsed=79.1s
+  1500/1728 elapsed=99.6s
+  1728/1728 elapsed=120.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V1000_PT2_SL1 | -0.101429 | [-0.200682,-0.006091] | 0.8604 | 7.403 | 26.602 | -0.328846 | -0.872227 | 1.000 | 1.000 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.037766 | [-0.161378,+0.083573] | 0.9466 | 21.679 | 83.247 | -0.041808 | -0.324762 | 0.127 | 0.341 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.044014 | [-0.178018,+0.084050] | 0.9382 | 26.096 | 94.088 | -0.040479 | -0.378497 | 0.123 | 0.284 | 1.0000
+H15_E20_V1000_PT2_SL1 | -0.045361 | [-0.149413,+0.063282] | 0.9359 | 16.491 | 74.853 | -0.066018 | -0.390078 | 0.201 | 0.449 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T124224Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T124224Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

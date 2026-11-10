@@ -1,0 +1,44 @@
+AFML Ch.22 "High-Performance Computational Intelligence and Forecasting Technologies" audit evidence (2026-10-31)
+==============================================================================================================
+Book: AFML Ch.22 (Kesheng Wu and Horst D. Simon) = pdf 356-379 = pp.329-352 (s.22.1-22.8, Figures 22.1-22.10; no
+snippets, no exercises), read line by line. A description of LBNL's CIFT project: HPC vs cloud hardware (s.22.4), HPC
+software -- MPI, HDF5, in situ processing (ADIOS), convergence (s.22.5) -- and use cases (s.22.6): supernova
+classification, fusion-plasma blobs, electricity baselines (GTB vs the white-box LTAP), the 2010 Flash Crash (HDF5 +
+MPI for VPIN and an HHI of fragmentation; VPIN parameter calibration; non-uniform FFT of natural-gas futures trades).
+
+== What applies to Quantara
+1. Methods: VPIN, HHI of market fragmentation and the non-uniform FFT / TWAP evidence all need trade prints and traded
+   volume across venues; we hold Dukascopy quote ticks for 10 CFDs (same data limit as Ch.19, D072 record; owner rule:
+   no microstructure edge theses). Not applicable.
+2. LTAP lesson (s.22.6.3): recursive prediction with lagged own-predictions accumulates error. Quantara never feeds a
+   prediction back as a feature; every feature is computed from observed bars up to the current bar. No action.
+3. Supernova workflow (s.22.6.1): classification must carry likelihood / confidence -- Quantara's meta-model output is
+   calibrated (Step 04, D015 live_calibrated_probability). No action.
+4. HDF5 vs ASCII (s.22.5.2, 22.6.4: 21x faster). Our raw ticks (3.3-20 GiB per asset) and bars are CSV. Measured
+   (venv312, GBPJPY, scratchpad copy): one weekly tick file 42.9 MB / 614,314 rows -- pandas read_csv 0.57 s, with
+   timestamp parsing 1.31 s; the same values as a numpy .npy binary (24.6 MB) 0.007 s (about 190x). Bars CSV 12.7 MB:
+   0.17 s. A full pass over one asset's ticks is about 235 files x 1.3 s = 5 minutes; retrain time is set by CPCV
+   (53-78 min per edge) and the Step 01 audit (2.2-4.8 h), so storage format is not a bottleneck. pyarrow / h5py are not
+   installed; changing storage would touch the live data paths. Not proposed.
+5. HPC / MPI / in situ / cloud economics: infrastructure for data volumes we do not have (our whole tick store is about
+   94 GiB on one machine). Not applicable.
+
+== Book checks (arithmetic re-done) -- all correct
+21-fold: 3.5 h = 12,600 s / 603.98 s = 20.9; 234x: 603.98 / 2.58 = 234.1; indexing 16.95 / 4.59 = 3.69 ("3.7");
+VPIN 720x: 18 min = 1,080 s / 1.5 s = 720; once-per-minute frequency 366 x 24 x 60 = 527,040 (2012 a leap year);
+"0.9 -> 0.99 reduces random events 10x" (tail mass 0.1 -> 0.01).
+
+== Errata (citations and cross-references)
+- p.333-334 "Figure 1", "Figure 2", "Figure 3" for Figures 22.1-22.3.
+- p.334 "In 2011, the Magellan project report ... (Yelick et al. [2010])" -- references list Yelick et al. (2011);
+  "Armburst" (references: Armbrust); p.330 "Abbot" (Abbott); p.330 "Yen et al. [2009]" (references: Yan, J.);
+  p.335 "Shoshami" (Shoshani); p.335 "Snir et al. [1988]" (references: 1998); p.337 "Nicholas et al. [2009]" and the
+  reference "Nicholas, M. L." -- the Palomar Transient Factory overview (PASP 121, 1395) is by Law, N. M. et al.
+- Figure 22.6 caption "Gradient tree boosting (GBT)" vs GTB in the text; the Ayachit et al. reference has no year.
+- p.336 "CPU performance has roughly doubled every 18 months (Moore's law)": Moore's law concerns transistor counts
+  (doubling about every two years); the 18-month figure is a performance paraphrase.
+
+== Recommendation
+No change: the chapter's methods need trade data we do not hold, its lessons are already met, and its infrastructure
+(HDF5 / MPI / HPC) addresses data volumes and latencies Quantara does not have; the measured I/O gain would save minutes
+against hours.

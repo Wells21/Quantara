@@ -1,0 +1,170 @@
+{
+  "edge": "XAUUSD/volatilitycarry_long",
+  "test": "AFML Ch.10 plan step A: remaining-return forecast vs martingale (research period only)",
+  "population": "approved_only",
+  "rows": {
+    "n_trades": 1708,
+    "n_trades_with_rows": 1699,
+    "n_rows": 39663,
+    "rows_dropped_after_barrier_touch": 185,
+    "rows_dropped_nan_features": 0,
+    "n_features": 53,
+    "share_positive": 0.6134432594609586,
+    "n_rows_after_state": 39663
+  },
+  "avg_uniqueness": 0.031470328837840775,
+  "embargo_rows": 396,
+  "state_cols": [
+    "s_random_walk",
+    "time_left_frac",
+    "entry_oof_prob",
+    "r_so_far",
+    "best_r_so_far",
+    "worst_r_so_far",
+    "hours_in_trade",
+    "vol_since_over_pre",
+    "z_to_tp",
+    "z_to_sl",
+    "hour_of_week",
+    "hours_to_weekend",
+    "hours_to_2100utc"
+  ],
+  "n_features": 53,
+  "tree": {
+    "max_features": "sqrt",
+    "min_weight_fraction_leaf": 0.05
+  },
+  "n_estimators": 1000,
+  "mean_r_rem_weighted": 0.02277036463242424,
+  "pooled_oos_mse": {
+    "zero": 1.0650683745083616,
+    "drift": 1.067553150273501,
+    "b": 1.0678615606954638,
+    "c": 1.0611645782537664
+  },
+  "r2_oos_vs_zero": {
+    "drift": -0.002332973003997374,
+    "b": -0.0026225416639487076,
+    "c": 0.00366530107177121
+  },
+  "gains": {
+    "mse_gain_b_over_zero": -0.0027931861871026632,
+    "mse_gain_b_over_drift": -0.0003084104219627624,
+    "mse_gain_c_over_b": 0.006696982441697372
+  },
+  "bootstrap_95ci": {
+    "mse_gain_b_over_zero": [
+      -0.013616591171518637,
+      0.008485499008383095
+    ],
+    "mse_gain_b_over_drift": [
+      -0.01101377459113931,
+      0.01025076350379398
+    ],
+    "mse_gain_c_over_b": [
+      0.00029695035051942645,
+      0.013723300839208625
+    ]
+  },
+  "mean_r_rem_by_prediction_quintile": {
+    "b": [
+      -0.04122477920457563,
+      9.677112197930314e-05,
+      0.06974264529749385,
+      0.10980721528413923,
+      0.053620447264402904
+    ],
+    "c": [
+      -0.022494314286174474,
+      -0.03490789060420998,
+      0.019814099630108252,
+      0.05598185395364775,
+      0.13518938758080487
+    ]
+  },
+  "GO_state": false,
+  "GO_features": true,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 3967,
+      "mse_zero": 0.7087684249228333,
+      "mse_drift": 0.7293288361533392,
+      "mse_b": 0.7296113994278786,
+      "mse_c": 0.7174044954320704
+    },
+    {
+      "fold": 1,
+      "n_test": 3967,
+      "mse_zero": 1.0863446903214349,
+      "mse_drift": 1.0915790708767226,
+      "mse_b": 1.1026344572164526,
+      "mse_c": 1.1061432514274279
+    },
+    {
+      "fold": 2,
+      "n_test": 3967,
+      "mse_zero": 0.9525023883832053,
+      "mse_drift": 0.9506522152159429,
+      "mse_b": 0.9549097565291819,
+      "mse_c": 0.9501022095657298
+    },
+    {
+      "fold": 3,
+      "n_test": 3966,
+      "mse_zero": 1.0383332361134083,
+      "mse_drift": 1.0364549353916483,
+      "mse_b": 1.0363118385175778,
+      "mse_c": 1.0348031650808893
+    },
+    {
+      "fold": 4,
+      "n_test": 3966,
+      "mse_zero": 1.1326847935411124,
+      "mse_drift": 1.1308389106013375,
+      "mse_b": 1.1413363536564916,
+      "mse_c": 1.1310479213280697
+    },
+    {
+      "fold": 5,
+      "n_test": 3966,
+      "mse_zero": 1.1790379943850506,
+      "mse_drift": 1.1770176469789888,
+      "mse_b": 1.1686141514929371,
+      "mse_c": 1.1719587859180303
+    },
+    {
+      "fold": 6,
+      "n_test": 3966,
+      "mse_zero": 1.146159378455517,
+      "mse_drift": 1.1518067326411805,
+      "mse_b": 1.1577964766418627,
+      "mse_c": 1.1375799838915959
+    },
+    {
+      "fold": 7,
+      "n_test": 3966,
+      "mse_zero": 1.2650063914371448,
+      "mse_drift": 1.261951494425772,
+      "mse_b": 1.2765219258238105,
+      "mse_c": 1.2636353988103712
+    },
+    {
+      "fold": 8,
+      "n_test": 3966,
+      "mse_zero": 1.1356083528223948,
+      "mse_drift": 1.1361671481128992,
+      "mse_b": 1.107297711559064,
+      "mse_c": 1.1046777959054002
+    },
+    {
+      "fold": 9,
+      "n_test": 3966,
+      "mse_zero": 1.1433004510525355,
+      "mse_drift": 1.13975158266034,
+      "mse_b": 1.1224756466418955,
+      "mse_c": 1.1160946675900656
+    }
+  ],
+  "elapsed_s": 185.1
+}

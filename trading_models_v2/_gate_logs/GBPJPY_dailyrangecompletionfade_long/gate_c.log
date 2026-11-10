@@ -1,0 +1,44 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: GBPJPY/dailyrangecompletionfade_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E50_V1000_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3998
+  250/3998 elapsed=52.1s
+  500/3998 elapsed=112.7s
+  750/3998 elapsed=155.4s
+  1000/3998 elapsed=201.7s
+  1250/3998 elapsed=238.1s
+  1500/3998 elapsed=264.0s
+  1750/3998 elapsed=296.2s
+  2000/3998 elapsed=323.2s
+  2250/3998 elapsed=352.6s
+  2500/3998 elapsed=395.9s
+  2750/3998 elapsed=422.5s
+  3000/3998 elapsed=462.5s
+  3250/3998 elapsed=498.7s
+  3500/3998 elapsed=520.9s
+  3750/3998 elapsed=549.0s
+  3998/3998 elapsed=592.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E50_V1000_PT1_SL1 | -0.082991 | [-0.137643,-0.027997] | 0.8498 | 3.988 | 12.642 | -0.499502 | -1.560082 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.040207 | [-0.078241,+0.164955] | 1.0607 | 28.479 | 107.648 | +0.033884 | +0.755820 | -0.068 | 0.140 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.012312 | [-0.099031,+0.133236] | 1.0183 | 24.441 | 94.619 | +0.012090 | +0.231452 | -0.024 | 0.163 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.000606 | [-0.108465,+0.117068] | 1.0009 | 21.449 | 86.330 | +0.000678 | +0.011399 | -0.001 | 0.186 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V1000_PT2_SL1 | meanR=+0.040207 | R/occupied_day=+0.033884 | R/week=+0.755820 | mean_hold_h=28.479
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.012312 | R/occupied_day=+0.012090 | R/week=+0.231452 | mean_hold_h=24.441
+ 3. H15_E100_V1000_PT2_SL1 | meanR=+0.000606 | R/occupied_day=+0.000678 | R/week=+0.011399 | mean_hold_h=21.449
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T140635Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T140635Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

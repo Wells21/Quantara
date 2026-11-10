@@ -1,0 +1,42 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — DAX/reversal_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\research_dataset\dax_reversal_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\feature_surgery
+Task 2B eligibility filter: 4,514/4,514 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 4,514
+Rows after feature NaN filter : 4,514
+Date range: 2022-06-13 14:27:58.816000+00:00 -> 2026-06-10 22:14:11.337000+00:00
+Schema allowed features: 168
+Fixed features: []
+Candidate features for clustering: 157
+
+------------------------------------------------------------------------
+ITERATION 1
+Current candidate feature count: 157
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=4,514 | mean_uniqueness=0.368298 | mean_return_weight=1.000000
+ cluster_id  n_features   avg_mda  std_mda
+          2          52  0.037153 0.011148
+          0          52  0.010748 0.009563
+          1          53 -0.003731 0.003477
+Base F1=0.436377 | Precision=0.373973 | Recall=0.539353 | Mean train-selected threshold=0.5750 | Folds=10
+Removing worst cluster 1 | avg_mda=-0.003731
+Features removed: ['Log_Return_5', 'Log_Return_10', 'Log_Return_20', 'Log_Return_50', 'Log_Return_100', 'Dist_EMA_10', 'Dist_EMA_20', 'Dist_EMA_50', 'Dist_EMA_100', 'Dist_EMA_200', 'EMA_10_20_Gap', 'EMA_20_50_Gap', 'EMA_50_100_Gap', 'RSI_14', 'RSI_21', 'RSI_50', 'MACD', 'MACD_Signal', 'MACD_Hist', 'Stoch_K', 'Stoch_D', 'Williams_R_14', 'ROC_10', 'ROC_20', 'ROC_50', 'Trend_Slope_20', 'Trend_Slope_50', 'Channel_Position_20', 'Channel_Position_50', 'BBP_20_2', 'Donchian_Position_20', 'Dist_Kalman', 'RSI_14_Delta_5', 'RSI_14_Delta_10', 'MACD_Hist_Delta_5', 'RVGI_Signal', 'STC', 'Upside_Downside_Vol_Ratio_20', 'Upside_Downside_Vol_Ratio_50', 'Trend_Slope_10', 'Trend_Slope_100', 'Trend_R2_100', 'Dist_20_Low', 'Dist_50_Low', 'Dist_100_Low', 'Dist_200_Low', 'Channel_Position_100', 'Channel_Position_200', 'Dist_BB_Lower', 'Dist_Donchian_Lower', 'Close_FFD_Z_20', 'Close_FFD_Z_50', 'Close_FFD_Momentum_20']
+
+------------------------------------------------------------------------
+ITERATION 2
+Current candidate feature count: 104
+ cluster_id  n_features  avg_mda  std_mda
+          1          54 0.044163 0.013376
+          0          50 0.013561 0.015829
+Base F1=0.452604 | Precision=0.373157 | Recall=0.589025 | Mean train-selected threshold=0.5580 | Folds=10
+Stopping: no negative MDA clusters remain.
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 104
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\feature_surgery\dax_reversal_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py

@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/BTCUSD/bars/ffd/btcusd_ffd_features.csv",
+      "sha256": "da45927104e8cf54bd40ec728527c6d5c1dfd036a069f9fea7362b3649c34103",
+      "size_bytes": 39152588
+    },
+    "state_bundle": {
+      "path": "assets/BTCUSD/bars/ffd/btcusd_ffd_state_bundle.pkl",
+      "sha256": "234f0619da08e1a2ff8c65f4ad4fc45223c87d4e06fdc27557a9f183dfa23681",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "BTCUSD",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 159407,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 159407,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 151.57,
+  "end_output": "2026-04-20 22:43:40.570000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.2890625,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.9936782385151801,
+    "High_orig_vs_ffd_corr": 0.99386698512447,
+    "Low_orig_vs_ffd_corr": 0.9935831415185842,
+    "Open_orig_vs_ffd_corr": 0.9936778734869477
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9935831415185842,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/BTCUSD/bars/ffd/btcusd_ffd_features.csv",
+    "manifest": "assets/BTCUSD/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/BTCUSD/bars/ffd/btcusd_ffd_state_bundle.pkl"
+  },
+  "rows_input": 159407,
+  "rows_output": 158408,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/BTCUSD/bars/standard_quote_tick/btcusd_standard_quote_tick_bars.csv",
+  "start_output": "2017-06-22 06:52:58.863000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -2.68040533285769,
+      "lags": 63,
+      "nobs": 79140,
+      "p_value": 0.07749081076581721
+    },
+    "full": {
+      "adf_stat": -2.8756882551798295,
+      "lags": 76,
+      "nobs": 158331,
+      "p_value": 0.04824904479417069
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -2.358346036986929,
+      "lags": 64,
+      "nobs": 79139,
+      "p_value": 0.153839585078814
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

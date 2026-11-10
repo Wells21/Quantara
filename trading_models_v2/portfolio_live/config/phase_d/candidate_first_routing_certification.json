@@ -1,0 +1,329 @@
+{
+  "asset_canonical_ring_builds": [
+    {
+      "asset": "GBPJPY",
+      "build_ms": 35888.5375,
+      "representative_edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "rows": 6000
+    },
+    {
+      "asset": "HK",
+      "build_ms": 31311.257199999993,
+      "representative_edge_id": "HK/drawdownhazardcontinuation_short",
+      "rows": 6000
+    },
+    {
+      "asset": "JPN",
+      "build_ms": 35169.3128,
+      "representative_edge_id": "JPN/volatilitycarry_long",
+      "rows": 6000
+    },
+    {
+      "asset": "XAUUSD",
+      "build_ms": 35205.3155,
+      "representative_edge_id": "XAUUSD/volatilitycarry_long",
+      "rows": 6000
+    }
+  ],
+  "authority_identity_mode": "structural_current_state_no_git_or_file_sha_gate",
+  "c5_model_decision_parity": {
+    "absorption_edges_checked": 0,
+    "edge_results": {
+      "GBPJPY/dailyrangecompletionfade_long": {
+        "parity": {
+          "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 243,
+          "worst_column": null
+        },
+        "status": "PASS"
+      },
+      "HK/drawdownhazardcontinuation_short": {
+        "parity": {
+          "edge_id": "HK/drawdownhazardcontinuation_short",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 360,
+          "worst_column": null
+        },
+        "status": "PASS"
+      },
+      "JPN/rangestructure_long": {
+        "parity": {
+          "edge_id": "JPN/rangestructure_long",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 415,
+          "worst_column": null
+        },
+        "status": "PASS"
+      },
+      "JPN/volatilitycarry_long": {
+        "parity": {
+          "edge_id": "JPN/volatilitycarry_long",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 476,
+          "worst_column": null
+        },
+        "status": "PASS"
+      },
+      "XAUUSD/rangestructure_long": {
+        "parity": {
+          "edge_id": "XAUUSD/rangestructure_long",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 487,
+          "worst_column": null
+        },
+        "status": "PASS"
+      },
+      "XAUUSD/volatilitycarry_long": {
+        "parity": {
+          "edge_id": "XAUUSD/volatilitycarry_long",
+          "max_abs_diff": 0.0,
+          "max_rel_diff": 0.0,
+          "mismatches": [],
+          "ok": true,
+          "rows": 495,
+          "worst_column": null
+        },
+        "status": "PASS"
+      }
+    },
+    "edges_checked": 6,
+    "edges_failed": [],
+    "edges_passed": 6,
+    "selected_edge_count": 6,
+    "status": "PASS",
+    "strict_atol": 5e-10,
+    "strict_rtol": 5e-10,
+    "structural_group_builds": [
+      {
+        "asset": "GBPJPY",
+        "build_ms": 36040.37560000001,
+        "edge_count": 1,
+        "representative_edge_id": "GBPJPY/dailyrangecompletionfade_long"
+      },
+      {
+        "asset": "HK",
+        "build_ms": 31968.253000000004,
+        "edge_count": 1,
+        "representative_edge_id": "HK/drawdownhazardcontinuation_short"
+      },
+      {
+        "asset": "JPN",
+        "build_ms": 38214.106500000016,
+        "edge_count": 1,
+        "representative_edge_id": "JPN/volatilitycarry_long"
+      },
+      {
+        "asset": "JPN",
+        "build_ms": 39153.79409999997,
+        "edge_count": 1,
+        "representative_edge_id": "JPN/rangestructure_long"
+      },
+      {
+        "asset": "XAUUSD",
+        "build_ms": 38880.9066,
+        "edge_count": 1,
+        "representative_edge_id": "XAUUSD/volatilitycarry_long"
+      },
+      {
+        "asset": "XAUUSD",
+        "build_ms": 39561.03680000001,
+        "edge_count": 1,
+        "representative_edge_id": "XAUUSD/rangestructure_long"
+      }
+    ]
+  },
+  "certification_statement": "PASS composes three exact authorities: D.2 unchanged candidate parity for every selected edge; D.3 deferred full projection equals the currently certified C.4 full projection for every selected edge over the exact 6000-row authority; and current C.5 model/decision parity remains PASS.",
+  "d2_candidate_authority": {
+    "aggregate_full_to_narrow_speedup_ratio": 1.1647045921632782,
+    "edges_checked": 6,
+    "edges_failed": [],
+    "edges_passed": 6,
+    "status": "PASS"
+  },
+  "d3_self_test": {
+    "failed": [],
+    "router_version": "2026-08-17_phase_d3_candidate_first_deferred_model_projection_v1",
+    "status": "PASS",
+    "tests": {
+      "candidate_projection_contains_identity": true,
+      "candidate_projection_is_strictly_narrower": true,
+      "d3_reuses_existing_runtime_cache": true,
+      "full_projection_is_inside_deferred_score": true,
+      "full_projection_restores_exact_c3_order": true,
+      "normal_batch_feature_build_forbidden": true
+    }
+  },
+  "deferred_projection_edges_checked": 6,
+  "deferred_projection_edges_failed": [],
+  "deferred_projection_edges_passed": 6,
+  "deferred_projection_results": {
+    "GBPJPY/dailyrangecompletionfade_long": {
+      "columns": 179,
+      "parity": {
+        "column_count": 179,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    },
+    "HK/drawdownhazardcontinuation_short": {
+      "columns": 179,
+      "parity": {
+        "column_count": 179,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    },
+    "JPN/rangestructure_long": {
+      "columns": 178,
+      "parity": {
+        "column_count": 178,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    },
+    "JPN/volatilitycarry_long": {
+      "columns": 179,
+      "parity": {
+        "column_count": 179,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    },
+    "XAUUSD/rangestructure_long": {
+      "columns": 178,
+      "parity": {
+        "column_count": 178,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    },
+    "XAUUSD/volatilitycarry_long": {
+      "columns": 179,
+      "parity": {
+        "column_count": 179,
+        "max_abs_diff": 0.0,
+        "max_rel_diff": 0.0,
+        "mismatch_count_capped": 0,
+        "mismatches": [],
+        "ok": true,
+        "rows_checked": 6000,
+        "worst_column": null
+      },
+      "rows": 6000,
+      "status": "PASS"
+    }
+  },
+  "fatal_errors": [],
+  "production_activation_allowed": true,
+  "router_version": "2026-08-17_phase_d3_candidate_first_deferred_model_projection_v1",
+  "runtime_routing_enabled": false,
+  "schema_version": "phase_d3_candidate_first_certification_v1",
+  "selected_assets": [
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+  ],
+  "selected_edge_count": 6,
+  "static_contract": {
+    "authority_identity_mode": "structural_current_state_no_git_or_file_sha_gate",
+    "c3_schema_version": "phase_c3_edge_consumer_contract_v1_2",
+    "c4_authoritative_edge_count": 0,
+    "c4_authoritative_edge_ids": [],
+    "c4_router_version": "2026-08-17_phase_c4_certified_incremental_canonical_v1_3_lean_c5_manifest_scope",
+    "d2_aggregate_speedup_ratio": 1.1647045921632782,
+    "d2_certified_edge_count": 6,
+    "d2_certified_edge_ids": [
+      "GBPJPY/dailyrangecompletionfade_long",
+      "HK/drawdownhazardcontinuation_short",
+      "JPN/rangestructure_long",
+      "JPN/volatilitycarry_long",
+      "XAUUSD/rangestructure_long",
+      "XAUUSD/volatilitycarry_long"
+    ],
+    "d2_engine_version": "phase_d2_candidate_first_narrow_projection_v1",
+    "d3_router_version": "2026-08-17_phase_d3_candidate_first_deferred_model_projection_v1",
+    "failures": [],
+    "scalability_contract": {
+      "phase_d_is_optional_acceleration": true,
+      "uncertified_selected_edges_trade_via_c4_authority": true,
+      "unsupported_trading_edges": 0
+    },
+    "selected_asset_count": 4,
+    "selected_assets": [
+      "GBPJPY",
+      "HK",
+      "JPN",
+      "XAUUSD"
+    ],
+    "selected_edge_count": 6,
+    "selected_edge_ids": [
+      "GBPJPY/dailyrangecompletionfade_long",
+      "HK/drawdownhazardcontinuation_short",
+      "JPN/rangestructure_long",
+      "JPN/volatilitycarry_long",
+      "XAUUSD/rangestructure_long",
+      "XAUUSD/volatilitycarry_long"
+    ],
+    "source_guard": {
+      "authority_identity_mode": "structural_current_state_no_git_or_file_sha_gate",
+      "checked_edges": 6,
+      "failed_count": 0,
+      "failures": [],
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

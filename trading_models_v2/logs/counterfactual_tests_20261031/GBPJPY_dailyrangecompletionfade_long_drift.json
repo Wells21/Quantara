@@ -1,0 +1,61 @@
+{
+ "asset": "GBPJPY",
+ "edge": "dailyrangecompletionfade_long",
+ "side": 1,
+ "feature_input": "runtime.build_features(drop_warmup_rows=False)",
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md",
+ "reproduction": {
+  "event_times_equal": true,
+  "matched_model_rows": 4050,
+  "stored_model_rows": 4050,
+  "max_abs_realized_r_diff": 2.220446049250313e-16,
+  "PASS": true
+ },
+ "edge_events": {
+  "n": 4343,
+  "mean_R": 0.11711,
+  "ci_lo": 0.00114,
+  "ci_hi": 0.23308,
+  "weeks": 213
+ },
+ "pool": {
+  "eligible_window": [
+   "2022-02-07 09:31:11.412000+00:00",
+   "2026-07-02 20:57:43.093000+00:00"
+  ],
+  "labeled": 19934,
+  "n": 19934,
+  "mean_R": 0.09661,
+  "ci_lo": 0.02723,
+  "ci_hi": 0.16598,
+  "weeks": 229
+ },
+ "baseline_U_unconditional": {
+  "baseline_mean_R": 0.09661,
+  "baseline_se": 0.0354,
+  "diff": 0.0205,
+  "diff_ci_lo": -0.11464,
+  "diff_ci_hi": 0.15564,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.17558
+ },
+ "baseline_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.05989,
+  "baseline_se": 0.02161,
+  "diff": 0.05722,
+  "diff_ci_lo": -0.06624,
+  "diff_ci_hi": 0.18068,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0058
+ },
+ "baseline_H_hour_matched": {
+  "baseline_mean_R": 0.09692,
+  "baseline_se": 0.02176,
+  "diff": 0.02019,
+  "diff_ci_lo": -0.10338,
+  "diff_ci_hi": 0.14375,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.17628
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT"
+}

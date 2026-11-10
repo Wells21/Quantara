@@ -1,0 +1,40 @@
+schema_feature_names from 63f4a570:trading_models_v2/assets/JPN/edges/rangestructure_long/contracts/feature_schema.json -> 168 features
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: JPN/rangestructure_long
+entry_delay_ms: 5700
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - H8_E100_V96_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+spread_model: broker
+Exact quote replay events: 4470
+  250/4470 elapsed=5.0s
+  500/4470 elapsed=10.1s
+  750/4470 elapsed=13.4s
+  1000/4470 elapsed=15.1s
+  1250/4470 elapsed=18.0s
+  1500/4470 elapsed=21.1s
+  1750/4470 elapsed=24.8s
+  2000/4470 elapsed=28.4s
+  2250/4470 elapsed=33.2s
+  2500/4470 elapsed=41.2s
+  2750/4470 elapsed=50.4s
+  3000/4470 elapsed=61.8s
+  3250/4470 elapsed=67.3s
+  3500/4470 elapsed=71.2s
+  3750/4470 elapsed=77.5s
+  4000/4470 elapsed=87.0s
+  4250/4470 elapsed=99.7s
+  4470/4470 elapsed=108.4s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage | guard_blocked
+H8_E100_V96_PT2_SL1 | +0.092515 | [-0.025618,+0.214482] | 1.1483 | 25.589 | 96.061 | +0.086770 | +1.968269 | nan | nan | 1.0000 | 0
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H8_E100_V96_PT2_SL1 | meanR=+0.092515 | R/occupied_day=+0.086770 | R/week=+1.968269 | mean_hold_h=25.589
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20261103T224823Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20261103T224823Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

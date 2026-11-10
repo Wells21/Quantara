@@ -1,0 +1,35 @@
+asset=NASDAQ edge=breakdownretestfailure_short gate_c_exit=0 elapsed_seconds=674
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: NASDAQ/breakdownretestfailure_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H20_E20_V20_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 1808
+  250/1808 elapsed=123.0s
+  500/1808 elapsed=214.3s
+  750/1808 elapsed=306.1s
+  1000/1808 elapsed=373.1s
+  1250/1808 elapsed=449.0s
+  1500/1808 elapsed=543.4s
+  1750/1808 elapsed=643.6s
+  1808/1808 elapsed=665.2s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H20_E20_V20_PT2_SL1 | -0.032767 | [-0.102273,+0.034354] | 0.9398 | 5.915 | 13.358 | -0.132959 | -0.295485 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.014500 | [-0.113441,+0.083941] | 0.9788 | 18.635 | 78.606 | -0.018674 | -0.128800 | 0.140 | 0.317 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.011267 | [-0.097248,+0.072075] | 0.9816 | 14.916 | 66.184 | -0.018129 | -0.100083 | 0.136 | 0.397 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.027237 | [-0.127121,+0.067996] | 0.9603 | 16.790 | 73.733 | -0.038932 | -0.241943 | 0.293 | 0.352 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260915T131854Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260915T131854Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\breakdownretestfailure_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

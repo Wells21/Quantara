@@ -1,0 +1,259 @@
+QUANTARA V3 - NEW EDGE CREATION + FOUR-GATE GEOMETRY & META-MODEL RUNBOOK
+v5.3, 2026-10-22 (after go-live 2026-10-19). Supersedes v5.2 (2026-10-17), v5.1, v5, v4.
+Authoritative copies: Quantara_Runbook.docx Section 6A, and config/us500_edge_search_ledger.json -> RUNBOOK_v5.3_2026-10-22.
+Running example: XAUUSD/compressionbreakoutcontinuation_short copied from BTCUSD/compressionbreakoutcontinuation_long.
+RULE 0 - every command references the SAME edge_root you are building.
+
+========================================================================
+WHAT CHANGED IN v5.3 (2026-10-17 -> 10-22)
+========================================================================
+1. A constant-only edge change (e.g. EVENT_VOL_LOOKBACK_HOURS) changes the D1 candidate_logic_signature. The FAST
+   provider (shared/edges/candidate_continuations/providers/*.py) must list the new signature in PROVIDER_SPEC
+   supported_signatures, and D2/D3/D4 must be re-certified, or that edge runs AUTHORITATIVE (slower, still correct).
+2. FAST-provider parity bug fixed 2026-10-18 in all 9 candidate providers: event-vol history was pruned at t-2L, but
+   calendar_time_event_vol uses the latest bar before t-L at ANY age -> after weekend/session gaps > 2L, Event_Vol (and so
+   TP/SL distance) was wrong (old 12-edge impact: docx Section 24.4). Provider tests must now include gaps > 2L.
+3. Cost change at allocator time: after 00c/00d, compare each edge's 00d net R with its Gate C net R. If it falls by more
+   than its stress margin, or to <= 0, re-run Gate C + PBO under the new model before deploying (BTCUSD timeregime:
+   swap correction -> PBO 0.776 -> removed).
+4. Repo path, interpreters and archive rule updated (below). edge_universe.json = 6 live edges (see STATE).
+
+------------------------------------------------------------------------
+STEP 0 - repo root and interpreters
+------------------------------------------------------------------------
+cd "C:\Users\Administrator\Desktop\Trading Models\trading_models_v2"
+venv312 = edge research (Gate A/B/C lab, export, Task 2A, Steps 01-09, Gate D). venv39 lacks skfolio (Step 01 CPCV fails).
+venv39  = portfolio_allocator, portfolio_live, Phase C/D scripts, live bot + dashboard. venv312's ast.dump() adds
+          type_params=[] -> false structural-drift FAILs in Phase C/D; pandas 3 breaks allocator 04bb.
+Research runs at BelowNormal priority; never touch, kill or reprioritize the live bot/dashboard processes.
+
+------------------------------------------------------------------------
+STEP 1 - scaffold
+------------------------------------------------------------------------
+@'
+from shared.edges.edge_layout import get_edge_layout
+layout = get_edge_layout("XAUUSD", "compressionbreakoutcontinuation", "short")
+layout.create_directories()
+print("edge_root:", layout.edge_root, "edge_id:", layout.edge_id, "edge_stem:", layout.edge_stem)
+'@ | python -
+
+------------------------------------------------------------------------
+STEP 2 - copy safe non-artifact files from the closest sibling
+------------------------------------------------------------------------
+$src = ".\assets\BTCUSD\edges\compressionbreakoutcontinuation_long"
+$dst = ".\assets\XAUUSD\edges\compressionbreakoutcontinuation_short"
+foreach ($f in "README.md","runtime.py","candidate_events.py","primary_side.py","edge.yaml","model_rows.py",
+  "research_pipeline.py","export_research_dataset.py","feature_expansion.py","regime_features.py") {
+  Copy-Item "$src\$f" "$dst\$f" -Force }
+Copy-Item "$src\contracts\*" "$dst\contracts\" -Force
+Copy-Item "$src\configs\*" "$dst\configs\" -Force
+Copy-Item "$src\research\*" "$dst\research\" -Force
+Never copy artifacts/, reports/, edge_manifest.json (Step-09-only output), models, calibrators, OOF, thresholds,
+or another edge's selected_features / training_summary / validation_report. feature_schema.json is copied VERBATIM
+from a sibling - never add bespoke entries.
+GOTCHA: a copied model_rows.py can lack build_tick_file_catalog() - grep for it.
+
+------------------------------------------------------------------------
+STEP 3 - identity replacement (Python, not Set-Content - avoids BOM)
+------------------------------------------------------------------------
+@'
+from pathlib import Path
+edge = Path("assets/XAUUSD/edges/compressionbreakoutcontinuation_short")
+files = [edge / n for n in ("README.md","runtime.py","edge.yaml","candidate_events.py","primary_side.py",
+  "model_rows.py","research_pipeline.py","export_research_dataset.py","feature_expansion.py","regime_features.py")]
+files += list((edge/"contracts").glob("*")) + list((edge/"configs").glob("*")) + list((edge/"research").glob("*.py"))
+rep = {"BTCUSD/compressionbreakoutcontinuation_long": "XAUUSD/compressionbreakoutcontinuation_short",
+       "btcusd_compressionbreakoutcontinuation_long": "xauusd_compressionbreakoutcontinuation_short",
+       "compressionbreakoutcontinuation_long": "compressionbreakoutcontinuation_short"}
+for p in files:
+    if not p.is_file(): continue
+    t = p.read_text(encoding="utf-8-sig")
+    for a, b in rep.items(): t = t.replace(a, b)
+    with open(p, "w", encoding="utf-8", newline="\n") as fh: fh.write(t)
+    print("updated:", p)
+'@ | python -
+GOTCHA: edge.yaml's bare family: / candidate_event_generator: lines can be missed - grep and fix by hand.
+
+------------------------------------------------------------------------
+STEP 4 - side logic and thesis (replacement is never enough)
+------------------------------------------------------------------------
+Short edge: side=-1, primary_side=-1, PT below entry, SL above:
+  pt_price = entry_price * (1.0 - pt_multiplier * trgt)
+  sl_price = entry_price * (1.0 + sl_multiplier * trgt)
+Check candidate_events.py, primary_side.py, model_rows.py, runtime.py, export_research_dataset.py, edge.yaml.
+Every feature goes through runtime.build_features(); no future information.
+New thesis = new trigger written from scratch, recall-first (AFML Ch.3): wide net, false positives fine; carry exact
+pattern geometry as a FEATURE, not a stricter gate. Porting a trigger to a new asset is not a new thesis.
+Bar-level mechanisms only (Dukascopy research ticks vs broker live ticks differ) - no microstructure theses.
+Every thesis must be tried on EVERY asset and BOTH sides; record it in config/cross_asset_thesis_coverage.json.
+
+------------------------------------------------------------------------
+STEP 5 - syntax check (before the grid scan)
+------------------------------------------------------------------------
+python assets/XAUUSD/edges/compressionbreakoutcontinuation_short/runtime.py
+A UnicodeEncodeError on an emoji is cosmetic (cp1252) - set PYTHONIOENCODING=utf-8; verify by output FILE MTIME.
+
+------------------------------------------------------------------------
+STEP 6 - contracts + mandatory prechecks (before Gate A)
+------------------------------------------------------------------------
+python .\shared\edges\edge_yaml_contract.py --edge-root <edge>
+python .\shared\validation\edge_contracts.py --edge-root <edge>
+python .\shared\edges\validate_edge_feature_schema.py --asset XAUUSD --family compressionbreakoutcontinuation --side short
+python .\shared\edges\verify_edge_registry.py
+model_input_schema.json missing = EXPECTED (Step 04B creates it). SADF_ct_50 warning is pre-existing.
+PRECHECKS (all must pass):
+ - candidate_events.py defines EVENT_VOL_LOOKBACK_HOURS; model_rows.py defines VERTICAL_HORIZON_HOURS (exact names,
+   else silent bar-count fallback).
+ - model_rows.py has build_tick_file_catalog().
+ - NO bare DatetimeIndex.asi8 in any edge .py: use index.as_unit("ns").asi8 (venv312 returns microseconds ->
+   calendar deadlines ~1000x too wide; found in 12 live edges 2026-10-17).
+ - pyflakes clean. Re-run of a live edge: if edge.yaml status disagrees with an edge_manifest PASS, run
+   promote_edge_status.py --status deployability_pass --write first.
+
+------------------------------------------------------------------------
+STEP 7 - GATES A / B / C + PBO: GEOMETRY SELECTION
+------------------------------------------------------------------------
+Only Gate C locks a geometry. Calendar time (AFML Snippet 3.1 p.44-45, 3.4 p.49): Event_Vol lookback and vertical
+barrier are real HOURS via shared/labels/calendar_time_barriers.py; EWM span stays bar-count.
+Floor: >= 2000 model rows, strict, no exceptions.
+COST for Gate A/B = mean_spread_bps_time_weighted (recent 2-week level) from
+  portfolio_allocator/config/broker_profiles/<firm>_cost_models/<ASSET>.json (research firm = moneta).
+  Not the Dukascopy median, not a 28-day tick median. No swap at Gate A/B.
+
+--- GATE A: signal existence (405 cells, exactly this grid, never lab defaults) ---
+python .\shared\research\v3_horizon_lab.py --edge-root <edge> `
+  --event-vol-lookbacks 1,2,4,6,8 --event-vol-ewm-spans 20,50,100 `
+  --vertical-horizons 1,2,4,8,16,24,48,96,168 --barriers 1:1,1.5:1,2:1 `
+  --cost-bps <MODEL MEAN bps> --hybrid-fast-grid --save
+KILL if best-cell gross_mean_R < +0.05 (no resurrection without a redesign).
+
+--- GATE B: finalists (not a kill gate) ---
+EVERY cell with net_mean_R > 0 goes to Gate C. Rank by net_R_per_mean_hold_HOUR. Use ONLY this run's fresh grid CSV.
+
+--- GATE C: authoritative (venv312) ---
+python .\shared\research\gate_c_runner.py --edge-root <edge> --grid-stamp <THIS Gate A stamp> `
+  --cost-model portfolio_allocator\config\broker_profiles\moneta_cost_models\<ASSET>.json --out-jsonl <run.jsonl> --batch-size 120
+= v3_horizon_lab --execution-finalists <ALL Gate-B cells> --execution-entry-delay-ms 5700 --execution-bootstrap-reps 2000
+  --execution-spread-model broker --execution-cost-model <that json> --save, batched; logs each batch's run stamp.
+Exact tick replay on the Dukascopy MID with the broker cost model: spread FIXED_POINTS or hour-of-week x vol TABLE at the
+last-14-day level, swap per rollover crossed, commission (docx Section 23.2). 5700 ms = measured live bar-close->fill median. Extra cost = 0, no spread guard in broker mode. Control added automatically.
+WINNER: among exec_mean_R STRICTLY > 0 (coverage >= 99%), argmax compound_velocity_score (log_growth = sum log(1 +
+0.01*exec_r) over all resolved trades by exit time; velocity = log_growth / span_days; score = velocity / max
+drawdown of the log-growth curve). None positive = KILL.
+PBO/CSCV (AFML Ch.11 SS11.6-11.8): cscv_pbo(), s=16, from shared/backtest_statistics/afml_ch11_pbo_reference.py on a
+DAILY prorated compound-velocity series per candidate, built from the Gate C --save output. PASS only if PBO < 0.5 AND
+Prob[OOS<=0] < 0.5 (report the degradation slope). Else KILL. A borderline kill goes to Gate D only on an explicit user
+decision (JPN volatilitycarry PBO 0.507 -> Gate D PASS, live). Driver (regression-tested):
+  python .\shared\research\gate_c_pbo.py --jsonl <run.jsonl> <edge>
+STRESS: re-run the winner at spread x (1 + level_uncertainty_pct); net R <= 0 there = flagged fragile. Record the
+break-even spread for the live per-trade guard.
+
+--- LOCK the winner in ALL FOUR places ---
+ 1. candidate_events.py: EVENT_VOL_LOOKBACK_HOURS, EVENT_VOL_EWM_SPAN
+ 2. model_rows.py: VERTICAL_HORIZON_HOURS, PT_MULTIPLIER, SL_MULTIPLIER
+ 3. edge.yaml labeling: block DIRECT children only: vertical_horizon_hours, pt_multiplier, sl_multiplier,
+    reward_risk_ratio = PT/SL if present. Leave bar-count vertical_horizon and nested grid-cell notes untouched.
+ 4. export_research_dataset.py EXPECTED_* constants if present (a stale 702.306 rejected HK's correct lock).
+Task 2A / Steps 01-09 read geometry from edge.yaml (trade_geometry.load_trade_geometry), not the .py constants -
+grep that all four agree.
+
+------------------------------------------------------------------------
+STEP 8 - register
+------------------------------------------------------------------------
+Add to config/edge_universe.json:
+{ "asset": "XAUUSD", "family": "compressionbreakoutcontinuation", "side": "short", "enabled": true,
+  "status": "research_in_progress", "bar_scope": "asset_level_shared_bars", "bar_mode": "standard_quote_tick",
+  "threshold_unit": "ticks", "candidate_event_generator": "compressionbreakoutcontinuation_short_candidate_events",
+  "notes": "Research-in-progress. Not for allocator/live until Step 09 PASS, Gate D PASS, and promoted." }
+Never set deployability_pass by hand. The file holds ONLY deployable + in-research edges; the allocator reads it.
+
+------------------------------------------------------------------------
+STEP 9 - export model rows
+------------------------------------------------------------------------
+python .\assets\XAUUSD\edges\compressionbreakoutcontinuation_short\export_research_dataset.py --overwrite
+Writes model_rows.csv, candidate_events.csv, feature_matrix.csv (not mldp_execution_resolution.csv - STEP 10).
+Needed after ANY geometry/event change, even a pure relabel. Verify by manifest MTIME. Same-asset exports and
+self-tests run SERIALLY (shared HMM continuation cache file).
+
+------------------------------------------------------------------------
+STEP 10 - Task 2A (label / economics split, deviation D016)
+------------------------------------------------------------------------
+python build_mldp_executable_targets.py --edge-root assets/XAUUSD/edges/compressionbreakoutcontinuation_short
+Two exact replays per event:
+ - LABEL: triple barrier on the Dukascopy MID (zero spread, no carry, 0 ms) -> label_r / label_t1;
+   quote_executable_meta_label = int(label_r > 0). Firm-neutral. Never label on Dukascopy bid/ask (D016).
+ - ECONOMICS: research firm's broker cost model, 5700 ms -> executed_r = quote_executable_r. Keys research_firm and
+   entry_delay_ms in portfolio_allocator/config/broker_repricing.json.
+Check (EXACT): "Resolved quote-executable R mean" == Gate C winner exec_mean_R; coverage ~99.9-100%. A mismatch =
+a lock place missed or the asi8 bug. Several edges: parallel per --edge-root, 5-6 concurrent max on 8 cores.
+
+------------------------------------------------------------------------
+STEPS 11-12 - research lifecycle 01-09 (venv312)
+------------------------------------------------------------------------
+01_feature_surgery_clustered_mda -> 02_train_meta_model_optuna -> 03_generate_oof_predictions ->
+03b_oof_threshold_sweep -> 04_fit_sigmoid_calibrator_and_thresholds -> 04b_lock_selected_features_and_model_input_schema
+-> 05_training_artifact_verifier -> 06_verify_runtime_scoring_ready -> 07_runtime_score_smoke_test ->
+08_probability_calibration_afml_replay_audit -> 09_export_edge_manifest   (all under <edge>\research\)
+Driver: bash run_edge_lifecycle_01_09.sh (repo root) -> _lifecycle_logs/<ASSET>_<family_side>/{01..09}.log, timing.log,
+status.txt. ~20-25 min/edge; start at 2-3 concurrent, re-check CPU/memory every batch.
+Steps 01-03 train on the MID label; sample weights = class balance x AFML 4.6 return attribution x uniqueness.
+Steps 04/05 economics = quote_executable_r. The pipeline is deterministic (same inputs -> identical OOF).
+no_positive_executable_threshold_region at Step 04/05 is a REAL finding. Step 06 fails on an edge.yaml status / old
+edge_manifest PASS mismatch -> promote_edge_status.py. No 03A (retired).
+
+------------------------------------------------------------------------
+STEP 12B - GATE D: meta-model discrimination
+------------------------------------------------------------------------
+python .\shared\edges\gate_d_calibration_monotonicity.py --edge-root <edge> --write-report
+AUC-ROC of raw_probability vs quote_executable_meta_label (= MID label) over every OOF row; one-sided Mann-Whitney U vs
+AUC = 0.5. PASS = AUC > 0.5 and p < 0.05. Exit code IS the verdict - read the verdict: line. Never use
+calibrated_probability, *_calibrated_threshold_sweep.csv or expectancy_r. Gate C passing does not imply Gate D, or the
+reverse; a Gate D fail after a relabel is a real finding.
+
+------------------------------------------------------------------------
+STEP 13 - promote / fail
+------------------------------------------------------------------------
+PASS (Gate C + PBO + Steps 01-09 + Gate D):
+  python .\shared\edges\promote_edge_status.py --edge-root <edge> --status deployability_pass --write
+  python .\shared\edges\verify_edge_registry.py
+FAIL: delete the edge's object from config/edge_universe.json (no disabled entries). After the user reviews, MOVE the
+folder out of the repo to Desktop\Quantara_edge_archive_<date> - artifacts are gitignored and some folders untracked,
+so git cannot restore them. Never hard-delete.
+
+------------------------------------------------------------------------
+STEP 14 - independence (diagnostic only)
+------------------------------------------------------------------------
+python .\shared\independence\run_deployed_edge_independence_lab.py --cross-asset --deployed-only --mode selected_trades
+  --threshold-policy selected --output-dir <dir>      (add --sweep for threshold robustness)
+Circular-shift permutation (BH-FDR) + Marcenko-Pastur effective bets. Never kills, promotes or reweights.
+
+------------------------------------------------------------------------
+STEP 15 - hand-off to allocator + live (venv39; Quantara_Runbook.docx Sections 7-18)
+------------------------------------------------------------------------
+Every allocator run: 00a -> 00b -> 00c --firm <trading firm> -> 00d --firm <same> -> broker_repricing.json
+enabled=true, firm=<trading firm> -> 01, 02, 03, 04b, 04bb, 04c, 04ca_analyze_rejected_edge_gates_optional, 04d, 05 ..
+11 (STRESS_PASS) -> portfolio_live 00..04 -> Phase C/D if the edge set changed. Rerun only on a firm switch or an edge-
+set change; no periodic 00c while live (the per-trade cost guard checks live spread at every entry).
+Re-selection rule: every LIVE edge is re-run from Gate A whenever the cost model or label definition changes - old
+geometries are invalid (10-17: HK drawdownhazard 702h -> 168h, XAUUSD volatilitycarry 168h -> 16h).
+Any edge-source change, even one constant, invalidates D2/D3/D4 certificates for FAST routing (see v5.3 change 1).
+
+------------------------------------------------------------------------
+KEY RULES
+------------------------------------------------------------------------
+- A gross >= 0.05 -> B all net > 0 (fresh grid) -> C exec_mean_R > 0 + compound velocity -> PBO < 0.5 AND
+  Prob < 0.5 -> stress -> 4-place lock -> export -> Task 2A (exact mean) -> 01-09 -> D (AUC, MWU p < 0.05) -> promote.
+- Labels = Dukascopy MID. Economics = research-firm cost model at 5700 ms. Costs never enter labels.
+- Calendar-time hours; EWM bar-count. 2000-row floor. Test long AND short on every asset.
+- The allocator, not Step 04, owns the live threshold (per-edge selected_threshold is not live).
+- Sizing = AFML 10.3 size x 10.2 budgeting per trade (risk / c_q concurrency quantile); no 10.4/10.5 (D017).
+- Live code uses live_calibrated_probability, never the fold-averaged calibrated_probability (D015).
+- Commit only approved edges, only when the user says so.
+
+------------------------------------------------------------------------
+STATE 2026-10-22 (Moneta, live since 2026-10-19)
+------------------------------------------------------------------------
+Live (6): XAUUSD/rangestructure_long, XAUUSD/volatilitycarry_long, JPN/rangestructure_long, JPN/volatilitycarry_long,
+GBPJPY/dailyrangecompletionfade_long, HK/drawdownhazardcontinuation_short. All 6 FAST (D2/D3/D4 certified 2026-10-18).
+Removed edges and reasons: docx Sections 23.5 and 24.
+No edges yet: USDMXN, USOIL, BTCUSD, NASDAQ, US500, DAX. Archive: Desktop\Quantara_edge_archive_2026-10-17.

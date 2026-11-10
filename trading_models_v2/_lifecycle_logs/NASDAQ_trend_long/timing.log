@@ -1,0 +1,24 @@
+asset=NASDAQ edge=trend_long started_at=2026-09-25T15:45:31+02:00
+---- 01_feature_surgery_clustered_mda.py start 2026-09-25T15:45:31+02:00 ----
+01_feature_surgery_clustered_mda.py exit=0 elapsed_seconds=138
+---- 02_train_meta_model_optuna.py start 2026-09-25T15:47:49+02:00 ----
+02_train_meta_model_optuna.py exit=0 elapsed_seconds=167
+---- 03_generate_oof_predictions.py start 2026-09-25T15:50:36+02:00 ----
+03_generate_oof_predictions.py exit=0 elapsed_seconds=448
+---- 03b_oof_threshold_sweep.py start 2026-09-25T15:58:04+02:00 ----
+03b_oof_threshold_sweep.py exit=0 elapsed_seconds=5
+---- 04_fit_sigmoid_calibrator_and_thresholds.py start 2026-09-25T15:58:09+02:00 ----
+04_fit_sigmoid_calibrator_and_thresholds.py exit=0 elapsed_seconds=8
+---- 04b_lock_selected_features_and_model_input_schema.py start 2026-09-25T15:58:17+02:00 ----
+04b_lock_selected_features_and_model_input_schema.py exit=0 elapsed_seconds=4
+---- 05_training_artifact_verifier.py start 2026-09-25T15:58:21+02:00 ----
+05_training_artifact_verifier.py exit=0 elapsed_seconds=2
+---- 06_verify_runtime_scoring_ready.py start 2026-09-25T15:58:23+02:00 ----
+06_verify_runtime_scoring_ready.py exit=0 elapsed_seconds=3
+---- 07_runtime_score_smoke_test.py start 2026-09-25T15:58:27+02:00 ----
+07_runtime_score_smoke_test.py exit=0 elapsed_seconds=277
+---- 08_probability_calibration_afml_replay_audit.py start 2026-09-25T16:03:04+02:00 ----
+08_probability_calibration_afml_replay_audit.py exit=0 elapsed_seconds=279
+---- 09_export_edge_manifest.py start 2026-09-25T16:07:43+02:00 ----
+09_export_edge_manifest.py exit=0 elapsed_seconds=1
+asset=NASDAQ edge=trend_long finished_at=2026-09-25T16:07:44+02:00 result=ALL_STEPS_01_09_COMPLETE

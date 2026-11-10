@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — JPN/trend_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\research_dataset\jpn_trend_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\feature_surgery\jpn_trend_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\model\jpn_trend_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\oof
+AFML Ch.4 weights | source=assets/JPN/bars/standard_quote_tick/jpn_standard_quote_tick_bars.csv | events=6,351 | mean_uniqueness=0.233237 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 6,345/6,351 rows retained (mldp_target_eligible==True); 6 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 6,351
+Rows after selected-feature NaN filter : 6,351
+Date range: 2022-06-14 04:06:30.542000+00:00 -> 2026-06-12 04:30:35.001000+00:00
+Rows used: 6,345
+Selected feature count: 103
+Target mean: 0.371158
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=3,707 test=2,538 thr=0.72 train_f1=0.5325 test_f1=0.5516 precision=0.3841 recall=0.9784 logloss=1.03375
+Fold 02: train=3,602 test=2,538 thr=0.66 train_f1=0.5519 test_f1=0.5293 precision=0.3602 recall=0.9978 logloss=1.04639
+Fold 03: train=3,606 test=2,538 thr=0.68 train_f1=0.5595 test_f1=0.5092 precision=0.3436 recall=0.9828 logloss=1.03288
+Fold 04: train=3,702 test=2,538 thr=0.70 train_f1=0.5601 test_f1=0.5060 precision=0.3485 recall=0.9232 logloss=1.00738
+Fold 05: train=3,700 test=2,538 thr=0.72 train_f1=0.5214 test_f1=0.5728 precision=0.4053 recall=0.9766 logloss=1.06384
+Fold 06: train=3,599 test=2,538 thr=0.74 train_f1=0.5259 test_f1=0.5525 precision=0.3879 recall=0.9594 logloss=1.04632
+Fold 07: train=3,695 test=2,538 thr=0.70 train_f1=0.5251 test_f1=0.5619 precision=0.3931 recall=0.9850 logloss=1.04028
+Fold 08: train=3,702 test=2,538 thr=0.67 train_f1=0.5428 test_f1=0.5345 precision=0.3652 recall=0.9968 logloss=1.04681
+Fold 09: train=3,697 test=2,538 thr=0.64 train_f1=0.5432 test_f1=0.5397 precision=0.3705 recall=0.9936 logloss=1.01353
+Fold 10: train=3,806 test=2,538 thr=0.70 train_f1=0.5540 test_f1=0.5196 precision=0.3527 recall=0.9866 logloss=1.04307
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 6,345 / 6,345
+Coverage rate: 1.0000
+Raw log loss: 1.033759
+Raw Brier: 0.395732
+Raw ROC AUC: 0.504738
+Raw PR AUC: 0.371405
+Diagnostic global F1 threshold: 0.66
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\oof\jpn_trend_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trend_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

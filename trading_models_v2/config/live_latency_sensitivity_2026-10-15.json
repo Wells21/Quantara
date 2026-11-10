@@ -1,0 +1,507 @@
+{
+ "date": "2026-10-15",
+ "purpose": "User request: measure the real live execution delay and test all 15 edge_universe.json edges at that delay.",
+ "measured_live_latency": {
+  "source": "portfolio_live/outputs/portfolio_execution_bot (206 executed + 237 closed live trades, 2026-08-26..2026-10-15)",
+  "signal_bar_close_to_order_tick_s": {
+   "median": 5.6,
+   "p25": 5.19,
+   "p75": 6.35,
+   "p95": 8.09,
+   "p99": 28.4,
+   "max": 87.5
+  },
+  "signal_bar_close_to_broker_fill_s": {
+   "median": 5.74,
+   "p25": 5.23,
+   "p75": 6.51,
+   "p95": 8.55,
+   "note": "closed-trade entry_time is broker server time; minus 10800 s offset"
+  },
+  "per_asset_median_s": {
+   "DAX": 6.11,
+   "GBPJPY": 5.34,
+   "HK": 5.34,
+   "JPN": 5.19,
+   "NASDAQ": 5.52,
+   "US500": 5.56,
+   "XAUUSD": 5.83
+  },
+  "certification_assumption": "All edges certified at Gate C entry_delay_ms=0 (first quote after bar close)."
+ },
+ "test": "Exact Bid/Ask replay of each edge's LIVE geometry, extra cost 0, entry delay 0 / 5700 (live median) / 8500 (live p95) ms, all candidate events (no meta-label filter, same basis as Gate C).",
+ "results": {
+  "DAX/absorption_long": {
+   "geometry": "H4.372_E100_V545.592_PT2_SL1",
+   "n": 5481,
+   "0ms": {
+    "exec_mean_R": 0.04095112901174803,
+    "ci_lo": -0.03495871299923891,
+    "ci_hi": 0.11909586209892213,
+    "R_per_week": 1.0773435097588648,
+    "cv_score": 0.0005718616688974498,
+    "median_entry_lag_ms": 351.0,
+    "audit_stamp": "20261015T081337Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.036634599428167054,
+    "ci_lo": -0.03927744424255973,
+    "ci_hi": 0.11551844061282322,
+    "R_per_week": 0.9637841221722857,
+    "cv_score": 0.000473067438967089,
+    "median_entry_lag_ms": 6469.0,
+    "audit_stamp": "20261015T081735Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.03709545511640615,
+    "ci_lo": -0.03921111716520536,
+    "ci_hi": 0.11646402747309792,
+    "R_per_week": 0.9759083272098906,
+    "cv_score": 0.00048138247304903493,
+    "median_entry_lag_ms": 9291.0,
+    "audit_stamp": "20261015T082132Z"
+   }
+  },
+  "DAX/reversal_long": {
+   "geometry": "H6.038_E100_V545.592_PT2_SL1",
+   "n": 4514,
+   "0ms": {
+    "exec_mean_R": 0.037039625511355,
+    "ci_lo": -0.0461740133392857,
+    "ci_hi": 0.12215134145021947,
+    "R_per_week": 0.802550244462756,
+    "cv_score": 0.00039117956571252903,
+    "median_entry_lag_ms": 301.0,
+    "audit_stamp": "20261015T082529Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.03973664484407113,
+    "ci_lo": -0.04138514619942046,
+    "ci_hi": 0.12616084322748936,
+    "R_per_week": 0.8609874855231051,
+    "cv_score": 0.0004394815872481594,
+    "median_entry_lag_ms": 6358.5,
+    "audit_stamp": "20261015T082904Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.04270751906884366,
+    "ci_lo": -0.03833319395334693,
+    "ci_hi": 0.12717409374253608,
+    "R_per_week": 0.9253584342690195,
+    "cv_score": 0.0004680543624443524,
+    "median_entry_lag_ms": 9174.5,
+    "audit_stamp": "20261015T083245Z"
+   }
+  },
+  "DAX/timeregime_long": {
+   "geometry": "H8_E100_V168_PT2_SL1",
+   "n": 4615,
+   "0ms": {
+    "exec_mean_R": 0.04647988701510646,
+    "ci_lo": -0.04374432024513161,
+    "ci_hi": 0.14091595598903225,
+    "R_per_week": 1.018507209580433,
+    "cv_score": 0.0005762574909014991,
+    "median_entry_lag_ms": 302.0,
+    "audit_stamp": "20261015T083641Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.04179996461098674,
+    "ci_lo": -0.04854096035722156,
+    "ci_hi": 0.13515020911794676,
+    "R_per_week": 0.9159567299003997,
+    "cv_score": 0.0004803764896482431,
+    "median_entry_lag_ms": 6372.0,
+    "audit_stamp": "20261015T084029Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.04043697753082917,
+    "ci_lo": -0.050025774776971794,
+    "ci_hi": 0.1343492333836614,
+    "R_per_week": 0.8860897862209909,
+    "cv_score": 0.0004464294511405819,
+    "median_entry_lag_ms": 9221.0,
+    "audit_stamp": "20261015T084357Z"
+   }
+  },
+  "GBPJPY/dailyrangecompletionfade_long": {
+   "geometry": "H7.462_E100_V551.897_PT2_SL1",
+   "n": 3998,
+   "0ms": {
+    "exec_mean_R": 0.042531521511175646,
+    "ci_lo": -0.07822469156291491,
+    "ci_hi": 0.1740203537275108,
+    "R_per_week": 0.799519269566449,
+    "cv_score": 0.0004951566858157226,
+    "median_entry_lag_ms": 107.0,
+    "audit_stamp": "20261015T085153Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.04199852122382571,
+    "ci_lo": -0.07840600813204664,
+    "ci_hi": 0.17377566373810582,
+    "R_per_week": 0.7894997831883576,
+    "cv_score": 0.000478384096995892,
+    "median_entry_lag_ms": 5909.5,
+    "audit_stamp": "20261015T085940Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.04192408269774982,
+    "ci_lo": -0.07830840699523986,
+    "ci_hi": 0.17254155895738746,
+    "R_per_week": 0.7881004672485278,
+    "cv_score": 0.00047720004886740583,
+    "median_entry_lag_ms": 8709.5,
+    "audit_stamp": "20261015T090731Z"
+   }
+  },
+  "XAUUSD/rangestructure_long": {
+   "geometry": "H8_E100_V16_PT2_SL1",
+   "n": 4379,
+   "0ms": {
+    "exec_mean_R": 0.12369143344124138,
+    "ci_lo": 0.040222636046062146,
+    "ci_hi": 0.2038175251656727,
+    "R_per_week": 2.734558044785359,
+    "cv_score": 0.0034493642128649664,
+    "median_entry_lag_ms": 102.0,
+    "audit_stamp": "20261015T082017Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.1263313624264909,
+    "ci_lo": 0.044351635392485926,
+    "ci_hi": 0.2056931956578538,
+    "R_per_week": 2.7929213351397024,
+    "cv_score": 0.0037565265068801594,
+    "median_entry_lag_ms": 5902.0,
+    "audit_stamp": "20261015T083025Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.12888963523972957,
+    "ci_lo": 0.04714092158958246,
+    "ci_hi": 0.20851285973370892,
+    "R_per_week": 2.8494793788745643,
+    "cv_score": 0.003780696628469534,
+    "median_entry_lag_ms": 8700.0,
+    "audit_stamp": "20261015T084026Z"
+   }
+  },
+  "XAUUSD/volatilitycarry_long": {
+   "geometry": "H6_E100_V168_PT2_SL1",
+   "n": 4591,
+   "0ms": {
+    "exec_mean_R": 0.12242493366431484,
+    "ci_lo": 0.020527262814331787,
+    "ci_hi": 0.2226678132532187,
+    "R_per_week": 2.8397756449390985,
+    "cv_score": 0.0022263240094857056,
+    "median_entry_lag_ms": 151.0,
+    "audit_stamp": "20261015T084945Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.12420802188828069,
+    "ci_lo": 0.02368416791853213,
+    "ci_hi": 0.2237021764267594,
+    "R_per_week": 2.881136259641003,
+    "cv_score": 0.002212769509459311,
+    "median_entry_lag_ms": 5983.0,
+    "audit_stamp": "20261015T085905Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.12123276531685097,
+    "ci_lo": 0.019727044647741516,
+    "ci_hi": 0.22045302302796707,
+    "R_per_week": 2.8121220409185472,
+    "cv_score": 0.0021259786320619698,
+    "median_entry_lag_ms": 8779.0,
+    "audit_stamp": "20261015T090824Z"
+   }
+  },
+  "XAUUSD/volatilityregime_long": {
+   "geometry": "H8_E50_V96_PT2_SL1",
+   "n": 2641,
+   "0ms": {
+    "exec_mean_R": 0.06343378012147609,
+    "ci_lo": -0.023441306512506695,
+    "ci_hi": 0.1510039805316761,
+    "R_per_week": 0.8442985433711703,
+    "cv_score": 0.000736389747385509,
+    "median_entry_lag_ms": 106.0,
+    "audit_stamp": "20261015T091736Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.06589989130330437,
+    "ci_lo": -0.022577956538773376,
+    "ci_hi": 0.1538753630705909,
+    "R_per_week": 0.8771222860934496,
+    "cv_score": 0.0008058230575861728,
+    "median_entry_lag_ms": 5913.0,
+    "audit_stamp": "20261015T092629Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.0658861429361437,
+    "ci_lo": -0.021816309598859277,
+    "ci_hi": 0.15474347682253245,
+    "R_per_week": 0.8769392964254011,
+    "cv_score": 0.0007881907777116446,
+    "median_entry_lag_ms": 8709.0,
+    "audit_stamp": "20261015T093518Z"
+   }
+  },
+  "HK/breakdownretestfailure_short": {
+   "geometry": "H8_E100_V168_PT2_SL1",
+   "n": 1679,
+   "0ms": {
+    "exec_mean_R": 0.04623857315615991,
+    "ci_lo": -0.07499390430881704,
+    "ci_hi": 0.16154745477804358,
+    "R_per_week": 0.38055635546563704,
+    "cv_score": 0.00036758402845158257,
+    "median_entry_lag_ms": 551.0,
+    "audit_stamp": "20261015T081205Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.04424766879890374,
+    "ci_lo": -0.07438429741274742,
+    "ci_hi": 0.16039052368633516,
+    "R_per_week": 0.3641706572366005,
+    "cv_score": 0.00033915262125575757,
+    "median_entry_lag_ms": 6077.0,
+    "audit_stamp": "20261015T081430Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.04018891998374797,
+    "ci_lo": -0.07989596155610687,
+    "ci_hi": 0.155571041385497,
+    "R_per_week": 0.33076602228755725,
+    "cv_score": 0.0002879997711539559,
+    "median_entry_lag_ms": 8906.0,
+    "audit_stamp": "20261015T081655Z"
+   }
+  },
+  "HK/drawdownhazardcontinuation_short": {
+   "geometry": "H8.519_E100_V702.306_PT2_SL1",
+   "n": 4133,
+   "0ms": {
+    "exec_mean_R": 0.03841160322149855,
+    "ci_lo": -0.08684892956170708,
+    "ci_hi": 0.15814696366317688,
+    "R_per_week": 0.789577458832191,
+    "cv_score": 0.0003378323967957751,
+    "median_entry_lag_ms": 552.0,
+    "audit_stamp": "20261015T081919Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.04290920709756218,
+    "ci_lo": -0.08053669126620934,
+    "ci_hi": 0.16291858017947314,
+    "R_per_week": 0.8820288626129257,
+    "cv_score": 0.00041061604117970026,
+    "median_entry_lag_ms": 6123.0,
+    "audit_stamp": "20261015T082144Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.042639614202620274,
+    "ci_lo": -0.0813289416957905,
+    "ci_hi": 0.16235622828951504,
+    "R_per_week": 0.8764871914756922,
+    "cv_score": 0.00040015074702014864,
+    "median_entry_lag_ms": 8929.0,
+    "audit_stamp": "20261015T082406Z"
+   }
+  },
+  "JPN/volatilitycarry_long": {
+   "geometry": "H8_E100_V168_PT2_SL1",
+   "n": 4898,
+   "0ms": {
+    "exec_mean_R": 0.06886010977872928,
+    "ci_lo": -0.044859332042365516,
+    "ci_hi": 0.18171058357557066,
+    "R_per_week": 1.6052383650538808,
+    "cv_score": 0.0008063024074067149,
+    "median_entry_lag_ms": 701.0,
+    "audit_stamp": "20261015T082637Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.06933945638463389,
+    "ci_lo": -0.044130598789118645,
+    "ci_hi": 0.18280018867369965,
+    "R_per_week": 1.6164126946393114,
+    "cv_score": 0.0008110394707679213,
+    "median_entry_lag_ms": 7167.0,
+    "audit_stamp": "20261015T082842Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.06643137644139993,
+    "ci_lo": -0.047043018105888235,
+    "ci_hi": 0.1805965438691402,
+    "R_per_week": 1.5486207392020743,
+    "cv_score": 0.0007648564236943135,
+    "median_entry_lag_ms": 10082.0,
+    "audit_stamp": "20261015T083058Z"
+   }
+  },
+  "JPN/rangestructure_long": {
+   "geometry": "H8_E100_V96_PT2_SL1",
+   "n": 4470,
+   "0ms": {
+    "exec_mean_R": 0.11029413281979954,
+    "ci_lo": -0.010847288798233077,
+    "ci_hi": 0.23363635530507781,
+    "R_per_week": 2.346487256376397,
+    "cv_score": 0.002006035756504815,
+    "median_entry_lag_ms": 656.0,
+    "audit_stamp": "20261015T083312Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.11517890550654354,
+    "ci_lo": -0.004489929427624485,
+    "ci_hi": 0.23577895448784747,
+    "R_per_week": 2.4504098909418026,
+    "cv_score": 0.00217199727811223,
+    "median_entry_lag_ms": 7119.0,
+    "audit_stamp": "20261015T083530Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.11226276129236283,
+    "ci_lo": -0.00809054015975336,
+    "ci_hi": 0.23350170604270606,
+    "R_per_week": 2.388369462667068,
+    "cv_score": 0.002014800191615802,
+    "median_entry_lag_ms": 9982.5,
+    "audit_stamp": "20261015T083751Z"
+   }
+  },
+  "US500/absorption_long": {
+   "geometry": "H6.572_E50_V552.113_PT2_SL1",
+   "n": 5516,
+   "0ms": {
+    "exec_mean_R": 0.003677435547352098,
+    "ci_lo": -0.07511806081814576,
+    "ci_hi": 0.08388825017445156,
+    "R_per_week": 0.09719571711145927,
+    "cv_score": -0.0001567937105058623,
+    "median_entry_lag_ms": 403.0,
+    "audit_stamp": "20261015T081304Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.0003159064222357113,
+    "ci_lo": -0.07824410181245092,
+    "ci_hi": 0.07776108675677348,
+    "R_per_week": 0.008349500855677558,
+    "cv_score": -0.0002272597775063138,
+    "median_entry_lag_ms": 6376.0,
+    "audit_stamp": "20261015T081628Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.002982139861172232,
+    "ci_lo": -0.07394073096978059,
+    "ci_hi": 0.07930072538608081,
+    "R_per_week": 0.07881884498071144,
+    "cv_score": -0.00017491231834837289,
+    "median_entry_lag_ms": 9197.5,
+    "audit_stamp": "20261015T081955Z"
+   }
+  },
+  "US500/volatilitycarry_long": {
+   "geometry": "H2.837_E100_V552.113_PT2_SL1",
+   "n": 5056,
+   "0ms": {
+    "exec_mean_R": 0.051119654141109715,
+    "ci_lo": -0.05102737231326904,
+    "ci_hi": 0.15243655562554784,
+    "R_per_week": 1.2418663488229262,
+    "cv_score": 0.0008090399198737509,
+    "median_entry_lag_ms": 596.0,
+    "audit_stamp": "20261015T082316Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.052241683897178114,
+    "ci_lo": -0.05168255505048787,
+    "ci_hi": 0.15202381093324122,
+    "R_per_week": 1.2691241818394212,
+    "cv_score": 0.0008645951370981185,
+    "median_entry_lag_ms": 6815.0,
+    "audit_stamp": "20261015T082639Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.05484930838952516,
+    "ci_lo": -0.04800611548056989,
+    "ci_hi": 0.15562054103069803,
+    "R_per_week": 1.3324720499308849,
+    "cv_score": 0.0009990835148183626,
+    "median_entry_lag_ms": 9612.5,
+    "audit_stamp": "20261015T082936Z"
+   }
+  },
+  "NASDAQ/volatilityshockcontinuation_long": {
+   "geometry": "H20_E200_V5_PT1_SL1",
+   "n": 2187,
+   "0ms": {
+    "exec_mean_R": 0.023669319563089465,
+    "ci_lo": -0.011603729971301532,
+    "ci_hi": 0.05961204741377885,
+    "R_per_week": 0.2576977135670297,
+    "cv_score": 0.0012687998279909303,
+    "median_entry_lag_ms": 151.0,
+    "audit_stamp": "20261015T084205Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.025333117357806266,
+    "ci_lo": -0.009467743948930655,
+    "ci_hi": 0.06142691870034036,
+    "R_per_week": 0.27581217124687785,
+    "cv_score": 0.001446300049348679,
+    "median_entry_lag_ms": 5796.0,
+    "audit_stamp": "20261015T085334Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.02523436269075132,
+    "ci_lo": -0.009292805679589226,
+    "ci_hi": 0.06132235679458435,
+    "R_per_week": 0.2747369881670981,
+    "cv_score": 0.001568538608486918,
+    "median_entry_lag_ms": 8598.0,
+    "audit_stamp": "20261015T090455Z"
+   }
+  },
+  "NASDAQ/sequentialpressure_long": {
+   "geometry": "H4_E50_V96_PT2_SL1",
+   "n": 4562,
+   "0ms": {
+    "exec_mean_R": 0.0524186277442479,
+    "ci_lo": -0.015966675395894435,
+    "ci_hi": 0.12359409240394985,
+    "R_per_week": 1.1925180652256022,
+    "cv_score": 0.0014977915183897986,
+    "median_entry_lag_ms": 151.0,
+    "audit_stamp": "20261015T091628Z"
+   },
+   "5700ms": {
+    "exec_mean_R": 0.055345154942243895,
+    "ci_lo": -0.012990488783293239,
+    "ci_hi": 0.1275280910683678,
+    "R_per_week": 1.2590962398587078,
+    "cv_score": 0.0017661740421727635,
+    "median_entry_lag_ms": 5837.5,
+    "audit_stamp": "20261015T092733Z"
+   },
+   "8500ms": {
+    "exec_mean_R": 0.06198949451828041,
+    "ci_lo": -0.007021892501448959,
+    "ci_hi": 0.1340330607174474,
+    "R_per_week": 1.4102542406857408,
+    "cv_score": 0.0020800268106145716,
+    "median_entry_lag_ms": 8638.0,
+    "audit_stamp": "20261015T093829Z"
+   }
+  }
+ },
+ "conclusion": [
+  "Live latency is NOT eroding the edges: change in mean R from 0 -> 5.7 s is within +-0.005 R for all 15 (noise level); 14/15 remain positive at both 5.7 s and 8.5 s with essentially unchanged R/week and compound-velocity score.",
+  "0 ms baselines reproduce the certified numbers (e.g. NASDAQ volshock +0.0237, seqpressure +0.0524 exactly).",
+  "US500/absorption_long is ~zero at EVERY delay (+0.0037/+0.0003/+0.0030 R, compound velocity NEGATIVE even at 0 ms) -- a pre-existing weakness unrelated to latency (its 2026-09-25 rollout verdict was REJECT_NOISE/KEEP_CONTROL with control score -inf). Flagged to user; no action taken.",
+  "Only XAUUSD rangestructure/volatilitycarry have 95% CIs fully above zero; others' CIs include zero (single-edge noise, as at certification).",
+  "Implication: the current live drawdown is not explained by execution latency; consistent with the long-only book's directional exposure in a falling market."
+ ]
+}

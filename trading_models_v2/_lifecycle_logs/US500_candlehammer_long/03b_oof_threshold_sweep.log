@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — US500/candlehammer_long
+================================================================================
+Edge: US500/candlehammer_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\oof\us500_candlehammer_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 2,714
+Date range: 2022-06-10 14:16:28.223000+00:00 -> 2026-07-02 19:11:57.076000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    US500/candlehammer_long
+segment                          candlehammer_long
+threshold                                     0.71
+candidate_count                               2714
+take_rate                                 0.013265
+trade_count                                     36
+win_rate                                  0.555556
+avg_win_r                                 1.207209
+avg_loss_r                               -0.871364
+expectancy_r                              0.283399
+payoff_ratio                              1.385424
+profit_factor                              1.73178
+gross_profit_r                           24.144183
+gross_loss_r                             13.941828
+cumulative_r                             10.202355
+max_drawdown_r                           -4.678357
+sharpe_r                                  0.232095
+sortino_r                                 0.783235
+calmar_r                                  2.180756
+selected_precision                        0.555556
+selected_recall                                1.0
+selected_f1                               0.714286
+clf_precision                             0.555556
+clf_recall                                0.015674
+clf_f1                                    0.030488
+clf_accuracy                              0.531319
+clf_balanced_accuracy                     0.502274
+predicted_positive_rate                   0.013265
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\oof\us500_candlehammer_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\oof\us500_candlehammer_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\oof\us500_candlehammer_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — JPN/timeregime_long
+================================================================================
+Edge: JPN/timeregime_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\timeregime_long\artifacts\oof\jpn_timeregime_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\timeregime_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,596
+Date range: 2022-06-14 04:46:50.770000+00:00 -> 2026-06-12 05:37:44.434000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    JPN/timeregime_long
+segment                        timeregime_long
+threshold                                 0.67
+candidate_count                           4596
+take_rate                              0.80483
+trade_count                               3699
+win_rate                              0.362801
+avg_win_r                             1.991936
+avg_loss_r                           -1.084128
+expectancy_r                           0.03187
+payoff_ratio                          1.837363
+profit_factor                         1.046135
+gross_profit_r                     2673.178247
+gross_loss_r                       2555.289275
+cumulative_r                        117.888973
+max_drawdown_r                     -199.701582
+sharpe_r                              0.011305
+sortino_r                             0.010604
+calmar_r                              0.590326
+selected_precision                    0.362801
+selected_recall                            1.0
+selected_f1                           0.532434
+clf_precision                         0.362801
+clf_recall                            0.811366
+clf_f1                                0.501401
+clf_accuracy                          0.419278
+clf_balanced_accuracy                 0.505105
+predicted_positive_rate                0.80483
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\timeregime_long\artifacts\oof\jpn_timeregime_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\timeregime_long\artifacts\oof\jpn_timeregime_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\timeregime_long\artifacts\oof\jpn_timeregime_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

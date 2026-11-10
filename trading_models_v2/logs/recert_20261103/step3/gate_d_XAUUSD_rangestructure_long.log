@@ -1,0 +1,19 @@
+================================================================================
+GATE D (AUC-based, raw OOF predictions): XAUUSD/rangestructure_long
+================================================================================
+edge_id: XAUUSD/rangestructure_long
+oof_predictions_csv: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof\xauusd_rangestructure_long_oof_predictions.csv
+n_rows: 4379
+n_positive: 2178
+n_negative: 2201
+positive_rate: 0.49737382964147064
+auc: 0.5251277802184415
+p_value_mannwhitney: 0.001990369038934144
+alpha: 0.05
+verdict: PASS
+reason: AUC=0.5251 (P[raw_probability of a true positive > a true negative]), p=0.00199 (< alpha=0.05) via one-sided Mann-Whitney U on 4379 OOF observations (PASS: statistically significant discrimination).
+diagnostic_kendall_tau_raw_probability_vs_realized_r: 0.032114839388246844
+diagnostic_kendall_tau_p_value: 0.0014401632245289037
+diagnostic_note: Non-gating context only: rank correlation between raw model score and the continuous realized economic outcome across all OOF rows.
+
+Report: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\reports\gate_d_calibration_monotonicity_report.json

@@ -1,0 +1,61 @@
+{
+ "asset": "XAUUSD",
+ "edge": "rangestructure_long",
+ "final_live_threshold": 0.48,
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md (addendum)",
+ "oof_rows": 4379,
+ "all_oof": {
+  "n": 4379,
+  "mean_R": 0.17343,
+  "ci_lo": 0.09451,
+  "ci_hi": 0.25235,
+  "weeks": 194
+ },
+ "taken": {
+  "n": 2251,
+  "mean_R": 0.23609,
+  "ci_lo": 0.14549,
+  "ci_hi": 0.3267,
+  "weeks": 183
+ },
+ "not_taken": {
+  "n": 2128,
+  "mean_R": 0.10715,
+  "ci_lo": 0.01473,
+  "ci_hi": 0.19956,
+  "weeks": 178
+ },
+ "F1_U_unconditional": {
+  "baseline_mean_R": 0.0837,
+  "baseline_se": 0.02378,
+  "diff": 0.15239,
+  "diff_ci_lo": 0.0505,
+  "diff_ci_hi": 0.25428,
+  "verdict": "ADDS BEYOND DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "F1_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.14272,
+  "baseline_se": 0.02486,
+  "diff": 0.09337,
+  "diff_ci_lo": -0.00949,
+  "diff_ci_hi": 0.19624,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "F1_H_hour_matched": {
+  "baseline_mean_R": 0.08193,
+  "baseline_se": 0.02449,
+  "diff": 0.15416,
+  "diff_ci_lo": 0.05163,
+  "diff_ci_hi": 0.2567,
+  "verdict": "ADDS BEYOND DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+ "F2_taken_minus_not_taken": {
+  "diff": 0.12894,
+  "ci_lo": -0.00048,
+  "ci_hi": 0.25836
+ }
+}

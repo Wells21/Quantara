@@ -1,0 +1,45 @@
+{
+  "schema_version": "decommission_rule_v1",
+  "book": "AFML Ch.1 s.1.3.1.6 p.8-9 (re-allocation 'performance decays, allocations become gradually smaller'; decommission 'perform below expectations for a sufficiently extended period'); PSR AFML s.14.7.2 p.203, 0.95 level p.205-206.",
+  "deviation_ids": [
+    "D019",
+    "D021"
+  ],
+  "min_bets_for_verdict": 30,
+  "off_rule": {
+    "statistic": "PSR[SR*=0]",
+    "off_if_at_or_below": 0.05
+  },
+  "shrink_levels": [
+    {
+      "psr_vs_backtest_above": 0.25,
+      "allocation": 1.0
+    },
+    {
+      "psr_vs_backtest_above": 0.15,
+      "allocation": 0.8
+    },
+    {
+      "psr_vs_backtest_above": 0.1,
+      "allocation": 0.6
+    },
+    {
+      "psr_vs_backtest_above": 0.05,
+      "allocation": 0.4
+    },
+    {
+      "psr_vs_backtest_above": -1.0,
+      "allocation": 0.2
+    }
+  ],
+  "backtest_benchmark": {
+    "ledger": "portfolio_allocator/outputs/v2_representative_trade_ledger_core_plus_watchlist.csv",
+    "return_column": "executed_r",
+    "note": "meta-approved bets at the live threshold, broker costs (AFML p.211: bets actually taken)"
+  },
+  "live_source": {
+    "ledger": "portfolio_live/outputs/portfolio_execution_bot/portfolio_closed_trades.jsonl",
+    "return_column": "realized_r"
+  },
+  "edges_source": "portfolio_live/live_manifest.json selected_edges; versions via portfolio_live/edge_versions.py registry (config/edge_version_registry.json)"
+}

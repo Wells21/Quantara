@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — DAX/absorption_long
+================================================================================
+Edge: DAX/absorption_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\absorption_long\artifacts\oof\dax_absorption_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\absorption_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 5,481
+Date range: 2022-06-13 09:52:26.193000+00:00 -> 2026-06-10 18:53:56.475000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    DAX/absorption_long
+segment                        absorption_long
+threshold                                 0.82
+candidate_count                           5481
+take_rate                             0.019157
+trade_count                                105
+win_rate                              0.390476
+avg_win_r                                  2.0
+avg_loss_r                           -1.010659
+expectancy_r                          0.164932
+payoff_ratio                          1.978907
+profit_factor                         1.267738
+gross_profit_r                            82.0
+gross_loss_r                         64.682159
+cumulative_r                         17.317841
+max_drawdown_r                       -8.131984
+sharpe_r                              0.111743
+sortino_r                             5.652755
+calmar_r                              2.129596
+selected_precision                    0.390476
+selected_recall                            1.0
+selected_f1                           0.561644
+clf_precision                         0.390476
+clf_recall                            0.021211
+clf_f1                                0.040236
+clf_accuracy                          0.643131
+clf_balanced_accuracy                 0.501586
+predicted_positive_rate               0.019157
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\absorption_long\artifacts\oof\dax_absorption_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\absorption_long\artifacts\oof\dax_absorption_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\absorption_long\artifacts\oof\dax_absorption_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

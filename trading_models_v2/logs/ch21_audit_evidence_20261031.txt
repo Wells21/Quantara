@@ -1,0 +1,49 @@
+AFML Ch.21 "Brute Force and Quantum Computers" audit evidence (2026-10-31)
+=========================================================================
+Book: AFML Ch.21 = pdf 346-355 = pp.319-328 (s.21.1-21.6, Snippets 21.1-21.7, Figure 21.1, exercises 21.1-21.5), read
+line by line. One worked problem: an N x H trading trajectory omega maximising SR[r] = sum_h (mu_h' omega_h - tau_h) /
+sqrt(sum_h omega_h' V_h omega_h) subject to sum_i |omega_i,h| = 1, with tau_h = sum_n c_n,h sqrt|omega_n,h - omega_n,h-1|;
+discretised to K units (pigeonhole partitions x 2^N signs = Omega), trajectories = Omega^H, searched exhaustively
+(digital) or, the chapter argues, by a quantum annealer (Rosenberg et al. 2016).
+Tool: shared/research/ch21_brute_force_audit/book_snippets_check.py (Snippets 21.1-21.7, Python 2 -> 3 edits only).
+
+== What Quantara has
+No trading-trajectory / rebalancing optimiser, no integer or quantum solver (searched: quantum, anneal, MILP, pulp, cvxpy,
+ortools, rebalance, turnover). Bets are sized once at entry and held to their barriers; trading costs are per trade
+(broker cost model, Gate C); HRP weights are fixed per allocator run (Ch.16). Discrete searches enumerated in
+full: Gate A 405-cell geometry grid (D050-A: search and pay for every trial), Step 04b / 04c threshold grid, allocator
+08 / 08c / 09 risk-setting grids. These are brute force over small finite sets -- the chapter's approach -- and the
+multiple-testing cost of searching is paid (Ch.11 / Ch.14: full-N PBO, all-trials DSR / FWER).
+
+== Checks of the chapter (book_snippets_check.py)
+1. Snippet 21.1 pigeonHole(k, n) yields each ORDERED composition once: (6,3) -> 28 = C(8,2), (1,2,3) and (3,2,1) both
+   present; (3,3) -> 10; (10,4) -> 286. So C(K+N-1, N-1) on p.321 already counts order; the p.321-322 passage ("we must
+   consider all distinct permutations of each partition ... Stirling's approximation") describes nothing extra to count.
+2. Snippet 21.2 getAllWeights multiplies every partition by all 2^N sign vectors (p.323); where a weight is 0 the flip
+   repeats the same vector: (3,3) 80 columns, 38 distinct (42 duplicates); (4,4) 560 columns, 192 distinct (368). The
+   search over Omega^H repeats trajectories (size 3, H = 2: 6,400 searched, 1,444 distinct).
+3. Snippet 21.7's "globally optimal trajectory" is optimal over the 1/k grid only (k = n = 3 by default); Snippet 21.6's
+   static solution is continuous and not in Omega. 200 seeds (size 3, H = 2): static SR > the grid "dynamic optimum" in
+   1 of 200 (medians 0.564 vs 1.241).
+4. Snippet 21.3 evalTCosts starts from w_ = 0: omega* (p.320, the initial allocation) is fixed at zero.
+
+== Book errata / checks
+- p.321: "non-continuous transaction costs" -- sqrt|omega_h - omega_h-1| is continuous (concave, not differentiable at 0).
+- p.321 reasons for non-convexity: (1) time-varying mu_h, V_h alone keep each term linear / quadratic; the non-convexity
+  comes from the equality constraint sum |omega| = 1 (not a convex set), the concave square-root costs and the ratio
+  objective (reason 3).
+- p.321-322 permutations passage (check 1); p.323 2^N signed vectors per partition counts duplicates (check 2).
+- p.324-325 "selects an globally optimal trajectory": over the discretised set only (check 3); "quantum computers have the
+  advantage of evaluating multiple solutions at once" -- a measurement returns one state; annealers (the cited Rosenberg
+  et al. 2016 method) are heuristic. Stated as the chapter's claim, not tested here.
+- p.319 "solvable is nondeterministic polynomial time" (missing "in"); p.320 "a set on assets"; p.324 "an globally";
+  Snippet 21.6 "porftolio"; Snippets Python 2 (xrange, print statement).
+- Garleanu and Pedersen: Journal of Finance Vol. 68 No. 6 is the December 2013 issue (cited as 2012).
+- Exercise 21.1: sum_{n=1}^N C(N,n) = 2^N - 1 is correct.
+Checked correct: the SR formula = evalSR; tau_1 / tau_h = evalTCosts (with omega* = 0); C(K+N-1, N-1); Snippet 21.6
+direction V^-1 mu rescaled to sum |w| = 1; Snippet 21.4 rank construction.
+
+== Not applicable
+The trajectory problem (no rebalanced weight trajectory in Quantara), quantum annealing, Snippets 21.4-21.7 as tools.
+Exercises 21.2 (eigenvalues of rank-r matrices: Marcenko-Pastur / Markowitz's curse, done in Ch.16 / MLAM Ch.2) and
+21.3-21.5 are exercises on the snippets.

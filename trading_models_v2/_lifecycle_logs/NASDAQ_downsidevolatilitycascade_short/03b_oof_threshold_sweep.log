@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — NASDAQ/downsidevolatilitycascade_short
+================================================================================
+Edge: NASDAQ/downsidevolatilitycascade_short
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\nasdaq_downsidevolatilitycascade_short_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 2,535
+Date range: 2022-06-12 22:49:10.765000+00:00 -> 2026-03-23 00:35:44.180000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    NASDAQ/downsidevolatilitycascade_short
+segment                           downsidevolatilitycascade_short
+threshold                                                    0.86
+candidate_count                                              2535
+take_rate                                                 0.05286
+trade_count                                                   134
+win_rate                                                 0.402985
+avg_win_r                                                     2.0
+avg_loss_r                                              -1.014484
+expectancy_r                                             0.200308
+payoff_ratio                                             1.971446
+profit_factor                                            1.330726
+gross_profit_r                                              108.0
+gross_loss_r                                             81.15872
+cumulative_r                                             26.84128
+max_drawdown_r                                          -9.187607
+sharpe_r                                                 0.134888
+sortino_r                                                3.080883
+calmar_r                                                 2.921466
+selected_precision                                       0.402985
+selected_recall                                               1.0
+selected_f1                                              0.574468
+clf_precision                                            0.402985
+clf_recall                                                0.06214
+clf_f1                                                   0.107677
+clf_accuracy                                             0.646943
+clf_balanced_accuracy                                    0.507061
+predicted_positive_rate                                   0.05286
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\nasdaq_downsidevolatilitycascade_short_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\nasdaq_downsidevolatilitycascade_short_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\nasdaq_downsidevolatilitycascade_short_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

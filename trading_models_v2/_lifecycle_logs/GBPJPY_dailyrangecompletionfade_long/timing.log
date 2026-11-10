@@ -1,0 +1,24 @@
+asset=GBPJPY edge=dailyrangecompletionfade_long started_at=2026-11-04T09:03:19+01:00
+---- 01_feature_surgery_clustered_mda.py start 2026-11-04T09:03:19+01:00 ----
+01_feature_surgery_clustered_mda.py exit=0 elapsed_seconds=1740
+---- 02_train_meta_model_optuna.py start 2026-11-04T09:32:19+01:00 ----
+02_train_meta_model_optuna.py exit=0 elapsed_seconds=111
+---- 03_generate_oof_predictions.py start 2026-11-04T09:34:11+01:00 ----
+03_generate_oof_predictions.py exit=0 elapsed_seconds=2728
+---- 03b_oof_threshold_sweep.py start 2026-11-04T10:19:39+01:00 ----
+03b_oof_threshold_sweep.py exit=0 elapsed_seconds=6
+---- 04_fit_sigmoid_calibrator_and_thresholds.py start 2026-11-04T10:19:45+01:00 ----
+04_fit_sigmoid_calibrator_and_thresholds.py exit=0 elapsed_seconds=23
+---- 04b_lock_selected_features_and_model_input_schema.py start 2026-11-04T10:20:08+01:00 ----
+04b_lock_selected_features_and_model_input_schema.py exit=0 elapsed_seconds=4
+---- 05_training_artifact_verifier.py start 2026-11-04T10:20:12+01:00 ----
+05_training_artifact_verifier.py exit=0 elapsed_seconds=2
+---- 06_verify_runtime_scoring_ready.py start 2026-11-04T10:20:14+01:00 ----
+06_verify_runtime_scoring_ready.py exit=0 elapsed_seconds=5
+---- 07_runtime_score_smoke_test.py start 2026-11-04T10:20:19+01:00 ----
+07_runtime_score_smoke_test.py exit=0 elapsed_seconds=649
+---- 08_probability_calibration_afml_replay_audit.py start 2026-11-04T10:31:08+01:00 ----
+08_probability_calibration_afml_replay_audit.py exit=0 elapsed_seconds=659
+---- 09_export_edge_manifest.py start 2026-11-04T10:42:07+01:00 ----
+09_export_edge_manifest.py exit=0 elapsed_seconds=1
+asset=GBPJPY edge=dailyrangecompletionfade_long finished_at=2026-11-04T10:42:08+01:00 result=ALL_STEPS_01_09_COMPLETE

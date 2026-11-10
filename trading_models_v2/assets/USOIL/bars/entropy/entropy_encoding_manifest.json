@@ -1,0 +1,53 @@
+{
+  "schema_version": "afml_ch18_entropy_encoding_v1",
+  "asset": "USOIL",
+  "created_at": "2026-11-07T21:56:31+00:00",
+  "source_bars_path": "assets/USOIL/bars/standard_quote_tick/usoil_standard_quote_tick_bars.csv",
+  "source_bars_sha256": "23f15bcfea93e6fb354de359da4d8c9324d5927886e2a67fd61f91d1ab05627c",
+  "source_bars_rows": 98730,
+  "source_first_datetime": "2020-03-27 01:23:59.475000+00:00",
+  "source_last_datetime": "2026-07-03 16:18:42.591000+00:00",
+  "return_definition": "r_t = numpy.diff(numpy.log(Close)) on the research bars",
+  "returns": 98729,
+  "estimation_policy": "full_research_history_then_freeze (as the FFD d); sealed holdout and live never used",
+  "quantile_letters": 10,
+  "quantile_levels": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "quantile_method": "numpy.quantile default (linear)",
+  "quantile_boundaries": [
+    -0.0036664719722466544,
+    -0.00222407653650194,
+    -0.0013315277872491653,
+    -0.0006207694062361211,
+    0.0,
+    0.0006752707026432603,
+    0.00139415812125625,
+    0.002273188793550318,
+    0.0036664809959050066
+  ],
+  "quantile_in_sample_letter_shares": [
+    0.10000101287362376,
+    0.10000101287362376,
+    0.10000101287362376,
+    0.10000101287362376,
+    0.0903280697667352,
+    0.10966382724427473,
+    0.10000101287362376,
+    0.10000101287362376,
+    0.10000101287362376,
+    0.10000101287362376
+  ],
+  "sigma": 0.004535131772363352,
+  "sigma_definition": "standard deviation of all research-history bar returns (AFML exercise 18.1(c)), numpy ddof=0",
+  "zero_return_share": 0.009997062666491101,
+  "book": "AFML s.18.5.2 p.270 (quantile boundaries from the in-sample period), s.18.5.3 p.270-271 (sigma encoding), exercise 18.1(b)-(c) p.277"
+}

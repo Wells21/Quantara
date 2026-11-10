@@ -1,0 +1,36 @@
+asset=USDMXN edge=downsidevolatilitycascade_short gate_c_exit=0 elapsed_seconds=383
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: USDMXN/downsidevolatilitycascade_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H10_E100_V20_PT1.5_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 2113
+  250/2113 elapsed=48.7s
+  500/2113 elapsed=98.3s
+  750/2113 elapsed=148.4s
+  1000/2113 elapsed=180.5s
+  1250/2113 elapsed=234.4s
+  1500/2113 elapsed=283.1s
+  1750/2113 elapsed=317.3s
+  2000/2113 elapsed=352.0s
+  2113/2113 elapsed=376.1s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H10_E100_V20_PT1.5_SL1 | -0.155178 | [-0.227602,-0.082753] | 0.7267 | 7.328 | 51.406 | -0.508233 | -1.544789 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.120907 | [-0.228110,-0.009888] | 0.8333 | 27.643 | 95.641 | -0.104973 | -1.191093 | 0.207 | 0.265 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.125708 | [-0.235889,-0.012099] | 0.8282 | 25.576 | 94.036 | -0.117962 | -1.238391 | 0.232 | 0.287 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.109459 | [-0.200324,-0.017789] | 0.8340 | 21.740 | 87.069 | -0.120837 | -1.078311 | 0.238 | 0.337 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T213000Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T213000Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

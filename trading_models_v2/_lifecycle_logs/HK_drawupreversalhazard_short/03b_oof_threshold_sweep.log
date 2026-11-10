@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — HK/drawupreversalhazard_short
+================================================================================
+Edge: HK/drawupreversalhazard_short
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\oof\hk_drawupreversalhazard_short_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 1,391
+Date range: 2022-08-02 15:14:23.842000+00:00 -> 2026-06-08 13:19:47.232000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    HK/drawupreversalhazard_short
+segment                       drawupreversalhazard_short
+threshold                                           0.82
+candidate_count                                     1391
+take_rate                                       0.027318
+trade_count                                           38
+win_rate                                        0.394737
+avg_win_r                                            2.0
+avg_loss_r                                     -1.017927
+expectancy_r                                     0.17336
+payoff_ratio                                    1.964778
+profit_factor                                   1.281377
+gross_profit_r                                      30.0
+gross_loss_r                                   23.412319
+cumulative_r                                    6.587681
+max_drawdown_r                                 -5.299467
+sharpe_r                                        0.115945
+sortino_r                                       4.955387
+calmar_r                                        1.243084
+selected_precision                              0.394737
+selected_recall                                      1.0
+selected_f1                                     0.566038
+clf_precision                                   0.394737
+clf_recall                                      0.032751
+clf_f1                                          0.060484
+clf_accuracy                                    0.664989
+clf_balanced_accuracy                            0.50405
+predicted_positive_rate                         0.027318
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\oof\hk_drawupreversalhazard_short_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\oof\hk_drawupreversalhazard_short_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\oof\hk_drawupreversalhazard_short_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

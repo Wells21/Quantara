@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "firm": "moneta",
+  "research_firm": "moneta",
+  "entry_delay_ms": 5700,
+  "note": "RUNBOOK v5.2 single allocator flow (2026-10-17). research_firm/entry_delay_ms: the broker cost model + live delay Task 2A uses for every edge's research economics (labels are always the firm-neutral Dukascopy mid). enabled/firm: EVERY allocator run = 00a -> 00b -> 00c --firm <trading firm> -> 00d --firm <same> -> set enabled=true, firm=<trading firm> -> 01..11 -> portfolio_live; 04b then uses that firm's current executed_r (same rows/order). The allocator reruns only on a prop-firm switch or a change in the deployable edge set. Left false until the allocator phase runs 00c/00d."
+}

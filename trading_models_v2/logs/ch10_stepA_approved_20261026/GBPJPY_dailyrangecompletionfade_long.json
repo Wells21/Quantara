@@ -1,0 +1,170 @@
+{
+  "edge": "GBPJPY/dailyrangecompletionfade_long",
+  "test": "AFML Ch.10 plan step A: remaining-return forecast vs martingale (research period only)",
+  "population": "approved_only",
+  "rows": {
+    "n_trades": 2738,
+    "n_trades_with_rows": 2723,
+    "n_rows": 139028,
+    "rows_dropped_after_barrier_touch": 874,
+    "rows_dropped_nan_features": 0,
+    "n_features": 50,
+    "share_positive": 0.5754596196449636,
+    "n_rows_after_state": 139028
+  },
+  "avg_uniqueness": 0.008221215004804439,
+  "embargo_rows": 1390,
+  "state_cols": [
+    "s_random_walk",
+    "time_left_frac",
+    "entry_oof_prob",
+    "r_so_far",
+    "best_r_so_far",
+    "worst_r_so_far",
+    "hours_in_trade",
+    "vol_since_over_pre",
+    "z_to_tp",
+    "z_to_sl",
+    "hour_of_week",
+    "hours_to_weekend",
+    "hours_to_2100utc"
+  ],
+  "n_features": 50,
+  "tree": {
+    "max_features": "sqrt",
+    "min_weight_fraction_leaf": 0.05
+  },
+  "n_estimators": 1000,
+  "mean_r_rem_weighted": -0.05918253771288173,
+  "pooled_oos_mse": {
+    "zero": 1.5651162486013348,
+    "drift": 1.5649949765271294,
+    "b": 1.529331016928458,
+    "c": 1.5367240633122123
+  },
+  "r2_oos_vs_zero": {
+    "drift": 7.748438770205368e-05,
+    "b": 0.022864264366852183,
+    "c": 0.018140623940550826
+  },
+  "gains": {
+    "mse_gain_b_over_zero": 0.035785231672876845,
+    "mse_gain_b_over_drift": 0.03566395959867158,
+    "mse_gain_c_over_b": -0.0073930463837550385
+  },
+  "bootstrap_95ci": {
+    "mse_gain_b_over_zero": [
+      0.020425274979528354,
+      0.05086592164809128
+    ],
+    "mse_gain_b_over_drift": [
+      0.01989762880620183,
+      0.05123828621081311
+    ],
+    "mse_gain_c_over_b": [
+      -0.014672352560885669,
+      -0.000181047195127893
+    ]
+  },
+  "mean_r_rem_by_prediction_quintile": {
+    "b": [
+      -0.23252577478022116,
+      -0.0399022753355999,
+      0.1790670578662426,
+      0.2049878689295344,
+      0.13776810255368901
+    ],
+    "c": [
+      -0.2132935696060586,
+      0.006776535370213309,
+      0.15202752180637705,
+      0.17228734249851965,
+      0.05861188410318578
+    ]
+  },
+  "GO_state": true,
+  "GO_features": false,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 13903,
+      "mse_zero": 1.443569631951656,
+      "mse_drift": 1.431676828796424,
+      "mse_b": 1.3869699653598244,
+      "mse_c": 1.4010789972630624
+    },
+    {
+      "fold": 1,
+      "n_test": 13903,
+      "mse_zero": 1.499581622903858,
+      "mse_drift": 1.5008688157321077,
+      "mse_b": 1.4427413346107247,
+      "mse_c": 1.454277383517218
+    },
+    {
+      "fold": 2,
+      "n_test": 13903,
+      "mse_zero": 1.6524293618517647,
+      "mse_drift": 1.6808591866985396,
+      "mse_b": 1.6122605692615535,
+      "mse_c": 1.6195735466602372
+    },
+    {
+      "fold": 3,
+      "n_test": 13903,
+      "mse_zero": 1.623491434370802,
+      "mse_drift": 1.6131524408608147,
+      "mse_b": 1.5926741376617355,
+      "mse_c": 1.6042468967745833
+    },
+    {
+      "fold": 4,
+      "n_test": 13903,
+      "mse_zero": 1.4792131311319636,
+      "mse_drift": 1.475011368794765,
+      "mse_b": 1.4615543048481208,
+      "mse_c": 1.4919429325344704
+    },
+    {
+      "fold": 5,
+      "n_test": 13903,
+      "mse_zero": 1.533054281926156,
+      "mse_drift": 1.5169351558977704,
+      "mse_b": 1.4874238165989535,
+      "mse_c": 1.4828830556617048
+    },
+    {
+      "fold": 6,
+      "n_test": 13903,
+      "mse_zero": 1.6431077552559978,
+      "mse_drift": 1.635466522784406,
+      "mse_b": 1.6245106916145684,
+      "mse_c": 1.626407050771361
+    },
+    {
+      "fold": 7,
+      "n_test": 13903,
+      "mse_zero": 1.6618522583864908,
+      "mse_drift": 1.6557578751879976,
+      "mse_b": 1.6670388309301467,
+      "mse_c": 1.652964204087385
+    },
+    {
+      "fold": 8,
+      "n_test": 13902,
+      "mse_zero": 1.6419589235997714,
+      "mse_drift": 1.6383985956305898,
+      "mse_b": 1.6326510117605657,
+      "mse_c": 1.6228283188949642
+    },
+    {
+      "fold": 9,
+      "n_test": 13902,
+      "mse_zero": 1.4455049134079287,
+      "mse_drift": 1.486474438935965,
+      "mse_b": 1.3584539928444468,
+      "mse_c": 1.3934779293728463
+    }
+  ],
+  "elapsed_s": 394.2
+}

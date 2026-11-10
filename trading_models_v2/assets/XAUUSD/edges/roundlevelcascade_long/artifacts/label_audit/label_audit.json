@@ -1,0 +1,88 @@
+{
+  "edge_id": "XAUUSD/roundlevelcascade_long",
+  "status": "OK",
+  "audit_version": "afml_ch3_ch4_label_audit_v2",
+  "written_utc": "2026-11-09T19:51:10Z",
+  "source": "assets/XAUUSD/edges/roundlevelcascade_long/artifacts/research_dataset/xauusd_roundlevelcascade_long_mldp_execution_resolution.csv",
+  "labels": {
+    "rows": 1909,
+    "positive_rate": 0.561,
+    "pt_share": 0.2745,
+    "sl_share": 0.2006,
+    "vertical_share": 0.5249,
+    "vertical_positive_share": 0.5449,
+    "tie_tick_resolved": 1,
+    "tie_fallback": 0,
+    "event_vol_bps": {
+      "min": 11.79,
+      "p01": 20.23,
+      "median": 52.53,
+      "p99": 212.41
+    }
+  },
+  "cost_by_event_vol_quintile": [
+    {
+      "quintile": 0,
+      "event_vol_median_bps": 32.14,
+      "rows": 382,
+      "mean_label_r": 0.216,
+      "mean_executed_r": 0.1901,
+      "mean_cost_r": 0.0259
+    },
+    {
+      "quintile": 1,
+      "event_vol_median_bps": 42.25,
+      "rows": 382,
+      "mean_label_r": 0.0448,
+      "mean_executed_r": 0.0384,
+      "mean_cost_r": 0.0064
+    },
+    {
+      "quintile": 2,
+      "event_vol_median_bps": 52.53,
+      "rows": 381,
+      "mean_label_r": 0.069,
+      "mean_executed_r": 0.0622,
+      "mean_cost_r": 0.0068
+    },
+    {
+      "quintile": 3,
+      "event_vol_median_bps": 66.48,
+      "rows": 382,
+      "mean_label_r": 0.0891,
+      "mean_executed_r": 0.0772,
+      "mean_cost_r": 0.0118
+    },
+    {
+      "quintile": 4,
+      "event_vol_median_bps": 99.73,
+      "rows": 382,
+      "mean_label_r": 0.0178,
+      "mean_executed_r": 0.0069,
+      "mean_cost_r": 0.0109
+    }
+  ],
+  "threshold_mode": "edge_level_threshold_free",
+  "afml_ch4_overlap": {
+    "status": "OK",
+    "t1_source": "label_t1 (fallback gross_t1) snapped to the bar clock",
+    "mean_uniqueness": 0.919,
+    "median_uniqueness": 1.0,
+    "effective_independent_outcomes": 1754.4,
+    "rows": 1909,
+    "share_starting_while_previous_open": 0.1635,
+    "uniqueness_ar1": 0.6771,
+    "median_hold_bars": 11.0,
+    "bootstrap_mean_uniqueness": {
+      "standard": 0.6032,
+      "sequential": 0.6982,
+      "seed": 7
+    }
+  },
+  "step02_cpcv_f1": {
+    "metric": "f1",
+    "model_f1": 0.7185296134131298,
+    "approve_all_f1": 0.7185296134131298,
+    "model_minus_approve_all": 0.0
+  }
+}

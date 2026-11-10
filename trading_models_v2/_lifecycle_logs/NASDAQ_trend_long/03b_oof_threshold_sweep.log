@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — NASDAQ/trend_long
+================================================================================
+Edge: NASDAQ/trend_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_long\artifacts\oof\nasdaq_trend_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 7,257
+Date range: 2022-06-13 16:35:50.629000+00:00 -> 2026-04-16 19:53:43.748000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    NASDAQ/trend_long
+segment                           trend_long
+threshold                               0.85
+candidate_count                         7257
+take_rate                           0.016811
+trade_count                              122
+win_rate                            0.385246
+avg_win_r                           1.987967
+avg_loss_r                          -1.00889
+expectancy_r                        0.145637
+payoff_ratio                        1.970451
+profit_factor                       1.234816
+gross_profit_r                     93.434463
+gross_loss_r                       75.666717
+cumulative_r                       17.767746
+max_drawdown_r                     -8.114506
+sharpe_r                            0.099386
+sortino_r                           9.765526
+calmar_r                            2.189627
+selected_precision                  0.385246
+selected_recall                          1.0
+selected_f1                         0.556213
+clf_precision                       0.385246
+clf_recall                          0.017649
+clf_f1                              0.033752
+clf_accuracy                        0.629186
+clf_balanced_accuracy               0.500662
+predicted_positive_rate             0.016811
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_long\artifacts\oof\nasdaq_trend_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_long\artifacts\oof\nasdaq_trend_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_long\artifacts\oof\nasdaq_trend_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

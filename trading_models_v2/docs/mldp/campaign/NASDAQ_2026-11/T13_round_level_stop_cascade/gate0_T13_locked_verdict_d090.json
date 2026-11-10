@@ -1,0 +1,76 @@
+{
+ "thesis": "T13",
+ "rule": "D090 (owner 2026-11-09)",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 150,
+  "vertical_h": 4.0,
+  "pt": 1.0,
+  "sl": 1.0
+ },
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T13_round_level_stop_cascade/PREREGISTRATION.md",
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK",
+  "XAUUSD",
+  "GBPJPY",
+  "USDMXN",
+  "USOIL",
+  "BTCUSD"
+ ],
+ "by_asset": {
+  "XAUUSD": {
+   "LONG": {
+    "full": {
+     "verdict": "PASS",
+     "n_edge": 1911,
+     "C1_diff": 0.05121,
+     "C1_se": 0.01892,
+     "C1_z": 2.707,
+     "C1_pass_90": true,
+     "other_cf_diffs": {
+      "C2": 0.04697
+     },
+     "other_cf_ok": true,
+     "thin_counterfactuals": [],
+     "diag_drift_month_matched": 0.06684,
+     "in_card_universe": true
+    },
+    "recent_n_edge": 672,
+    "recent_events_per_week": 3.02,
+    "recent_C1_diff": 0.04139,
+    "recent_diag_drift": 0.06921,
+    "recency_ok": true,
+    "firing_ok": true,
+    "verdict": "PASS"
+   },
+   "SHORT": {
+    "full": {
+     "verdict": "PASS",
+     "n_edge": 1808,
+     "C1_diff": 0.03719,
+     "C1_se": 0.02205,
+     "C1_z": 1.687,
+     "C1_pass_90": true,
+     "other_cf_diffs": {
+      "C2": 0.01012
+     },
+     "other_cf_ok": true,
+     "thin_counterfactuals": [],
+     "diag_drift_month_matched": 0.0007,
+     "in_card_universe": true
+    },
+    "recent_n_edge": 522,
+    "recent_events_per_week": 2.35,
+    "recent_C1_diff": 0.01615,
+    "recent_diag_drift": 0.00912,
+    "recency_ok": true,
+    "firing_ok": false,
+    "verdict": "FAIL"
+   }
+  }
+ }
+}

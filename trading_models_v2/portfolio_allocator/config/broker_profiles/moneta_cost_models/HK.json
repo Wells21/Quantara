@@ -1,0 +1,64 @@
+{
+ "model": "FIXED_POINTS",
+ "unit": "pts",
+ "monthly_cv": {
+  "pts": 0.01774784295505864,
+  "spread_bps": 0.043067193195085535
+ },
+ "vol_state_thresholds_rv1d_bps": [
+  91.53144115258632,
+  116.85078639084514
+ ],
+ "minutes": 196247,
+ "span": [
+  "2025-12-11 10:48:00+00:00",
+  "2026-10-16 18:59:00+00:00"
+ ],
+ "mean_spread_bps_time_weighted_full_sample": 2.3685,
+ "fixed_points": 6.085503198381053,
+ "cv_mean_bias_pct_by_week_fold": [
+  1.02,
+  -0.07,
+  1.24,
+  -1.04,
+  -1.96
+ ],
+ "level_rescale_factor_to_recent": 1.0,
+ "mean_spread_bps_time_weighted": 2.5175,
+ "ref_price": 24156.0,
+ "level_window_days": 14,
+ "entry_calibration_factor": 1.0142,
+ "entry_calibration_n": 52,
+ "entry_calibration_raw_ratio": 1.0224,
+ "entry_calibration_note": "actual/pred=1.022 on n=52 live entries, shrunk toward 1 by n/(n+30)",
+ "asset": "HK",
+ "broker": "Moneta Funded Ltd. / MonetaFunded-Live",
+ "fitted_at": "2026-10-17",
+ "point": 1.0,
+ "level_uncertainty_pct": 3.3,
+ "walkforward": {
+  "h8w_mape_pct": 3.3,
+  "h13w_mape_pct": 3.3,
+  "level_uncertainty_pct": 3.3,
+  "weeks": 45
+ },
+ "server_tz_rule": "NY_CLOSE",
+ "clock_alignment_sources": {
+  "measured": 129149,
+  "rule": 67098
+ },
+ "vol_cache": "portfolio_allocator/outputs/dukascopy_minute_vol/minute_rv1d_hk.npz",
+ "swap": {
+  "mode": 2,
+  "long": -3.944,
+  "short": 0.4937,
+  "triple_day": 5,
+  "point": 1.0,
+  "contract_size": 1.0,
+  "ref_price": 24156.0,
+  "rollover_rule": "weekday server-midnights, Sat/Sun 0, triple day x3"
+ },
+ "commission_bps_rt": 0.0,
+ "slippage_beyond_quote_bps": 0.0,
+ "application_note": "Forward-looking: spread and swap converted to bps of notional at ref_price and applied in bps to every era."
+}

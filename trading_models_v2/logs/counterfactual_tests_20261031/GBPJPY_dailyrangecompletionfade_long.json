@@ -1,0 +1,35 @@
+{
+ "asset": "GBPJPY",
+ "edge": "dailyrangecompletionfade_long",
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION.md",
+ "feature_input": "runtime.build_features(drop_warmup_rows=False)",
+ "reproduction": {
+  "events_regenerated": 4357,
+  "events_labeled": 4343,
+  "events_stored": 4357,
+  "event_times_equal": true,
+  "stored_model_rows": 4050,
+  "matched_model_rows": 4050,
+  "max_abs_realized_r_diff": 2.220446049250313e-16,
+  "PASS": true
+ },
+ "edge_events": {
+  "set": "edge events (no clause replaced)",
+  "n": 4343,
+  "mean_R": 0.11711,
+  "ci_lo": 0.00114,
+  "ci_hi": 0.23308,
+  "weeks": 213
+ },
+ "tests": {
+  "C1": {
+   "n": 338,
+   "mean_R": 0.2124,
+   "ci_lo": -0.11531,
+   "ci_hi": 0.54012,
+   "weeks": 109,
+   "overlap_with_edge_events": 0,
+   "verdict": "FAIL"
+  }
+ }
+}

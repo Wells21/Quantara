@@ -1,0 +1,38 @@
+{
+  "edge_id": "XAUUSD/roundlevelcascade_long",
+  "audit_version": "afml_ch7_cv_leakage_audit_v1",
+  "written_utc": "2026-11-09T19:51:09Z",
+  "rows": 1909,
+  "embargo_observations": 100,
+  "purge_t1": "label_t1 (fallback gross_t1)",
+  "model": "Ch.6 sequential-bootstrap bagging, 50 trees, Step 02 best tree params",
+  "kfold10_unshuffled_no_purge": {
+    "auc": 0.5217,
+    "neg_log_loss_weighted": -0.5559
+  },
+  "kfold10_shuffled_no_purge": {
+    "auc": 0.5236,
+    "neg_log_loss_weighted": -0.5565
+  },
+  "purged_embargoed_k_sweep": {
+    "5": {
+      "auc": 0.5102,
+      "neg_log_loss_weighted": -0.557
+    },
+    "10": {
+      "auc": 0.5218,
+      "neg_log_loss_weighted": -0.556
+    },
+    "20": {
+      "auc": 0.5272,
+      "neg_log_loss_weighted": -0.5553
+    },
+    "40": {
+      "auc": 0.5209,
+      "neg_log_loss_weighted": -0.5558
+    }
+  },
+  "shuffle_inflation_auc": 0.0018,
+  "k_sweep_auc_rises_monotonically": false,
+  "verdict": "OK"
+}

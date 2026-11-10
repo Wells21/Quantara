@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — DAX/dailyrangecompletionfade_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\research_dataset\dax_dailyrangecompletionfade_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\feature_surgery\dax_dailyrangecompletionfade_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\model\dax_dailyrangecompletionfade_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\oof
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=4,478 | mean_uniqueness=0.237046 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,478/4,478 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,478
+Rows after selected-feature NaN filter : 4,478
+Date range: 2022-06-13 08:30:52.484000+00:00 -> 2026-06-12 14:01:14.216000+00:00
+Rows used: 4,478
+Selected feature count: 157
+Target mean: 0.343680
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,588 test=1,790 thr=0.54 train_f1=0.5194 test_f1=0.5040 precision=0.3386 recall=0.9852 logloss=1.01328
+Fold 02: train=2,488 test=1,790 thr=0.58 train_f1=0.5049 test_f1=0.5147 precision=0.3491 recall=0.9793 logloss=1.01231
+Fold 03: train=2,486 test=1,790 thr=0.55 train_f1=0.4831 test_f1=0.5254 precision=0.3641 recall=0.9437 logloss=1.02897
+Fold 04: train=2,577 test=1,793 thr=0.68 train_f1=0.5205 test_f1=0.4816 precision=0.3246 recall=0.9330 logloss=1.04474
+Fold 05: train=2,585 test=1,790 thr=0.41 train_f1=0.5186 test_f1=0.5096 precision=0.3419 recall=1.0000 logloss=0.99198
+Fold 06: train=2,483 test=1,790 thr=0.55 train_f1=0.5017 test_f1=0.5226 precision=0.3564 recall=0.9798 logloss=1.03422
+Fold 07: train=2,574 test=1,793 thr=0.60 train_f1=0.5378 test_f1=0.4676 precision=0.3138 recall=0.9171 logloss=0.99206
+Fold 08: train=2,588 test=1,790 thr=0.39 train_f1=0.4944 test_f1=0.5320 precision=0.3649 recall=0.9818 logloss=1.05216
+Fold 09: train=2,577 test=1,793 thr=0.55 train_f1=0.5339 test_f1=0.4883 precision=0.3252 recall=0.9795 logloss=0.97699
+Fold 10: train=2,683 test=1,793 thr=0.32 train_f1=0.5128 test_f1=0.5090 precision=0.3423 recall=0.9919 logloss=1.02659
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,478 / 4,478
+Coverage rate: 1.0000
+Raw log loss: 1.012374
+Raw Brier: 0.390534
+Raw ROC AUC: 0.512442
+Raw PR AUC: 0.347839
+Diagnostic global F1 threshold: 0.36
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\oof\dax_dailyrangecompletionfade_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\dailyrangecompletionfade_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

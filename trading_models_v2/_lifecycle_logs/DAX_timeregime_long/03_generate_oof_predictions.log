@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — DAX/timeregime_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\research_dataset\dax_timeregime_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\feature_surgery\dax_timeregime_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\model\dax_timeregime_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\oof
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=4,615 | mean_uniqueness=0.334713 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,614/4,615 rows retained (mldp_target_eligible==True); 1 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,615
+Rows after selected-feature NaN filter : 4,615
+Date range: 2022-06-13 08:39:34.975000+00:00 -> 2026-06-26 14:37:27.416000+00:00
+Rows used: 4,614
+Selected feature count: 157
+Target mean: 0.357391
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,670 test=1,844 thr=0.66 train_f1=0.5372 test_f1=0.5222 precision=0.3599 recall=0.9512 logloss=1.04780
+Fold 02: train=2,569 test=1,844 thr=0.63 train_f1=0.5451 test_f1=0.5289 precision=0.3642 recall=0.9654 logloss=0.98165
+Fold 03: train=2,564 test=1,844 thr=0.60 train_f1=0.5289 test_f1=0.5163 precision=0.3636 recall=0.8904 logloss=1.00587
+Fold 04: train=2,660 test=1,848 thr=0.61 train_f1=0.5643 test_f1=0.4747 precision=0.3235 recall=0.8915 logloss=0.99168
+Fold 05: train=2,669 test=1,844 thr=0.61 train_f1=0.5189 test_f1=0.5480 precision=0.3774 recall=1.0000 logloss=1.00998
+Fold 06: train=2,563 test=1,844 thr=0.69 train_f1=0.5043 test_f1=0.5414 precision=0.3885 recall=0.8925 logloss=1.05052
+Fold 07: train=2,659 test=1,848 thr=0.56 train_f1=0.5385 test_f1=0.5033 precision=0.3368 recall=0.9952 logloss=1.01672
+Fold 08: train=2,669 test=1,844 thr=0.67 train_f1=0.5053 test_f1=0.5524 precision=0.3904 recall=0.9441 logloss=1.01914
+Fold 09: train=2,659 test=1,848 thr=0.50 train_f1=0.5449 test_f1=0.5088 precision=0.3421 recall=0.9921 logloss=0.97694
+Fold 10: train=2,760 test=1,848 thr=0.58 train_f1=0.5357 test_f1=0.5141 precision=0.3499 recall=0.9688 logloss=1.02322
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,614 / 4,614
+Coverage rate: 1.0000
+Raw log loss: 1.008345
+Raw Brier: 0.384219
+Raw ROC AUC: 0.525912
+Raw PR AUC: 0.373169
+Diagnostic global F1 threshold: 0.59
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\oof\dax_timeregime_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\timeregime_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

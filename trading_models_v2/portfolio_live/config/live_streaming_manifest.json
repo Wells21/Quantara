@@ -1,0 +1,88 @@
+{
+  "absorption": {
+    "candidate_bar_behavior": "untouched_authoritative_full_feature_event_model_score_path",
+    "event_first_gate": true,
+    "fallback": "authoritative_full_feature_path_on_any_probe_error",
+    "non_event_bar_behavior": "skip_full_model_feature_rebuild",
+    "probe_math_owner": "original_edge_generate_candidate_events_plus_original_pandas_ta_atr"
+  },
+  "base_branch": "v2",
+  "continuation": {
+    "ffd": "fixed_width_frozen_d_raw_ring_append_under_cross_process_lock",
+    "hmm": "causal_checkpoint_append_with_original_rng_and_refit_schedule_under_cross_process_lock",
+    "startup_authoritative_warmup": true,
+    "verified_frame_cache": "process_local_append_only"
+  },
+  "deployment_branch": "fix/unified-live-dashboard-hotpath",
+  "entrypoint": "portfolio_live/portfolio_live_dashboard_orchestrator.py",
+  "implementation_hashes": {
+    "portfolio_live/LIVE_STREAMING_HOTPATH_VALIDATION.md": {
+      "sha256": "9946edd77b038ea66fd5d99ceed36d4ea8af14cbd24d6cfb32b44f9fb9249f49",
+      "size_bytes": 898
+    },
+    "portfolio_live/portfolio_live_dashboard_orchestrator.py": {
+      "sha256": "81e1dac3b3d57fcc790f13e936e26ff4b74f7ad2c9a709f7ce4c2c4e8aa1b452",
+      "size_bytes": 411924
+    },
+    "portfolio_live/validate_live_streaming_hotpath.py": {
+      "sha256": "d786d673a65f45a0bdf07a779447dcd590c794844cf40e7f198f1098f6375868",
+      "size_bytes": 8003
+    },
+    "shared/live_streaming/__init__.py": {
+      "sha256": "6fdefeac3405309dbc21d7097d0b4a89b7336dc6c3a3d2bc28dc8d60742379f8",
+      "size_bytes": 77
+    },
+    "shared/live_streaming/absorption.py": {
+      "sha256": "4d30b2528bcc611825abc2fda093ea7e5e66da42d3112d5e4006dd2d9b98f7f9",
+      "size_bytes": 10716
+    },
+    "shared/live_streaming/continuation.py": {
+      "sha256": "10583864f1d4d2f228f3dfe690713414088491d722beab72977c0cb69c27ab37",
+      "size_bytes": 16682
+    },
+    "shared/live_streaming/hotpath.py": {
+      "sha256": "adbb24705503f69bc99dd4b7d64d5c534240d8d1a247399fc1e2e5fb9c4ccb46",
+      "size_bytes": 4170
+    },
+    "shared/live_streaming/state.py": {
+      "sha256": "023cfd19cd9530ef7ba11e55d038acbc018beeb1b4fb36172d1ec311cea8a071",
+      "size_bytes": 6262
+    },
+    "tests/test_live_streaming_hotpath.py": {
+      "sha256": "e5aa41c74632bceb6585d4f2f1340a92fce48785047c090ac6f338fb29fe2798",
+      "size_bytes": 9767
+    }
+  },
+  "launcher": "portfolio_live/portfolio_live_dashboard_orchestrator.py",
+  "model_rebuild_required": false,
+  "parity_policy": {
+    "append_only_history_required": true,
+    "deterministic_noise_contract_required": true,
+    "fallback_on_any_mismatch": "authoritative_original_verifier",
+    "frozen_d_required": true,
+    "hmm_refit_schedule_required": true,
+    "restart_parity_required": true
+  },
+  "research_math_changed": false,
+  "retired_launcher": "portfolio_live/portfolio_live_dashboard_hotpath.py",
+  "scheduling": {
+    "async_newest_job_queue": true,
+    "concurrent_absorption_slow_lane": false,
+    "max_pending_jobs": 1,
+    "nested_numeric_library_threads": 1,
+    "parallel_asset_scoring": false,
+    "parallel_edge_scoring": false
+  },
+  "schema_version": "live_streaming_v1",
+  "single_dashboard_entrypoint": true,
+  "status": "GUARDED_HOTPATH_V1_UNIFIED",
+  "tick_poll_recovery": {
+    "cursor_deduplication": "time_msc plus full quote payload multiplicity",
+    "fallback": "broker-time-aware copy_ticks_range when cursor polling is empty or stale",
+    "max_fallback_lookback_hours": 24,
+    "normal_path": "copy_ticks_from cursor polling",
+    "retry_cooldown_seconds": 15,
+    "snapshot_guard": "symbol_info_tick must be newer than persisted raw cursor"
+  },
+  "validator": "portfolio_live/validate_live_streaming_hotpath.py"
+}

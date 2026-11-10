@@ -1,0 +1,130 @@
+$ shared/ffd/build_asset_ffd_features.py --asset JPN --overwrite
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+✅ V2 asset FFD features built.
+Asset: JPN
+Rows input: 70901
+Rows output: 69902
+Frozen d: 0.3515625
+FFD window: 1000
+Live buffer bars: 1010
+Memory retention passed: True
+ADF p full / first half / second half: 0.0409 / 0.0024 / 0.0097
+Min memory retention corr: 0.976547138991211
+FFD features: assets/JPN/bars/ffd/jpn_ffd_features.csv
+State bundle: assets/JPN/bars/ffd/jpn_ffd_state_bundle.pkl
+Manifest: assets/JPN/bars/ffd/ffd_manifest.json
+Elapsed seconds: 95.33
+$ shared/regime/build_asset_hmm_regime_features.py --asset JPN --overwrite
+============================================================
+PRICE-ONLY ROLLING HMM REGIME MODEL — JPN
+============================================================
+Rows available after HMM preprocessing: 74,899
+Date range: 2022-02-14 20:32:25.884000+00:00 -> 2026-10-22 23:04:45.916000+00:00
+HMM features: ['Close_FFD', 'Bar_Volatility_Bps', 'Abs_Bar_Return_Bps', 'Body_To_Range', 'Close_Location']
+Total OOS bars to infer: 69,899
+Train window: 5,000
+Refit frequency: 1,000
+Inference lookback: 1,000
+
+Refit at bar 5,000 | time=2022-06-14 04:06:30.542000+00:00 | converged=True
+Refit at bar 6,000 | time=2022-07-06 08:25:05.706000+00:00 | converged=True
+Refit at bar 7,000 | time=2022-08-02 11:35:26.510000+00:00 | converged=True
+Refit at bar 8,000 | time=2022-08-29 00:43:37.710000+00:00 | converged=True
+Refit at bar 9,000 | time=2022-09-19 08:15:57.771000+00:00 | converged=True
+Refit at bar 10,000 | time=2022-10-05 19:49:30.893000+00:00 | converged=True
+Refit at bar 11,000 | time=2022-10-27 15:17:18.098000+00:00 | converged=True
+Refit at bar 12,000 | time=2022-11-30 12:15:23.216000+00:00 | converged=True
+Refit at bar 13,000 | time=2022-12-21 14:49:10.812000+00:00 | converged=True
+Refit at bar 14,000 | time=2023-01-18 01:16:34.265000+00:00 | converged=True
+Refit at bar 15,000 | time=2023-02-09 02:32:42.855000+00:00 | converged=True
+Refit at bar 16,000 | time=2023-03-07 03:32:48.973000+00:00 | converged=True
+Refit at bar 17,000 | time=2023-03-20 19:47:03.533000+00:00 | converged=True
+Refit at bar 18,000 | time=2023-04-20 18:35:40.422000+00:00 | converged=True
+Refit at bar 19,000 | time=2023-05-12 14:31:18.138000+00:00 | converged=True
+Refit at bar 20,000 | time=2023-06-01 09:47:44.469000+00:00 | converged=True
+Refit at bar 21,000 | time=2023-06-21 00:09:02.730000+00:00 | converged=True
+Refit at bar 22,000 | time=2023-07-14 05:42:09.516000+00:00 | converged=True
+Refit at bar 23,000 | time=2023-08-07 18:45:49.646000+00:00 | converged=True
+Refit at bar 24,000 | time=2023-09-01 00:50:54.319000+00:00 | converged=True
+Refit at bar 25,000 | time=2023-09-25 11:39:53.123000+00:00 | converged=True
+Refit at bar 26,000 | time=2023-10-13 08:19:16.833000+00:00 | converged=True
+Refit at bar 27,000 | time=2023-11-06 00:54:15.252000+00:00 | converged=True
+Refit at bar 28,000 | time=2023-12-01 15:32:42.682000+00:00 | converged=True
+Refit at bar 29,000 | time=2023-12-27 14:50:00.708000+00:00 | converged=True
+Refit at bar 30,000 | time=2024-01-17 05:31:14.446000+00:00 | converged=True
+Refit at bar 31,000 | time=2024-02-07 13:23:47.054000+00:00 | converged=True
+Refit at bar 32,000 | time=2024-03-04 06:13:21.110000+00:00 | converged=True
+Refit at bar 33,000 | time=2024-03-25 16:27:49.250000+00:00 | converged=True
+Refit at bar 34,000 | time=2024-04-16 07:27:28.166000+00:00 | converged=True
+Refit at bar 35,000 | time=2024-05-08 11:12:10.797000+00:00 | converged=True
+Refit at bar 36,000 | time=2024-06-03 13:35:41.728000+00:00 | converged=True
+Refit at bar 37,000 | time=2024-06-26 01:07:50.169000+00:00 | converged=True
+Refit at bar 38,000 | time=2024-07-17 15:30:26.227000+00:00 | converged=True
+Refit at bar 39,000 | time=2024-08-02 13:31:19.275000+00:00 | converged=True
+Refit at bar 40,000 | time=2024-08-26 16:13:00.795000+00:00 | converged=True
+Refit at bar 41,000 | time=2024-09-18 00:42:11.086000+00:00 | converged=True
+Refit at bar 42,000 | time=2024-10-11 00:33:06.894000+00:00 | converged=True
+Refit at bar 43,000 | time=2024-11-06 06:44:31.802000+00:00 | converged=True
+Refit at bar 44,000 | time=2024-11-27 17:29:56.565000+00:00 | converged=True
+Refit at bar 45,000 | time=2024-12-23 08:52:23.557000+00:00 | converged=True
+Refit at bar 46,000 | time=2025-01-15 10:47:30.218000+00:00 | converged=True
+Refit at bar 47,000 | time=2025-02-05 18:39:06.354000+00:00 | converged=True
+Refit at bar 48,000 | time=2025-02-27 23:32:10.997000+00:00 | converged=True
+Refit at bar 49,000 | time=2025-03-18 13:31:08.897000+00:00 | converged=True
+Refit at bar 50,000 | time=2025-04-07 15:15:30.780000+00:00 | converged=True
+Refit at bar 51,000 | time=2025-05-05 11:32:59.436000+00:00 | converged=True
+Refit at bar 52,000 | time=2025-06-02 08:19:05.961000+00:00 | converged=True
+Refit at bar 53,000 | time=2025-06-26 14:21:18.001000+00:00 | converged=True
+Refit at bar 54,000 | time=2025-07-22 23:59:35.661000+00:00 | converged=True
+Refit at bar 55,000 | time=2025-08-12 23:54:54.051000+00:00 | converged=True
+Refit at bar 56,000 | time=2025-09-05 03:31:25.603000+00:00 | converged=True
+Refit at bar 57,000 | time=2025-09-30 00:18:56.016000+00:00 | converged=True
+Refit at bar 58,000 | time=2025-10-15 15:49:33.757000+00:00 | converged=True
+Refit at bar 59,000 | time=2025-11-05 05:45:03.189000+00:00 | converged=True
+Refit at bar 60,000 | time=2025-11-24 01:14:35.519000+00:00 | converged=True
+Refit at bar 61,000 | time=2025-12-22 15:34:07.883000+00:00 | converged=True
+Refit at bar 62,000 | time=2026-01-19 00:01:45.721000+00:00 | converged=True
+Refit at bar 63,000 | time=2026-02-04 14:21:06.105000+00:00 | converged=True
+Refit at bar 64,000 | time=2026-02-26 10:58:50.623000+00:00 | converged=True
+Refit at bar 65,000 | time=2026-03-16 14:41:37.913000+00:00 | converged=True
+Refit at bar 66,000 | time=2026-04-10 12:57:10.665000+00:00 | converged=True
+Refit at bar 67,000 | time=2026-05-07 14:21:01.845000+00:00 | converged=True
+Refit at bar 68,000 | time=2026-05-28 05:41:52.821000+00:00 | converged=True
+Refit at bar 69,000 | time=2026-06-15 18:30:05.947000+00:00 | converged=True
+Refit at bar 70,000 | time=2026-07-07 08:12:10.616000+00:00 | converged=True
+Refit at bar 71,000 | time=2026-07-28 03:04:28.512000+00:00 | converged=True
+Refit at bar 72,000 | time=2026-08-19 23:47:12.814000+00:00 | converged=True
+Refit at bar 73,000 | time=2026-09-11 18:56:45.119000+00:00 | converged=True
+Refit at bar 74,000 | time=2026-10-06 01:01:54.364000+00:00 | converged=True
+✅ V2 asset HMM regime features built.
+Asset: JPN
+Rows after preprocessing: 74899
+Rows output: 69899
+States: 4
+Train window: 5000
+Refit frequency: 1000
+Inference lookback: 1000
+Refit points: 70
+All refits converged: True
+Output range: 2022-06-14 04:06:30.542000+00:00 -> 2026-10-22 23:04:45.916000+00:00
+Regime features: assets/JPN/bars/regime/jpn_hmm_regime_features.csv
+Live bundle: assets/JPN/bars/regime/jpn_hmm_regime_live_bundle.pkl
+Manifest: assets/JPN/bars/regime/hmm_regime_manifest.json
+Elapsed seconds: 171.87

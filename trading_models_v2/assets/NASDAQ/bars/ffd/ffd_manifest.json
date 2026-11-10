@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/NASDAQ/bars/ffd/nasdaq_ffd_features.csv",
+      "sha256": "3c657cf496f61eaa9de1353c13eaf6f14f7ba1cd37d8fadcbc46d2a36a4f3549",
+      "size_bytes": 46594480
+    },
+    "state_bundle": {
+      "path": "assets/NASDAQ/bars/ffd/nasdaq_ffd_state_bundle.pkl",
+      "sha256": "f587b0500f4cb4e001fb7050153c149a48f4e99012788a304ce0e580d1b0fa4c",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "NASDAQ",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 184804,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 184804,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 647.02,
+  "end_output": "2026-04-20 20:14:43.490000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.421875,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.98968436040495,
+    "High_orig_vs_ffd_corr": 0.9903337952060635,
+    "Low_orig_vs_ffd_corr": 0.9897570930614054,
+    "Open_orig_vs_ffd_corr": 0.9896842404303489
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9896842404303489,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/NASDAQ/bars/ffd/nasdaq_ffd_features.csv",
+    "manifest": "assets/NASDAQ/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/NASDAQ/bars/ffd/nasdaq_ffd_state_bundle.pkl"
+  },
+  "rows_input": 184804,
+  "rows_output": 183805,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/NASDAQ/bars/standard_quote_tick/nasdaq_standard_quote_tick_bars.csv",
+  "start_output": "2014-02-26 15:03:38.596000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -4.198038827713046,
+      "lags": 67,
+      "nobs": 91834,
+      "p_value": 0.0006639550097682736
+    },
+    "full": {
+      "adf_stat": -2.8888560617744696,
+      "lags": 79,
+      "nobs": 183725,
+      "p_value": 0.04665931739697773
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -5.158791496564592,
+      "lags": 67,
+      "nobs": 91835,
+      "p_value": 1.0665051584642562e-05
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

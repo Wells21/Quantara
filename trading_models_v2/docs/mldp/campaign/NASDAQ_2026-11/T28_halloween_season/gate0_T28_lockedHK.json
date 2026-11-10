@@ -1,0 +1,214 @@
+{
+ "thesis": "T28",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T28_halloween_season/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 150,
+  "vertical_h": 168.0,
+  "pt": 2.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "HK": {
+   "both_touch_bars": 3,
+   "LONG": {
+    "n_edge": 3317,
+    "edge_mean_R": 0.10899,
+    "random_all_mean_R": 0.09262,
+    "drift_month_matched": {
+     "diff": -0.02805,
+     "se": 0.04822,
+     "lower_bound_1p645": -0.10737,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.0609,
+     "se": 0.04849,
+     "lower_bound_1p645": -0.01887,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.09637,
+      "se": 0.05928,
+      "lower_bound_1p645": -0.00115,
+      "PASS": false,
+      "n": 3284,
+      "inverted_mean_R": 0.01262
+     }
+    }
+   },
+   "SHORT": {
+    "n_edge": 3284,
+    "edge_mean_R": 0.10742,
+    "random_all_mean_R": 0.01683,
+    "drift_month_matched": {
+     "diff": 0.01209,
+     "se": 0.04956,
+     "lower_bound_1p645": -0.06944,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.1614,
+     "se": 0.04951,
+     "lower_bound_1p645": 0.07996,
+     "PASS": true
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.14954,
+      "se": 0.05974,
+      "lower_bound_1p645": 0.05127,
+      "PASS": true,
+      "n": 3317,
+      "inverted_mean_R": -0.04213
+     }
+    }
+   }
+  }
+ },
+ "universe": [
+  "NASDAQ",
+  "US500",
+  "DAX",
+  "JPN",
+  "HK"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": null,
+  "end": null
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 3317,
+   "drift_month_matched": {
+    "diff": -0.0281,
+    "se": 0.04493,
+    "lower_bound_1p645": -0.10201,
+    "PASS": false,
+    "lower_bound_tiered": -0.10201,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.09637,
+     "se": 0.05928,
+     "lower_bound_1p645": -0.00115,
+     "PASS": false,
+     "n": 3284
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 3284,
+   "drift_month_matched": {
+    "diff": 0.01211,
+    "se": 0.04525,
+    "lower_bound_1p645": -0.06233,
+    "PASS": false,
+    "lower_bound_tiered": -0.04581,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.14954,
+     "se": 0.05974,
+     "lower_bound_1p645": 0.05127,
+     "PASS": true,
+     "n": 3317
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "NO_EVENTS",
+  "SHORT": "NO_EVENTS"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  },
+  "SHORT": {
+   "z": 1.28,
+   "reason": "every counterfactual passes at 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "NASDAQ": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "US500": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "DAX": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "JPN": {
+   "LONG": "NO_EVENTS",
+   "SHORT": "NO_EVENTS"
+  },
+  "HK": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "window_tests_d090": {
+  "HK": {
+   "LONG": {
+    "verdict": "PASS",
+    "n_edge": 3317,
+    "C1_diff": 0.09637,
+    "C1_se": 0.05928,
+    "C1_z": 1.626,
+    "C1_pass_90": true,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": -0.02805,
+    "in_card_universe": true
+   },
+   "SHORT": {
+    "verdict": "PASS",
+    "n_edge": 3284,
+    "C1_diff": 0.14954,
+    "C1_se": 0.05974,
+    "C1_z": 2.503,
+    "C1_pass_90": true,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": 0.01209,
+    "in_card_universe": true
+   }
+  }
+ },
+ "seconds": 1.9
+}

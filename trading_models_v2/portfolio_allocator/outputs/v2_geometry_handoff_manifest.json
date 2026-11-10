@@ -1,0 +1,68 @@
+{
+  "absolute_distance_tolerance": {
+    "atol": 1e-08,
+    "rtol": 1e-06
+  },
+  "classification_edges": 6,
+  "created_at": "2026-10-17T20:16:22+00:00",
+  "event_vol_column_carried_into_step04b_ledgers": true,
+  "event_vol_distance_validation": "PASS",
+  "event_vol_source": "calibrated_oof_reconstructed_with_step04b_filter_sort_row_number_contract",
+  "geometry_contract_version": "trade_geometry_v1",
+  "geometry_handoff_status": "PASS",
+  "invalid_ledger_rows": 0,
+  "ledger_results": [
+    {
+      "declared_ratio_mismatch_rows": 0,
+      "direction_mismatch_rows": 0,
+      "file": "v2_threshold_grid_trade_ledger_core_plus_watchlist.csv",
+      "invalid_rows": 0,
+      "numeric_invalid_rows": 0,
+      "reference_mismatch_rows": 0,
+      "reward_risk_mismatch_rows": 0,
+      "rows": 279132,
+      "stop_distance_mismatch_rows": 0,
+      "take_profit_distance_mismatch_rows": 0,
+      "valid_rows": 279132
+    }
+  ],
+  "ledger_scope": "single_core_plus_watchlist_raw_threshold_ledger",
+  "legacy_separate_core_watchlist_ledgers_required": false,
+  "metadata_results": [
+    {
+      "file": "v2_threshold_grid_summary_all.csv",
+      "geometry_missing_rows": 0,
+      "rows": 96
+    },
+    {
+      "file": "v2_threshold_grid_viability.csv",
+      "geometry_missing_rows": 0,
+      "rows": 80
+    },
+    {
+      "file": "v2_threshold_grid_trade_ledger_summary.csv",
+      "geometry_missing_rows": 0,
+      "rows": 80
+    },
+    {
+      "file": "v2_threshold_grid_trade_ledger_validation_report.csv",
+      "geometry_missing_rows": 0,
+      "rows": 80
+    }
+  ],
+  "notes": [
+    "This step attaches metadata only and does not alter threshold metrics, trade membership, executed_r, AFML values, or broker risk values.",
+    "Barrier direction, PT/SL reward-risk, and absolute Event_Vol-based stop/target distances are validated against finalized edge.yaml geometry.",
+    "geometry_hash is a semantic geometry fingerprint; no artifact-file hashes are consumed or validated.",
+    "Step 04B v2.5 writes only the canonical core+watchlist raw threshold ledger. edge_classification preserves the core/watchlist label on every row."
+  ],
+  "outputs": {
+    "edge_report": "portfolio_allocator\\outputs\\v2_geometry_handoff_validation.csv",
+    "manifest": "portfolio_allocator\\outputs\\v2_geometry_handoff_manifest.json"
+  },
+  "reward_risk_tolerance": {
+    "atol": 1e-06,
+    "rtol": 0.001
+  },
+  "schema_version": "v2.3"
+}

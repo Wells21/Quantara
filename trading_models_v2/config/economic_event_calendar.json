@@ -1,0 +1,1463 @@
+{
+ "schema": "quantara_economic_event_calendar_v1",
+ "built": "2026-11-05",
+ "purpose": "Scheduled US macro releases (timing only, never the released values) read identically by research and live through shared/calendar/economic_events.py. Owner approval 2026-11-05: 'yes start stage 1'.",
+ "time_rules": {
+  "FOMC": "statement at 14:00 America/New_York on the meeting's last day (Fed calendar)",
+  "CPI": "08:30 America/New_York (BLS schedule)",
+  "NFP": "Employment Situation, 08:30 America/New_York (BLS schedule)"
+ },
+ "coverage_through_utc": {
+  "FOMC": "2026-12-09T19:00:00Z",
+  "CPI": "2027-12-10T13:30:00Z",
+  "NFP": "2027-12-03T13:30:00Z"
+ },
+ "known_exceptions": [
+  "2025 lapse in federal appropriations: October 2025 CPI and October 2025 Employment Situation were not published (BLS archive note); September 2025 CPI released 2025-10-24, September 2025 Employment Situation 2025-11-20, November 2025 Employment Situation 2025-12-16.",
+  "FOMC notation vote of 2025-08-22 (Fed calendar) is not a policy announcement and is excluded.",
+  "Release times of the shutdown-era special releases are taken as the standard 08:30 ET; not individually verified."
+ ],
+ "update_rule": "Update when the Fed publishes the next year's FOMC calendar and whenever BLS changes a scheduled date; record the change here. Edges using the calendar fail closed past coverage_through_utc.",
+ "events": [
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2022-01-26T14:00:00-05:00",
+   "release_utc": "2022-01-26T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-01",
+   "release_et": "2022-02-04T08:30:00-05:00",
+   "release_utc": "2022-02-04T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-01",
+   "release_et": "2022-02-10T08:30:00-05:00",
+   "release_utc": "2022-02-10T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-02",
+   "release_et": "2022-03-04T08:30:00-05:00",
+   "release_utc": "2022-03-04T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-02",
+   "release_et": "2022-03-10T08:30:00-05:00",
+   "release_utc": "2022-03-10T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2022-03-16T14:00:00-04:00",
+   "release_utc": "2022-03-16T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-03",
+   "release_et": "2022-04-01T08:30:00-04:00",
+   "release_utc": "2022-04-01T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-03",
+   "release_et": "2022-04-12T08:30:00-04:00",
+   "release_utc": "2022-04-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2022-05-04T14:00:00-04:00",
+   "release_utc": "2022-05-04T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-04",
+   "release_et": "2022-05-06T08:30:00-04:00",
+   "release_utc": "2022-05-06T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-04",
+   "release_et": "2022-05-11T08:30:00-04:00",
+   "release_utc": "2022-05-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-05",
+   "release_et": "2022-06-03T08:30:00-04:00",
+   "release_utc": "2022-06-03T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-05",
+   "release_et": "2022-06-10T08:30:00-04:00",
+   "release_utc": "2022-06-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2022-06-15T14:00:00-04:00",
+   "release_utc": "2022-06-15T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-06",
+   "release_et": "2022-07-08T08:30:00-04:00",
+   "release_utc": "2022-07-08T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-06",
+   "release_et": "2022-07-13T08:30:00-04:00",
+   "release_utc": "2022-07-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2022-07-27T14:00:00-04:00",
+   "release_utc": "2022-07-27T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-07",
+   "release_et": "2022-08-05T08:30:00-04:00",
+   "release_utc": "2022-08-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-07",
+   "release_et": "2022-08-10T08:30:00-04:00",
+   "release_utc": "2022-08-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-08",
+   "release_et": "2022-09-02T08:30:00-04:00",
+   "release_utc": "2022-09-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-08",
+   "release_et": "2022-09-13T08:30:00-04:00",
+   "release_utc": "2022-09-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2022-09-21T14:00:00-04:00",
+   "release_utc": "2022-09-21T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-09",
+   "release_et": "2022-10-07T08:30:00-04:00",
+   "release_utc": "2022-10-07T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-09",
+   "release_et": "2022-10-13T08:30:00-04:00",
+   "release_utc": "2022-10-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2022-11-02T14:00:00-04:00",
+   "release_utc": "2022-11-02T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-10",
+   "release_et": "2022-11-04T08:30:00-04:00",
+   "release_utc": "2022-11-04T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-10",
+   "release_et": "2022-11-10T08:30:00-05:00",
+   "release_utc": "2022-11-10T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-11",
+   "release_et": "2022-12-02T08:30:00-05:00",
+   "release_utc": "2022-12-02T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-11",
+   "release_et": "2022-12-13T08:30:00-05:00",
+   "release_utc": "2022-12-13T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2022-12-14T14:00:00-05:00",
+   "release_utc": "2022-12-14T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2022-12",
+   "release_et": "2023-01-06T08:30:00-05:00",
+   "release_utc": "2023-01-06T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2022-12",
+   "release_et": "2023-01-12T08:30:00-05:00",
+   "release_utc": "2023-01-12T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2023-02-01T14:00:00-05:00",
+   "release_utc": "2023-02-01T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-01",
+   "release_et": "2023-02-03T08:30:00-05:00",
+   "release_utc": "2023-02-03T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-01",
+   "release_et": "2023-02-14T08:30:00-05:00",
+   "release_utc": "2023-02-14T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-02",
+   "release_et": "2023-03-10T08:30:00-05:00",
+   "release_utc": "2023-03-10T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-02",
+   "release_et": "2023-03-14T08:30:00-04:00",
+   "release_utc": "2023-03-14T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2023-03-22T14:00:00-04:00",
+   "release_utc": "2023-03-22T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-03",
+   "release_et": "2023-04-07T08:30:00-04:00",
+   "release_utc": "2023-04-07T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-03",
+   "release_et": "2023-04-12T08:30:00-04:00",
+   "release_utc": "2023-04-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2023-05-03T14:00:00-04:00",
+   "release_utc": "2023-05-03T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-04",
+   "release_et": "2023-05-05T08:30:00-04:00",
+   "release_utc": "2023-05-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-04",
+   "release_et": "2023-05-10T08:30:00-04:00",
+   "release_utc": "2023-05-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-05",
+   "release_et": "2023-06-02T08:30:00-04:00",
+   "release_utc": "2023-06-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-05",
+   "release_et": "2023-06-13T08:30:00-04:00",
+   "release_utc": "2023-06-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2023-06-14T14:00:00-04:00",
+   "release_utc": "2023-06-14T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-06",
+   "release_et": "2023-07-07T08:30:00-04:00",
+   "release_utc": "2023-07-07T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-06",
+   "release_et": "2023-07-12T08:30:00-04:00",
+   "release_utc": "2023-07-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2023-07-26T14:00:00-04:00",
+   "release_utc": "2023-07-26T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-07",
+   "release_et": "2023-08-04T08:30:00-04:00",
+   "release_utc": "2023-08-04T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-07",
+   "release_et": "2023-08-10T08:30:00-04:00",
+   "release_utc": "2023-08-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-08",
+   "release_et": "2023-09-01T08:30:00-04:00",
+   "release_utc": "2023-09-01T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-08",
+   "release_et": "2023-09-13T08:30:00-04:00",
+   "release_utc": "2023-09-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2023-09-20T14:00:00-04:00",
+   "release_utc": "2023-09-20T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-09",
+   "release_et": "2023-10-06T08:30:00-04:00",
+   "release_utc": "2023-10-06T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-09",
+   "release_et": "2023-10-12T08:30:00-04:00",
+   "release_utc": "2023-10-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2023-11-01T14:00:00-04:00",
+   "release_utc": "2023-11-01T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-10",
+   "release_et": "2023-11-03T08:30:00-04:00",
+   "release_utc": "2023-11-03T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-10",
+   "release_et": "2023-11-14T08:30:00-05:00",
+   "release_utc": "2023-11-14T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-11",
+   "release_et": "2023-12-08T08:30:00-05:00",
+   "release_utc": "2023-12-08T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-11",
+   "release_et": "2023-12-12T08:30:00-05:00",
+   "release_utc": "2023-12-12T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2023-12-13T14:00:00-05:00",
+   "release_utc": "2023-12-13T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2023-12",
+   "release_et": "2024-01-05T08:30:00-05:00",
+   "release_utc": "2024-01-05T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2023-12",
+   "release_et": "2024-01-11T08:30:00-05:00",
+   "release_utc": "2024-01-11T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2024-01-31T14:00:00-05:00",
+   "release_utc": "2024-01-31T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-01",
+   "release_et": "2024-02-02T08:30:00-05:00",
+   "release_utc": "2024-02-02T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-01",
+   "release_et": "2024-02-13T08:30:00-05:00",
+   "release_utc": "2024-02-13T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-02",
+   "release_et": "2024-03-08T08:30:00-05:00",
+   "release_utc": "2024-03-08T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-02",
+   "release_et": "2024-03-12T08:30:00-04:00",
+   "release_utc": "2024-03-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2024-03-20T14:00:00-04:00",
+   "release_utc": "2024-03-20T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-03",
+   "release_et": "2024-04-05T08:30:00-04:00",
+   "release_utc": "2024-04-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-03",
+   "release_et": "2024-04-10T08:30:00-04:00",
+   "release_utc": "2024-04-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2024-05-01T14:00:00-04:00",
+   "release_utc": "2024-05-01T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-04",
+   "release_et": "2024-05-03T08:30:00-04:00",
+   "release_utc": "2024-05-03T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-04",
+   "release_et": "2024-05-15T08:30:00-04:00",
+   "release_utc": "2024-05-15T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-05",
+   "release_et": "2024-06-07T08:30:00-04:00",
+   "release_utc": "2024-06-07T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-05",
+   "release_et": "2024-06-12T08:30:00-04:00",
+   "release_utc": "2024-06-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2024-06-12T14:00:00-04:00",
+   "release_utc": "2024-06-12T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-06",
+   "release_et": "2024-07-05T08:30:00-04:00",
+   "release_utc": "2024-07-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-06",
+   "release_et": "2024-07-11T08:30:00-04:00",
+   "release_utc": "2024-07-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2024-07-31T14:00:00-04:00",
+   "release_utc": "2024-07-31T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-07",
+   "release_et": "2024-08-02T08:30:00-04:00",
+   "release_utc": "2024-08-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-07",
+   "release_et": "2024-08-14T08:30:00-04:00",
+   "release_utc": "2024-08-14T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-08",
+   "release_et": "2024-09-06T08:30:00-04:00",
+   "release_utc": "2024-09-06T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-08",
+   "release_et": "2024-09-11T08:30:00-04:00",
+   "release_utc": "2024-09-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2024-09-18T14:00:00-04:00",
+   "release_utc": "2024-09-18T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-09",
+   "release_et": "2024-10-04T08:30:00-04:00",
+   "release_utc": "2024-10-04T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-09",
+   "release_et": "2024-10-10T08:30:00-04:00",
+   "release_utc": "2024-10-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-10",
+   "release_et": "2024-11-01T08:30:00-04:00",
+   "release_utc": "2024-11-01T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2024-11-07T14:00:00-05:00",
+   "release_utc": "2024-11-07T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-10",
+   "release_et": "2024-11-13T08:30:00-05:00",
+   "release_utc": "2024-11-13T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-11",
+   "release_et": "2024-12-06T08:30:00-05:00",
+   "release_utc": "2024-12-06T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-11",
+   "release_et": "2024-12-11T08:30:00-05:00",
+   "release_utc": "2024-12-11T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2024-12-18T14:00:00-05:00",
+   "release_utc": "2024-12-18T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2024-12",
+   "release_et": "2025-01-10T08:30:00-05:00",
+   "release_utc": "2025-01-10T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2024-12",
+   "release_et": "2025-01-15T08:30:00-05:00",
+   "release_utc": "2025-01-15T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2025-01-29T14:00:00-05:00",
+   "release_utc": "2025-01-29T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-01",
+   "release_et": "2025-02-07T08:30:00-05:00",
+   "release_utc": "2025-02-07T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-01",
+   "release_et": "2025-02-12T08:30:00-05:00",
+   "release_utc": "2025-02-12T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-02",
+   "release_et": "2025-03-07T08:30:00-05:00",
+   "release_utc": "2025-03-07T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-02",
+   "release_et": "2025-03-12T08:30:00-04:00",
+   "release_utc": "2025-03-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2025-03-19T14:00:00-04:00",
+   "release_utc": "2025-03-19T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-03",
+   "release_et": "2025-04-04T08:30:00-04:00",
+   "release_utc": "2025-04-04T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-03",
+   "release_et": "2025-04-10T08:30:00-04:00",
+   "release_utc": "2025-04-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-04",
+   "release_et": "2025-05-02T08:30:00-04:00",
+   "release_utc": "2025-05-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2025-05-07T14:00:00-04:00",
+   "release_utc": "2025-05-07T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-04",
+   "release_et": "2025-05-13T08:30:00-04:00",
+   "release_utc": "2025-05-13T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-05",
+   "release_et": "2025-06-06T08:30:00-04:00",
+   "release_utc": "2025-06-06T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-05",
+   "release_et": "2025-06-11T08:30:00-04:00",
+   "release_utc": "2025-06-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2025-06-18T14:00:00-04:00",
+   "release_utc": "2025-06-18T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-06",
+   "release_et": "2025-07-03T08:30:00-04:00",
+   "release_utc": "2025-07-03T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-06",
+   "release_et": "2025-07-15T08:30:00-04:00",
+   "release_utc": "2025-07-15T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2025-07-30T14:00:00-04:00",
+   "release_utc": "2025-07-30T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-07",
+   "release_et": "2025-08-01T08:30:00-04:00",
+   "release_utc": "2025-08-01T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-07",
+   "release_et": "2025-08-12T08:30:00-04:00",
+   "release_utc": "2025-08-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-08",
+   "release_et": "2025-09-05T08:30:00-04:00",
+   "release_utc": "2025-09-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-08",
+   "release_et": "2025-09-11T08:30:00-04:00",
+   "release_utc": "2025-09-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2025-09-17T14:00:00-04:00",
+   "release_utc": "2025-09-17T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-09",
+   "release_et": "2025-10-24T08:30:00-04:00",
+   "release_utc": "2025-10-24T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2025-10-29T14:00:00-04:00",
+   "release_utc": "2025-10-29T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-09",
+   "release_et": "2025-11-20T08:30:00-05:00",
+   "release_utc": "2025-11-20T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2025-12-10T14:00:00-05:00",
+   "release_utc": "2025-12-10T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-11",
+   "release_et": "2025-12-16T08:30:00-05:00",
+   "release_utc": "2025-12-16T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-11",
+   "release_et": "2025-12-18T08:30:00-05:00",
+   "release_utc": "2025-12-18T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2025-12",
+   "release_et": "2026-01-09T08:30:00-05:00",
+   "release_utc": "2026-01-09T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2025-12",
+   "release_et": "2026-01-13T08:30:00-05:00",
+   "release_utc": "2026-01-13T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2026-01-28T14:00:00-05:00",
+   "release_utc": "2026-01-28T19:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-01",
+   "release_et": "2026-02-11T08:30:00-05:00",
+   "release_utc": "2026-02-11T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-01",
+   "release_et": "2026-02-13T08:30:00-05:00",
+   "release_utc": "2026-02-13T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-02",
+   "release_et": "2026-03-06T08:30:00-05:00",
+   "release_utc": "2026-03-06T13:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-02",
+   "release_et": "2026-03-11T08:30:00-04:00",
+   "release_utc": "2026-03-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2026-03-18T14:00:00-04:00",
+   "release_utc": "2026-03-18T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-03",
+   "release_et": "2026-04-03T08:30:00-04:00",
+   "release_utc": "2026-04-03T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-03",
+   "release_et": "2026-04-10T08:30:00-04:00",
+   "release_utc": "2026-04-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2026-04-29T14:00:00-04:00",
+   "release_utc": "2026-04-29T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-04",
+   "release_et": "2026-05-08T08:30:00-04:00",
+   "release_utc": "2026-05-08T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-04",
+   "release_et": "2026-05-12T08:30:00-04:00",
+   "release_utc": "2026-05-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-05",
+   "release_et": "2026-06-05T08:30:00-04:00",
+   "release_utc": "2026-06-05T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-05",
+   "release_et": "2026-06-10T08:30:00-04:00",
+   "release_utc": "2026-06-10T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2026-06-17T14:00:00-04:00",
+   "release_utc": "2026-06-17T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-06",
+   "release_et": "2026-07-02T08:30:00-04:00",
+   "release_utc": "2026-07-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-06",
+   "release_et": "2026-07-14T08:30:00-04:00",
+   "release_utc": "2026-07-14T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2026-07-29T14:00:00-04:00",
+   "release_utc": "2026-07-29T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-07",
+   "release_et": "2026-08-07T08:30:00-04:00",
+   "release_utc": "2026-08-07T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-07",
+   "release_et": "2026-08-12T08:30:00-04:00",
+   "release_utc": "2026-08-12T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-08",
+   "release_et": "2026-09-04T08:30:00-04:00",
+   "release_utc": "2026-09-04T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-08",
+   "release_et": "2026-09-11T08:30:00-04:00",
+   "release_utc": "2026-09-11T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2026-09-16T14:00:00-04:00",
+   "release_utc": "2026-09-16T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-09",
+   "release_et": "2026-10-02T08:30:00-04:00",
+   "release_utc": "2026-10-02T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-09",
+   "release_et": "2026-10-14T08:30:00-04:00",
+   "release_utc": "2026-10-14T12:30:00Z",
+   "status": "released",
+   "source": "bls.gov/bls/news-release/cpi.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement",
+   "release_et": "2026-10-28T14:00:00-04:00",
+   "release_utc": "2026-10-28T18:00:00Z",
+   "status": "released",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-10",
+   "release_et": "2026-11-06T08:30:00-05:00",
+   "release_utc": "2026-11-06T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-10",
+   "release_et": "2026-11-10T08:30:00-05:00",
+   "release_utc": "2026-11-10T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-11",
+   "release_et": "2026-12-04T08:30:00-05:00",
+   "release_utc": "2026-12-04T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "FOMC",
+   "reference": "statement + SEP",
+   "release_et": "2026-12-09T14:00:00-05:00",
+   "release_utc": "2026-12-09T19:00:00Z",
+   "status": "scheduled",
+   "source": "federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-11",
+   "release_et": "2026-12-10T08:30:00-05:00",
+   "release_utc": "2026-12-10T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2026-12",
+   "release_et": "2027-01-08T08:30:00-05:00",
+   "release_utc": "2027-01-08T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2026-12",
+   "release_et": "2027-01-13T08:30:00-05:00",
+   "release_utc": "2027-01-13T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-01",
+   "release_et": "2027-02-05T08:30:00-05:00",
+   "release_utc": "2027-02-05T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-01",
+   "release_et": "2027-02-11T08:30:00-05:00",
+   "release_utc": "2027-02-11T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-02",
+   "release_et": "2027-03-05T08:30:00-05:00",
+   "release_utc": "2027-03-05T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-02",
+   "release_et": "2027-03-10T08:30:00-05:00",
+   "release_utc": "2027-03-10T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-03",
+   "release_et": "2027-04-02T08:30:00-04:00",
+   "release_utc": "2027-04-02T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-03",
+   "release_et": "2027-04-13T08:30:00-04:00",
+   "release_utc": "2027-04-13T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-04",
+   "release_et": "2027-05-07T08:30:00-04:00",
+   "release_utc": "2027-05-07T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-04",
+   "release_et": "2027-05-12T08:30:00-04:00",
+   "release_utc": "2027-05-12T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-05",
+   "release_et": "2027-06-04T08:30:00-04:00",
+   "release_utc": "2027-06-04T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-05",
+   "release_et": "2027-06-10T08:30:00-04:00",
+   "release_utc": "2027-06-10T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-06",
+   "release_et": "2027-07-02T08:30:00-04:00",
+   "release_utc": "2027-07-02T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-06",
+   "release_et": "2027-07-14T08:30:00-04:00",
+   "release_utc": "2027-07-14T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-07",
+   "release_et": "2027-08-06T08:30:00-04:00",
+   "release_utc": "2027-08-06T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-07",
+   "release_et": "2027-08-11T08:30:00-04:00",
+   "release_utc": "2027-08-11T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-08",
+   "release_et": "2027-09-03T08:30:00-04:00",
+   "release_utc": "2027-09-03T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-08",
+   "release_et": "2027-09-14T08:30:00-04:00",
+   "release_utc": "2027-09-14T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-09",
+   "release_et": "2027-10-08T08:30:00-04:00",
+   "release_utc": "2027-10-08T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-09",
+   "release_et": "2027-10-14T08:30:00-04:00",
+   "release_utc": "2027-10-14T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-10",
+   "release_et": "2027-11-05T08:30:00-04:00",
+   "release_utc": "2027-11-05T12:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-10",
+   "release_et": "2027-11-10T08:30:00-05:00",
+   "release_utc": "2027-11-10T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  },
+  {
+   "type": "NFP",
+   "reference": "2027-11",
+   "release_et": "2027-12-03T08:30:00-05:00",
+   "release_utc": "2027-12-03T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/empsit.htm"
+  },
+  {
+   "type": "CPI",
+   "reference": "2027-11",
+   "release_et": "2027-12-10T08:30:00-05:00",
+   "release_utc": "2027-12-10T13:30:00Z",
+   "status": "scheduled",
+   "source": "bls.gov/schedule/news_release/cpi.htm"
+  }
+ ]
+}

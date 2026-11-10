@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — HK/trend_short
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\research_dataset\hk_trend_short_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\feature_surgery\hk_trend_short_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\model\hk_trend_short_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof
+AFML Ch.4 weights | source=assets/HK/bars/standard_quote_tick/hk_standard_quote_tick_bars.csv | events=7,399 | mean_uniqueness=0.565308 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 7,248/7,399 rows retained (mldp_target_eligible==True); 151 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 7,399
+Rows after selected-feature NaN filter : 7,399
+Date range: 2022-08-01 16:32:46.302000+00:00 -> 2026-06-09 05:16:37.646000+00:00
+Rows used: 7,248
+Selected feature count: 10
+Target mean: 0.298703
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=4,250 test=2,898 thr=0.72 train_f1=0.4694 test_f1=0.4523 precision=0.3047 recall=0.8766 logloss=1.09817
+Fold 02: train=4,148 test=2,898 thr=0.30 train_f1=0.4674 test_f1=0.4482 precision=0.2888 recall=1.0000 logloss=1.13459
+Fold 03: train=4,150 test=2,898 thr=0.30 train_f1=0.4757 test_f1=0.4377 precision=0.2802 recall=1.0000 logloss=1.10380
+Fold 04: train=4,247 test=2,901 thr=0.77 train_f1=0.4655 test_f1=0.4618 precision=0.3058 recall=0.9427 logloss=1.13091
+Fold 05: train=4,250 test=2,898 thr=0.78 train_f1=0.4593 test_f1=0.4549 precision=0.3201 recall=0.7856 logloss=1.12477
+Fold 06: train=4,150 test=2,898 thr=0.30 train_f1=0.4604 test_f1=0.4581 precision=0.2971 recall=1.0000 logloss=1.11120
+Fold 07: train=4,247 test=2,901 thr=0.79 train_f1=0.4601 test_f1=0.4568 precision=0.3205 recall=0.7948 logloss=1.13296
+Fold 08: train=4,248 test=2,898 thr=0.77 train_f1=0.4707 test_f1=0.4360 precision=0.2905 recall=0.8737 logloss=1.12155
+Fold 09: train=4,245 test=2,901 thr=0.30 train_f1=0.4502 test_f1=0.4732 precision=0.3099 recall=1.0000 logloss=1.15252
+Fold 10: train=4,347 test=2,901 thr=0.30 train_f1=0.4580 test_f1=0.4630 precision=0.3013 recall=1.0000 logloss=1.12537
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 7,248 / 7,248
+Coverage rate: 1.0000
+Raw log loss: 1.122934
+Raw Brier: 0.436487
+Raw ROC AUC: 0.529592
+Raw PR AUC: 0.315218
+Diagnostic global F1 threshold: 0.3
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\hk_trend_short_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

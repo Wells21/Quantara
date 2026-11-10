@@ -1,0 +1,19 @@
+================================================================================
+GATE D (AUC-based, raw OOF predictions): GBPJPY/dailyrangecompletionfade_long
+================================================================================
+edge_id: GBPJPY/dailyrangecompletionfade_long
+oof_predictions_csv: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof\gbpjpy_dailyrangecompletionfade_long_oof_predictions.csv
+n_rows: 3987
+n_positive: 1528
+n_negative: 2459
+positive_rate: 0.38324554803110106
+auc: 0.517461233336669
+p_value_mannwhitney: 0.03168183571306641
+alpha: 0.05
+verdict: PASS
+reason: AUC=0.5175 (P[raw_probability of a true positive > a true negative]), p=0.03168 (< alpha=0.05) via one-sided Mann-Whitney U on 3987 OOF observations (PASS: statistically significant discrimination).
+diagnostic_kendall_tau_raw_probability_vs_realized_r: 0.05010602068362922
+diagnostic_kendall_tau_p_value: 2.0988933072433232e-06
+diagnostic_note: Non-gating context only: rank correlation between raw model score and the continuous realized economic outcome across all OOF rows.
+
+Report: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\reports\gate_d_calibration_monotonicity_report.json

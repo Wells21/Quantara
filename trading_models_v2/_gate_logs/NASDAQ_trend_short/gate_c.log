@@ -1,0 +1,59 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: NASDAQ/trend_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H20_E100_V1000_PT1_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 8176
+  250/8176 elapsed=42.7s
+  500/8176 elapsed=70.2s
+  750/8176 elapsed=97.8s
+  1000/8176 elapsed=132.5s
+  1250/8176 elapsed=154.3s
+  1500/8176 elapsed=183.2s
+  1750/8176 elapsed=208.1s
+  2000/8176 elapsed=227.4s
+  2250/8176 elapsed=248.6s
+  2500/8176 elapsed=268.8s
+  2750/8176 elapsed=288.8s
+  3000/8176 elapsed=311.9s
+  3250/8176 elapsed=337.3s
+  3500/8176 elapsed=351.9s
+  3750/8176 elapsed=366.1s
+  4000/8176 elapsed=380.5s
+  4250/8176 elapsed=397.4s
+  4500/8176 elapsed=410.6s
+  4750/8176 elapsed=428.6s
+  5000/8176 elapsed=447.5s
+  5250/8176 elapsed=463.4s
+  5500/8176 elapsed=479.1s
+  5750/8176 elapsed=497.5s
+  6000/8176 elapsed=517.0s
+  6250/8176 elapsed=537.0s
+  6500/8176 elapsed=559.2s
+  6750/8176 elapsed=580.3s
+  7000/8176 elapsed=598.0s
+  7250/8176 elapsed=620.5s
+  7500/8176 elapsed=642.3s
+  7750/8176 elapsed=662.8s
+  8000/8176 elapsed=691.4s
+  8176/8176 elapsed=706.3s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V1000_PT2_SL1 | -0.053368 | [-0.104287,-0.005283] | 0.9234 | 4.720 | 19.048 | -0.271380 | -2.208493 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.061468 | [-0.142727,+0.019495] | 0.9124 | 17.388 | 71.247 | -0.084842 | -2.543691 | 0.313 | 0.271 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.054075 | [-0.117933,+0.006484] | 0.9144 | 13.796 | 62.377 | -0.094067 | -2.237746 | 0.347 | 0.342 | 1.0000
+H20_E100_V1000_PT1_SL1 | -0.027687 | [-0.075338,+0.015711] | 0.9468 | 9.573 | 52.665 | -0.069412 | -1.145763 | 0.256 | 0.493 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260915T131931Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260915T131931Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\trend_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

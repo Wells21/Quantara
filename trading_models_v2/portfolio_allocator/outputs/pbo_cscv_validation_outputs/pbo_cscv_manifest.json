@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-17T20:22:14+00:00",
+  "input_stage2_runs": "portfolio_allocator\\outputs\\prop_challenge_rolling_optimizer_outputs\\stage2_run_results.csv",
+  "methodology": {
+    "cscv_pbo": "AFML SS11.6-11.7 (p.157-167): Combinatorially Symmetric Cross-Validation. Rolling-start windows are split into S=16 contiguous blocks; every C(16,8) train/test split picks the in-sample best-net-profit scenario and checks its out-of-sample relative rank. PBO = fraction of splits where the IS winner underperformed the OOS median.",
+    "grouping": "CSCV requires every candidate compared on identical observations, so PBO is computed separately within each (return_mode, universe, profile_role, linkage_method) group -- scenarios sharing the same underlying rolling-start windows.",
+    "not_a_gate": "This lab is diagnostic only. It does not change Step 08's own scenario selection (robust_rank / fast_safe_rank). It reports whether that selection process is exposed to overfitting risk."
+  },
+  "n_groups_evaluated": 1,
+  "n_groups_pbo_above_50pct": 0,
+  "n_groups_skipped": 0,
+  "outputs": {
+    "manifest": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\pbo_cscv_validation_outputs\\pbo_cscv_manifest.json",
+    "report": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\pbo_cscv_validation_outputs\\pbo_cscv_report.csv"
+  },
+  "schema_version": "v1.0",
+  "skipped_groups": [],
+  "status": "PASS",
+  "worst_group_pbo": 7.77000777000777e-05
+}

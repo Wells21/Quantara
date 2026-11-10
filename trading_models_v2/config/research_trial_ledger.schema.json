@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quantara MLDP Research Trial Ledger Row",
+  "type": "object",
+  "required": [
+    "trial_id",
+    "trial_type",
+    "hypothesis_id",
+    "parameters",
+    "data_window",
+    "code_commit",
+    "metric_name",
+    "result_artifacts",
+    "outcome_seen",
+    "selection_influenced",
+    "historical_backfill",
+    "trial_count_quality",
+    "created_at_utc"
+  ],
+  "properties": {
+    "trial_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trial_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hypothesis_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_trial_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "data_window": {
+      "type": "object"
+    },
+    "code_commit": {
+      "type": "string"
+    },
+    "metric_name": {
+      "type": "string"
+    },
+    "result_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outcome_seen": {
+      "type": "boolean"
+    },
+    "selection_influenced": {
+      "type": "boolean"
+    },
+    "historical_backfill": {
+      "type": "boolean"
+    },
+    "trial_count_quality": {
+      "enum": [
+        "exact",
+        "reconstructed",
+        "lower_bound",
+        "unknown"
+      ]
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

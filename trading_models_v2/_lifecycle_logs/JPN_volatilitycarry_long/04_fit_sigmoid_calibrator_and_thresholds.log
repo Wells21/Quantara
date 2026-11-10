@@ -1,0 +1,180 @@
+========================================================================================
+V3 STEP 04: EXECUTABLE-OUTCOME SIGMOID CALIBRATION + EMPIRICAL PAYOFF AFML — JPN/volatilitycarry_long
+========================================================================================
+Geometry diagnostic only: R:R=2 static_pBE=0.333333
+Rows loaded: 4,895
+Executable positive rate: 0.363841
+Gross positive rate: 0.376915
+Calibration purge horizon: exact gross_t1
+Generating V1-style CPCV second-level sigmoid calibrated probabilities...
+Fold 01: train=2,837 test=1,958 status=sigmoid_platt_logit pred_count=1958
+Fold 02: train=2,737 test=1,958 status=sigmoid_platt_logit pred_count=2937
+Fold 03: train=2,737 test=1,958 status=sigmoid_platt_logit pred_count=3916
+Fold 04: train=2,835 test=1,958 status=sigmoid_platt_logit pred_count=4895
+Fold 05: train=2,829 test=1,958 status=sigmoid_platt_logit pred_count=3916
+Fold 06: train=2,729 test=1,958 status=sigmoid_platt_logit pred_count=4895
+Fold 07: train=2,827 test=1,958 status=sigmoid_platt_logit pred_count=5874
+Fold 08: train=2,837 test=1,958 status=sigmoid_platt_logit pred_count=5874
+Fold 09: train=2,835 test=1,958 status=sigmoid_platt_logit pred_count=6853
+Fold 10: train=2,937 test=1,958 status=sigmoid_platt_logit pred_count=7832
+
+PASS: V3 executable-outcome sigmoid calibration + empirical payoff AFML completed.
+Raw Brier: 0.369176 | Sigmoid CPCV Brier: 0.231697
+Selected calibrated threshold payload:
+{
+  "edge_id": "JPN/volatilitycarry_long",
+  "calibration_method": "sigmoid",
+  "calibration_target_column": "quote_executable_meta_label",
+  "calibration_target_contract_version": "quantara_v3_executed_positive_meta_label_v1",
+  "threshold_probability_column": "calibrated_probability",
+  "threshold_sweep_policy": {
+    "threshold_sweep_policy": "dynamic_observed_calibrated_probability_range",
+    "probability_column": "calibrated_probability",
+    "threshold_step": 0.01,
+    "threshold_min_bound": 0.01,
+    "threshold_max_bound": 0.99,
+    "threshold_decimals": 2,
+    "valid_probability_rows": 4895,
+    "calibrated_probability_min": 0.17996478257065662,
+    "calibrated_probability_max": 0.40655478245416843,
+    "threshold_start": 0.17,
+    "threshold_end": 0.41,
+    "threshold_count": 25
+  },
+  "afml_sizing": {
+    "method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+    "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+    "static_geometry_break_even_used_for_sizing": false,
+    "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393"
+  },
+  "payoff_profile": {
+    "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+    "payoff_profile_valid": true,
+    "payoff_profile_invalid_reason": "",
+    "payoff_trade_count": 2540,
+    "payoff_win_count": 970,
+    "payoff_loss_count": 1570,
+    "payoff_zero_count": 0,
+    "payoff_zero_rate": 0.0,
+    "min_wins_required": 20,
+    "min_losses_required": 20,
+    "empirical_avg_win_r": 1.973921562197339,
+    "empirical_avg_loss_r": -1.0251753618139587,
+    "empirical_reward_risk_ratio": 1.9254477192123074,
+    "empirical_break_even_probability": 0.34182801949687736
+  },
+  "payoff_profile_provenance": {
+    "oof_predictions_sha256": "73ccddb61e994e8507c752869411fe6a0ddda5c9b95b47262dea33221c41454b",
+    "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+    "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+    "threshold": 0.36,
+    "probability_column": "calibrated_probability"
+  },
+  "selected": {
+    "threshold": 0.36,
+    "calibration_method": "sigmoid",
+    "probability_column": "calibrated_probability",
+    "take_rate": 0.5188968335035751,
+    "precision": 0.38188976377952755,
+    "avg_pred_prob": 0.3727544402366831,
+    "afml_sizing_method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+    "avg_afml_bet_size": 0.03752709226738851,
+    "positive_afml_trade_count": 2540,
+    "positive_afml_trade_rate": 1.0,
+    "avg_positive_afml_bet_size": 0.03752709226738851,
+    "trade_count": 2540,
+    "win_rate": 0.38188976377952755,
+    "expectancy_r": 0.12014905404862357,
+    "profit_factor": 1.1896078265197059,
+    "gross_profit_r": 1914.7039153314188,
+    "gross_loss_r": 1609.525318047915,
+    "cumulative_r": 305.17859728350385,
+    "max_drawdown_r": -81.43569811723671,
+    "calmar_r": 3.747479352901988,
+    "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+    "payoff_profile_valid": true,
+    "payoff_profile_invalid_reason": "",
+    "payoff_trade_count": 2540,
+    "payoff_win_count": 970,
+    "payoff_loss_count": 1570,
+    "payoff_zero_count": 0,
+    "payoff_zero_rate": 0.0,
+    "min_wins_required": 20,
+    "min_losses_required": 20,
+    "empirical_avg_win_r": 1.973921562197339,
+    "empirical_avg_loss_r": -1.0251753618139587,
+    "empirical_reward_risk_ratio": 1.9254477192123074,
+    "empirical_break_even_probability": 0.34182801949687736,
+    "payoff_context_version": "quantara_v3_threshold_payoff_context_v1",
+    "payoff_context_id": "ac40c069293c037c10fa20f48549872353b91142bab26f4df575ed795d95192e",
+    "payoff_context_edge_id": "JPN/volatilitycarry_long",
+    "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+    "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+    "executed_target_contract_version": "quantara_v3_executed_positive_meta_label_v1",
+    "threshold_probability_column": "calibrated_probability",
+    "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+    "selection_status": "selected_from_calibrated_probability_exact_executable_sweep",
+    "selected_threshold": 0.36,
+    "threshold_role": "edge-default diagnostic/admissibility threshold; allocator 04C owns final representative/live threshold selection",
+    "payoff_profile": {
+      "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+      "payoff_profile_valid": true,
+      "payoff_profile_invalid_reason": "",
+      "payoff_trade_count": 2540,
+      "payoff_win_count": 970,
+      "payoff_loss_count": 1570,
+      "payoff_zero_count": 0,
+      "payoff_zero_rate": 0.0,
+      "min_wins_required": 20,
+      "min_losses_required": 20,
+      "empirical_avg_win_r": 1.973921562197339,
+      "empirical_avg_loss_r": -1.0251753618139587,
+      "empirical_reward_risk_ratio": 1.9254477192123074,
+      "empirical_break_even_probability": 0.34182801949687736
+    }
+  },
+  "deployable": false,
+  "note": "Edge-default threshold/profile only. Allocator 04C owns final representative threshold; allocator 04B recomputes threshold-specific AFML from each sweep row payoff profile.",
+  "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+  "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+  "payoff_context_version": "quantara_v3_threshold_payoff_context_v1",
+  "payoff_context_id": "ac40c069293c037c10fa20f48549872353b91142bab26f4df575ed795d95192e",
+  "payoff_context": {
+    "payoff_context_version": "quantara_v3_threshold_payoff_context_v1",
+    "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+    "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+    "executed_target_contract_version": "quantara_v3_executed_positive_meta_label_v1",
+    "edge_id": "JPN/volatilitycarry_long",
+    "threshold": 0.36,
+    "threshold_probability_column": "calibrated_probability",
+    "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+    "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+    "payoff_profile_valid": true,
+    "payoff_profile_invalid_reason": "",
+    "payoff_trade_count": 2540,
+    "payoff_win_count": 970,
+    "payoff_loss_count": 1570,
+    "payoff_zero_count": 0,
+    "payoff_zero_rate": 0.0,
+    "min_wins_required": 20,
+    "min_losses_required": 20,
+    "empirical_avg_win_r": 1.973921562197339,
+    "empirical_avg_loss_r": -1.0251753618139587,
+    "empirical_reward_risk_ratio": 1.9254477192123074,
+    "empirical_break_even_probability": 0.34182801949687736,
+    "afml_sizing_method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+    "payoff_context_id": "ac40c069293c037c10fa20f48549872353b91142bab26f4df575ed795d95192e"
+  },
+  "upstream_generation": {
+    "step01_feature_surgery_manifest_sha256": "48595f78dd1776a0db243f87b902f485be5bfc89598e63135d343f26a499503b",
+    "step01_selected_features_sha256": "0a37714d359c19e1d2ac0e6182db53e35d296bd4d3b147efe2ffa25f72a3e68f",
+    "step01_model_rows_sha256": "f92dd572dc62a90c6d7533c24349a09118bd4bb7eea585e2f9d6d58274a573ab",
+    "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+    "step02_training_manifest_sha256": "866c213372640b5b41e6c31725e9e83656b1e093303d23b73ef1eefed2d86fd9",
+    "step02_model_rows_sha256": "f92dd572dc62a90c6d7533c24349a09118bd4bb7eea585e2f9d6d58274a573ab",
+    "step02_best_params_sha256": "49bbad6443a12b2835a15ade359dffb9a466a41c91dad9407f0696cc5325ba9f",
+    "step03_oof_manifest_sha256": "1c99d839938a5a5c00715fa8adcfd44f31940f7c5e0f11bcc745807212313d52",
+    "step03_oof_predictions_sha256": "73ccddb61e994e8507c752869411fe6a0ddda5c9b95b47262dea33221c41454b"
+  }
+}
+Next ordered step: 05_training_artifact_verifier.py

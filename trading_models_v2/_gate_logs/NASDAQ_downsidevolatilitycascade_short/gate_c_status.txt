@@ -1,0 +1,39 @@
+asset=NASDAQ edge=downsidevolatilitycascade_short gate_c_exit=0 elapsed_seconds=673
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: NASDAQ/downsidevolatilitycascade_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E50_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 2535
+  250/2535 elapsed=109.2s
+  500/2535 elapsed=209.7s
+  750/2535 elapsed=277.1s
+  1000/2535 elapsed=344.7s
+  1250/2535 elapsed=382.8s
+  1500/2535 elapsed=416.9s
+  1750/2535 elapsed=456.7s
+  2000/2535 elapsed=518.9s
+  2250/2535 elapsed=574.3s
+  2500/2535 elapsed=652.8s
+  2535/2535 elapsed=667.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E50_V1000_PT2_SL1 | -0.007489 | [-0.097891,+0.082267] | 0.9890 | 7.679 | 50.939 | -0.023407 | -0.096362 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.018153 | [-0.084780,+0.124677] | 1.0272 | 19.860 | 80.680 | +0.021937 | +0.233582 | -0.937 | 0.387 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.000177 | [-0.099546,+0.102154] | 1.0003 | 18.548 | 79.178 | +0.000229 | +0.002282 | -0.010 | 0.414 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.000481 | [-0.100982,+0.101334] | 0.9993 | 16.851 | 70.196 | -0.000686 | -0.006194 | 0.029 | 0.456 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V1000_PT2_SL1 | meanR=+0.018153 | R/occupied_day=+0.021937 | R/week=+0.233582 | mean_hold_h=19.860
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.000177 | R/occupied_day=+0.000229 | R/week=+0.002282 | mean_hold_h=18.548
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260915T132427Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260915T132427Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

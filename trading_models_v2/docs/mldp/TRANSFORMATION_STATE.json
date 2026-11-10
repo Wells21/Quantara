@@ -1,0 +1,33 @@
+{
+  "state_version": "quantara_mldp_transformation_state_v1",
+  "patch_id": "quantara_mldp_task2a_executable_target_engine_v1",
+  "reference_repo": "Wells21/trading_models",
+  "reference_branch": "v3",
+  "reference_head_before_task1": "ee3c64b41f5d923825deda112d4e1245a11147c5",
+  "phase": "TASK2C_STEP01_STEP02_CODE_MIGRATED_ALL_EDGES_PILOT_COLAB_RUN_PENDING",
+  "edge_pipeline_migrated_to_executable_target": true,
+  "current_generation_promotable": false,
+  "historical_trial_ledger_complete": false,
+  "historical_trial_count_quality": "lower_bound_or_unknown_until_backfill",
+  "signal_age_seconds_source_default": 120,
+  "next_task": "TASK2C_RUN_BTCUSD_ABSORPTION_LONG_PILOT_ON_COLAB_STEP01_THEN_STEP02",
+  "next_pilot_recommendation": "BTCUSD/absorption_long",
+  "task2b_population_rule_decision": "docs/mldp/TASK2B_POPULATION_RULE_DECISION.md",
+  "a2_target_architecture_decision": "docs/mldp/A2_TARGET_CALIBRATION_ARCHITECTURE_DECISION.md",
+  "notes": [
+    "Task 1 installs contracts and exact CV primitives but does not regenerate edge research artifacts.",
+    "Changing signal age invalidates prior exact-execution artifacts; when executable target moves upstream it invalidates model and all downstream objects.",
+    "Old outcome-informed geometry scans count as research trials and are not pristine OOS evidence.",
+    "Profitability is not guaranteed; a faithful research factory must reject false/uneconomic edges rather than tune until positive.",
+    "Task 2A is shared across assets/edges; the BTC pilot is only a validation specimen.",
+    "Task 2A reuses the existing exact Bid/Ask resolver before model training and does not duplicate execution math.",
+    "Unresolved/no-timely-entry events are not silently labeled 0 or loss; universal semantics must be frozen before Task 2B.",
+    "Step 01-09 remains on the legacy gross target until Task 2B/2C explicitly migrates the shared lifecycle.",
+    "Task 2C (this session): Step 01 (feature surgery, now using MLDP A2 executable target + A4 denoise/ONC) and Step 02 (Optuna training, now using the same target + A6 trial-ledger logging) were rewritten on the BTCUSD/absorption_long pilot and propagated byte-for-byte to all 141 asset/edge Step01/Step02 scripts (verified via sync tests: tests/test_step01_colab_portable_snippet_sync.py, tests/test_step02_trial_ledger_snippet_sync.py). Code migration is complete; no edge has actually been re-run on Colab under the new architecture yet -- current_generation_promotable remains false until that happens.",
+    "A7 (this session): AFML Ch.17/18/19 (SADF, entropy, Parkinson/Corwin-Schultz microstructure) added as shared modules and wired into BTCUSD/absorption_long only, ahead of that edge's first pilot Colab run. See A7 doc for scope/data constraints (no asset has true trade prints, so Kyle's/Amihud's/Hasbrouck's lambda and PIN/VPIN are out of scope)."
+  ],
+  "reference_head_before_task2a": "a65327bbdd75bfb50e04da1f46771273fe8ecc08",
+  "task2a_engine_installed": true,
+  "task2a_training_authority": "AUDIT_ONLY_TASK2A_NOT_YET_AUTHORIZED",
+  "a7_structural_breaks_entropy_microstructure_features": "docs/mldp/A7_STRUCTURAL_BREAKS_ENTROPY_MICROSTRUCTURE_FEATURES.md"
+}

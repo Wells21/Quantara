@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — GBPJPY/dailyrangecompletionfade_long
+================================================================================
+Edge: GBPJPY/dailyrangecompletionfade_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof\gbpjpy_dailyrangecompletionfade_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 3,987
+Date range: 2022-06-09 07:19:43.408000+00:00 -> 2026-06-24 15:02:44.274000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    GBPJPY/dailyrangecompletionfade_long
+segment                           dailyrangecompletionfade_long
+threshold                                                  0.63
+candidate_count                                            3987
+take_rate                                              0.538751
+trade_count                                                2148
+win_rate                                                0.39851
+avg_win_r                                                1.9164
+avg_loss_r                                            -1.009683
+expectancy_r                                           0.156391
+payoff_ratio                                           1.898022
+profit_factor                                          1.257513
+gross_profit_r                                      1640.438105
+gross_loss_r                                        1304.510131
+cumulative_r                                         335.927974
+max_drawdown_r                                       -64.659753
+sharpe_r                                               0.107806
+sortino_r                                              1.253141
+calmar_r                                               5.195318
+selected_precision                                     0.403166
+selected_recall                                             1.0
+selected_f1                                            0.574652
+clf_precision                                          0.403166
+clf_recall                                             0.566754
+clf_f1                                                 0.471164
+clf_accuracy                                           0.512415
+clf_balanced_accuracy                                  0.522702
+predicted_positive_rate                                0.538751
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof\gbpjpy_dailyrangecompletionfade_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof\gbpjpy_dailyrangecompletionfade_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\oof\gbpjpy_dailyrangecompletionfade_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

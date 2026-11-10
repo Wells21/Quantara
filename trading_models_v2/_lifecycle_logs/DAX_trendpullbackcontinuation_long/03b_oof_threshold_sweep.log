@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — DAX/trendpullbackcontinuation_long
+================================================================================
+Edge: DAX/trendpullbackcontinuation_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trendpullbackcontinuation_long\artifacts\oof\dax_trendpullbackcontinuation_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trendpullbackcontinuation_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 5,438
+Date range: 2022-06-13 17:07:04.184000+00:00 -> 2026-06-12 11:25:02.905000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    DAX/trendpullbackcontinuation_long
+segment                        trendpullbackcontinuation_long
+threshold                                                0.87
+candidate_count                                          5438
+take_rate                                            0.056271
+trade_count                                               306
+win_rate                                             0.401961
+avg_win_r                                                 2.0
+avg_loss_r                                          -1.015379
+expectancy_r                                         0.196685
+payoff_ratio                                         1.969708
+profit_factor                                        1.323902
+gross_profit_r                                          246.0
+gross_loss_r                                       185.814359
+cumulative_r                                        60.185641
+max_drawdown_r                                     -19.035518
+sharpe_r                                             0.132786
+sortino_r                                             4.58321
+calmar_r                                             3.161755
+selected_precision                                   0.401961
+selected_recall                                           1.0
+selected_f1                                          0.573427
+clf_precision                                        0.401961
+clf_recall                                           0.061685
+clf_f1                                               0.106957
+clf_accuracy                                         0.622288
+clf_balanced_accuracy                                0.504275
+predicted_positive_rate                              0.056271
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trendpullbackcontinuation_long\artifacts\oof\dax_trendpullbackcontinuation_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trendpullbackcontinuation_long\artifacts\oof\dax_trendpullbackcontinuation_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trendpullbackcontinuation_long\artifacts\oof\dax_trendpullbackcontinuation_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

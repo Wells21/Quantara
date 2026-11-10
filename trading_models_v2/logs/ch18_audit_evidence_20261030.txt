@@ -1,0 +1,54 @@
+AFML Ch.18 audit evidence, 2026-10-30. Tools: shared/research/ch18_entropy_audit (book Snippets 18.1-18.4 verbatim, Py2->Py3 only).
+
+== book code vs port (ch18_cmp.py)
+p.269 example, book code, expanding window:
+  10000111 book 0.839  port 1.2786
+  10000110 book 0.839  port 1.2786
+  11100001 book 0.9682  port 1.3397
+  01100001 book 0.8432  port 1.3397
+matchLength('0101',2,2): book (3, '01') port (2, '01')
+matchLength('0111',2,2): book (3, '11') port (2, '11')
+over 300 random messages: matchLength differs 295, konto h differs 300, pmf1 differs 300
+lempelZiv_lib equal: True
+
+== Quantara data, 5,000 random bars per edge (ch18_data.py)
+{"edge": "GBPJPY/edges/dailyrangecompletionfade_long", "rows": 70399, "bar_minutes_mode": 6.0491, "ffd_diff_zero_share": 0.0017330037785164352, "abs_return_cv": 1.0270524746028729, "abs_return_p90_over_p10": 16.482069352160224, "sample": 5000, "stored_equals_port_recompute_max_abs": 2.220446049250313e-16, "spearman_port_vs_book_fixed_window": 0.9862345032815382, "spearman_port_vs_book_expanding": 0.25261976556759025, "spearman_book_fixed_lag1_vs_lag0": 0.987371320749834, "distinct_values_port": 3778, "distinct_values_book_fixed": 3908, "mean_port": 1.0689661704942617, "mean_book_fixed": 0.8526378589623012, "mean_book_expanding": 0.8522090267375754}
+{"edge": "HK/edges/drawdownhazardcontinuation_short", "rows": 54538, "bar_minutes_mode": 13.683466666666668, "ffd_diff_zero_share": 0.0, "abs_return_cv": 1.0633146879887119, "abs_return_p90_over_p10": 15.41342550534024, "sample": 5000, "stored_equals_port_recompute_max_abs": 2.220446049250313e-16, "spearman_port_vs_book_fixed_window": 0.9897328462232753, "spearman_port_vs_book_expanding": 0.32933675736306106, "spearman_book_fixed_lag1_vs_lag0": 0.9873040848337109, "distinct_values_port": 3439, "distinct_values_book_fixed": 3649, "mean_port": 1.0620636874000642, "mean_book_fixed": 0.8491649830868316, "mean_book_expanding": 0.8503469129297478}
+{"edge": "JPN/edges/rangestructure_long", "rows": 70901, "bar_minutes_mode": 13.061016666666665, "ffd_diff_zero_share": 0.0, "abs_return_cv": 1.0644799008382282, "abs_return_p90_over_p10": 15.186066746766631, "sample": 5000, "stored_equals_port_recompute_max_abs": 2.220446049250313e-16, "spearman_port_vs_book_fixed_window": 0.9867012957602127, "spearman_port_vs_book_expanding": 0.34731939344897284, "spearman_book_fixed_lag1_vs_lag0": 0.9876053978631699, "distinct_values_port": 3591, "distinct_values_book_fixed": 3809, "mean_port": 1.0461369108890963, "mean_book_fixed": 0.8378280413867757, "mean_book_expanding": 0.8371015405096986}
+{"edge": "XAUUSD/edges/rangestructure_long", "rows": 66607, "bar_minutes_mode": 9.937766666666667, "ffd_diff_zero_share": 0.0, "abs_return_cv": 1.094990991594711, "abs_return_p90_over_p10": 15.924207937255474, "sample": 5000, "stored_equals_port_recompute_max_abs": 2.220446049250313e-16, "spearman_port_vs_book_fixed_window": 0.9867480651224673, "spearman_port_vs_book_expanding": 0.30590348815526935, "spearman_book_fixed_lag1_vs_lag0": 0.9878434604488231, "distinct_values_port": 3479, "distinct_values_book_fixed": 3746, "mean_port": 1.0556338108092445, "mean_book_fixed": 0.8444027402897886, "mean_book_expanding": 0.8461073108295133}
+
+== encoding variants, 2,000 bars, expanding window (ch18_enc.py)
+{"edge": "JPN/edges/rangestructure_long", "sec_per_bar_all5": 0.012449331300100312, "binary_dffd": {"mean": 0.836, "std": 0.046, "p5": 0.766, "p95": 0.892, "distinct": 2000, "letters_median": 2.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 1.0}, "binary_r": {"mean": 0.853, "std": 0.036, "p5": 0.794, "p95": 0.907, "distinct": 2000, "letters_median": 2.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 0.216}, "quantile10_r": {"mean": 2.247, "std": 0.084, "p5": 2.107, "p95": 2.348, "distinct": 2000, "letters_median": 10.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 0.004}, "quantile10_ffd_level": {"mean": 0.759, "std": 0.478, "p5": 0.222, "p95": 1.531, "distinct": 1364, "letters_median": 3.0, "share_windows_1_letter": 0.2915, "spearman_vs_binary_dffd": 0.056}, "sigma_r": {"mean": 1.634, "std": 0.266, "p5": 1.26, "p95": 2.115, "distinct": 2000, "letters_median": 6.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": -0.0}}
+{"edge": "XAUUSD/edges/rangestructure_long", "sec_per_bar_all5": 0.011693804499926045, "binary_dffd": {"mean": 0.845, "std": 0.045, "p5": 0.779, "p95": 0.899, "distinct": 2000, "letters_median": 2.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 1.0}, "binary_r": {"mean": 0.853, "std": 0.036, "p5": 0.791, "p95": 0.906, "distinct": 2000, "letters_median": 2.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 0.411}, "quantile10_r": {"mean": 2.239, "std": 0.097, "p5": 2.077, "p95": 2.349, "distinct": 2000, "letters_median": 10.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": 0.093}, "quantile10_ffd_level": {"mean": 0.488, "std": 0.355, "p5": 0.222, "p95": 1.16, "distinct": 853, "letters_median": 1.0, "share_windows_1_letter": 0.565, "spearman_vs_binary_dffd": 0.011}, "sigma_r": {"mean": 1.631, "std": 0.292, "p5": 1.239, "p95": 2.192, "distinct": 2000, "letters_median": 6.0, "share_windows_1_letter": 0.0, "spearman_vs_binary_dffd": -0.028}}
+
+== Figure 18.1 attempt (fig181.py; 300 messages of length 100 per alphabet)
+10 {'expanding': (np.float64(2.29), np.float64(0.048)), 'window10': (np.float64(2.318), np.float64(0.072)), 'window25': (np.float64(2.347), np.float64(0.08))} true quantized entropy log2(L)= 3.322
+7 {'expanding': (np.float64(2.031), np.float64(0.054)), 'window10': (np.float64(2.007), np.float64(0.061)), 'window25': (np.float64(2.068), np.float64(0.066))} true quantized entropy log2(L)= 2.807
+5 {'expanding': (np.float64(1.751), np.float64(0.043)), 'window10': (np.float64(1.71), np.float64(0.055)), 'window25': (np.float64(1.794), np.float64(0.061))} true quantized entropy log2(L)= 2.322
+2 {'expanding': (np.float64(0.854), np.float64(0.031)), 'window10': (np.float64(0.841), np.float64(0.04)), 'window25': (np.float64(0.857), np.float64(0.045))} true quantized entropy log2(L)= 1.0
+Gaussian H nats 1.4189385332046727 bits 2.047095585180641
+
+== exercises 18.3-18.5 (ex18.py)
+18.3 iid N(0,1) plug-in w=1..3: [np.float64(3.0), np.float64(2.981), np.float64(2.877)] konto w10: 2.104 w100: 2.328 | true: 8-letter quantised iid = 3 bits
+18.4 AR(1) rho=.5 plug-in w=1..3: [np.float64(3.0), np.float64(2.885), np.float64(2.731)] konto w10: 2.055 w100: 2.266 | true: 8-letter quantised iid = 3 bits
+18.5a H = 2.220446049250313e-16
+18.5b sum theta = 9.0 (not 1)
+
+== Step 01 importance of Entropy_Kontoyiannis_100 (feature_importance_audit.json, MDA mean +- std): GBPJPY drc 0.000054 +- 0.000133; HK dhc -0.000423 +- 0.000227; XAU rs -0.000094 +- 0.000235; JPN rs no audit file. Selected model input in HK dhc, JPN rs, XAU rs.
+== Gao, Kontoyiannis, Bienenstock (2008) arXiv 0802.4363v1: L_i^n = 1 + max{0<=l<=n : x_i^{i+l-1} = x_j^{j+l-1}} (p.6); k ~ O((log n)^2) (s.2.3); increasing-window estimators 'generally performed better, and always at least as well' as sliding-window (s.3.2); simulations use N = 2n + k.
+
+=== 2026-10-31 IMPLEMENTATION (owner approved (a)-(f); D066-D070) ===
+Encoding manifests (assets/*/bars/entropy/entropy_encoding_manifest.json), sigma / zero-return share:
+BTCUSD 3.803e-03 0.0002 | DAX 1.453e-03 0.0004 | GBPJPY 8.123e-04 0.0017 | HK 2.236e-03 0.0003 | JPN 1.771e-03 0.0015
+NASDAQ 1.842e-03 0.0001 | US500 1.403e-03 0.0003 | USDMXN 9.363e-04 0.0003 | USOIL 3.449e-03 0.0088 | XAUUSD 1.431e-03 0.0005
+In-sample quantile letter shares: 0.100 each, all 10 assets.
+New features, last 3,000 research bars (mean, sd) and cost:
+GBPJPY 0.85 ms/bar binary (0.852,0.035) q10 (2.158,0.098) sigma (1.111,0.230) spearman b-q 0.02 b-s 0.10 q-s 0.74
+HK     0.80 ms/bar binary (0.857,0.033) q10 (2.268,0.055) sigma (1.375,0.149) spearman 0.25 0.20 0.30
+JPN    0.77 ms/bar binary (0.847,0.036) q10 (2.224,0.078) sigma (1.746,0.191) spearman 0.01 0.07 -0.59
+XAUUSD 0.82 ms/bar binary (0.851,0.036) q10 (2.021,0.195) sigma (2.171,0.297) spearman -0.07 0.05 -0.77
+tests/test_afml_ch18_entropy.py: 19 OK on venv39 and venv312. tests/test_afml_ch18_portfolio_concentration.py: 4 passed (venv39).
+Phase C.2 (venv39, scratch contract, GBPJPY + JPN): STATUS PASS, core=188, 128 steps, p50 200/218 ms.
+Phase C.1 compile on current live manifest: FAIL for HK dhc, JPN rs, XAU rs, XAU vc (selected Entropy_Kontoyiannis_100 absent) -- expected until RECERT.
+Full venv39 pytest: 6 failed, 554 passed, 74 skipped, 3 errors (8 = C.1 compile consequence; 1 = clock-dependent live-bar test).
+Step 07 report (pre-RECERT core, single): pc_effective_number_of_bets 3.386, pc_meucci_concentration 0.436 (1/sum w^2 4.256).

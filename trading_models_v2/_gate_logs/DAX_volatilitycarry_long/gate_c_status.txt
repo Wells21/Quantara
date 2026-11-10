@@ -1,0 +1,50 @@
+asset=DAX edge=volatilitycarry_long gate_c_exit=0 elapsed_seconds=227
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: DAX/volatilitycarry_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V20_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E50_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 5141
+  250/5141 elapsed=23.8s
+  500/5141 elapsed=49.9s
+  750/5141 elapsed=63.8s
+  1000/5141 elapsed=78.0s
+  1250/5141 elapsed=88.9s
+  1500/5141 elapsed=100.2s
+  1750/5141 elapsed=113.7s
+  2000/5141 elapsed=119.3s
+  2250/5141 elapsed=124.4s
+  2500/5141 elapsed=129.5s
+  2750/5141 elapsed=134.9s
+  3000/5141 elapsed=141.5s
+  3250/5141 elapsed=146.4s
+  3500/5141 elapsed=152.1s
+  3750/5141 elapsed=160.1s
+  4000/5141 elapsed=167.7s
+  4250/5141 elapsed=174.5s
+  4500/5141 elapsed=182.1s
+  4750/5141 elapsed=191.9s
+  5000/5141 elapsed=205.4s
+  5141/5141 elapsed=215.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V20_PT1_SL1 | -0.032237 | [-0.072627,+0.007677] | 0.9376 | 3.728 | 11.797 | -0.207531 | -0.783962 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.145532 | [+0.033495,+0.255190] | 1.2324 | 27.502 | 91.792 | +0.127003 | +3.480692 | -0.612 | 0.136 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.141184 | [+0.037912,+0.238364] | 1.2249 | 23.012 | 86.314 | +0.147249 | +3.376698 | -0.710 | 0.162 | 1.0000
+H15_E50_V1000_PT2_SL1 | +0.125545 | [+0.027200,+0.216378] | 1.1980 | 19.217 | 72.254 | +0.156789 | +3.002660 | -0.755 | 0.194 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H15_E50_V1000_PT2_SL1 | meanR=+0.125545 | R/occupied_day=+0.156789 | R/week=+3.002660 | mean_hold_h=19.217
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.141184 | R/occupied_day=+0.147249 | R/week=+3.376698 | mean_hold_h=23.012
+ 3. H20_E100_V1000_PT2_SL1 | meanR=+0.145532 | R/occupied_day=+0.127003 | R/week=+3.480692 | mean_hold_h=27.502
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T100402Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T100402Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,767 @@
+{
+  "approved_account_stage": "phase1",
+  "artifact_hash_validation_enabled": false,
+  "compute_profile": "vps_parallel",
+  "configured_account_stage": "phase1",
+  "created_at": "2026-10-17T22:47:00+00:00",
+  "deployment_status": "LIVE_APPROVED",
+  "findings": [
+    {
+      "code": "ENV_LIVE_MANIFEST_LOAD",
+      "message": "Loaded portfolio_live/live_manifest.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "LIVE_MANIFEST_VALIDATION_STATUS",
+      "message": "01_validate_live_manifest status=PASS",
+      "severity": "PASS"
+    },
+    {
+      "code": "LIVE_MANIFEST_VALIDATION_REPORT_CURRENT",
+      "message": "structural_current=True created_at=2026-10-17T22:46:30+00:00 edges=6",
+      "severity": "PASS"
+    },
+    {
+      "code": "LIVE_MANIFEST_VALIDATION_STAGE_MATCH",
+      "message": "report=phase1 manifest=phase1",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_LIVE_APPROVED_REQUIRES_STRESS_PASS",
+      "message": "stress_validation_status=STRESS_PASS",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_LIVE_READY",
+      "message": "live_ready=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_LIVE_TRADING_ENABLED",
+      "message": "live_trade_enabled=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_OUTPUT_DIR",
+      "message": "portfolio_live/outputs exists=True",
+      "path": "portfolio_live/outputs",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_OUTPUT_DIR",
+      "message": "portfolio_live/live_bars exists=True",
+      "path": "portfolio_live/live_bars",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_OUTPUT_DIR",
+      "message": "portfolio_live/live_logs exists=True",
+      "path": "portfolio_live/live_logs",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_OUTPUT_DIR",
+      "message": "portfolio_live/live_state exists=True",
+      "path": "portfolio_live/live_state",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_OUTPUT_DIR",
+      "message": "portfolio_live/config exists=True",
+      "path": "portfolio_live/config",
+      "severity": "PASS"
+    },
+    {
+      "code": "LOCAL_ACCOUNT_STAGE",
+      "message": "local_stage='phase1' expected='phase1'",
+      "severity": "PASS"
+    },
+    {
+      "code": "MANIFEST_ACCOUNT_STAGE",
+      "message": "manifest_stage='phase1'",
+      "severity": "PASS"
+    },
+    {
+      "code": "ACCOUNT_STAGE_MATCH",
+      "message": "local='phase1' manifest='phase1'",
+      "severity": "PASS"
+    },
+    {
+      "code": "ACCOUNT_PROFILE_MATCH",
+      "message": "manifest_profile='current_prop_account'",
+      "severity": "PASS"
+    },
+    {
+      "code": "ACTIVE_ACCOUNT_RULES_MATCH",
+      "message": "live manifest structurally matches active_account_rules.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RISK_CONTRACT",
+      "message": "risk_contract_version=direct_weight_calibrated_afml_broker_executable",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DAILY_SYMBOL_RULE_ENABLED",
+      "message": "daily_symbol_risk_rule_enabled=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DAILY_SYMBOL_RULE_MODE",
+      "message": "daily_symbol_risk_enforcement_mode='disabled'",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_COMPUTE_PROFILE",
+      "message": "portfolio_compute_profile=vps_parallel",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_AUTHORITATIVE_RUNTIME_MODE",
+      "message": "live_runtime_contract={'asset_level_parallelism_allowed': True, 'authoritative_raw_bar_rows': 6000, 'edge_level_parallelism_default': False, 'native_one_row_certification_required': False, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'shared_feature_cache_requires_exact_bar_snapshot_and_contract_match': True, 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "asset": "GBPJPY",
+      "code": "ENV_ASSET_EXECUTION_GUARD",
+      "message": "asset=GBPJPY missing=[] guard={'max_spread_points': 120.0, 'entry_drift_limit_price': 0.6, 'deviation_points': 120, 'max_lot_cap': 10.0}",
+      "severity": "PASS"
+    },
+    {
+      "asset": "HK",
+      "code": "ENV_ASSET_EXECUTION_GUARD",
+      "message": "asset=HK missing=[] guard={'max_spread_points': 3000.0, 'entry_drift_limit_price': 100.0, 'deviation_points': 300, 'max_lot_cap': 10.0}",
+      "severity": "PASS"
+    },
+    {
+      "asset": "JPN",
+      "code": "ENV_ASSET_EXECUTION_GUARD",
+      "message": "asset=JPN missing=[] guard={'max_spread_points': 2000.0, 'entry_drift_limit_price': 120.0, 'deviation_points': 300, 'max_lot_cap': 10.0}",
+      "severity": "PASS"
+    },
+    {
+      "asset": "XAUUSD",
+      "code": "ENV_ASSET_EXECUTION_GUARD",
+      "message": "asset=XAUUSD missing=[] guard={'max_spread_points': 300.0, 'entry_drift_limit_price': 6.0, 'deviation_points': 100, 'max_lot_cap': 10.0}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_LOCAL_SETTINGS",
+      "message": "Loaded local settings from portfolio_live/local_live_settings.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_SELECTED_EDGES",
+      "message": "selected_edges=6",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "edge_id=XAUUSD/volatilitycarry_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: asset=XAUUSD",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: asset=XAUUSD symbol=XAUUSD",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: edge_root=assets/XAUUSD/edges/volatilitycarry_long exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: path='assets/XAUUSD/edges/volatilitycarry_long/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: isolated runtime loaded from assets/XAUUSD/edges/volatilitycarry_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "message": "XAUUSD/volatilitycarry_long: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "edge_id=JPN/volatilitycarry_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: asset=JPN",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: asset=JPN symbol=Nikkei225",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: edge_root=assets/JPN/edges/volatilitycarry_long exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: path='assets/JPN/edges/volatilitycarry_long/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: isolated runtime loaded from assets/JPN/edges/volatilitycarry_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "JPN/volatilitycarry_long",
+      "message": "JPN/volatilitycarry_long: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "edge_id=XAUUSD/rangestructure_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: asset=XAUUSD",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: asset=XAUUSD symbol=XAUUSD",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: edge_root=assets/XAUUSD/edges/rangestructure_long exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: path='assets/XAUUSD/edges/rangestructure_long/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: isolated runtime loaded from assets/XAUUSD/edges/rangestructure_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "message": "XAUUSD/rangestructure_long: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "edge_id=HK/drawdownhazardcontinuation_short",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: asset=HK",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: asset=HK symbol=HK50",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: edge_root=assets/HK/edges/drawdownhazardcontinuation_short exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: path='assets/HK/edges/drawdownhazardcontinuation_short/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: isolated runtime loaded from assets/HK/edges/drawdownhazardcontinuation_short",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "message": "HK/drawdownhazardcontinuation_short: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "edge_id=GBPJPY/dailyrangecompletionfade_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: asset=GBPJPY",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: asset=GBPJPY symbol=GBPJPY",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: edge_root=assets/GBPJPY/edges/dailyrangecompletionfade_long exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: path='assets/GBPJPY/edges/dailyrangecompletionfade_long/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: isolated runtime loaded from assets/GBPJPY/edges/dailyrangecompletionfade_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "message": "GBPJPY/dailyrangecompletionfade_long: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ID",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "edge_id=JPN/rangestructure_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ASSET",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: asset=JPN",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ASSET_SYMBOL_MAP",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: asset=JPN symbol=Nikkei225",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ROOT_EXISTS",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: edge_root=assets/JPN/edges/rangestructure_long exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_MANIFEST_PATH",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: path='assets/JPN/edges/rangestructure_long/artifacts/edge_manifest.json' exists=True",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_ARTIFACT_DIGESTS_NOT_REQUIRED",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: structural-current-files mode",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_IMPORT",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: isolated runtime loaded from assets/JPN/edges/rangestructure_long",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_REQUIRED_API",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: missing_runtime_functions=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_RUNTIME_CONTRACT_VALIDATOR",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: shared isolated runtime required API validator passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_FEATURE_ENGINEERING_FORBIDDEN",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: dashboard_may_engineer_edge_features=False",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_DASHBOARD_RUNTIME_FLAGS",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: missing_flags=[]",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EDGE_AUTHORITATIVE_RUNTIME",
+      "edge_id": "JPN/rangestructure_long",
+      "message": "JPN/rangestructure_long: runtime_contract={'manual_edge_feature_engineering_allowed': False, 'must_call_build_features': True, 'must_call_build_model_rows': True, 'must_call_generate_candidate_events': True, 'must_call_score': True, 'must_import_runtime_module': True, 'native_one_row_continuation_allowed': False, 'runtime_mode': 'authoritative_batch_shared_cache', 'stateful_incremental_continuation_allowed': False}",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_ORDER_SEND_ENV_SAFE",
+      "message": "No environment override attempts to arm order_send against a non-live manifest",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_MT5_IMPORT",
+      "message": "MetaTrader5 package import passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_MT5_INITIALIZE",
+      "message": "MT5 initialize passed",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_MT5_ACCOUNT_INFO",
+      "message": "account_info present",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EXPECTED_ACCOUNT_LOGIN",
+      "message": "expected=780765 actual=780765",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EXPECTED_ACCOUNT_SERVER",
+      "message": "expected='MonetaFunded-Live' actual='MonetaFunded-Live'",
+      "severity": "PASS"
+    },
+    {
+      "code": "ENV_EXPECTED_ACCOUNT_CURRENCY",
+      "message": "expected='USD' actual='USD'",
+      "severity": "PASS"
+    },
+    {
+      "asset": "GBPJPY",
+      "code": "ENV_MT5_SYMBOL_SELECT",
+      "message": "asset=GBPJPY symbol=GBPJPY selected=True info_present=True",
+      "severity": "PASS",
+      "symbol": "GBPJPY"
+    },
+    {
+      "asset": "GBPJPY",
+      "code": "ENV_MT5_SYMBOL_INFO_FIELDS",
+      "message": "asset=GBPJPY symbol=GBPJPY missing=[]",
+      "severity": "PASS",
+      "symbol": "GBPJPY"
+    },
+    {
+      "account_currency": "USD",
+      "asset": "GBPJPY",
+      "code": "ENV_MT5_ACCOUNT_CURRENCY_RISK_CALC",
+      "contract_size": 100000.0,
+      "message": "asset=GBPJPY symbol=GBPJPY volume=0.01 entry=210.613 stop=210.513 profit_at_stop=-0.63 last_error=None",
+      "profit_currency": "JPY",
+      "severity": "PASS",
+      "symbol": "GBPJPY",
+      "volume_min": 0.01,
+      "volume_step": 0.01
+    },
+    {
+      "asset": "HK",
+      "code": "ENV_MT5_SYMBOL_SELECT",
+      "message": "asset=HK symbol=HK50 selected=True info_present=True",
+      "severity": "PASS",
+      "symbol": "HK50"
+    },
+    {
+      "asset": "HK",
+      "code": "ENV_MT5_SYMBOL_INFO_FIELDS",
+      "message": "asset=HK symbol=HK50 missing=[]",
+      "severity": "PASS",
+      "symbol": "HK50"
+    },
+    {
+      "account_currency": "USD",
+      "asset": "HK",
+      "code": "ENV_MT5_ACCOUNT_CURRENCY_RISK_CALC",
+      "contract_size": 1.0,
+      "message": "asset=HK symbol=HK50 volume=0.1 entry=24078.0 stop=23978.0 profit_at_stop=-1.27 last_error=None",
+      "profit_currency": "HKD",
+      "severity": "PASS",
+      "symbol": "HK50",
+      "volume_min": 0.1,
+      "volume_step": 0.1
+    },
+    {
+      "asset": "JPN",
+      "code": "ENV_MT5_SYMBOL_SELECT",
+      "message": "asset=JPN symbol=Nikkei225 selected=True info_present=True",
+      "severity": "PASS",
+      "symbol": "Nikkei225"
+    },
+    {
+      "asset": "JPN",
+      "code": "ENV_MT5_SYMBOL_INFO_FIELDS",
+      "message": "asset=JPN symbol=Nikkei225 missing=[]",
+      "severity": "PASS",
+      "symbol": "Nikkei225"
+    },
+    {
+      "account_currency": "USD",
+      "asset": "JPN",
+      "code": "ENV_MT5_ACCOUNT_CURRENCY_RISK_CALC",
+      "contract_size": 1.0,
+      "message": "asset=JPN symbol=Nikkei225 volume=1.0 entry=63516.43 stop=63515.43 profit_at_stop=-0.01 last_error=None",
+      "profit_currency": "JPY",
+      "severity": "PASS",
+      "symbol": "Nikkei225",
+      "volume_min": 1.0,
+      "volume_step": 1.0
+    },
+    {
+      "asset": "XAUUSD",
+      "code": "ENV_MT5_SYMBOL_SELECT",
+      "message": "asset=XAUUSD symbol=XAUUSD selected=True info_present=True",
+      "severity": "PASS",
+      "symbol": "XAUUSD"
+    },
+    {
+      "asset": "XAUUSD",
+      "code": "ENV_MT5_SYMBOL_INFO_FIELDS",
+      "message": "asset=XAUUSD symbol=XAUUSD missing=[]",
+      "severity": "PASS",
+      "symbol": "XAUUSD"
+    },
+    {
+      "account_currency": "USD",
+      "asset": "XAUUSD",
+      "code": "ENV_MT5_ACCOUNT_CURRENCY_RISK_CALC",
+      "contract_size": 100.0,
+      "message": "asset=XAUUSD symbol=XAUUSD volume=0.01 entry=4165.88 stop=4164.88 profit_at_stop=-1.0 last_error=None",
+      "profit_currency": "USD",
+      "severity": "PASS",
+      "symbol": "XAUUSD",
+      "volume_min": 0.01,
+      "volume_step": 0.01
+    }
+  ],
+  "live_manifest_sha256": "786689d79a6a46ff4a6743969f94c2923f5df43939eaa771392a8ad0a63b0c61",
+  "live_ready": true,
+  "live_trade_enabled": true,
+  "manifest_created_at": "2026-10-17T22:46:30+00:00",
+  "manifest_path": "portfolio_live/live_manifest.json",
+  "next_ordered_step_if_pass": "python ./portfolio_live/03_live_bar_threshold_diagnostic.py",
+  "notes": [
+    "This step validates environment readiness only. It does not build bars, features, scores, signals, or orders.",
+    "Use --require-mt5 for broker-connected validation.",
+    "Real credentials must not be committed. Use portfolio_live/local_live_settings.json locally."
+  ],
+  "require_mt5": true,
+  "risk_contract_version": "direct_weight_calibrated_afml_broker_executable",
+  "runtime_mode": "authoritative_batch_shared_cache",
+  "schema_version": "v2.3",
+  "selected_asset_count": 4,
+  "selected_edge_count": 6,
+  "selected_edge_ids": [
+    "GBPJPY/dailyrangecompletionfade_long",
+    "HK/drawdownhazardcontinuation_short",
+    "JPN/rangestructure_long",
+    "JPN/volatilitycarry_long",
+    "XAUUSD/rangestructure_long",
+    "XAUUSD/volatilitycarry_long"
+  ],
+  "summary": {
+    "fail_count": 0,
+    "pass_count": 119,
+    "warn_count": 0
+  },
+  "symbol_map_used": {
+    "GBPJPY": "GBPJPY",
+    "HK": "HK50",
+    "JPN": "Nikkei225",
+    "XAUUSD": "XAUUSD"
+  },
+  "validation_status": "PASS"
+}

@@ -1,0 +1,139 @@
+$ shared/ffd/build_asset_ffd_features.py --asset BTCUSD --overwrite
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+✅ V2 asset FFD features built.
+Asset: BTCUSD
+Rows input: 77898
+Rows output: 76899
+Frozen d: 0.34375
+FFD window: 1000
+Live buffer bars: 1010
+Memory retention passed: True
+ADF p full / first half / second half: 0.0418 / 0.0035 / 0.0000
+Min memory retention corr: 0.9817318282313113
+FFD features: assets/BTCUSD/bars/ffd/btcusd_ffd_features.csv
+State bundle: assets/BTCUSD/bars/ffd/btcusd_ffd_state_bundle.pkl
+Manifest: assets/BTCUSD/bars/ffd/ffd_manifest.json
+Elapsed seconds: 102.75
+$ shared/regime/build_asset_hmm_regime_features.py --asset BTCUSD --overwrite
+============================================================
+PRICE-ONLY ROLLING HMM REGIME MODEL — BTCUSD
+============================================================
+Rows available after HMM preprocessing: 83,479
+Date range: 2022-02-08 21:18:52.823000+00:00 -> 2026-08-25 19:16:31.641000+00:00
+HMM features: ['Close_FFD', 'Bar_Volatility_Bps', 'Abs_Bar_Return_Bps', 'Body_To_Range', 'Close_Location']
+Total OOS bars to infer: 78,479
+Train window: 5,000
+Refit frequency: 1,000
+Inference lookback: 1,000
+
+Refit at bar 5,000 | time=2022-05-19 17:52:54.209000+00:00 | converged=True
+Refit at bar 6,000 | time=2022-06-07 23:09:24.256000+00:00 | converged=True
+Refit at bar 7,000 | time=2022-06-25 17:09:19.180000+00:00 | converged=True
+Refit at bar 8,000 | time=2022-07-15 00:05:53.318000+00:00 | converged=True
+Refit at bar 9,000 | time=2022-08-03 19:32:15.100000+00:00 | converged=True
+Refit at bar 10,000 | time=2022-08-25 18:52:02.364000+00:00 | converged=True
+Refit at bar 11,000 | time=2022-09-17 16:04:52.100000+00:00 | converged=True
+Refit at bar 12,000 | time=2022-10-09 09:50:50.369000+00:00 | converged=True
+Refit at bar 13,000 | time=2022-10-30 10:22:19.540000+00:00 | converged=True
+Refit at bar 14,000 | time=2022-11-14 13:12:09.640000+00:00 | converged=True
+Refit at bar 15,000 | time=2022-12-12 21:45:56.171000+00:00 | converged=True
+Refit at bar 16,000 | time=2023-01-01 18:56:18.259000+00:00 | converged=True
+Refit at bar 17,000 | time=2023-01-17 19:46:14.673000+00:00 | converged=True
+Refit at bar 18,000 | time=2023-02-05 19:12:49.919000+00:00 | converged=True
+Refit at bar 19,000 | time=2023-02-22 15:53:31.867000+00:00 | converged=True
+Refit at bar 20,000 | time=2023-03-14 04:46:44.537000+00:00 | converged=True
+Refit at bar 21,000 | time=2023-03-29 23:04:24.088000+00:00 | converged=True
+Refit at bar 22,000 | time=2023-04-21 17:37:18.123000+00:00 | converged=True
+Refit at bar 23,000 | time=2023-05-14 16:44:53.078000+00:00 | converged=True
+Refit at bar 24,000 | time=2023-06-06 13:35:55.087000+00:00 | converged=True
+Refit at bar 25,000 | time=2023-06-20 19:11:44.946000+00:00 | converged=True
+Refit at bar 26,000 | time=2023-07-12 13:00:22.735000+00:00 | converged=True
+Refit at bar 27,000 | time=2023-08-06 06:39:22.007000+00:00 | converged=True
+Refit at bar 28,000 | time=2023-08-29 06:01:05.271000+00:00 | converged=True
+Refit at bar 29,000 | time=2023-09-12 05:32:26.986000+00:00 | converged=True
+Refit at bar 30,000 | time=2023-09-30 00:41:34.534000+00:00 | converged=True
+Refit at bar 31,000 | time=2023-10-18 11:35:55.763000+00:00 | converged=True
+Refit at bar 32,000 | time=2023-11-08 22:21:25.330000+00:00 | converged=True
+Refit at bar 33,000 | time=2023-11-29 11:48:04.804000+00:00 | converged=True
+Refit at bar 34,000 | time=2023-12-19 17:21:22.538000+00:00 | converged=True
+Refit at bar 35,000 | time=2024-01-06 21:25:22.481000+00:00 | converged=True
+Refit at bar 36,000 | time=2024-01-24 18:28:41.530000+00:00 | converged=True
+Refit at bar 37,000 | time=2024-02-14 12:50:05.021000+00:00 | converged=True
+Refit at bar 38,000 | time=2024-03-01 16:11:44.324000+00:00 | converged=True
+Refit at bar 39,000 | time=2024-03-18 21:31:41.187000+00:00 | converged=True
+Refit at bar 40,000 | time=2024-04-10 00:31:35.375000+00:00 | converged=True
+Refit at bar 41,000 | time=2024-04-29 02:51:30.802000+00:00 | converged=True
+Refit at bar 42,000 | time=2024-05-19 12:21:13.378000+00:00 | converged=True
+Refit at bar 43,000 | time=2024-06-07 07:07:36.157000+00:00 | converged=True
+Refit at bar 44,000 | time=2024-06-28 19:07:17.745000+00:00 | converged=True
+Refit at bar 45,000 | time=2024-07-18 21:25:00.296000+00:00 | converged=True
+Refit at bar 46,000 | time=2024-08-06 02:50:30.054000+00:00 | converged=True
+Refit at bar 47,000 | time=2024-08-28 14:24:36.214000+00:00 | converged=True
+Refit at bar 48,000 | time=2024-09-20 09:41:29.784000+00:00 | converged=True
+Refit at bar 49,000 | time=2024-10-10 19:58:27.366000+00:00 | converged=True
+Refit at bar 50,000 | time=2024-11-01 16:39:43.959000+00:00 | converged=True
+Refit at bar 51,000 | time=2024-11-15 13:34:19.317000+00:00 | converged=True
+Refit at bar 52,000 | time=2024-12-04 14:16:26.054000+00:00 | converged=True
+Refit at bar 53,000 | time=2024-12-27 21:14:11.146000+00:00 | converged=True
+Refit at bar 54,000 | time=2025-01-17 21:23:37.803000+00:00 | converged=True
+Refit at bar 55,000 | time=2025-02-05 11:11:04.221000+00:00 | converged=True
+Refit at bar 56,000 | time=2025-02-27 18:05:01.217000+00:00 | converged=True
+Refit at bar 57,000 | time=2025-03-17 09:31:45.259000+00:00 | converged=True
+Refit at bar 58,000 | time=2025-04-07 18:19:29.205000+00:00 | converged=True
+Refit at bar 59,000 | time=2025-04-29 04:11:21.959000+00:00 | converged=True
+Refit at bar 60,000 | time=2025-05-18 11:43:29.668000+00:00 | converged=True
+Refit at bar 61,000 | time=2025-06-06 03:54:21.434000+00:00 | converged=True
+Refit at bar 62,000 | time=2025-06-25 08:10:19.932000+00:00 | converged=True
+Refit at bar 63,000 | time=2025-07-15 21:17:19.817000+00:00 | converged=True
+Refit at bar 64,000 | time=2025-08-04 20:48:59.924000+00:00 | converged=True
+Refit at bar 65,000 | time=2025-08-25 07:08:07.865000+00:00 | converged=True
+Refit at bar 66,000 | time=2025-09-15 02:32:19.709000+00:00 | converged=True
+Refit at bar 67,000 | time=2025-10-03 05:00:29.540000+00:00 | converged=True
+Refit at bar 68,000 | time=2025-10-19 03:58:12.109000+00:00 | converged=True
+Refit at bar 69,000 | time=2025-11-08 04:10:06.153000+00:00 | converged=True
+Refit at bar 70,000 | time=2025-11-25 10:01:03.314000+00:00 | converged=True
+Refit at bar 71,000 | time=2025-12-17 04:57:21.108000+00:00 | converged=True
+Refit at bar 72,000 | time=2026-01-09 13:11:45.652000+00:00 | converged=True
+Refit at bar 73,000 | time=2026-01-29 10:11:22.655000+00:00 | converged=True
+Refit at bar 74,000 | time=2026-02-15 15:53:13.489000+00:00 | converged=True
+Refit at bar 75,000 | time=2026-03-09 20:02:44.213000+00:00 | converged=True
+Refit at bar 76,000 | time=2026-03-30 20:11:59.688000+00:00 | converged=True
+Refit at bar 77,000 | time=2026-04-21 11:33:30.149000+00:00 | converged=True
+Refit at bar 78,000 | time=2026-05-01 14:30:46.560000+00:00 | converged=True
+Refit at bar 79,000 | time=2026-05-19 21:35:05.649000+00:00 | converged=True
+Refit at bar 80,000 | time=2026-06-06 05:28:18.335000+00:00 | converged=True
+Refit at bar 81,000 | time=2026-07-10 05:24:50.363000+00:00 | converged=True
+Refit at bar 82,000 | time=2026-08-02 07:09:01.716000+00:00 | converged=True
+Refit at bar 83,000 | time=2026-08-20 13:38:55.374000+00:00 | converged=True
+✅ V2 asset HMM regime features built.
+Asset: BTCUSD
+Rows after preprocessing: 83479
+Rows output: 78479
+States: 4
+Train window: 5000
+Refit frequency: 1000
+Inference lookback: 1000
+Refit points: 79
+All refits converged: True
+Output range: 2022-05-19 17:52:54.209000+00:00 -> 2026-08-25 19:16:31.641000+00:00
+Regime features: assets/BTCUSD/bars/regime/btcusd_hmm_regime_features.csv
+Live bundle: assets/BTCUSD/bars/regime/btcusd_hmm_regime_live_bundle.pkl
+Manifest: assets/BTCUSD/bars/regime/hmm_regime_manifest.json
+Elapsed seconds: 215.14

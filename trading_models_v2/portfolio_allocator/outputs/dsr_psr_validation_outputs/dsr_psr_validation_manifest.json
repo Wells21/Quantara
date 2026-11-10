@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-10-22T11:02:35+00:00",
+  "denoise_diagnostics": {
+    "applied": true,
+    "fitted_noise_variance": 0.99999,
+    "method": "constant_residual_eigenvalue",
+    "n_signal_eigenvalues": 2,
+    "q_n_over_t": 251.83333333333334
+  },
+  "dsr_significance_threshold": 0.95,
+  "effective_number_of_trials": 2,
+  "expected_max_annualized_sharpe_under_null": 0.27994302331868953,
+  "input_edge_returns": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_plus_watchlist_compound_velocity.csv",
+  "input_portfolio_returns": "portfolio_allocator\\outputs\\hrp_linkage_robustness_outputs\\hrp_portfolio_returns_raw_r_core_plus_watchlist_compound_velocity_average.csv",
+  "methodology": {
+    "dsr": "AFML p.204 dDSR = PSR[SR*]. AFML p.206: should exceed 0.95 for 5% significance.",
+    "effective_number_of_trials": "MLAM SS8.7.1 (p.112): number of ONC clusters found on the (Marcenko-Pastur denoised) edge daily-return correlation matrix. A conservative estimate -- true independent trial count is <= this.",
+    "not_a_gate": "This lab is diagnostic only. It does not kill, promote, or reweight edges.",
+    "sr_star": "AFML p.204-206 False Strategy theorem SR* = sqrt(V[{SR_n}]) * ((1-gamma)*Z^-1[1-1/K] + gamma*Z^-1[1-1/(K*e)]), de-annualized back to each evaluated target's own frequency (MLAM's Frequency_k* step) before plugging into the PSR formula, so it is directly comparable to that target's own non-annualized SR_hat.",
+    "trials_scope": "The 21 currently-deployed edges' own realized daily return streams (Step 06/07 raw_r, core_plus_watchlist) -- a documented lower bound, not the full Gate A-D search history, since Quantara has no queryable historical trial ledger and ordinary assets' killed-edge artifacts were deleted per standard practice. See module docstring.",
+    "variance_across_trials": "MLAM SS8.7.2 (p.112-113): each cluster's member returns are pooled, restricted to active (nonzero) days, and annualized via Frequency_k=T_k/Years_k; variance is taken across clusters' annualized Sharpe ratios."
+  },
+  "n_edges": 6,
+  "n_observations": 1511,
+  "n_targets_dsr_significant": 6,
+  "n_targets_evaluated": 7,
+  "outputs": {
+    "clusters": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\dsr_psr_validation_outputs\\dsr_psr_trial_clusters.csv",
+    "manifest": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\dsr_psr_validation_outputs\\dsr_psr_validation_manifest.json",
+    "targets": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\dsr_psr_validation_outputs\\dsr_psr_targets.csv"
+  },
+  "schema_version": "v1.0",
+  "status": "PASS",
+  "variance_of_annualized_sharpe_across_trials": 0.2900957524746077
+}

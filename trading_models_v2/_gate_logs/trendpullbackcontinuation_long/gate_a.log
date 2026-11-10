@@ -1,0 +1,308 @@
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:256: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Close_FFD_Z_50"] = shifted_zscore(out["Close_FFD"], 50)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:257: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Close_FFD_Momentum_5"] = out["Close_FFD"] - out["Close_FFD"].shift(5)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:258: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Close_FFD_Momentum_20"] = out["Close_FFD"] - out["Close_FFD"].shift(20)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:266: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["SADF_ct_50"] = sadf_series(
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:275: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Entropy_Kontoyiannis_100"] = rolling_entropy(
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:287: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Parkinson_Vol_20"] = parkinson_volatility(high, low, window=20)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:288: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Corwin_Schultz_Spread_1"] = corwin_schultz_spread(high, low, sample_length=1)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\feature_expansion.py:289: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Becker_Parkinson_Vol_1"] = becker_parkinson_volatility(high, low, sample_length=1)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\sklearn\base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\sklearn\base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+QUANTARA V3 — HYBRID FAST GENERIC GEOMETRY GRID
+PRE-LIFECYCLE ONLY
+existing edge => artifact-first; new/incomplete edge => runtime fallback
+edge: US500/trendpullbackcontinuation_long
+
+Fast artifacts incomplete -> runtime fallback for missing pre-model inputs.
+ - feature_artifact_rejected=HorizonLabError
+ - features=runtime_fallback
+ - events=runtime_fallback
+ - runtime_feature_builds: 1
+ - candidate_events: 5785
+
+CONTROL PARITY GATE
+HYBRID FAST CONTROL PARITY: PASS | reference=persisted_model_row_manifest | rows=5326
+
+====================================================================================================
+Hvol=5 | EWM=20 | events=5785
+====================================================================================================
+H=  5 EWM= 20 Hv=   5 1:1 | netR=-0.07233 | meanHold=3.36 | R/meanHoldBar=-0.021514
+H=  5 EWM= 20 Hv=  10 1:1 | netR=-0.07829 | meanHold=4.35 | R/meanHoldBar=-0.017977
+H=  5 EWM= 20 Hv=  15 1:1 | netR=-0.07772 | meanHold=4.74 | R/meanHoldBar=-0.016403
+H=  5 EWM= 20 Hv=  20 1:1 | netR=-0.07451 | meanHold=4.92 | R/meanHoldBar=-0.015138
+H=  5 EWM= 20 Hv=1000 1:1 | netR=-0.07714 | meanHold=5.18 | R/meanHoldBar=-0.014907
+H=  5 EWM= 20 Hv=   5 1:1.5 | netR=-0.04841 | meanHold=3.80 | R/meanHoldBar=-0.012745
+H=  5 EWM= 20 Hv=  10 1:1.5 | netR=-0.04707 | meanHold=5.39 | R/meanHoldBar=-0.008731
+H=  5 EWM= 20 Hv=  15 1:1.5 | netR=-0.04663 | meanHold=6.17 | R/meanHoldBar=-0.007554
+H=  5 EWM= 20 Hv=  20 1:1.5 | netR=-0.04403 | meanHold=6.59 | R/meanHoldBar=-0.006684
+H=  5 EWM= 20 Hv=1000 1:1.5 | netR=-0.04679 | meanHold=7.28 | R/meanHoldBar=-0.006425
+H=  5 EWM= 20 Hv=   5 1:2 | netR=-0.03921 | meanHold=3.99 | R/meanHoldBar=-0.009838
+H=  5 EWM= 20 Hv=  10 1:2 | netR=-0.03888 | meanHold=6.00 | R/meanHoldBar=-0.006479
+H=  5 EWM= 20 Hv=  15 1:2 | netR=-0.03895 | meanHold=7.15 | R/meanHoldBar=-0.005445
+H=  5 EWM= 20 Hv=  20 1:2 | netR=-0.03851 | meanHold=7.84 | R/meanHoldBar=-0.004912
+H=  5 EWM= 20 Hv=1000 1:2 | netR=-0.04238 | meanHold=9.21 | R/meanHoldBar=-0.004602
+H=  5 EWM= 20 Hv=   5 1.5:1 | netR=-0.07869 | meanHold=3.83 | R/meanHoldBar=-0.020536
+H=  5 EWM= 20 Hv=  10 1.5:1 | netR=-0.07794 | meanHold=5.51 | R/meanHoldBar=-0.014141
+H=  5 EWM= 20 Hv=  15 1.5:1 | netR=-0.07485 | meanHold=6.32 | R/meanHoldBar=-0.011840
+H=  5 EWM= 20 Hv=  20 1.5:1 | netR=-0.06923 | meanHold=6.77 | R/meanHoldBar=-0.010231
+H=  5 EWM= 20 Hv=1000 1.5:1 | netR=-0.07066 | meanHold=7.44 | R/meanHoldBar=-0.009496
+H=  5 EWM= 20 Hv=   5 2:1 | netR=-0.06854 | meanHold=4.00 | R/meanHoldBar=-0.017138
+H=  5 EWM= 20 Hv=  10 2:1 | netR=-0.06339 | meanHold=6.10 | R/meanHoldBar=-0.010395
+H=  5 EWM= 20 Hv=  15 2:1 | netR=-0.05533 | meanHold=7.28 | R/meanHoldBar=-0.007599
+H=  5 EWM= 20 Hv=  20 2:1 | netR=-0.05266 | meanHold=8.01 | R/meanHoldBar=-0.006579
+H=  5 EWM= 20 Hv=1000 2:1 | netR=-0.05941 | meanHold=9.60 | R/meanHoldBar=-0.006192
+
+====================================================================================================
+Hvol=5 | EWM=50 | events=5785
+====================================================================================================
+H=  5 EWM= 50 Hv=   5 1:1 | netR=-0.06354 | meanHold=3.67 | R/meanHoldBar=-0.017302
+H=  5 EWM= 50 Hv=  10 1:1 | netR=-0.06142 | meanHold=4.96 | R/meanHoldBar=-0.012372
+H=  5 EWM= 50 Hv=  15 1:1 | netR=-0.05657 | meanHold=5.48 | R/meanHoldBar=-0.010330
+H=  5 EWM= 50 Hv=  20 1:1 | netR=-0.05475 | meanHold=5.70 | R/meanHoldBar=-0.009596
+H=  5 EWM= 50 Hv=1000 1:1 | netR=-0.05791 | meanHold=5.94 | R/meanHoldBar=-0.009750
+H=  5 EWM= 50 Hv=   5 1:1.5 | netR=-0.04508 | meanHold=4.07 | R/meanHoldBar=-0.011086
+H=  5 EWM= 50 Hv=  10 1:1.5 | netR=-0.04436 | meanHold=6.00 | R/meanHoldBar=-0.007389
+H=  5 EWM= 50 Hv=  15 1:1.5 | netR=-0.04269 | meanHold=6.99 | R/meanHoldBar=-0.006107
+H=  5 EWM= 50 Hv=  20 1:1.5 | netR=-0.04358 | meanHold=7.50 | R/meanHoldBar=-0.005812
+H=  5 EWM= 50 Hv=1000 1:1.5 | netR=-0.05145 | meanHold=8.36 | R/meanHoldBar=-0.006150
+H=  5 EWM= 50 Hv=   5 1:2 | netR=-0.03665 | meanHold=4.22 | R/meanHoldBar=-0.008687
+H=  5 EWM= 50 Hv=  10 1:2 | netR=-0.04065 | meanHold=6.59 | R/meanHoldBar=-0.006172
+H=  5 EWM= 50 Hv=  15 1:2 | netR=-0.03914 | meanHold=7.99 | R/meanHoldBar=-0.004900
+H=  5 EWM= 50 Hv=  20 1:2 | netR=-0.03890 | meanHold=8.83 | R/meanHoldBar=-0.004406
+H=  5 EWM= 50 Hv=1000 1:2 | netR=-0.04259 | meanHold=10.62 | R/meanHoldBar=-0.004009
+H=  5 EWM= 50 Hv=   5 1.5:1 | netR=-0.06500 | meanHold=4.09 | R/meanHoldBar=-0.015909
+H=  5 EWM= 50 Hv=  10 1.5:1 | netR=-0.05524 | meanHold=6.13 | R/meanHoldBar=-0.009008
+H=  5 EWM= 50 Hv=  15 1.5:1 | netR=-0.04569 | meanHold=7.18 | R/meanHoldBar=-0.006365
+H=  5 EWM= 50 Hv=  20 1.5:1 | netR=-0.04175 | meanHold=7.74 | R/meanHoldBar=-0.005394
+H=  5 EWM= 50 Hv=1000 1.5:1 | netR=-0.04762 | meanHold=8.46 | R/meanHoldBar=-0.005627
+H=  5 EWM= 50 Hv=   5 2:1 | netR=-0.06293 | meanHold=4.23 | R/meanHoldBar=-0.014892
+H=  5 EWM= 50 Hv=  10 2:1 | netR=-0.04507 | meanHold=6.74 | R/meanHoldBar=-0.006689
+H=  5 EWM= 50 Hv=  15 2:1 | netR=-0.03354 | meanHold=8.24 | R/meanHoldBar=-0.004069
+H=  5 EWM= 50 Hv=  20 2:1 | netR=-0.03606 | meanHold=9.19 | R/meanHoldBar=-0.003922
+H=  5 EWM= 50 Hv=1000 2:1 | netR=-0.04437 | meanHold=11.03 | R/meanHoldBar=-0.004022
+
+====================================================================================================
+Hvol=5 | EWM=100 | events=5785
+====================================================================================================
+H=  5 EWM=100 Hv=   5 1:1 | netR=-0.05628 | meanHold=3.81 | R/meanHoldBar=-0.014755
+H=  5 EWM=100 Hv=  10 1:1 | netR=-0.05445 | meanHold=5.26 | R/meanHoldBar=-0.010346
+H=  5 EWM=100 Hv=  15 1:1 | netR=-0.05012 | meanHold=5.86 | R/meanHoldBar=-0.008556
+H=  5 EWM=100 Hv=  20 1:1 | netR=-0.04863 | meanHold=6.13 | R/meanHoldBar=-0.007929
+H=  5 EWM=100 Hv=1000 1:1 | netR=-0.05080 | meanHold=6.36 | R/meanHoldBar=-0.007985
+H=  5 EWM=100 Hv=   5 1:1.5 | netR=-0.04341 | meanHold=4.18 | R/meanHoldBar=-0.010395
+H=  5 EWM=100 Hv=  10 1:1.5 | netR=-0.04423 | meanHold=6.30 | R/meanHoldBar=-0.007017
+H=  5 EWM=100 Hv=  15 1:1.5 | netR=-0.04160 | meanHold=7.42 | R/meanHoldBar=-0.005608
+H=  5 EWM=100 Hv=  20 1:1.5 | netR=-0.04549 | meanHold=8.00 | R/meanHoldBar=-0.005688
+H=  5 EWM=100 Hv=1000 1:1.5 | netR=-0.05147 | meanHold=8.94 | R/meanHoldBar=-0.005760
+H=  5 EWM=100 Hv=   5 1:2 | netR=-0.03377 | meanHold=4.32 | R/meanHoldBar=-0.007823
+H=  5 EWM=100 Hv=  10 1:2 | netR=-0.03809 | meanHold=6.87 | R/meanHoldBar=-0.005542
+H=  5 EWM=100 Hv=  15 1:2 | netR=-0.03653 | meanHold=8.44 | R/meanHoldBar=-0.004326
+H=  5 EWM=100 Hv=  20 1:2 | netR=-0.03784 | meanHold=9.39 | R/meanHoldBar=-0.004028
+H=  5 EWM=100 Hv=1000 1:2 | netR=-0.03913 | meanHold=11.38 | R/meanHoldBar=-0.003438
+H=  5 EWM=100 Hv=   5 1.5:1 | netR=-0.05696 | meanHold=4.20 | R/meanHoldBar=-0.013564
+H=  5 EWM=100 Hv=  10 1.5:1 | netR=-0.04311 | meanHold=6.44 | R/meanHoldBar=-0.006691
+H=  5 EWM=100 Hv=  15 1.5:1 | netR=-0.03379 | meanHold=7.61 | R/meanHoldBar=-0.004438
+H=  5 EWM=100 Hv=  20 1.5:1 | netR=-0.03130 | meanHold=8.26 | R/meanHoldBar=-0.003790
+H=  5 EWM=100 Hv=1000 1.5:1 | netR=-0.04193 | meanHold=9.02 | R/meanHoldBar=-0.004651
+H=  5 EWM=100 Hv=   5 2:1 | netR=-0.05675 | meanHold=4.33 | R/meanHoldBar=-0.013114
+H=  5 EWM=100 Hv=  10 2:1 | netR=-0.04004 | meanHold=7.03 | R/meanHoldBar=-0.005698
+H=  5 EWM=100 Hv=  15 2:1 | netR=-0.03080 | meanHold=8.71 | R/meanHoldBar=-0.003536
+H=  5 EWM=100 Hv=  20 2:1 | netR=-0.02928 | meanHold=9.81 | R/meanHoldBar=-0.002986
+H=  5 EWM=100 Hv=1000 2:1 | netR=-0.02944 | meanHold=11.78 | R/meanHoldBar=-0.002500
+
+====================================================================================================
+Hvol=10 | EWM=20 | events=5785
+====================================================================================================
+H= 10 EWM= 20 Hv=   5 1:1 | netR=-0.06108 | meanHold=3.83 | R/meanHoldBar=-0.015967
+H= 10 EWM= 20 Hv=  10 1:1 | netR=-0.05181 | meanHold=5.50 | R/meanHoldBar=-0.009415
+H= 10 EWM= 20 Hv=  15 1:1 | netR=-0.04543 | meanHold=6.35 | R/meanHoldBar=-0.007151
+H= 10 EWM= 20 Hv=  20 1:1 | netR=-0.04226 | meanHold=6.83 | R/meanHoldBar=-0.006185
+H= 10 EWM= 20 Hv=1000 1:1 | netR=-0.04544 | meanHold=7.70 | R/meanHoldBar=-0.005903
+H= 10 EWM= 20 Hv=   5 1:1.5 | netR=-0.04389 | meanHold=4.18 | R/meanHoldBar=-0.010504
+H= 10 EWM= 20 Hv=  10 1:1.5 | netR=-0.03821 | meanHold=6.47 | R/meanHoldBar=-0.005902
+H= 10 EWM= 20 Hv=  15 1:1.5 | netR=-0.03466 | meanHold=7.82 | R/meanHoldBar=-0.004433
+H= 10 EWM= 20 Hv=  20 1:1.5 | netR=-0.03347 | meanHold=8.66 | R/meanHoldBar=-0.003867
+H= 10 EWM= 20 Hv=1000 1:1.5 | netR=-0.03620 | meanHold=10.71 | R/meanHoldBar=-0.003381
+H= 10 EWM= 20 Hv=   5 1:2 | netR=-0.03520 | meanHold=4.31 | R/meanHoldBar=-0.008173
+H= 10 EWM= 20 Hv=  10 1:2 | netR=-0.03278 | meanHold=6.98 | R/meanHoldBar=-0.004697
+H= 10 EWM= 20 Hv=  15 1:2 | netR=-0.03043 | meanHold=8.73 | R/meanHoldBar=-0.003485
+H= 10 EWM= 20 Hv=  20 1:2 | netR=-0.02960 | meanHold=9.91 | R/meanHoldBar=-0.002986
+H= 10 EWM= 20 Hv=1000 1:2 | netR=-0.02968 | meanHold=13.76 | R/meanHoldBar=-0.002157
+H= 10 EWM= 20 Hv=   5 1.5:1 | netR=-0.06306 | meanHold=4.17 | R/meanHoldBar=-0.015113
+H= 10 EWM= 20 Hv=  10 1.5:1 | netR=-0.05241 | meanHold=6.54 | R/meanHoldBar=-0.008007
+H= 10 EWM= 20 Hv=  15 1.5:1 | netR=-0.04448 | meanHold=7.98 | R/meanHoldBar=-0.005575
+H= 10 EWM= 20 Hv=  20 1.5:1 | netR=-0.04329 | meanHold=8.91 | R/meanHoldBar=-0.004858
+H= 10 EWM= 20 Hv=1000 1.5:1 | netR=-0.04525 | meanHold=11.24 | R/meanHoldBar=-0.004025
+H= 10 EWM= 20 Hv=   5 2:1 | netR=-0.05757 | meanHold=4.30 | R/meanHoldBar=-0.013398
+H= 10 EWM= 20 Hv=  10 2:1 | netR=-0.04125 | meanHold=7.05 | R/meanHoldBar=-0.005851
+H= 10 EWM= 20 Hv=  15 2:1 | netR=-0.03013 | meanHold=8.91 | R/meanHoldBar=-0.003381
+H= 10 EWM= 20 Hv=  20 2:1 | netR=-0.02931 | meanHold=10.24 | R/meanHoldBar=-0.002864
+H= 10 EWM= 20 Hv=1000 2:1 | netR=-0.03000 | meanHold=14.85 | R/meanHoldBar=-0.002020
+
+====================================================================================================
+Hvol=10 | EWM=50 | events=5785
+====================================================================================================
+H= 10 EWM= 50 Hv=   5 1:1 | netR=-0.04823 | meanHold=4.25 | R/meanHoldBar=-0.011360
+H= 10 EWM= 50 Hv=  10 1:1 | netR=-0.04046 | meanHold=6.54 | R/meanHoldBar=-0.006184
+H= 10 EWM= 50 Hv=  15 1:1 | netR=-0.03502 | meanHold=7.80 | R/meanHoldBar=-0.004487
+H= 10 EWM= 50 Hv=  20 1:1 | netR=-0.03386 | meanHold=8.55 | R/meanHoldBar=-0.003961
+H= 10 EWM= 50 Hv=1000 1:1 | netR=-0.03284 | meanHold=9.80 | R/meanHoldBar=-0.003351
+H= 10 EWM= 50 Hv=   5 1:1.5 | netR=-0.03747 | meanHold=4.50 | R/meanHoldBar=-0.008329
+H= 10 EWM= 50 Hv=  10 1:1.5 | netR=-0.03818 | meanHold=7.44 | R/meanHoldBar=-0.005135
+H= 10 EWM= 50 Hv=  15 1:1.5 | netR=-0.03421 | meanHold=9.34 | R/meanHoldBar=-0.003664
+H= 10 EWM= 50 Hv=  20 1:1.5 | netR=-0.03338 | meanHold=10.60 | R/meanHoldBar=-0.003148
+H= 10 EWM= 50 Hv=1000 1:1.5 | netR=-0.03327 | meanHold=13.92 | R/meanHoldBar=-0.002390
+H= 10 EWM= 50 Hv=   5 1:2 | netR=-0.03026 | meanHold=4.58 | R/meanHoldBar=-0.006605
+H= 10 EWM= 50 Hv=  10 1:2 | netR=-0.03124 | meanHold=7.85 | R/meanHoldBar=-0.003981
+H= 10 EWM= 50 Hv=  15 1:2 | netR=-0.02693 | meanHold=10.19 | R/meanHoldBar=-0.002642
+H= 10 EWM= 50 Hv=  20 1:2 | netR=-0.02603 | meanHold=11.88 | R/meanHoldBar=-0.002191
+H= 10 EWM= 50 Hv=1000 1:2 | netR=-0.02367 | meanHold=17.65 | R/meanHoldBar=-0.001341
+H= 10 EWM= 50 Hv=   5 1.5:1 | netR=-0.05051 | meanHold=4.50 | R/meanHoldBar=-0.011221
+H= 10 EWM= 50 Hv=  10 1.5:1 | netR=-0.03876 | meanHold=7.52 | R/meanHoldBar=-0.005155
+H= 10 EWM= 50 Hv=  15 1.5:1 | netR=-0.03745 | meanHold=9.49 | R/meanHoldBar=-0.003945
+H= 10 EWM= 50 Hv=  20 1.5:1 | netR=-0.03829 | meanHold=10.84 | R/meanHoldBar=-0.003534
+H= 10 EWM= 50 Hv=1000 1.5:1 | netR=-0.03465 | meanHold=14.27 | R/meanHoldBar=-0.002429
+H= 10 EWM= 50 Hv=   5 2:1 | netR=-0.04712 | meanHold=4.57 | R/meanHoldBar=-0.010312
+H= 10 EWM= 50 Hv=  10 2:1 | netR=-0.03602 | meanHold=7.91 | R/meanHoldBar=-0.004555
+H= 10 EWM= 50 Hv=  15 2:1 | netR=-0.02412 | meanHold=10.35 | R/meanHoldBar=-0.002330
+H= 10 EWM= 50 Hv=  20 2:1 | netR=-0.02114 | meanHold=12.17 | R/meanHoldBar=-0.001738
+H= 10 EWM= 50 Hv=1000 2:1 | netR=-0.01454 | meanHold=18.87 | R/meanHoldBar=-0.000770
+
+====================================================================================================
+Hvol=10 | EWM=100 | events=5785
+====================================================================================================
+H= 10 EWM=100 Hv=   5 1:1 | netR=-0.04380 | meanHold=4.42 | R/meanHoldBar=-0.009905
+H= 10 EWM=100 Hv=  10 1:1 | netR=-0.03543 | meanHold=7.06 | R/meanHoldBar=-0.005018
+H= 10 EWM=100 Hv=  15 1:1 | netR=-0.02840 | meanHold=8.58 | R/meanHoldBar=-0.003309
+H= 10 EWM=100 Hv=  20 1:1 | netR=-0.02890 | meanHold=9.49 | R/meanHoldBar=-0.003046
+H= 10 EWM=100 Hv=1000 1:1 | netR=-0.02977 | meanHold=11.00 | R/meanHoldBar=-0.002706
+H= 10 EWM=100 Hv=   5 1:1.5 | netR=-0.03386 | meanHold=4.63 | R/meanHoldBar=-0.007311
+H= 10 EWM=100 Hv=  10 1:1.5 | netR=-0.03407 | meanHold=7.90 | R/meanHoldBar=-0.004313
+H= 10 EWM=100 Hv=  15 1:1.5 | netR=-0.02772 | meanHold=10.12 | R/meanHoldBar=-0.002738
+H= 10 EWM=100 Hv=  20 1:1.5 | netR=-0.02390 | meanHold=11.65 | R/meanHoldBar=-0.002051
+H= 10 EWM=100 Hv=1000 1:1.5 | netR=-0.01711 | meanHold=15.81 | R/meanHoldBar=-0.001082
+H= 10 EWM=100 Hv=   5 1:2 | netR=-0.02774 | meanHold=4.69 | R/meanHoldBar=-0.005914
+H= 10 EWM=100 Hv=  10 1:2 | netR=-0.02749 | meanHold=8.25 | R/meanHoldBar=-0.003333
+H= 10 EWM=100 Hv=  15 1:2 | netR=-0.02015 | meanHold=10.90 | R/meanHoldBar=-0.001849
+H= 10 EWM=100 Hv=  20 1:2 | netR=-0.01491 | meanHold=12.89 | R/meanHoldBar=-0.001157
+H= 10 EWM=100 Hv=1000 1:2 | netR=-0.01117 | meanHold=20.00 | R/meanHoldBar=-0.000558
+H= 10 EWM=100 Hv=   5 1.5:1 | netR=-0.04452 | meanHold=4.63 | R/meanHoldBar=-0.009618
+H= 10 EWM=100 Hv=  10 1.5:1 | netR=-0.03384 | meanHold=7.97 | R/meanHoldBar=-0.004247
+H= 10 EWM=100 Hv=  15 1.5:1 | netR=-0.02466 | meanHold=10.27 | R/meanHoldBar=-0.002401
+H= 10 EWM=100 Hv=  20 1.5:1 | netR=-0.02047 | meanHold=11.87 | R/meanHoldBar=-0.001724
+H= 10 EWM=100 Hv=1000 1.5:1 | netR=-0.00756 | meanHold=16.06 | R/meanHoldBar=-0.000470
+H= 10 EWM=100 Hv=   5 2:1 | netR=-0.04331 | meanHold=4.67 | R/meanHoldBar=-0.009266
+H= 10 EWM=100 Hv=  10 2:1 | netR=-0.03068 | meanHold=8.28 | R/meanHoldBar=-0.003703
+H= 10 EWM=100 Hv=  15 2:1 | netR=-0.01705 | meanHold=11.04 | R/meanHoldBar=-0.001544
+H= 10 EWM=100 Hv=  20 2:1 | netR=-0.01640 | meanHold=13.15 | R/meanHoldBar=-0.001247
+H= 10 EWM=100 Hv=1000 2:1 | netR=-0.01242 | meanHold=21.46 | R/meanHoldBar=-0.000579
+
+====================================================================================================
+Hvol=20 | EWM=20 | events=5785
+====================================================================================================
+H= 20 EWM= 20 Hv=   5 1:1 | netR=-0.05216 | meanHold=4.09 | R/meanHoldBar=-0.012760
+H= 20 EWM= 20 Hv=  10 1:1 | netR=-0.04745 | meanHold=6.26 | R/meanHoldBar=-0.007582
+H= 20 EWM= 20 Hv=  15 1:1 | netR=-0.04286 | meanHold=7.52 | R/meanHoldBar=-0.005702
+H= 20 EWM= 20 Hv=  20 1:1 | netR=-0.04176 | meanHold=8.30 | R/meanHoldBar=-0.005031
+H= 20 EWM= 20 Hv=1000 1:1 | netR=-0.03832 | meanHold=10.15 | R/meanHoldBar=-0.003775
+H= 20 EWM= 20 Hv=   5 1:1.5 | netR=-0.04437 | meanHold=4.36 | R/meanHoldBar=-0.010174
+H= 20 EWM= 20 Hv=  10 1:1.5 | netR=-0.04245 | meanHold=7.12 | R/meanHoldBar=-0.005959
+H= 20 EWM= 20 Hv=  15 1:1.5 | netR=-0.03891 | meanHold=8.95 | R/meanHoldBar=-0.004345
+H= 20 EWM= 20 Hv=  20 1:1.5 | netR=-0.03724 | meanHold=10.20 | R/meanHoldBar=-0.003652
+H= 20 EWM= 20 Hv=1000 1:1.5 | netR=-0.03641 | meanHold=14.19 | R/meanHoldBar=-0.002566
+H= 20 EWM= 20 Hv=   5 1:2 | netR=-0.03434 | meanHold=4.46 | R/meanHoldBar=-0.007700
+H= 20 EWM= 20 Hv=  10 1:2 | netR=-0.03595 | meanHold=7.55 | R/meanHoldBar=-0.004761
+H= 20 EWM= 20 Hv=  15 1:2 | netR=-0.03324 | meanHold=9.78 | R/meanHoldBar=-0.003399
+H= 20 EWM= 20 Hv=  20 1:2 | netR=-0.03087 | meanHold=11.41 | R/meanHoldBar=-0.002707
+H= 20 EWM= 20 Hv=1000 1:2 | netR=-0.03031 | meanHold=18.44 | R/meanHoldBar=-0.001644
+H= 20 EWM= 20 Hv=   5 1.5:1 | netR=-0.05067 | meanHold=4.37 | R/meanHoldBar=-0.011586
+H= 20 EWM= 20 Hv=  10 1.5:1 | netR=-0.04123 | meanHold=7.20 | R/meanHoldBar=-0.005724
+H= 20 EWM= 20 Hv=  15 1.5:1 | netR=-0.03452 | meanHold=9.08 | R/meanHoldBar=-0.003802
+H= 20 EWM= 20 Hv=  20 1.5:1 | netR=-0.03160 | meanHold=10.41 | R/meanHoldBar=-0.003036
+H= 20 EWM= 20 Hv=1000 1.5:1 | netR=-0.02793 | meanHold=15.11 | R/meanHoldBar=-0.001848
+H= 20 EWM= 20 Hv=   5 2:1 | netR=-0.05083 | meanHold=4.47 | R/meanHoldBar=-0.011372
+H= 20 EWM= 20 Hv=  10 2:1 | netR=-0.03884 | meanHold=7.63 | R/meanHoldBar=-0.005092
+H= 20 EWM= 20 Hv=  15 2:1 | netR=-0.02824 | meanHold=9.90 | R/meanHoldBar=-0.002852
+H= 20 EWM= 20 Hv=  20 2:1 | netR=-0.02358 | meanHold=11.61 | R/meanHoldBar=-0.002031
+H= 20 EWM= 20 Hv=1000 2:1 | netR=-0.01639 | meanHold=19.53 | R/meanHoldBar=-0.000839
+
+====================================================================================================
+Hvol=20 | EWM=50 | events=5785
+====================================================================================================
+H= 20 EWM= 50 Hv=   5 1:1 | netR=-0.04250 | meanHold=4.56 | R/meanHoldBar=-0.009311
+H= 20 EWM= 50 Hv=  10 1:1 | netR=-0.03727 | meanHold=7.72 | R/meanHoldBar=-0.004829
+H= 20 EWM= 50 Hv=  15 1:1 | netR=-0.03031 | meanHold=9.83 | R/meanHoldBar=-0.003084
+H= 20 EWM= 50 Hv=  20 1:1 | netR=-0.02626 | meanHold=11.32 | R/meanHoldBar=-0.002320
+H= 20 EWM= 50 Hv=1000 1:1 | netR=-0.01655 | meanHold=15.79 | R/meanHoldBar=-0.001048
+H= 20 EWM= 50 Hv=   5 1:1.5 | netR=-0.03306 | meanHold=4.72 | R/meanHoldBar=-0.007010
+H= 20 EWM= 50 Hv=  10 1:1.5 | netR=-0.03167 | meanHold=8.37 | R/meanHoldBar=-0.003783
+H= 20 EWM= 50 Hv=  15 1:1.5 | netR=-0.02467 | meanHold=11.14 | R/meanHoldBar=-0.002215
+H= 20 EWM= 50 Hv=  20 1:1.5 | netR=-0.01669 | meanHold=13.26 | R/meanHoldBar=-0.001259
+H= 20 EWM= 50 Hv=1000 1:1.5 | netR=-0.00824 | meanHold=22.42 | R/meanHoldBar=-0.000367
+H= 20 EWM= 50 Hv=   5 1:2 | netR=-0.02720 | meanHold=4.76 | R/meanHoldBar=-0.005709
+H= 20 EWM= 50 Hv=  10 1:2 | netR=-0.02694 | meanHold=8.64 | R/meanHoldBar=-0.003117
+H= 20 EWM= 50 Hv=  15 1:2 | netR=-0.01988 | meanHold=11.75 | R/meanHoldBar=-0.001692
+H= 20 EWM= 50 Hv=  20 1:2 | netR=-0.01349 | meanHold=14.27 | R/meanHoldBar=-0.000945
+H= 20 EWM= 50 Hv=1000 1:2 | netR=-0.00532 | meanHold=28.73 | R/meanHoldBar=-0.000185
+H= 20 EWM= 50 Hv=   5 1.5:1 | netR=-0.04500 | meanHold=4.72 | R/meanHoldBar=-0.009536
+H= 20 EWM= 50 Hv=  10 1.5:1 | netR=-0.03758 | meanHold=8.42 | R/meanHoldBar=-0.004463
+H= 20 EWM= 50 Hv=  15 1.5:1 | netR=-0.02919 | meanHold=11.22 | R/meanHoldBar=-0.002602
+H= 20 EWM= 50 Hv=  20 1.5:1 | netR=-0.02577 | meanHold=13.40 | R/meanHoldBar=-0.001923
+H= 20 EWM= 50 Hv=1000 1.5:1 | netR=-0.00616 | meanHold=23.42 | R/meanHoldBar=-0.000263
+H= 20 EWM= 50 Hv=   5 2:1 | netR=-0.04311 | meanHold=4.75 | R/meanHoldBar=-0.009075
+H= 20 EWM= 50 Hv=  10 2:1 | netR=-0.03413 | meanHold=8.66 | R/meanHoldBar=-0.003943
+H= 20 EWM= 50 Hv=  15 2:1 | netR=-0.02063 | meanHold=11.81 | R/meanHoldBar=-0.001747
+H= 20 EWM= 50 Hv=  20 2:1 | netR=-0.01657 | meanHold=14.41 | R/meanHoldBar=-0.001151
+H= 20 EWM= 50 Hv=1000 2:1 | netR=+0.00785 | meanHold=30.90 | R/meanHoldBar=+0.000254
+
+====================================================================================================
+Hvol=20 | EWM=100 | events=5785
+====================================================================================================
+H= 20 EWM=100 Hv=   5 1:1 | netR=-0.04122 | meanHold=4.73 | R/meanHoldBar=-0.008720
+H= 20 EWM=100 Hv=  10 1:1 | netR=-0.03992 | meanHold=8.35 | R/meanHoldBar=-0.004783
+H= 20 EWM=100 Hv=  15 1:1 | netR=-0.03382 | meanHold=10.98 | R/meanHoldBar=-0.003080
+H= 20 EWM=100 Hv=  20 1:1 | netR=-0.02837 | meanHold=12.92 | R/meanHoldBar=-0.002196
+H= 20 EWM=100 Hv=1000 1:1 | netR=-0.01186 | meanHold=19.63 | R/meanHoldBar=-0.000604
+H= 20 EWM=100 Hv=   5 1:1.5 | netR=-0.03077 | meanHold=4.84 | R/meanHoldBar=-0.006355
+H= 20 EWM=100 Hv=  10 1:1.5 | netR=-0.03096 | meanHold=8.91 | R/meanHoldBar=-0.003472
+H= 20 EWM=100 Hv=  15 1:1.5 | netR=-0.02246 | meanHold=12.19 | R/meanHoldBar=-0.001842
+H= 20 EWM=100 Hv=  20 1:1.5 | netR=-0.01564 | meanHold=14.82 | R/meanHoldBar=-0.001056
+H= 20 EWM=100 Hv=1000 1:1.5 | netR=-0.00397 | meanHold=27.42 | R/meanHoldBar=-0.000145
+H= 20 EWM=100 Hv=   5 1:2 | netR=-0.02463 | meanHold=4.87 | R/meanHoldBar=-0.005062
+H= 20 EWM=100 Hv=  10 1:2 | netR=-0.02437 | meanHold=9.11 | R/meanHoldBar=-0.002675
+H= 20 EWM=100 Hv=  15 1:2 | netR=-0.01916 | meanHold=12.67 | R/meanHoldBar=-0.001512
+H= 20 EWM=100 Hv=  20 1:2 | netR=-0.01285 | meanHold=15.65 | R/meanHoldBar=-0.000821
+H= 20 EWM=100 Hv=1000 1:2 | netR=-0.00307 | meanHold=35.52 | R/meanHoldBar=-0.000086
+H= 20 EWM=100 Hv=   5 1.5:1 | netR=-0.03936 | meanHold=4.82 | R/meanHoldBar=-0.008159
+H= 20 EWM=100 Hv=  10 1.5:1 | netR=-0.03393 | meanHold=8.88 | R/meanHoldBar=-0.003821
+H= 20 EWM=100 Hv=  15 1.5:1 | netR=-0.02347 | meanHold=12.16 | R/meanHoldBar=-0.001931
+H= 20 EWM=100 Hv=  20 1.5:1 | netR=-0.01836 | meanHold=14.81 | R/meanHoldBar=-0.001239
+H= 20 EWM=100 Hv=1000 1.5:1 | netR=-0.00404 | meanHold=28.89 | R/meanHoldBar=-0.000140
+H= 20 EWM=100 Hv=   5 2:1 | netR=-0.03923 | meanHold=4.84 | R/meanHoldBar=-0.008110
+H= 20 EWM=100 Hv=  10 2:1 | netR=-0.03374 | meanHold=9.04 | R/meanHoldBar=-0.003734
+H= 20 EWM=100 Hv=  15 2:1 | netR=-0.02087 | meanHold=12.61 | R/meanHoldBar=-0.001655
+H= 20 EWM=100 Hv=  20 2:1 | netR=-0.01264 | meanHold=15.65 | R/meanHoldBar=-0.000807
+H= 20 EWM=100 Hv=1000 2:1 | netR=+0.01578 | meanHold=37.81 | R/meanHoldBar=+0.000417
+
+PRE-LIFECYCLE CAPITAL-TURNOVER FRONTIER
+ 1. H=20 EWM=100 Hv=1000 PT:SL=2:1 | netR=+0.015785 | meanHold=37.813 | R/meanHoldBar=+0.000417
+ 2. H=20 EWM=50 Hv=1000 PT:SL=2:1 | netR=+0.007854 | meanHold=30.903 | R/meanHoldBar=+0.000254
+
+Saved:
+- C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\artifacts\v3_horizon_lab\v3_hybrid_fast_grid_20260914T145607Z.csv
+- C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\trendpullbackcontinuation_long\artifacts\v3_horizon_lab\v3_hybrid_fast_grid_20260914T145607Z.json
+
+TOTAL ELAPSED: 256.89s
+No canonical research/model/threshold/allocator/live artifact was modified.

@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — NASDAQ/volatilityregime_long
+================================================================================
+Edge: NASDAQ/volatilityregime_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilityregime_long\artifacts\oof\nasdaq_volatilityregime_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilityregime_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 2,015
+Date range: 2022-06-13 10:19:41.728000+00:00 -> 2026-03-25 00:41:12.212000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    NASDAQ/volatilityregime_long
+segment                           volatilityregime_long
+threshold                                          0.87
+candidate_count                                    2015
+take_rate                                      0.163275
+trade_count                                         329
+win_rate                                       0.413374
+avg_win_r                                           2.0
+avg_loss_r                                    -1.015322
+expectancy_r                                   0.231133
+payoff_ratio                                   1.969819
+profit_factor                                  1.388059
+gross_profit_r                                    272.0
+gross_loss_r                                 195.957091
+cumulative_r                                  76.042909
+max_drawdown_r                               -21.118347
+sharpe_r                                       0.155361
+sortino_r                                      4.197475
+calmar_r                                       3.600798
+selected_precision                             0.413374
+selected_recall                                     1.0
+selected_f1                                    0.584946
+clf_precision                                  0.413374
+clf_recall                                     0.194564
+clf_f1                                         0.264591
+clf_accuracy                                   0.624814
+clf_balanced_accuracy                          0.523954
+predicted_positive_rate                        0.163275
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilityregime_long\artifacts\oof\nasdaq_volatilityregime_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilityregime_long\artifacts\oof\nasdaq_volatilityregime_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilityregime_long\artifacts\oof\nasdaq_volatilityregime_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

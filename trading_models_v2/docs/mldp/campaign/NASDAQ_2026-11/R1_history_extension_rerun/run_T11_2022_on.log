@@ -1,0 +1,72 @@
+NASDAQ {"LONG": {"drift_month_matched": [0.05614, false]}, "SHORT": {"drift_month_matched": [-0.02243, false]}} 1.7
+US500 {"LONG": {"drift_month_matched": [0.05042, false]}, "SHORT": {"drift_month_matched": [-0.01826, false]}} 3.1
+DAX {"LONG": {"drift_month_matched": [-0.00136, false]}, "SHORT": {"drift_month_matched": [-0.00419, false]}} 4.9
+JPN {"LONG": {"drift_month_matched": [-0.02183, false]}, "SHORT": {"drift_month_matched": [-0.02385, false]}} 6.4
+HK {"LONG": {"drift_month_matched": [0.01482, false]}, "SHORT": {"drift_month_matched": [-0.00938, false]}} 7.6
+XAUUSD {"LONG": {"drift_month_matched": [0.02688, false]}, "SHORT": {"drift_month_matched": [0.02753, false]}} 9.7
+GBPJPY {"LONG": {"drift_month_matched": [0.04263, false]}, "SHORT": {"drift_month_matched": [-0.00172, false]}} 11.5
+USDMXN {"LONG": {"drift_month_matched": [-0.04536, false]}, "SHORT": {"drift_month_matched": [0.00891, false]}} 12.9
+USOIL {"LONG": {"drift_month_matched": [0.07332, true]}, "SHORT": {"drift_month_matched": [-0.05197, false]}} 13.8
+BTCUSD {"LONG": {"drift_month_matched": [-0.04145, false]}, "SHORT": {"drift_month_matched": [0.02137, false]}} 14.9
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 1646,
+   "drift_month_matched": {
+    "diff": 0.00701,
+    "se": 0.0269,
+    "lower_bound_1p645": -0.03724,
+    "PASS": false,
+    "lower_bound_tiered": -0.03724,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.00837,
+     "se": 0.02838,
+     "lower_bound_1p645": -0.03833,
+     "PASS": false,
+     "n": 1757
+    },
+    "C2": {
+     "diff": 0.00229,
+     "se": 0.0298,
+     "lower_bound_1p645": -0.04673,
+     "PASS": false,
+     "n": 1475
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 1757,
+   "drift_month_matched": {
+    "diff": 0.01159,
+    "se": 0.02554,
+    "lower_bound_1p645": -0.03043,
+    "PASS": false,
+    "lower_bound_tiered": -0.03042,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.00837,
+     "se": 0.02838,
+     "lower_bound_1p645": -0.03833,
+     "PASS": false,
+     "n": 1646
+    },
+    "C2": {
+     "diff": -0.01365,
+     "se": 0.0279,
+     "lower_bound_1p645": -0.05955,
+     "PASS": false,
+     "n": 1544
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}

@@ -1,0 +1,40 @@
+asset=XAUUSD edge=volatilityregime_long gate_c_exit=0 elapsed_seconds=443
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: XAUUSD/volatilityregime_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V20_PT2_SL1 [CONTROL]
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 2642
+  250/2642 elapsed=43.1s
+  500/2642 elapsed=72.0s
+  750/2642 elapsed=105.9s
+  1000/2642 elapsed=126.2s
+  1250/2642 elapsed=150.4s
+  1500/2642 elapsed=200.6s
+  1750/2642 elapsed=245.7s
+  2000/2642 elapsed=291.4s
+  2250/2642 elapsed=330.9s
+  2500/2642 elapsed=389.5s
+  2642/2642 elapsed=435.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V20_PT2_SL1 | -0.035921 | [-0.090827,+0.018737] | 0.9457 | 3.647 | 10.566 | -0.236357 | -0.477166 | 1.000 | 1.000 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.041014 | [-0.041641,+0.124102] | 1.0618 | 15.646 | 71.828 | +0.062914 | +0.537808 | -0.266 | 0.233 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.038599 | [-0.048517,+0.120890] | 1.0581 | 15.122 | 66.740 | +0.061259 | +0.506143 | -0.259 | 0.241 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.057264 | [-0.035681,+0.145858] | 1.0871 | 19.002 | 78.651 | +0.072328 | +0.750895 | -0.306 | 0.192 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V1000_PT2_SL1 | meanR=+0.057264 | R/occupied_day=+0.072328 | R/week=+0.750895 | mean_hold_h=19.002
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.041014 | R/occupied_day=+0.062914 | R/week=+0.537808 | mean_hold_h=15.646
+ 3. H15_E100_V1000_PT2_SL1 | meanR=+0.038599 | R/occupied_day=+0.061259 | R/week=+0.506143 | mean_hold_h=15.122
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260914T234211Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260914T234211Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

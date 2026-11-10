@@ -1,0 +1,522 @@
+================================================================================
+V2 STEP 02: FINAL META-MODEL TRAINING WITH OPTUNA — HK/drawupreversalhazard_short
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\research_dataset\hk_drawupreversalhazard_short_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\feature_surgery\hk_drawupreversalhazard_short_selected_features.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\model
+AFML Ch.4 weights | source=assets/HK/bars/standard_quote_tick/hk_standard_quote_tick_bars.csv | events=1,431 | mean_uniqueness=0.615745 | mean_return_weight=1.000000
+Step-01 semantic provenance: PASS
+Task 2B eligibility filter: 1,391/1,431 rows retained (mldp_target_eligible==True); 40 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 1,431
+Rows after selected-feature NaN filter : 1,431
+Date range: 2022-08-02 15:14:23.842000+00:00 -> 2026-06-08 13:19:47.232000+00:00
+Rows used: 1,391
+Selected feature count: 39
+Target mean: 0.329260
+Optuna trials: 30
+CPCV combinations expected: C(5, 2) = 10 folds per trial
+Manual t1 overlap purge: ON | manual embargo size: 100
+F1 thresholds are train-fold-only diagnostics; final live threshold comes later after sigmoid calibration.
+
+Running Optuna tuning with MLDP-style CPCV F1 objective...
+
+--------------------------------------------------------------------------------
+START TRIAL 1/30
+Trial 1 params: {'max_depth': 4, 'min_samples_leaf': 166, 'min_samples_split': 147, 'min_weight_fraction_leaf': 0.02993292420985183, 'ccp_alpha': 4.2079886696066345e-06, 'class_weight_mode': 'balanced'}
+Trial 1 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 1 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5242
+Trial 1 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5176 test_f1=0.5054 precision=0.3381 recall=1.0000 running_mean_f1=0.5179
+Trial 1 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5201
+Trial 1 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5135
+Trial 1 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5404 test_f1=0.4641 precision=0.3022 recall=1.0000 running_mean_f1=0.5052
+Trial 1 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.5025
+Trial 1 | fold 08: train=734 test=556 thr=0.60 train_f1=0.5355 test_f1=0.4378 precision=0.3056 recall=0.7719 running_mean_f1=0.4945
+Trial 1 | fold 09: train=733 test=557 thr=0.62 train_f1=0.5235 test_f1=0.4650 precision=0.3303 recall=0.7857 running_mean_f1=0.4912
+Trial 1 | fold 10: train=832 test=557 thr=0.58 train_f1=0.5253 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4890
+END TRIAL 1/30 | mean CPCV F1=0.489047
+OPTUNA PROGRESS | completed=1/30 | latest_trial=1 value=0.48904683708271685 | best_trial=1 best_f1=0.489047
+
+--------------------------------------------------------------------------------
+START TRIAL 2/30
+Trial 2 params: {'max_depth': 3, 'min_samples_leaf': 6, 'min_samples_split': 243, 'min_weight_fraction_leaf': 0.03005575058716044, 'ccp_alpha': 0.0006796578090758161, 'class_weight_mode': 'balanced'}
+Trial 2 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 2 | fold 02: train=634 test=556 thr=0.47 train_f1=0.5176 test_f1=0.4795 precision=0.3381 recall=0.8241 running_mean_f1=0.5004
+Trial 2 | fold 03: train=633 test=556 thr=0.36 train_f1=0.5344 test_f1=0.4765 precision=0.3333 recall=0.8351 running_mean_f1=0.4924
+Trial 2 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5009
+Trial 2 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.4982
+Trial 2 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.4900
+Trial 2 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4877
+Trial 2 | fold 08: train=734 test=556 thr=0.35 train_f1=0.5455 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4864
+Trial 2 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4885
+Trial 2 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4868
+END TRIAL 2/30 | mean CPCV F1=0.486754
+OPTUNA PROGRESS | completed=2/30 | latest_trial=2 value=0.48675403889560737 | best_trial=1 best_f1=0.489047
+
+--------------------------------------------------------------------------------
+START TRIAL 3/30
+Trial 3 params: {'max_depth': 2, 'min_samples_leaf': 179, 'min_samples_split': 214, 'min_weight_fraction_leaf': 0.010616955533913808, 'ccp_alpha': 5.337032762603957e-06, 'class_weight_mode': 'balanced'}
+Trial 3 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 3 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5242
+Trial 3 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5176 test_f1=0.5054 precision=0.3381 recall=1.0000 running_mean_f1=0.5179
+Trial 3 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5201
+Trial 3 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5135
+Trial 3 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5404 test_f1=0.4641 precision=0.3022 recall=1.0000 running_mean_f1=0.5052
+Trial 3 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.5025
+Trial 3 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5246 test_f1=0.4704 precision=0.3076 recall=1.0000 running_mean_f1=0.4985
+Trial 3 | fold 09: train=733 test=557 thr=0.30 train_f1=0.5147 test_f1=0.4926 precision=0.3268 recall=1.0000 running_mean_f1=0.4979
+Trial 3 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5103 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4951
+END TRIAL 3/30 | mean CPCV F1=0.495060
+OPTUNA PROGRESS | completed=3/30 | latest_trial=3 value=0.4950600695199596 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 4/30
+Trial 4 params: {'max_depth': 3, 'min_samples_leaf': 14, 'min_samples_split': 68, 'min_weight_fraction_leaf': 0.02159725093210579, 'ccp_alpha': 1.461896279370496e-05, 'class_weight_mode': 'balanced'}
+Trial 4 | fold 01: train=735 test=556 thr=0.52 train_f1=0.5030 test_f1=0.4889 precision=0.3445 recall=0.8418 running_mean_f1=0.4889
+Trial 4 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5133 test_f1=0.5232 precision=0.3589 recall=0.9648 running_mean_f1=0.5060
+Trial 4 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5405 test_f1=0.5140 precision=0.3550 recall=0.9309 running_mean_f1=0.5087
+Trial 4 | fold 04: train=734 test=557 thr=0.35 train_f1=0.4920 test_f1=0.5279 precision=0.3619 recall=0.9749 running_mean_f1=0.5135
+Trial 4 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5082
+Trial 4 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.4984
+Trial 4 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4949
+Trial 4 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5470 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4927
+Trial 4 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4941
+Trial 4 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4918
+END TRIAL 4/30 | mean CPCV F1=0.491769
+OPTUNA PROGRESS | completed=4/30 | latest_trial=4 value=0.4917687970313587 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 5/30
+Trial 5 params: {'max_depth': 6, 'min_samples_leaf': 8, 'min_samples_split': 28, 'min_weight_fraction_leaf': 0.018318092164684587, 'ccp_alpha': 6.672367170464208e-05, 'class_weight_mode': 'balanced'}
+Trial 5 | fold 01: train=735 test=556 thr=0.67 train_f1=0.5776 test_f1=0.4192 precision=0.3364 recall=0.5561 running_mean_f1=0.4192
+Trial 5 | fold 02: train=634 test=556 thr=0.69 train_f1=0.5591 test_f1=0.4312 precision=0.3966 recall=0.4724 running_mean_f1=0.4252
+Trial 5 | fold 03: train=633 test=556 thr=0.61 train_f1=0.5628 test_f1=0.4865 precision=0.3818 recall=0.6702 running_mean_f1=0.4456
+Trial 5 | fold 04: train=734 test=557 thr=0.39 train_f1=0.5264 test_f1=0.5283 precision=0.3714 recall=0.9146 running_mean_f1=0.4663
+Trial 5 | fold 05: train=734 test=556 thr=0.58 train_f1=0.5627 test_f1=0.4745 precision=0.3318 recall=0.8324 running_mean_f1=0.4679
+Trial 5 | fold 06: train=632 test=556 thr=0.56 train_f1=0.5905 test_f1=0.4273 precision=0.3093 recall=0.6905 running_mean_f1=0.4612
+Trial 5 | fold 07: train=733 test=557 thr=0.60 train_f1=0.5590 test_f1=0.4476 precision=0.3281 recall=0.7039 running_mean_f1=0.4592
+Trial 5 | fold 08: train=734 test=556 thr=0.57 train_f1=0.5699 test_f1=0.4453 precision=0.3236 recall=0.7135 running_mean_f1=0.4575
+Trial 5 | fold 09: train=733 test=557 thr=0.66 train_f1=0.5556 test_f1=0.4559 precision=0.3270 recall=0.7527 running_mean_f1=0.4573
+Trial 5 | fold 10: train=832 test=557 thr=0.61 train_f1=0.5654 test_f1=0.4405 precision=0.3163 recall=0.7251 running_mean_f1=0.4556
+END TRIAL 5/30 | mean CPCV F1=0.455625
+OPTUNA PROGRESS | completed=5/30 | latest_trial=5 value=0.4556251844877101 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 6/30
+Trial 6 params: {'max_depth': 7, 'min_samples_leaf': 10, 'min_samples_split': 65, 'min_weight_fraction_leaf': 0.029620728443102123, 'ccp_alpha': 1.5339162591163623e-06, 'class_weight_mode': 'balanced'}
+Trial 6 | fold 01: train=735 test=556 thr=0.54 train_f1=0.5305 test_f1=0.5267 precision=0.3853 recall=0.8316 running_mean_f1=0.5267
+Trial 6 | fold 02: train=634 test=556 thr=0.66 train_f1=0.5455 test_f1=0.4376 precision=0.3690 recall=0.5377 running_mean_f1=0.4821
+Trial 6 | fold 03: train=633 test=556 thr=0.44 train_f1=0.5736 test_f1=0.4832 precision=0.3529 recall=0.7660 running_mean_f1=0.4825
+Trial 6 | fold 04: train=734 test=557 thr=0.69 train_f1=0.5318 test_f1=0.4928 precision=0.3853 recall=0.6834 running_mean_f1=0.4851
+Trial 6 | fold 05: train=734 test=556 thr=0.47 train_f1=0.5637 test_f1=0.4728 precision=0.3311 recall=0.8268 running_mean_f1=0.4826
+Trial 6 | fold 06: train=632 test=556 thr=0.37 train_f1=0.5927 test_f1=0.4286 precision=0.3030 recall=0.7321 running_mean_f1=0.4736
+Trial 6 | fold 07: train=733 test=557 thr=0.65 train_f1=0.5755 test_f1=0.4009 precision=0.3358 recall=0.4972 running_mean_f1=0.4632
+Trial 6 | fold 08: train=734 test=556 thr=0.58 train_f1=0.5815 test_f1=0.4777 precision=0.3436 recall=0.7836 running_mean_f1=0.4650
+Trial 6 | fold 09: train=733 test=557 thr=0.50 train_f1=0.5640 test_f1=0.4794 precision=0.3371 recall=0.8297 running_mean_f1=0.4666
+Trial 6 | fold 10: train=832 test=557 thr=0.62 train_f1=0.5707 test_f1=0.4579 precision=0.3144 recall=0.8421 running_mean_f1=0.4658
+END TRIAL 6/30 | mean CPCV F1=0.465753
+OPTUNA PROGRESS | completed=6/30 | latest_trial=6 value=0.46575276618950107 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 7/30
+Trial 7 params: {'max_depth': 6, 'min_samples_leaf': 9, 'min_samples_split': 12, 'min_weight_fraction_leaf': 0.04744427686266667, 'ccp_alpha': 0.007286653737491046, 'class_weight_mode': 'balanced'}
+Trial 7 | fold 01: train=735 test=556 thr=0.63 train_f1=0.5272 test_f1=0.5361 precision=0.3869 recall=0.8724 running_mean_f1=0.5361
+Trial 7 | fold 02: train=634 test=556 thr=0.44 train_f1=0.5350 test_f1=0.4689 precision=0.3393 recall=0.7588 running_mean_f1=0.5025
+Trial 7 | fold 03: train=633 test=556 thr=0.55 train_f1=0.5469 test_f1=0.4521 precision=0.3533 recall=0.6277 running_mean_f1=0.4857
+Trial 7 | fold 04: train=734 test=557 thr=0.52 train_f1=0.5250 test_f1=0.4542 precision=0.3496 recall=0.6482 running_mean_f1=0.4778
+Trial 7 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.4797
+Trial 7 | fold 06: train=632 test=556 thr=0.52 train_f1=0.5663 test_f1=0.4296 precision=0.3019 recall=0.7440 running_mean_f1=0.4713
+Trial 7 | fold 07: train=733 test=557 thr=0.70 train_f1=0.5320 test_f1=0.4582 precision=0.3396 recall=0.7039 running_mean_f1=0.4694
+Trial 7 | fold 08: train=734 test=556 thr=0.42 train_f1=0.5525 test_f1=0.4830 precision=0.3284 recall=0.9123 running_mean_f1=0.4711
+Trial 7 | fold 09: train=733 test=557 thr=0.54 train_f1=0.5473 test_f1=0.4890 precision=0.3429 recall=0.8516 running_mean_f1=0.4731
+Trial 7 | fold 10: train=832 test=557 thr=0.49 train_f1=0.5405 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4728
+END TRIAL 7/30 | mean CPCV F1=0.472785
+OPTUNA PROGRESS | completed=7/30 | latest_trial=7 value=0.4727848147182866 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 8/30
+Trial 8 params: {'max_depth': 7, 'min_samples_leaf': 14, 'min_samples_split': 14, 'min_weight_fraction_leaf': 0.03421165132560785, 'ccp_alpha': 5.762487216478604e-05, 'class_weight_mode': 'balanced'}
+Trial 8 | fold 01: train=735 test=556 thr=0.54 train_f1=0.5262 test_f1=0.4594 precision=0.3514 recall=0.6633 running_mean_f1=0.4594
+Trial 8 | fold 02: train=634 test=556 thr=0.62 train_f1=0.5432 test_f1=0.4801 precision=0.3658 recall=0.6985 running_mean_f1=0.4698
+Trial 8 | fold 03: train=633 test=556 thr=0.67 train_f1=0.5875 test_f1=0.4251 precision=0.3668 recall=0.5053 running_mean_f1=0.4549
+Trial 8 | fold 04: train=734 test=557 thr=0.54 train_f1=0.5345 test_f1=0.4453 precision=0.3529 recall=0.6030 running_mean_f1=0.4525
+Trial 8 | fold 05: train=734 test=556 thr=0.58 train_f1=0.5478 test_f1=0.4050 precision=0.3213 recall=0.5475 running_mean_f1=0.4430
+Trial 8 | fold 06: train=632 test=556 thr=0.37 train_f1=0.5905 test_f1=0.4298 precision=0.3032 recall=0.7381 running_mean_f1=0.4408
+Trial 8 | fold 07: train=733 test=557 thr=0.78 train_f1=0.5591 test_f1=0.3158 precision=0.3132 recall=0.3184 running_mean_f1=0.4229
+Trial 8 | fold 08: train=734 test=556 thr=0.67 train_f1=0.5714 test_f1=0.4528 precision=0.3343 recall=0.7018 running_mean_f1=0.4267
+Trial 8 | fold 09: train=733 test=557 thr=0.50 train_f1=0.5505 test_f1=0.4823 precision=0.3409 recall=0.8242 running_mean_f1=0.4328
+Trial 8 | fold 10: train=832 test=557 thr=0.55 train_f1=0.5606 test_f1=0.4396 precision=0.3004 recall=0.8187 running_mean_f1=0.4335
+END TRIAL 8/30 | mean CPCV F1=0.433509
+OPTUNA PROGRESS | completed=8/30 | latest_trial=8 value=0.43350903228659393 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 9/30
+Trial 9 params: {'max_depth': 2, 'min_samples_leaf': 29, 'min_samples_split': 11, 'min_weight_fraction_leaf': 0.0454660201039391, 'ccp_alpha': 1.0842262717330169e-05, 'class_weight_mode': 'balanced'}
+Trial 9 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 9 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 9 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 9 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 9 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5127
+Trial 9 | fold 06: train=632 test=556 thr=0.45 train_f1=0.5660 test_f1=0.4476 precision=0.3036 recall=0.8512 running_mean_f1=0.5018
+Trial 9 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4978
+Trial 9 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4952
+Trial 9 | fold 09: train=733 test=557 thr=0.39 train_f1=0.5309 test_f1=0.4979 precision=0.3321 recall=0.9945 running_mean_f1=0.4955
+Trial 9 | fold 10: train=832 test=557 thr=0.44 train_f1=0.5319 test_f1=0.4696 precision=0.3097 recall=0.9708 running_mean_f1=0.4929
+END TRIAL 9/30 | mean CPCV F1=0.492926
+OPTUNA PROGRESS | completed=9/30 | latest_trial=9 value=0.4929255868555484 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 10/30
+Trial 10 params: {'max_depth': 6, 'min_samples_leaf': 15, 'min_samples_split': 66, 'min_weight_fraction_leaf': 0.027335513967163983, 'ccp_alpha': 5.4880470007660465e-06, 'class_weight_mode': 'balanced'}
+Trial 10 | fold 01: train=735 test=556 thr=0.60 train_f1=0.5355 test_f1=0.5189 precision=0.3750 recall=0.8418 running_mean_f1=0.5189
+Trial 10 | fold 02: train=634 test=556 thr=0.43 train_f1=0.5356 test_f1=0.4825 precision=0.3527 recall=0.7638 running_mean_f1=0.5007
+Trial 10 | fold 03: train=633 test=556 thr=0.61 train_f1=0.5548 test_f1=0.4881 precision=0.3582 recall=0.7660 running_mean_f1=0.4965
+Trial 10 | fold 04: train=734 test=557 thr=0.67 train_f1=0.5405 test_f1=0.4928 precision=0.3853 recall=0.6834 running_mean_f1=0.4956
+Trial 10 | fold 05: train=734 test=556 thr=0.47 train_f1=0.5714 test_f1=0.4715 precision=0.3255 recall=0.8547 running_mean_f1=0.4908
+Trial 10 | fold 06: train=632 test=556 thr=0.39 train_f1=0.5814 test_f1=0.4437 precision=0.3110 recall=0.7738 running_mean_f1=0.4829
+Trial 10 | fold 07: train=733 test=557 thr=0.61 train_f1=0.5348 test_f1=0.4629 precision=0.3422 recall=0.7151 running_mean_f1=0.4801
+Trial 10 | fold 08: train=734 test=556 thr=0.63 train_f1=0.5470 test_f1=0.4700 precision=0.3325 recall=0.8012 running_mean_f1=0.4788
+Trial 10 | fold 09: train=733 test=557 thr=0.59 train_f1=0.5627 test_f1=0.4862 precision=0.3448 recall=0.8242 running_mean_f1=0.4796
+Trial 10 | fold 10: train=832 test=557 thr=0.62 train_f1=0.5646 test_f1=0.4521 precision=0.3149 recall=0.8012 running_mean_f1=0.4769
+END TRIAL 10/30 | mean CPCV F1=0.476876
+OPTUNA PROGRESS | completed=10/30 | latest_trial=10 value=0.47687586377259156 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 11/30
+Trial 11 params: {'max_depth': 2, 'min_samples_leaf': 116, 'min_samples_split': 277, 'min_weight_fraction_leaf': 0.0003773659658146619, 'ccp_alpha': 1.898216490282294e-06, 'class_weight_mode': 'balanced'}
+Trial 11 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 11 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5242
+Trial 11 | fold 03: train=633 test=556 thr=0.42 train_f1=0.5319 test_f1=0.4751 precision=0.3402 recall=0.7872 running_mean_f1=0.5078
+Trial 11 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5125
+Trial 11 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5074
+Trial 11 | fold 06: train=632 test=556 thr=0.58 train_f1=0.5429 test_f1=0.4410 precision=0.3113 recall=0.7560 running_mean_f1=0.4963
+Trial 11 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.4949
+Trial 11 | fold 08: train=734 test=556 thr=0.60 train_f1=0.5355 test_f1=0.4378 precision=0.3056 recall=0.7719 running_mean_f1=0.4878
+Trial 11 | fold 09: train=733 test=557 thr=0.62 train_f1=0.5235 test_f1=0.4650 precision=0.3303 recall=0.7857 running_mean_f1=0.4853
+Trial 11 | fold 10: train=832 test=557 thr=0.58 train_f1=0.5249 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4837
+END TRIAL 11/30 | mean CPCV F1=0.483710
+OPTUNA PROGRESS | completed=11/30 | latest_trial=11 value=0.4837096236406059 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 12/30
+Trial 12 params: {'max_depth': 2, 'min_samples_leaf': 49, 'min_samples_split': 32, 'min_weight_fraction_leaf': 0.032222182729793644, 'ccp_alpha': 3.0212012771132697e-06, 'class_weight_mode': 'balanced'}
+Trial 12 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 12 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 12 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 12 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 12 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5127
+Trial 12 | fold 06: train=632 test=556 thr=0.53 train_f1=0.5563 test_f1=0.4377 precision=0.3052 recall=0.7738 running_mean_f1=0.5002
+Trial 12 | fold 07: train=733 test=557 thr=0.50 train_f1=0.5161 test_f1=0.4735 precision=0.3214 recall=0.8994 running_mean_f1=0.4964
+Trial 12 | fold 08: train=734 test=556 thr=0.37 train_f1=0.5412 test_f1=0.4755 precision=0.3125 recall=0.9942 running_mean_f1=0.4938
+Trial 12 | fold 09: train=733 test=557 thr=0.39 train_f1=0.5309 test_f1=0.4979 precision=0.3321 recall=0.9945 running_mean_f1=0.4942
+Trial 12 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5297 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4918
+END TRIAL 12/30 | mean CPCV F1=0.491781
+OPTUNA PROGRESS | completed=12/30 | latest_trial=12 value=0.4917811605311505 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 13/30
+Trial 13 params: {'max_depth': 2, 'min_samples_leaf': 68, 'min_samples_split': 23, 'min_weight_fraction_leaf': 0.04618576081773831, 'ccp_alpha': 2.850987091257414e-05, 'class_weight_mode': 'balanced'}
+Trial 13 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 13 | fold 02: train=634 test=556 thr=0.58 train_f1=0.5192 test_f1=0.5174 precision=0.3770 recall=0.8241 running_mean_f1=0.5249
+Trial 13 | fold 03: train=633 test=556 thr=0.31 train_f1=0.5373 test_f1=0.4862 precision=0.3420 recall=0.8404 running_mean_f1=0.5120
+Trial 13 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5164
+Trial 13 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5105
+Trial 13 | fold 06: train=632 test=556 thr=0.53 train_f1=0.5558 test_f1=0.4501 precision=0.3067 recall=0.8452 running_mean_f1=0.5004
+Trial 13 | fold 07: train=733 test=557 thr=0.48 train_f1=0.5143 test_f1=0.4756 precision=0.3233 recall=0.8994 running_mean_f1=0.4969
+Trial 13 | fold 08: train=734 test=556 thr=0.47 train_f1=0.5430 test_f1=0.4671 precision=0.3139 recall=0.9123 running_mean_f1=0.4932
+Trial 13 | fold 09: train=733 test=557 thr=0.49 train_f1=0.5321 test_f1=0.4912 precision=0.3353 recall=0.9176 running_mean_f1=0.4930
+Trial 13 | fold 10: train=832 test=557 thr=0.47 train_f1=0.5197 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4906
+END TRIAL 13/30 | mean CPCV F1=0.490635
+OPTUNA PROGRESS | completed=13/30 | latest_trial=13 value=0.490634918289671 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 14/30
+Trial 14 params: {'max_depth': 3, 'min_samples_leaf': 40, 'min_samples_split': 69, 'min_weight_fraction_leaf': 0.046171689109289295, 'ccp_alpha': 1.398921660248497e-06, 'class_weight_mode': 'balanced'}
+Trial 14 | fold 01: train=735 test=556 thr=0.35 train_f1=0.4951 test_f1=0.4947 precision=0.3529 recall=0.8265 running_mean_f1=0.4947
+Trial 14 | fold 02: train=634 test=556 thr=0.47 train_f1=0.5176 test_f1=0.4795 precision=0.3381 recall=0.8241 running_mean_f1=0.4871
+Trial 14 | fold 03: train=633 test=556 thr=0.40 train_f1=0.5312 test_f1=0.4746 precision=0.3341 recall=0.8191 running_mean_f1=0.4829
+Trial 14 | fold 04: train=734 test=557 thr=0.41 train_f1=0.4929 test_f1=0.5245 precision=0.3594 recall=0.9698 running_mean_f1=0.4933
+Trial 14 | fold 05: train=734 test=556 thr=0.56 train_f1=0.5330 test_f1=0.4866 precision=0.3320 recall=0.9106 running_mean_f1=0.4920
+Trial 14 | fold 06: train=632 test=556 thr=0.45 train_f1=0.5596 test_f1=0.4391 precision=0.3004 recall=0.8155 running_mean_f1=0.4831
+Trial 14 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4818
+Trial 14 | fold 08: train=734 test=556 thr=0.49 train_f1=0.5421 test_f1=0.4686 precision=0.3301 recall=0.8070 running_mean_f1=0.4802
+Trial 14 | fold 09: train=733 test=557 thr=0.60 train_f1=0.5414 test_f1=0.4401 precision=0.3138 recall=0.7363 running_mean_f1=0.4757
+Trial 14 | fold 10: train=832 test=557 thr=0.37 train_f1=0.5289 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4751
+END TRIAL 14/30 | mean CPCV F1=0.475117
+OPTUNA PROGRESS | completed=14/30 | latest_trial=14 value=0.47511651159455914 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 15/30
+Trial 15 params: {'max_depth': 3, 'min_samples_leaf': 123, 'min_samples_split': 14, 'min_weight_fraction_leaf': 0.01252910339521393, 'ccp_alpha': 2.3802658361534337e-06, 'class_weight_mode': 'balanced'}
+Trial 15 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 15 | fold 02: train=634 test=556 thr=0.60 train_f1=0.5179 test_f1=0.5158 precision=0.3764 recall=0.8191 running_mean_f1=0.5185
+Trial 15 | fold 03: train=633 test=556 thr=0.48 train_f1=0.5354 test_f1=0.4843 precision=0.3508 recall=0.7819 running_mean_f1=0.5071
+Trial 15 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5120
+Trial 15 | fold 05: train=734 test=556 thr=0.58 train_f1=0.5214 test_f1=0.4769 precision=0.3291 recall=0.8659 running_mean_f1=0.5050
+Trial 15 | fold 06: train=632 test=556 thr=0.58 train_f1=0.5429 test_f1=0.4410 precision=0.3113 recall=0.7560 running_mean_f1=0.4943
+Trial 15 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.4932
+Trial 15 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5246 test_f1=0.4704 precision=0.3076 recall=1.0000 running_mean_f1=0.4903
+Trial 15 | fold 09: train=733 test=557 thr=0.62 train_f1=0.5235 test_f1=0.4650 precision=0.3303 recall=0.7857 running_mean_f1=0.4875
+Trial 15 | fold 10: train=832 test=557 thr=0.62 train_f1=0.5442 test_f1=0.4492 precision=0.3048 recall=0.8538 running_mean_f1=0.4837
+END TRIAL 15/30 | mean CPCV F1=0.483691
+OPTUNA PROGRESS | completed=15/30 | latest_trial=15 value=0.4836909837823475 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 16/30
+Trial 16 params: {'max_depth': 2, 'min_samples_leaf': 101, 'min_samples_split': 88, 'min_weight_fraction_leaf': 0.021870736293206156, 'ccp_alpha': 1.964831507562704e-05, 'class_weight_mode': 'balanced'}
+Trial 16 | fold 01: train=735 test=556 thr=0.54 train_f1=0.5000 test_f1=0.5262 precision=0.3721 recall=0.8980 running_mean_f1=0.5262
+Trial 16 | fold 02: train=634 test=556 thr=0.58 train_f1=0.5192 test_f1=0.5174 precision=0.3770 recall=0.8241 running_mean_f1=0.5218
+Trial 16 | fold 03: train=633 test=556 thr=0.42 train_f1=0.5319 test_f1=0.4751 precision=0.3402 recall=0.7872 running_mean_f1=0.5062
+Trial 16 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5113
+Trial 16 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5064
+Trial 16 | fold 06: train=632 test=556 thr=0.58 train_f1=0.5429 test_f1=0.4410 precision=0.3113 recall=0.7560 running_mean_f1=0.4955
+Trial 16 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.4942
+Trial 16 | fold 08: train=734 test=556 thr=0.60 train_f1=0.5355 test_f1=0.4378 precision=0.3056 recall=0.7719 running_mean_f1=0.4872
+Trial 16 | fold 09: train=733 test=557 thr=0.62 train_f1=0.5235 test_f1=0.4650 precision=0.3303 recall=0.7857 running_mean_f1=0.4847
+Trial 16 | fold 10: train=832 test=557 thr=0.58 train_f1=0.5249 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4832
+END TRIAL 16/30 | mean CPCV F1=0.483218
+OPTUNA PROGRESS | completed=16/30 | latest_trial=16 value=0.48321759259502467 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 17/30
+Trial 17 params: {'max_depth': 2, 'min_samples_leaf': 9, 'min_samples_split': 13, 'min_weight_fraction_leaf': 0.03767176685511863, 'ccp_alpha': 2.6490760468995974e-05, 'class_weight_mode': 'balanced'}
+Trial 17 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 17 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 17 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 17 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 17 | fold 05: train=734 test=556 thr=0.42 train_f1=0.5196 test_f1=0.4876 precision=0.3236 recall=0.9888 running_mean_f1=0.5128
+Trial 17 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5022
+Trial 17 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4981
+Trial 17 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4955
+Trial 17 | fold 09: train=733 test=557 thr=0.30 train_f1=0.5302 test_f1=0.4993 precision=0.3327 recall=1.0000 running_mean_f1=0.4959
+Trial 17 | fold 10: train=832 test=557 thr=0.35 train_f1=0.5337 test_f1=0.4718 precision=0.3110 recall=0.9766 running_mean_f1=0.4935
+END TRIAL 17/30 | mean CPCV F1=0.493485
+OPTUNA PROGRESS | completed=17/30 | latest_trial=17 value=0.4934850804893859 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 18/30
+Trial 18 params: {'max_depth': 3, 'min_samples_leaf': 6, 'min_samples_split': 16, 'min_weight_fraction_leaf': 0.01822516815027001, 'ccp_alpha': 3.449701323363919e-06, 'class_weight_mode': 'balanced'}
+Trial 18 | fold 01: train=735 test=556 thr=0.52 train_f1=0.5030 test_f1=0.4889 precision=0.3445 recall=0.8418 running_mean_f1=0.4889
+Trial 18 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5150 test_f1=0.5472 precision=0.3781 recall=0.9899 running_mean_f1=0.5181
+Trial 18 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5405 test_f1=0.5140 precision=0.3550 recall=0.9309 running_mean_f1=0.5167
+Trial 18 | fold 04: train=734 test=557 thr=0.30 train_f1=0.5055 test_f1=0.5341 precision=0.3692 recall=0.9648 running_mean_f1=0.5210
+Trial 18 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5143
+Trial 18 | fold 06: train=632 test=556 thr=0.61 train_f1=0.5530 test_f1=0.4557 precision=0.3013 recall=0.9345 running_mean_f1=0.5045
+Trial 18 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5205 test_f1=0.4756 precision=0.3198 recall=0.9274 running_mean_f1=0.5004
+Trial 18 | fold 08: train=734 test=556 thr=0.57 train_f1=0.5514 test_f1=0.4613 precision=0.3115 recall=0.8889 running_mean_f1=0.4955
+Trial 18 | fold 09: train=733 test=557 thr=0.64 train_f1=0.5406 test_f1=0.4482 precision=0.3221 recall=0.7363 running_mean_f1=0.4903
+Trial 18 | fold 10: train=832 test=557 thr=0.54 train_f1=0.5617 test_f1=0.4502 precision=0.3035 recall=0.8713 running_mean_f1=0.4862
+END TRIAL 18/30 | mean CPCV F1=0.486243
+OPTUNA PROGRESS | completed=18/30 | latest_trial=18 value=0.48624250037468525 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 19/30
+Trial 19 params: {'max_depth': 2, 'min_samples_leaf': 50, 'min_samples_split': 94, 'min_weight_fraction_leaf': 0.0021323366444345217, 'ccp_alpha': 2.8402106335961874e-06, 'class_weight_mode': 'balanced'}
+Trial 19 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 19 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 19 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 19 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 19 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5127
+Trial 19 | fold 06: train=632 test=556 thr=0.53 train_f1=0.5563 test_f1=0.4377 precision=0.3052 recall=0.7738 running_mean_f1=0.5002
+Trial 19 | fold 07: train=733 test=557 thr=0.50 train_f1=0.5161 test_f1=0.4735 precision=0.3214 recall=0.8994 running_mean_f1=0.4964
+Trial 19 | fold 08: train=734 test=556 thr=0.49 train_f1=0.5392 test_f1=0.4541 precision=0.3093 recall=0.8538 running_mean_f1=0.4911
+Trial 19 | fold 09: train=733 test=557 thr=0.47 train_f1=0.5211 test_f1=0.4972 precision=0.3321 recall=0.9890 running_mean_f1=0.4918
+Trial 19 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5297 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4896
+END TRIAL 19/30 | mean CPCV F1=0.489571
+OPTUNA PROGRESS | completed=19/30 | latest_trial=19 value=0.4895709278951812 | best_trial=3 best_f1=0.495060
+
+--------------------------------------------------------------------------------
+START TRIAL 20/30
+Trial 20 params: {'max_depth': 2, 'min_samples_leaf': 29, 'min_samples_split': 25, 'min_weight_fraction_leaf': 0.025347219505121723, 'ccp_alpha': 2.350699706323715e-05, 'class_weight_mode': 'balanced'}
+Trial 20 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 20 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 20 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5322 test_f1=0.5174 precision=0.3503 recall=0.9894 running_mean_f1=0.5257
+Trial 20 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5266
+Trial 20 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5187
+Trial 20 | fold 06: train=632 test=556 thr=0.45 train_f1=0.5675 test_f1=0.4462 precision=0.3023 recall=0.8512 running_mean_f1=0.5066
+Trial 20 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5173 test_f1=0.4889 precision=0.3253 recall=0.9832 running_mean_f1=0.5041
+Trial 20 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.5007
+Trial 20 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.5012
+Trial 20 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4982
+END TRIAL 20/30 | mean CPCV F1=0.498170
+OPTUNA PROGRESS | completed=20/30 | latest_trial=20 value=0.4981702242968013 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 21/30
+Trial 21 params: {'max_depth': 2, 'min_samples_leaf': 159, 'min_samples_split': 19, 'min_weight_fraction_leaf': 0.01276143844160964, 'ccp_alpha': 4.926455061177946e-05, 'class_weight_mode': 'balanced'}
+Trial 21 | fold 01: train=735 test=556 thr=0.30 train_f1=0.4830 test_f1=0.5213 precision=0.3525 recall=1.0000 running_mean_f1=0.5213
+Trial 21 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5242
+Trial 21 | fold 03: train=633 test=556 thr=0.52 train_f1=0.5353 test_f1=0.4778 precision=0.3518 recall=0.7447 running_mean_f1=0.5087
+Trial 21 | fold 04: train=734 test=557 thr=0.30 train_f1=0.4897 test_f1=0.5265 precision=0.3573 recall=1.0000 running_mean_f1=0.5132
+Trial 21 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5080
+Trial 21 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5404 test_f1=0.4641 precision=0.3022 recall=1.0000 running_mean_f1=0.5006
+Trial 21 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5102 test_f1=0.4864 precision=0.3214 recall=1.0000 running_mean_f1=0.4986
+Trial 21 | fold 08: train=734 test=556 thr=0.60 train_f1=0.5355 test_f1=0.4378 precision=0.3056 recall=0.7719 running_mean_f1=0.4910
+Trial 21 | fold 09: train=733 test=557 thr=0.62 train_f1=0.5235 test_f1=0.4650 precision=0.3303 recall=0.7857 running_mean_f1=0.4881
+Trial 21 | fold 10: train=832 test=557 thr=0.58 train_f1=0.5243 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4863
+END TRIAL 21/30 | mean CPCV F1=0.486291
+OPTUNA PROGRESS | completed=21/30 | latest_trial=21 value=0.48629077263998494 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 22/30
+Trial 22 params: {'max_depth': 2, 'min_samples_leaf': 12, 'min_samples_split': 32, 'min_weight_fraction_leaf': 0.026514463515914553, 'ccp_alpha': 5.7668692265171074e-05, 'class_weight_mode': 'balanced'}
+Trial 22 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 22 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 22 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5388 test_f1=0.5147 precision=0.3557 recall=0.9309 running_mean_f1=0.5248
+Trial 22 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5260
+Trial 22 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5182
+Trial 22 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5067
+Trial 22 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5191 test_f1=0.4728 precision=0.3179 recall=0.9218 running_mean_f1=0.5019
+Trial 22 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5470 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4988
+Trial 22 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4995
+Trial 22 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4967
+END TRIAL 22/30 | mean CPCV F1=0.496664
+OPTUNA PROGRESS | completed=22/30 | latest_trial=22 value=0.4966638230732735 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 23/30
+Trial 23 params: {'max_depth': 2, 'min_samples_leaf': 14, 'min_samples_split': 40, 'min_weight_fraction_leaf': 0.022383440185689094, 'ccp_alpha': 0.00014482294841806085, 'class_weight_mode': 'balanced'}
+Trial 23 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 23 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 23 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5405 test_f1=0.5140 precision=0.3550 recall=0.9309 running_mean_f1=0.5245
+Trial 23 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5258
+Trial 23 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5181
+Trial 23 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5066
+Trial 23 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5197 test_f1=0.4728 precision=0.3179 recall=0.9218 running_mean_f1=0.5018
+Trial 23 | fold 08: train=734 test=556 thr=0.51 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4987
+Trial 23 | fold 09: train=733 test=557 thr=0.51 train_f1=0.5302 test_f1=0.4993 precision=0.3327 recall=1.0000 running_mean_f1=0.4987
+Trial 23 | fold 10: train=832 test=557 thr=0.47 train_f1=0.5297 test_f1=0.4698 precision=0.3070 recall=1.0000 running_mean_f1=0.4958
+END TRIAL 23/30 | mean CPCV F1=0.495840
+OPTUNA PROGRESS | completed=23/30 | latest_trial=23 value=0.4958400604692822 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 24/30
+Trial 24 params: {'max_depth': 3, 'min_samples_leaf': 27, 'min_samples_split': 30, 'min_weight_fraction_leaf': 0.025264870491131818, 'ccp_alpha': 0.00024306837076718444, 'class_weight_mode': 'balanced'}
+Trial 24 | fold 01: train=735 test=556 thr=0.52 train_f1=0.5030 test_f1=0.4889 precision=0.3445 recall=0.8418 running_mean_f1=0.4889
+Trial 24 | fold 02: train=634 test=556 thr=0.47 train_f1=0.5176 test_f1=0.4795 precision=0.3381 recall=0.8241 running_mean_f1=0.4842
+Trial 24 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5322 test_f1=0.5174 precision=0.3503 recall=0.9894 running_mean_f1=0.4953
+Trial 24 | fold 04: train=734 test=557 thr=0.35 train_f1=0.4920 test_f1=0.5279 precision=0.3619 recall=0.9749 running_mean_f1=0.5034
+Trial 24 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5002
+Trial 24 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.4917
+Trial 24 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5195 test_f1=0.4781 precision=0.3201 recall=0.9441 running_mean_f1=0.4897
+Trial 24 | fold 08: train=734 test=556 thr=0.35 train_f1=0.5455 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4882
+Trial 24 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4901
+Trial 24 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4882
+END TRIAL 24/30 | mean CPCV F1=0.488173
+OPTUNA PROGRESS | completed=24/30 | latest_trial=24 value=0.48817337247580195 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 25/30
+Trial 25 params: {'max_depth': 2, 'min_samples_leaf': 15, 'min_samples_split': 62, 'min_weight_fraction_leaf': 0.025732783497120937, 'ccp_alpha': 7.217403521804973e-05, 'class_weight_mode': 'balanced'}
+Trial 25 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 25 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 25 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5388 test_f1=0.5147 precision=0.3557 recall=0.9309 running_mean_f1=0.5248
+Trial 25 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5260
+Trial 25 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5182
+Trial 25 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5067
+Trial 25 | fold 07: train=733 test=557 thr=0.30 train_f1=0.5197 test_f1=0.4728 precision=0.3179 recall=0.9218 running_mean_f1=0.5019
+Trial 25 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5470 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4988
+Trial 25 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4995
+Trial 25 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4967
+END TRIAL 25/30 | mean CPCV F1=0.496664
+OPTUNA PROGRESS | completed=25/30 | latest_trial=25 value=0.4966638230732735 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 26/30
+Trial 26 params: {'max_depth': 2, 'min_samples_leaf': 18, 'min_samples_split': 54, 'min_weight_fraction_leaf': 0.03478207727915858, 'ccp_alpha': 0.00019037011295127969, 'class_weight_mode': 'balanced'}
+Trial 26 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 26 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 26 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 26 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 26 | fold 05: train=734 test=556 thr=0.42 train_f1=0.5196 test_f1=0.4876 precision=0.3236 recall=0.9888 running_mean_f1=0.5128
+Trial 26 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5022
+Trial 26 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4981
+Trial 26 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4955
+Trial 26 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4965
+Trial 26 | fold 10: train=832 test=557 thr=0.35 train_f1=0.5337 test_f1=0.4718 precision=0.3110 recall=0.9766 running_mean_f1=0.4940
+END TRIAL 26/30 | mean CPCV F1=0.494045
+OPTUNA PROGRESS | completed=26/30 | latest_trial=26 value=0.49404455118547286 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 27/30
+Trial 27 params: {'max_depth': 2, 'min_samples_leaf': 11, 'min_samples_split': 34, 'min_weight_fraction_leaf': 0.027472041995386276, 'ccp_alpha': 5.030500633460748e-06, 'class_weight_mode': 'balanced'}
+Trial 27 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 27 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 27 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5388 test_f1=0.5147 precision=0.3557 recall=0.9309 running_mean_f1=0.5248
+Trial 27 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5260
+Trial 27 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.5182
+Trial 27 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5067
+Trial 27 | fold 07: train=733 test=557 thr=0.31 train_f1=0.5196 test_f1=0.4728 precision=0.3179 recall=0.9218 running_mean_f1=0.5019
+Trial 27 | fold 08: train=734 test=556 thr=0.35 train_f1=0.5455 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4988
+Trial 27 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4995
+Trial 27 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4967
+END TRIAL 27/30 | mean CPCV F1=0.496664
+OPTUNA PROGRESS | completed=27/30 | latest_trial=27 value=0.4966638230732735 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 28/30
+Trial 28 params: {'max_depth': 3, 'min_samples_leaf': 25, 'min_samples_split': 114, 'min_weight_fraction_leaf': 0.027841023374883027, 'ccp_alpha': 0.00011011514174249984, 'class_weight_mode': 'balanced'}
+Trial 28 | fold 01: train=735 test=556 thr=0.52 train_f1=0.5018 test_f1=0.4889 precision=0.3445 recall=0.8418 running_mean_f1=0.4889
+Trial 28 | fold 02: train=634 test=556 thr=0.47 train_f1=0.5176 test_f1=0.4795 precision=0.3381 recall=0.8241 running_mean_f1=0.4842
+Trial 28 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5388 test_f1=0.5147 precision=0.3557 recall=0.9309 running_mean_f1=0.4944
+Trial 28 | fold 04: train=734 test=557 thr=0.30 train_f1=0.5005 test_f1=0.5223 precision=0.3574 recall=0.9698 running_mean_f1=0.5014
+Trial 28 | fold 05: train=734 test=556 thr=0.33 train_f1=0.5363 test_f1=0.4873 precision=0.3327 recall=0.9106 running_mean_f1=0.4985
+Trial 28 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.4903
+Trial 28 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4880
+Trial 28 | fold 08: train=734 test=556 thr=0.35 train_f1=0.5455 test_f1=0.4776 precision=0.3173 recall=0.9649 running_mean_f1=0.4867
+Trial 28 | fold 09: train=733 test=557 thr=0.34 train_f1=0.5345 test_f1=0.5049 precision=0.3390 recall=0.9890 running_mean_f1=0.4887
+Trial 28 | fold 10: train=832 test=557 thr=0.30 train_f1=0.5350 test_f1=0.4711 precision=0.3104 recall=0.9766 running_mean_f1=0.4869
+END TRIAL 28/30 | mean CPCV F1=0.486925
+OPTUNA PROGRESS | completed=28/30 | latest_trial=28 value=0.4869251493135865 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 29/30
+Trial 29 params: {'max_depth': 2, 'min_samples_leaf': 24, 'min_samples_split': 87, 'min_weight_fraction_leaf': 0.03811733601936869, 'ccp_alpha': 4.1554118082421264e-05, 'class_weight_mode': 'balanced'}
+Trial 29 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 29 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 29 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 29 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 29 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5127
+Trial 29 | fold 06: train=632 test=556 thr=0.30 train_f1=0.5661 test_f1=0.4491 precision=0.3000 recall=0.8929 running_mean_f1=0.5021
+Trial 29 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4980
+Trial 29 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4954
+Trial 29 | fold 09: train=733 test=557 thr=0.30 train_f1=0.5302 test_f1=0.4993 precision=0.3327 recall=1.0000 running_mean_f1=0.4958
+Trial 29 | fold 10: train=832 test=557 thr=0.35 train_f1=0.5337 test_f1=0.4718 precision=0.3110 recall=0.9766 running_mean_f1=0.4934
+END TRIAL 29/30 | mean CPCV F1=0.493432
+OPTUNA PROGRESS | completed=29/30 | latest_trial=29 value=0.49343223290407073 | best_trial=20 best_f1=0.498170
+
+--------------------------------------------------------------------------------
+START TRIAL 30/30
+Trial 30 params: {'max_depth': 2, 'min_samples_leaf': 40, 'min_samples_split': 28, 'min_weight_fraction_leaf': 0.01654764603324846, 'ccp_alpha': 0.00011202997469382825, 'class_weight_mode': 'balanced'}
+Trial 30 | fold 01: train=735 test=556 thr=0.44 train_f1=0.5017 test_f1=0.5325 precision=0.3750 recall=0.9184 running_mean_f1=0.5325
+Trial 30 | fold 02: train=634 test=556 thr=0.30 train_f1=0.5082 test_f1=0.5272 precision=0.3579 recall=1.0000 running_mean_f1=0.5298
+Trial 30 | fold 03: train=633 test=556 thr=0.30 train_f1=0.5362 test_f1=0.4871 precision=0.3412 recall=0.8511 running_mean_f1=0.5156
+Trial 30 | fold 04: train=734 test=557 thr=0.43 train_f1=0.5067 test_f1=0.5295 precision=0.3710 recall=0.9246 running_mean_f1=0.5191
+Trial 30 | fold 05: train=734 test=556 thr=0.30 train_f1=0.5187 test_f1=0.4871 precision=0.3219 recall=1.0000 running_mean_f1=0.5127
+Trial 30 | fold 06: train=632 test=556 thr=0.45 train_f1=0.5596 test_f1=0.4391 precision=0.3004 recall=0.8155 running_mean_f1=0.5004
+Trial 30 | fold 07: train=733 test=557 thr=0.44 train_f1=0.5158 test_f1=0.4738 precision=0.3202 recall=0.9106 running_mean_f1=0.4966
+Trial 30 | fold 08: train=734 test=556 thr=0.30 train_f1=0.5405 test_f1=0.4770 precision=0.3132 recall=1.0000 running_mean_f1=0.4942
+Trial 30 | fold 09: train=733 test=557 thr=0.30 train_f1=0.5302 test_f1=0.4993 precision=0.3327 recall=1.0000 running_mean_f1=0.4947
+Trial 30 | fold 10: train=832 test=557 thr=0.40 train_f1=0.5328 test_f1=0.4718 precision=0.3110 recall=0.9766 running_mean_f1=0.4924
+END TRIAL 30/30 | mean CPCV F1=0.492432
+OPTUNA PROGRESS | completed=30/30 | latest_trial=30 value=0.4924323096736086 | best_trial=20 best_f1=0.498170
+
+Best CPCV F1: 0.498170
+Best parameters:
+{'max_depth': 2, 'min_samples_leaf': 29, 'min_samples_split': 25, 'min_weight_fraction_leaf': 0.025347219505121723, 'ccp_alpha': 2.350699706323715e-05, 'class_weight_mode': 'balanced'}
+
+Training final AFML Ch.6 sequential-bootstrap-bagged model (n_estimators=100) on all selected-feature rows...
+AFML rho_bar (mean pairwise bagged-tree correlation): 0.5261 (0 of 100 trees excluded as degenerate single-leaf stumps)
+Projected bagged-variance at N=1000 relative to N=100: 0.9920x (1.0 = no further benefit, per AFML SS6.3.1's own formula)
+Logged 1 research-trial ledger record to: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\model\hk_drawupreversalhazard_short_research_trial_ledger.jsonl
+
+✅ V2 Optuna meta-model training completed.
+Rows used: 1,391
+Selected features: 39
+Best CPCV F1: 0.498170
+Final diagnostic train threshold: 0.76
+Saved model: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\model\hk_drawupreversalhazard_short_meta_model.pkl
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawupreversalhazard_short\artifacts\model\model_training_manifest.json
+Next ordered step: 03_generate_oof_predictions.py

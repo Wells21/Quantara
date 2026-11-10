@@ -1,0 +1,61 @@
+{
+ "asset": "HK",
+ "edge": "drawdownhazardcontinuation_short",
+ "side": -1,
+ "feature_input": "stored research_dataset feature_matrix",
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md",
+ "reproduction": {
+  "event_times_equal": true,
+  "matched_model_rows": 4206,
+  "stored_model_rows": 4206,
+  "max_abs_realized_r_diff": 2.220446049250313e-16,
+  "PASS": true
+ },
+ "edge_events": {
+  "n": 4735,
+  "mean_R": 0.14572,
+  "ci_lo": 0.03475,
+  "ci_hi": 0.25669,
+  "weeks": 224
+ },
+ "pool": {
+  "eligible_window": [
+   "2022-03-04 09:58:15.285000+00:00",
+   "2026-07-08 16:28:59.490000+00:00"
+  ],
+  "labeled": 19908,
+  "n": 19908,
+  "mean_R": 0.09394,
+  "ci_lo": 0.00867,
+  "ci_hi": 0.17921,
+  "weeks": 227
+ },
+ "baseline_U_unconditional": {
+  "baseline_mean_R": 0.09394,
+  "baseline_se": 0.04351,
+  "diff": 0.05178,
+  "diff_ci_lo": -0.08817,
+  "diff_ci_hi": 0.19173,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0064
+ },
+ "baseline_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.14566,
+  "baseline_se": 0.02047,
+  "diff": 6e-05,
+  "diff_ci_lo": -0.11794,
+  "diff_ci_hi": 0.11806,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.49955
+ },
+ "baseline_H_hour_matched": {
+  "baseline_mean_R": 0.09358,
+  "baseline_se": 0.02076,
+  "diff": 0.05214,
+  "diff_ci_lo": -0.06606,
+  "diff_ci_hi": 0.17033,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0065
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT"
+}

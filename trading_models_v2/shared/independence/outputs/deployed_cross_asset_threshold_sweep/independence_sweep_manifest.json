@@ -1,0 +1,70 @@
+{
+  "alpha": 0.05,
+  "asset_scope": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+  ],
+  "deployed_only": true,
+  "edge_count_loaded": 21,
+  "edge_ids": [
+    "DAX/absorption_long",
+    "DAX/reversal_long",
+    "DAX/timeregime_long",
+    "DAX/trend_long",
+    "GBPJPY/dailyrangecompletionfade_long",
+    "HK/breakdownretestfailure_short",
+    "HK/compressionbreakoutcontinuation_short",
+    "HK/drawdownhazardcontinuation_short",
+    "JPN/rangestructure_long",
+    "JPN/volatilitycarry_long",
+    "NASDAQ/trend_long",
+    "NASDAQ/trendpullbackcontinuation_long",
+    "NASDAQ/volatilitycarry_long",
+    "US500/absorption_long",
+    "US500/candleengulfing_long",
+    "US500/volatilitycarry_long",
+    "XAUUSD/dailyrangecompletionfade_long",
+    "XAUUSD/rangestructure_long",
+    "XAUUSD/trend_long",
+    "XAUUSD/volatilitycarry_long",
+    "XAUUSD/volatilityregime_long"
+  ],
+  "load_errors": [],
+  "methodology": {
+    "not_a_gate": "This lab is diagnostic only. It does not kill, promote, or reweight edges.",
+    "pairwise_test": "Same circular-shift permutation test as the single-threshold lab (see asset_independence_lab module docstring), run independently at each quantile level with its own Benjamini-Hochberg FDR correction across pairs.",
+    "probability_space": "live_calibrated_probability (raw_probability through the single final live sigmoid calibrator), NOT calibrated_probability (a CPCV-fold-averaged research diagnostic that does not track raw_probability faithfully) -- see D015. This is the same column live scoring and the portfolio_allocator threshold grid use.",
+    "quantile_levels": "Per-edge population quantiles, not fixed probability values, so edges with different raw probability scales stay comparable at each sweep level (e.g. 0.90 always means 'this edge's own top 10% most confident rows').",
+    "robustness_label": "robustly_dependent = dependence detected (q<alpha, either test) at every level tested. robustly_independent = dependence detected at no level. threshold_sensitive = dependence detected at some but not all levels -- the verdict for this pair depends on where the allocator ends up setting its threshold.",
+    "why_a_sweep": "A single per-edge selected_threshold is a sparse, non-authoritative diagnostic point (see config/mldp_deviation_register.json D015 and the edge-default threshold's own threshold_role note) -- the real live threshold is decided later by the portfolio_allocator. Testing independence at every plausible operating point instead of one arbitrary cutoff answers whether the independence verdict is robust to that not-yet-made decision, and uses far more data at every level than the sparse single-threshold approach."
+  },
+  "n_pairs": 210,
+  "n_pairs_robustly_dependent": 32,
+  "n_pairs_robustly_independent": 21,
+  "n_pairs_threshold_sensitive": 157,
+  "n_permutation_cap": 5000,
+  "outputs": {
+    "pair_robustness_summary": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\deployed_cross_asset_threshold_sweep\\pair_robustness_summary.csv",
+    "population_summary": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\deployed_cross_asset_threshold_sweep\\population_summary.csv",
+    "sweep_pairwise_scorecard": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\deployed_cross_asset_threshold_sweep\\sweep_pairwise_scorecard.csv",
+    "sweep_random_matrix_diagnostic": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\deployed_cross_asset_threshold_sweep\\sweep_random_matrix_diagnostic.csv",
+    "sweep_trade_counts_by_level": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\deployed_cross_asset_threshold_sweep\\sweep_trade_counts_by_level.csv"
+  },
+  "probability_column": "live_calibrated_probability",
+  "quantile_levels": [
+    0.5,
+    0.65,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "seed": 7
+}

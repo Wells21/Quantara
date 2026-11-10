@@ -1,0 +1,27 @@
+{
+  "schema_version": "v2.1",
+  "description": "Scalable V2 edge registry. Add edge packages here without changing dashboard, allocator, or execution logic. Each edge must remain side-specialized.",
+  "edges": [
+    {
+      "asset": "XAUUSD",
+      "family": "roundlevelcascade",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "roundlevelcascade_long_v1_first_close_beyond_untouched_round_level",
+      "notes": "Promoted 2026-11-09 under D091 (Gate D not a gate). Edge level: Gate 0 T13 PASS; Gate C full history era-scaled PASS, lock H8_E150_V4_PT1_SL1 +0.070R (CI +0.036..+0.105), 2022+ +0.094R; PBO 0.140 / Prob 0.022; DSR 0.992; stress PASS +0.069R; D090 re-check at the locked cell PASS (C1 z 2.71, 2022+ C1 +0.041, 3.02 events/week); Task 2A 1909/1909 +0.075R; Steps 01-09 complete (edge_manifest deployment_status PASS); CV leakage OK; label audit effN 1754. Gate D v4.1 diagnostic: D1 FAIL (F1 0.510 vs 0.719), D2 PASS, AUC 0.52 -- the allocator threshold decides use. Strategy risk (<= .10) and Gate E are deployment-stage gates after the allocator."
+    }
+  ],
+  "recert_2026_11_04_removed": {
+    "edges": [
+      "GBPJPY/dailyrangecompletionfade_long",
+      "JPN/rangestructure_long",
+      "HK/drawdownhazardcontinuation_short",
+      "XAUUSD/rangestructure_long"
+    ],
+    "reason": "RECERT 2026-11-04 (owner: 'remove all four'): all four fail the D075 theory check at the edge level (raw drift baseline and card counterfactuals, logs/recert_20261103/step5); JPN/rangestructure_long also fails Gate D (AUC 0.507, p 0.218). Folders kept in place pending owner review (runbook 6A Step 13). Prior file: logs/recert_20261103/edge_universe_before_recert_removal_20261104.json"
+  }
+}

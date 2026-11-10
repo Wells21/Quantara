@@ -1,0 +1,54 @@
+{
+  "schema_version": "v2.1",
+  "description": "Scalable V2 edge registry. Add edge packages here without changing dashboard, allocator, or execution logic. Each edge must remain side-specialized.",
+  "edges": [
+    {
+      "asset": "GBPJPY",
+      "family": "dailyrangecompletionfade",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "dailyrangecompletionfade_long_candidate_events",
+      "notes": "GBPJPY/dailyrangecompletionfade_long has edge_manifest deployment_status=PASS after Step 08 replay audit and Step 09 export. Allocator may consume this edge manifest; final live threshold/risk remains controlled by live_manifest."
+    },
+    {
+      "asset": "JPN",
+      "family": "rangestructure",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "rangestructure_long_candidate_events",
+      "notes": "JPN/rangestructure_long has edge_manifest deployment_status=PASS after Step 08 replay audit and Step 09 export. Allocator may consume this edge manifest; final live threshold/risk remains controlled by live_manifest."
+    },
+    {
+      "asset": "HK",
+      "family": "drawdownhazardcontinuation",
+      "side": "short",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "drawdownhazardcontinuation_short_candidate_events",
+      "notes": "HK/drawdownhazardcontinuation_short has edge_manifest deployment_status=PASS after Step 08 replay audit and Step 09 export. Allocator may consume this edge manifest; final live threshold/risk remains controlled by live_manifest."
+    },
+    {
+      "asset": "XAUUSD",
+      "family": "rangestructure",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "rangestructure_long_candidate_events",
+      "notes": "XAUUSD/rangestructure_long has edge_manifest deployment_status=PASS after Step 08 replay audit and Step 09 export. Allocator may consume this edge manifest; final live threshold/risk remains controlled by live_manifest."
+    }
+  ]
+}

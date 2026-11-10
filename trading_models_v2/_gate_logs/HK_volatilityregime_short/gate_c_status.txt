@@ -1,0 +1,35 @@
+asset=HK edge=volatilityregime_short gate_c_exit=0 elapsed_seconds=143
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/volatilityregime_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H10_E100_V10_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 1845
+  250/1845 elapsed=18.7s
+  500/1845 elapsed=33.7s
+  750/1845 elapsed=50.6s
+  1000/1845 elapsed=67.5s
+  1250/1845 elapsed=88.2s
+  1500/1845 elapsed=105.1s
+  1750/1845 elapsed=126.7s
+  1845/1845 elapsed=135.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H10_E100_V10_PT2_SL1 | -0.093312 | [-0.145166,-0.042282] | 0.8029 | 6.967 | 34.338 | -0.321426 | -0.838922 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.032110 | [-0.130280,+0.071618] | 0.9538 | 28.171 | 105.704 | -0.027356 | -0.284461 | 0.085 | 0.247 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.047539 | [-0.138394,+0.046871] | 0.9325 | 23.917 | 89.858 | -0.047704 | -0.421147 | 0.148 | 0.291 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.064208 | [-0.144874,+0.016448] | 0.8998 | 22.499 | 83.940 | -0.068492 | -0.568815 | 0.213 | 0.310 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T124604Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T124604Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — XAUUSD/rangestructure_long
+================================================================================
+Edge: XAUUSD/rangestructure_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof\xauusd_rangestructure_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,379
+Date range: 2022-06-15 11:27:08.480000+00:00 -> 2026-04-01 23:52:49.719000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    XAUUSD/rangestructure_long
+segment                           rangestructure_long
+threshold                                        0.69
+candidate_count                                  4379
+take_rate                                    0.020781
+trade_count                                        91
+win_rate                                     0.549451
+avg_win_r                                    1.484095
+avg_loss_r                                   -0.84079
+expectancy_r                                 0.436619
+payoff_ratio                                 1.765119
+profit_factor                                2.152585
+gross_profit_r                              74.204729
+gross_loss_r                                34.472387
+cumulative_r                                39.732342
+max_drawdown_r                              -7.562415
+sharpe_r                                      0.33508
+sortino_r                                    1.335312
+calmar_r                                     5.253923
+selected_precision                           0.571429
+selected_recall                                   1.0
+selected_f1                                  0.727273
+clf_precision                                0.571429
+clf_recall                                   0.023875
+clf_f1                                       0.045835
+clf_accuracy                                 0.505595
+clf_balanced_accuracy                        0.503078
+predicted_positive_rate                      0.020781
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof\xauusd_rangestructure_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof\xauusd_rangestructure_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\oof\xauusd_rangestructure_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

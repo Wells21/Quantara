@@ -1,0 +1,267 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — JPN/volatilityregime_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilityregime_long\artifacts\research_dataset\jpn_volatilityregime_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilityregime_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilityregime_long\artifacts\feature_surgery
+Task 2B eligibility filter: 2,677/2,682 rows retained (mldp_target_eligible==True); 5 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 2,677
+Rows after feature NaN filter : 2,677
+Date range: 2022-06-14 06:16:05.345000+00:00 -> 2026-06-11 17:30:38.091000+00:00
+Schema allowed features: 168
+Fixed features: []
+Candidate features for clustering: 156
+
+------------------------------------------------------------------------
+ITERATION 1
+Current candidate feature count: 156
+AFML Ch.4 weights | source=assets/JPN/bars/standard_quote_tick/jpn_standard_quote_tick_bars.csv | events=2,682 | mean_uniqueness=0.528070 | mean_return_weight=1.000000
+ cluster_id  n_features   avg_mda  std_mda
+          1          98  0.014766 0.030440
+          0          58 -0.000338 0.008765
+Base F1=0.367816 | Precision=0.357947 | Recall=0.399195 | Mean train-selected threshold=0.7010 | Folds=10
+Removing worst cluster 0 | avg_mda=-0.000338
+Features removed: ['Log_Return_3', 'Log_Return_5', 'Log_Return_10', 'Log_Return_20', 'Log_Return_50', 'Log_Return_100', 'Abs_Log_Return_5', 'Abs_Log_Return_10', 'Dist_EMA_10', 'Dist_EMA_20', 'Dist_EMA_50', 'Dist_EMA_100', 'Dist_EMA_200', 'EMA_10_20_Gap', 'EMA_20_50_Gap', 'EMA_50_100_Gap', 'RSI_14', 'RSI_21', 'RSI_50', 'MACD', 'MACD_Signal', 'MACD_Hist', 'Stoch_K', 'Stoch_D', 'Williams_R_14', 'ROC_10', 'ROC_20', 'ROC_50', 'Trend_Slope_20', 'Trend_Slope_50', 'Efficiency_Ratio_20', 'Channel_Position_20', 'Channel_Position_50', 'BBP_20_2', 'Donchian_Position_20', 'Dist_Kalman', 'RSI_14_Delta_5', 'RSI_14_Delta_10', 'MACD_Hist_Delta_5', 'RVGI_Signal', 'STC', 'Upside_Downside_Vol_Ratio_20', 'Upside_Downside_Vol_Ratio_50', 'Trend_Slope_10', 'Trend_Slope_100', 'Efficiency_Ratio_10', 'Dist_20_Low', 'Dist_50_Low', 'Dist_100_Low', 'Dist_200_Low', 'Channel_Position_100', 'Channel_Position_200', 'Dist_BB_Lower', 'Dist_Donchian_Lower', 'Close_FFD_Z_20', 'Close_FFD_Z_50', 'Close_FFD_Momentum_5', 'Close_FFD_Momentum_20']
+
+------------------------------------------------------------------------
+ITERATION 2
+Current candidate feature count: 98
+ cluster_id  n_features   avg_mda  std_mda
+         16           4  0.011591 0.008686
+         15           7  0.008009 0.006120
+         11           5  0.003165 0.005811
+          3          10  0.002823 0.007904
+          9           2  0.002575 0.002328
+          1           2  0.001130 0.003106
+          5           8  0.000168 0.001793
+         10           2 -0.000035 0.001266
+          8           2 -0.000130 0.002840
+         12           7 -0.000775 0.004994
+          7           6 -0.000899 0.002658
+          4           1 -0.000959 0.001522
+         19           3 -0.000974 0.003535
+         13           2 -0.001137 0.001073
+         14           4 -0.001287 0.003064
+          0           5 -0.001637 0.003085
+         17           3 -0.002653 0.001978
+         18           3 -0.002977 0.004500
+          6           4 -0.003870 0.007467
+          2          18 -0.004606 0.018039
+Base F1=0.381753 | Precision=0.357693 | Recall=0.431195 | Mean train-selected threshold=0.6940 | Folds=10
+Removing worst cluster 2 | avg_mda=-0.004606
+Features removed: ['Range_Bps', 'NATR', 'NATR_21', 'NATR_50', 'Channel_Width_20', 'Channel_Width_50', 'BBB_20_2', 'Wavelet_Noise_20', 'Wavelet_Noise_50', 'Downside_Vol_20', 'Downside_Vol_50', 'Downside_Vol_100', 'Upside_Vol_20', 'Upside_Vol_50', 'Upside_Vol_100', 'Channel_Width_100', 'Channel_Width_200', 'Parkinson_Vol_20']
+
+------------------------------------------------------------------------
+ITERATION 3
+Current candidate feature count: 80
+ cluster_id  n_features   avg_mda  std_mda
+          1           5  0.005836 0.004440
+         21           1  0.003763 0.005230
+          4           2  0.002964 0.002490
+         17           2  0.002811 0.005647
+         10           3  0.001700 0.005982
+         13           2  0.001043 0.002350
+         24           1  0.000804 0.000762
+          7           5  0.000307 0.005085
+          5           6  0.000180 0.002359
+         16           2  0.000099 0.001288
+         11           3  0.000056 0.003942
+          8           2 -0.000070 0.001941
+         18           2 -0.000189 0.003504
+          3           7 -0.000252 0.005634
+         15           2 -0.000532 0.001504
+         22           2 -0.000686 0.002464
+          2           7 -0.000691 0.003033
+         19           1 -0.000994 0.001452
+         14           6 -0.001240 0.004247
+         20           2 -0.001646 0.002242
+          9           3 -0.002047 0.004593
+         23           2 -0.002437 0.002341
+         12           5 -0.002619 0.002888
+          0           3 -0.003863 0.003901
+          6           4 -0.005547 0.009829
+Base F1=0.384779 | Precision=0.356816 | Recall=0.429940 | Mean train-selected threshold=0.6900 | Folds=10
+Removing worst cluster 6 | avg_mda=-0.005547
+Features removed: ['Open_FFD', 'High_FFD', 'Low_FFD', 'Close_FFD']
+
+------------------------------------------------------------------------
+ITERATION 4
+Current candidate feature count: 76
+ cluster_id  n_features   avg_mda  std_mda
+          3          13  0.017288 0.013979
+         18           2  0.003863 0.004885
+         14           2  0.002699 0.002152
+          2           7  0.001716 0.003223
+         17           3  0.001662 0.005035
+          6           5  0.001527 0.003711
+         12           3  0.001260 0.006868
+          4           8  0.001076 0.003356
+         10           2 -0.000286 0.002113
+          8           2 -0.000360 0.002040
+          5           6 -0.000745 0.003317
+         16           2 -0.000768 0.002744
+         13           2 -0.000780 0.003673
+          9           2 -0.001303 0.001095
+          1           4 -0.001304 0.002975
+         15           2 -0.001980 0.002287
+          0           5 -0.002354 0.003293
+         11           3 -0.002394 0.004653
+          7           3 -0.003621 0.005447
+Base F1=0.413649 | Precision=0.364429 | Recall=0.486388 | Mean train-selected threshold=0.6870 | Folds=10
+Removing worst cluster 7 | avg_mda=-0.003621
+Features removed: ['Trend_R2_20', 'Div_Price_RSI_20', 'SADF_ct_50']
+
+------------------------------------------------------------------------
+ITERATION 5
+Current candidate feature count: 73
+ cluster_id  n_features   avg_mda  std_mda
+         15           5  0.009204 0.005579
+          9           3  0.004830 0.007565
+         13           2  0.002873 0.002339
+         20           2  0.002128 0.004639
+         11           3  0.001912 0.002521
+          7           5  0.001338 0.004851
+         19           2  0.000580 0.002338
+         21           1  0.000556 0.001452
+          3           6  0.000324 0.002516
+         10           2  0.000310 0.002563
+          1           2  0.000226 0.001814
+          2           7  0.000166 0.007334
+         17           3  0.000119 0.002263
+          0           7 -0.000034 0.002261
+         16           2 -0.000302 0.002628
+         12           1 -0.000471 0.001654
+          8           3 -0.000792 0.004468
+         14           2 -0.000972 0.002113
+          5           2 -0.001139 0.001926
+          6           5 -0.001288 0.004288
+         18           2 -0.001580 0.005165
+          4           6 -0.002301 0.002899
+Base F1=0.422298 | Precision=0.365388 | Recall=0.506702 | Mean train-selected threshold=0.6830 | Folds=10
+Removing worst cluster 4 | avg_mda=-0.002301
+Features removed: ['Upper_Wick_Share', 'Overhead_Sweep_ATR', 'Exhaustion_Spike', 'Log_Upper_Wick', 'Upper_Wick_to_Body_Ratio', 'Upper_Wick_ATR_Ratio_14']
+
+------------------------------------------------------------------------
+ITERATION 6
+Current candidate feature count: 67
+ cluster_id  n_features   avg_mda  std_mda
+         15           5  0.005818 0.005548
+          6           5  0.004102 0.004382
+         10           2  0.002872 0.003956
+         11           3  0.002718 0.008463
+         12           2  0.002603 0.004288
+          4           1  0.002207 0.003807
+         18           2  0.000606 0.001681
+         17           1  0.000466 0.001474
+          3           8  0.000147 0.001766
+          2           6 -0.000239 0.005582
+         20           2 -0.000240 0.002346
+         21           2 -0.000266 0.001084
+         16           1 -0.000310 0.002477
+          9           2 -0.000451 0.003275
+          8           3 -0.000461 0.001778
+         19           2 -0.000684 0.002056
+          1           1 -0.000837 0.001688
+          7           3 -0.000936 0.005094
+         13           2 -0.001133 0.001221
+          0           5 -0.001168 0.003604
+         14           2 -0.001459 0.002733
+          5           7 -0.002132 0.009371
+Base F1=0.424110 | Precision=0.365335 | Recall=0.513715 | Mean train-selected threshold=0.6810 | Folds=10
+Removing worst cluster 5 | avg_mda=-0.002132
+Features removed: ['RVGI_Diff', 'Dist_20_High', 'Dist_50_High', 'Dist_100_High', 'Dist_200_High', 'Dist_BB_Upper', 'Dist_Donchian_Upper']
+
+------------------------------------------------------------------------
+ITERATION 7
+Current candidate feature count: 60
+ cluster_id  n_features   avg_mda  std_mda
+          3           7  0.011267 0.003477
+          6           4  0.008149 0.006381
+         12           2  0.004506 0.003786
+          1           2  0.002709 0.005253
+          4           5  0.002178 0.004094
+          9           6  0.001576 0.003926
+         11           2  0.000579 0.003781
+         16           2  0.000497 0.002356
+          2           8  0.000485 0.002512
+          8           3  0.000137 0.002490
+         14           2 -0.000258 0.000928
+          7           3 -0.000891 0.003898
+          5           5 -0.000909 0.006719
+         13           2 -0.000992 0.002633
+         15           2 -0.001390 0.001951
+         10           2 -0.001649 0.003714
+          0           3 -0.003178 0.004109
+Base F1=0.412999 | Precision=0.367245 | Recall=0.476113 | Mean train-selected threshold=0.6960 | Folds=10
+Removing worst cluster 0 | avg_mda=-0.003178
+Features removed: ['Stoch_K_D', 'RVGI', 'FVG_Upward_Void']
+
+------------------------------------------------------------------------
+ITERATION 8
+Current candidate feature count: 57
+ cluster_id  n_features   avg_mda  std_mda
+         16           5  0.007571 0.006560
+          7           3  0.006220 0.005458
+          5           5  0.004626 0.005751
+         11           2  0.004085 0.004956
+         14           2  0.001966 0.005496
+          4           8  0.001956 0.004987
+         17           1  0.001611 0.004578
+         15           2  0.001480 0.001995
+          1           6  0.001336 0.003993
+          9           3  0.001106 0.002826
+         18           2  0.000627 0.002286
+         12           2  0.000539 0.002869
+          3           2 -0.000234 0.002133
+          0           2 -0.001114 0.003787
+         13           2 -0.001162 0.001762
+          2           1 -0.001296 0.002141
+         10           2 -0.001584 0.002238
+          6           5 -0.001768 0.004865
+          8           2 -0.002941 0.001656
+Base F1=0.436802 | Precision=0.373720 | Recall=0.530671 | Mean train-selected threshold=0.6820 | Folds=10
+Removing worst cluster 8 | avg_mda=-0.002941
+Features removed: ['Gap_Bps', 'Gap_Log_Return']
+
+------------------------------------------------------------------------
+ITERATION 9
+Current candidate feature count: 55
+ cluster_id  n_features   avg_mda  std_mda
+          6          13  0.013567 0.013320
+          7           3  0.007002 0.008198
+          8           2  0.003552 0.003108
+         12           2  0.002413 0.005573
+         14           1  0.002337 0.003671
+          4           5  0.002058 0.005006
+         13           2  0.001391 0.003309
+         11           2  0.001173 0.002951
+          2           2  0.001042 0.002983
+          0           8  0.000872 0.004419
+          9           5  0.000521 0.005914
+          1           2 -0.000025 0.003124
+          3           2 -0.000373 0.002022
+          5           3 -0.000906 0.003297
+         10           3 -0.002623 0.004647
+Base F1=0.434727 | Precision=0.377562 | Recall=0.520800 | Mean train-selected threshold=0.6890 | Folds=10
+Removing worst cluster 10 | avg_mda=-0.002623
+Features removed: ['FVG_Downward_Void', 'Regime_Duration', 'Corwin_Schultz_Spread_1']
+
+------------------------------------------------------------------------
+ITERATION 10
+Current candidate feature count: 52
+ cluster_id  n_features  avg_mda  std_mda
+          3          23 0.013273 0.010439
+          2          14 0.007307 0.010788
+          0           2 0.004554 0.002518
+          1           2 0.002753 0.003198
+          4          11 0.000137 0.004494
+Base F1=0.441690 | Precision=0.373140 | Recall=0.545857 | Mean train-selected threshold=0.6780 | Folds=10
+Stopping: no negative MDA clusters remain.
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 52
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilityregime_long\artifacts\feature_surgery\jpn_volatilityregime_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilityregime_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py

@@ -1,0 +1,40 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: DAX/volatilitycarry_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V1000_PT2_SL1 [CONTROL]
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3351
+  250/3351 elapsed=29.4s
+  500/3351 elapsed=61.5s
+  750/3351 elapsed=86.0s
+  1000/3351 elapsed=100.9s
+  1250/3351 elapsed=115.5s
+  1500/3351 elapsed=124.7s
+  1750/3351 elapsed=131.2s
+  2000/3351 elapsed=140.9s
+  2250/3351 elapsed=151.5s
+  2500/3351 elapsed=164.1s
+  2750/3351 elapsed=172.7s
+  3000/3351 elapsed=183.8s
+  3250/3351 elapsed=201.0s
+  3351/3351 elapsed=207.7s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V1000_PT2_SL1 | -0.031884 | [-0.120276,+0.057915] | 0.9537 | 7.608 | 52.733 | -0.100583 | -0.512649 | 1.000 | 1.000 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.016509 | [-0.132221,+0.099807] | 0.9758 | 17.652 | 66.044 | -0.022446 | -0.265444 | 0.223 | 0.431 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.048297 | [-0.163933,+0.070032] | 0.9303 | 20.172 | 68.752 | -0.057462 | -0.776548 | 0.571 | 0.377 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.034330 | [-0.150552,+0.081909] | 0.9501 | 16.655 | 63.825 | -0.049471 | -0.551984 | 0.492 | 0.457 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T100346Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T100346Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

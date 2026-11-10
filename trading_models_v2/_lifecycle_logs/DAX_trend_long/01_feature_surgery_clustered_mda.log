@@ -1,0 +1,42 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — DAX/trend_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trend_long\artifacts\research_dataset\dax_trend_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trend_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trend_long\artifacts\feature_surgery
+Task 2B eligibility filter: 7,993/7,994 rows retained (mldp_target_eligible==True); 1 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 7,993
+Rows after feature NaN filter : 7,993
+Date range: 2022-06-13 11:16:42.283000+00:00 -> 2026-06-19 14:17:36.669000+00:00
+Schema allowed features: 168
+Fixed features: []
+Candidate features for clustering: 157
+
+------------------------------------------------------------------------
+ITERATION 1
+Current candidate feature count: 157
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=7,994 | mean_uniqueness=0.250881 | mean_return_weight=1.000000
+ cluster_id  n_features   avg_mda  std_mda
+          1          55  0.003311 0.007510
+          2          57  0.001464 0.007573
+          0          45 -0.008006 0.006173
+Base F1=0.435024 | Precision=0.366407 | Recall=0.554516 | Mean train-selected threshold=0.6570 | Folds=10
+Removing worst cluster 0 | avg_mda=-0.008006
+Features removed: ['Log_Return_1', 'Log_Return_2', 'Log_Return_3', 'Log_Return_5', 'Abs_Log_Return_1', 'Abs_Log_Return_5', 'Fractional_Change', 'Range_Bps', 'Body_Bps', 'Abs_Body_Bps', 'Body_Share', 'Dist_EMA_10', 'NATR', 'NATR_21', 'NATR_50', 'Range_ATR_Ratio_14', 'Return_Z_20', 'Range_Bps_Z_20', 'Range_Ratio_20', 'Channel_Width_20', 'Channel_Width_50', 'BBB_20_2', 'Log_Body', 'Body_ATR_Ratio_14', 'Wavelet_Noise_20', 'Wavelet_Noise_50', 'Downside_Vol_20', 'Downside_Vol_50', 'Downside_Vol_100', 'Upside_Vol_20', 'Upside_Vol_50', 'Upside_Vol_100', 'Return_Z_50', 'Abs_Return_Z_20', 'Range_Bps_Z_50', 'Body_Bps_Z_20', 'Body_To_Range_Z_20', 'Range_Ratio_50', 'Channel_Width_100', 'Channel_Width_200', 'Close_FFD_Momentum_5', 'Regime_State', 'Prob_State_3', 'Parkinson_Vol_20', 'Becker_Parkinson_Vol_1']
+
+------------------------------------------------------------------------
+ITERATION 2
+Current candidate feature count: 112
+ cluster_id  n_features  avg_mda  std_mda
+          0          57 0.008298 0.010859
+          1          55 0.006510 0.009720
+Base F1=0.443580 | Precision=0.370454 | Recall=0.572397 | Mean train-selected threshold=0.6530 | Folds=10
+Stopping: no negative MDA clusters remain.
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 112
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trend_long\artifacts\feature_surgery\dax_trend_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\trend_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py

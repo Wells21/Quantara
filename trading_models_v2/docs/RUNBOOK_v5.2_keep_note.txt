@@ -1,0 +1,131 @@
+QUANTARA V3 - EDGE CREATION + GATES A-D RUNBOOK v5.2 (2026-10-17)
+Supersedes v5.1. Authoritative copy: config/us500_edge_search_ledger.json -> RUNBOOK_v5.2_2026-10-17.
+RULE 0: every command uses the SAME edge_root. Repo root: trading_models_v2. Research = venv312.
+Live bot/dashboard/Phase C-D scripts = venv39. Research runs at BelowNormal priority.
+
+=== WHAT CHANGED IN v5.2 ===
+- LABELS: meta-label = triple barrier on the DUKASCOPY MID (zero spread, no swap, 0 ms). Firm-neutral.
+  Never train/Gate-D on Dukascopy bid/ask labels (fixed-$ spread made labels encode the era -> false
+  Gate D passes on 4 BTCUSD edges). Deviation D016. AFML Snippet 3.7 p.50-51, ETF trick p.34.
+- ECONOMICS: executed_r = quote_executable_r = net R at the RESEARCH FIRM broker cost model (spread +
+  swap per rollover + commission) with 5700 ms entry delay. Set in
+  portfolio_allocator/config/broker_repricing.json (research_firm, entry_delay_ms).
+- Costs are applied ONLY where decisions are made: Gate B/C, Step 04/05, allocator, live guard.
+- Every live edge must have been selected under the CURRENT firm's cost model (geometry changes!).
+
+=== STEPS 1-6: BUILD A NEW EDGE ===
+1. Scaffold: shared.edges.edge_layout.get_edge_layout(ASSET,family,side).create_directories()
+2. Copy safe files from the closest sibling (README, runtime, candidate_events, primary_side,
+   edge.yaml, model_rows, research_pipeline, export_research_dataset, feature_expansion,
+   regime_features, contracts/, configs/, research/). NEVER copy artifacts/, reports/,
+   edge_manifest.json, models, OOF, thresholds. feature_schema.json copied VERBATIM from a sibling.
+3. Identity replacement in Python (no BOM). Fix edge.yaml family:/candidate_event_generator: by hand.
+4. Side logic by hand. Short: side=-1, PT below entry, SL above. All features via
+   runtime.build_features(); no future info. New thesis = new trigger, recall-first (AFML Ch.3).
+   Every thesis must be tried on EVERY asset, BOTH sides (config/cross_asset_thesis_coverage.json).
+5. Syntax: python <edge>/runtime.py   (cp1252 emoji crash = cosmetic; check output file mtime)
+6. Contracts: edge_yaml_contract.py, validation/edge_contracts.py, validate_edge_feature_schema.py,
+   verify_edge_registry.py. Prechecks (must pass before Gate A):
+   - candidate_events.py has EVENT_VOL_LOOKBACK_HOURS; model_rows.py has VERTICAL_HORIZON_HOURS
+   - model_rows.py has build_tick_file_catalog()
+   - NO bare .asi8 anywhere: use index.as_unit("ns").asi8 (venv312 returns microseconds ->
+     deadlines 1000x too wide). Found in 12 live edges 2026-10-17.
+   - pyflakes clean (no undefined names)
+
+=== GATES A/B/C: GEOMETRY ===
+Calendar time: Event_Vol lookback + vertical barrier in HOURS; EWM span stays bar-count.
+Floor: >= 2000 model rows (hard; below = FLOOR_FAIL, no exceptions).
+COST (Gate A/B) = broker cost model mean_spread_bps_time_weighted from
+  portfolio_allocator/config/broker_profiles/<firm>_cost_models/<ASSET>.json
+GATE A (signal existence), exactly this grid (405 cells):
+  python shared/research/v3_horizon_lab.py --edge-root <edge> --hybrid-fast-grid --save
+   --event-vol-lookbacks 1,2,4,6,8 --event-vol-ewm-spans 20,50,100
+   --vertical-horizons 1,2,4,8,16,24,48,96,168 --barriers 1:1,1.5:1,2:1 --cost-bps <MODEL MEAN>
+  KILL if best gross_mean_R < +0.05. Never use lab defaults.
+GATE B: not a kill gate. EVERY net_mean_R>0 cell goes to Gate C (rank net_R_per_mean_hold_hour).
+  Use ONLY the fresh grid CSV (old grids in the folder may be pre-v5 / bar-count).
+GATE C (authoritative):
+  python shared/research/v3_horizon_lab.py --edge-root <edge> --execution-finalists <ALL cells>
+   --execution-entry-delay-ms 5700 --execution-bootstrap-reps 2000 --save
+   --execution-spread-model broker --execution-cost-model <firm>_cost_models/<ASSET>.json
+  Exact tick replay on the Dukascopy mid with the broker's modelled spread (FIXED_POINTS or
+  hour-of-week x vol-tercile TABLE), swap per rollover crossed, commission. Extra cost = 0.
+  WINNER = argmax compound_velocity_score among exec_mean_R > 0 (coverage >= 99%).
+  None positive = KILL.
+PBO/CSCV (AFML Ch.11, s=16, daily prorated compound velocity): PASS only if PBO < 0.5 AND
+  Prob[OOS<=0] < 0.5. Otherwise KILL. (User may allow a borderline edge to Gate D explicitly.)
+STRESS: rerun the winner with spread level x (1 + level_uncertainty_pct). Net R <= 0 = flagged.
+LOCK the winner in ALL places:
+  1. candidate_events.py: EVENT_VOL_LOOKBACK_HOURS, EVENT_VOL_EWM_SPAN
+  2. model_rows.py: VERTICAL_HORIZON_HOURS, PT_MULTIPLIER, SL_MULTIPLIER
+  3. edge.yaml labeling: block (direct children only): vertical_horizon_hours, pt_multiplier,
+     sl_multiplier, and reward_risk_ratio = PT/SL if present. Leave bar-count vertical_horizon.
+  4. export_research_dataset.py EXPECTED_* constants if the file has them (stale 702.306 bit us).
+  Task2A/Step01-09 read geometry from edge.yaml -> grep all places agree.
+
+=== STEP 8: REGISTER ===
+config/edge_universe.json entry with status research_in_progress (never deployability_pass by hand).
+edge_universe.json holds ONLY deployable edges + edges in research. Allocator reads only this file.
+
+=== STEP 9: EXPORT ===
+python <edge>/export_research_dataset.py --overwrite   (after ANY geometry/event change)
+Same-asset self-tests/exports run SERIALLY (shared HMM continuation cache).
+
+=== STEP 10: TASK 2A ===
+python build_mldp_executable_targets.py --edge-root <edge>
+Two exact replays per event: economics (research firm model, 5700 ms) + mid label (0 ms).
+Check: "Resolved quote-executable R mean" == Gate C winner exec_mean_R (exact);
+"Mid-path label R" = cost-free outcome; coverage ~99.9-100%. A mismatch = a geometry place missed.
+
+=== STEPS 11-12: RESEARCH LIFECYCLE (venv312) ===
+01 feature surgery, 02 train (Optuna), 03 OOF, 03b sweep, 04 calibrate+threshold,
+04b lock schema, 05 verifier, 06 runtime ready, 07 smoke, 08 replay audit, 09 export manifest.
+Step 01-03 train on the mid label; sample weights = class balance x AFML 4.6 return attribution
+x uniqueness (already implemented). Step 04/05 economics = quote_executable_r (firm net R).
+no_positive_executable_threshold_region at Step 04/05 = REAL finding.
+Step 06 fails if edge.yaml status disagrees with an old edge_manifest PASS -> promote_edge_status.
+Pipeline is deterministic (same inputs -> identical OOF).
+
+=== STEP 12B: GATE D ===
+python shared/edges/gate_d_calibration_monotonicity.py --edge-root <edge> --write-report
+AUC(raw_probability vs quote_executable_meta_label = MID label) over all OOF rows; one-sided
+Mann-Whitney; PASS = AUC > 0.5 and p < 0.05. Never calibrated_probability / threshold sweep.
+
+=== STEP 13: PROMOTE / FAIL ===
+PASS (Steps 01-09 PASS + Gate D PASS + PBO PASS):
+  python shared/edges/promote_edge_status.py --edge-root <edge> --status deployability_pass --write
+  python shared/edges/verify_edge_registry.py
+FAIL: remove from edge_universe.json; move folder out of the repo to an archive (recoverable)
+after the user reviews. Never delete untracked folders outright.
+
+=== STEP 14: INDEPENDENCE (diagnostic only) ===
+python shared/independence/run_deployed_edge_independence_lab.py --cross-asset --deployed-only
+ --mode selected_trades --threshold-policy selected --output-dir <dir>
+
+=== PROP FIRM / BROKER FLOW (edge folders never touched) ===
+00a capture MT5 broker profile -> 00b conversions ->
+00c python portfolio_allocator/00c_build_broker_cost_model.py --firm <firm>
+    (specs, deals, per-minute spread panels; server clock measured vs Dukascopy, fallback
+    NY_CLOSE/EET/FIXED_n; FIXED_POINTS/TABLE; last-14-day level; uncertainty band;
+    live-entry calibration n/(n+30); swap + commission)
+00d python portfolio_allocator/00d_reprice_edge_trades_for_broker.py --firm <firm>
+Then 01..11 (STRESS_PASS) -> portfolio_live 00..04 (+ Phase C/D if the universe changed).
+SINGLE FLOW every allocator run: 00c + 00d for the trading firm, then broker_repricing.json
+enabled=true, firm=<trading firm>. Allocator reruns only on a firm switch or edge-set change;
+no periodic 00c while live (live per-trade cost guard checks the actual spread at every entry).
+
+=== KEY RULES ===
+- Gates: A gross>=0.05 -> B all net>0 -> C exec_mean_R>0 + compound velocity + PBO (both <0.5)
+  -> stress -> lock -> export -> Task2A -> 01-09 -> D (AUC, MWU p<0.05) -> promote.
+- Labels = Dukascopy mid. Economics = research firm cost model, 5700 ms. Costs never in labels.
+- Floor 2000 rows. Calendar-time hours. Test both long and short on every asset.
+- Allocator (not Step 04) owns the live threshold.
+- Commit only when the user says so.
+
+=== STATE 2026-10-17 (Moneta) ===
+Deployable (7): XAUUSD/rangestructure_long, XAUUSD/volatilitycarry_long, JPN/rangestructure_long,
+JPN/volatilitycarry_long (borderline PBO 0.507 -> Gate D PASS), GBPJPY/dailyrangecompletionfade_long,
+HK/drawdownhazardcontinuation_short, BTCUSD/timeregime_long.
+Removed: DAX x3, US500, NASDAQ seqpressure, XAUUSD volregime (PBO); NASDAQ volshock (borderline PBO ->
+Gate D FAIL); BTCUSD rangestructure_short (Gate D); HK breakdownretest (floor).
+Archive: Desktop/Quantara_edge_archive_2026-10-17. USDMXN/USOIL: no edges.

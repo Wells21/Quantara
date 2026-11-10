@@ -1,0 +1,4060 @@
+{
+  "schema_version": "v2.1",
+  "asset": "USOIL",
+  "description": "Gate A-D edge search ledger for USOIL, following the same workflow as JPN/US500/XAUUSD/NASDAQ/DAX/HK/GBPJPY/USDMXN.",
+  "pre_session_retirements": {
+    "note": "timeregime_long was missing runtime.py on disk (only __pycache__/artifacts present) -- not tested, treated as already-resolved, not a bug.",
+    "edges": [
+      "timeregime_long"
+    ]
+  },
+  "gate_a_2026-09-17": {
+    "cost_bps": 9.0,
+    "cost_bps_source": "USOIL empirical p95-p99 bid/ask spread band (p95=8.624, p99=9.371), midpoint per config/us500_edge_search_ledger.json per_asset_empirical_spread_bps_2026-09-14",
+    "kill_bar": "gross_mean_R >= 0.05",
+    "edges_tested": 13,
+    "results": {
+      "absorption_long": {
+        "gross_mean_R": 0.0296,
+        "verdict": "KILL"
+      },
+      "compressionbreakoutcontinuation_short": {
+        "gross_mean_R": 0.0306,
+        "verdict": "KILL"
+      },
+      "downsidejumpcontinuation_short": {
+        "gross_mean_R": 0.0296,
+        "verdict": "KILL"
+      },
+      "downsidevolatilitycascade_short": {
+        "gross_mean_R": 0.0816,
+        "verdict": "PASS"
+      },
+      "drawdownhazardcontinuation_short": {
+        "gross_mean_R": 0.0487,
+        "verdict": "KILL"
+      },
+      "drawupreversalhazard_short": {
+        "gross_mean_R": 0.0829,
+        "verdict": "PASS"
+      },
+      "signentropycollapse_short": {
+        "gross_mean_R": 0.0308,
+        "verdict": "KILL"
+      },
+      "timeregime_short": {
+        "gross_mean_R": 0.0272,
+        "verdict": "KILL"
+      },
+      "trend_long": {
+        "gross_mean_R": 0.0106,
+        "verdict": "KILL"
+      },
+      "trend_short": {
+        "gross_mean_R": 0.0252,
+        "verdict": "KILL"
+      },
+      "trendpullbackcontinuation_short": {
+        "gross_mean_R": 0.047,
+        "verdict": "KILL"
+      },
+      "volatilitycarry_short": {
+        "gross_mean_R": 0.031,
+        "verdict": "KILL"
+      },
+      "volatilityregime_long": {
+        "gross_mean_R": 0.0374,
+        "verdict": "KILL"
+      }
+    }
+  },
+  "gate_c_2026-09-17": {
+    "rule": "Exact bid/ask tick replay on Gate B's top-3 finalists + control geometry. Filter to executable_r (meanR) STRICTLY > 0. Winner = argmax(R/occupied_day) among positive finalists. KILL if none positive. Applied to both Gate A survivors.",
+    "results": {
+      "downsidevolatilitycascade_short": {
+        "verdict": "KILL"
+      },
+      "drawupreversalhazard_short": {
+        "verdict": "KILL"
+      }
+    },
+    "note": "0 of 2 Gate A survivors passed Gate C -- zero deployable edges for USOIL, same outcome as USDMXN.",
+    "recurring_bugs_fixed": "wrong dict-key schema (start/end instead of start_date/end_date/filename) on both downsidevolatilitycascade_short and drawupreversalhazard_short."
+  },
+  "final_disposition_2026-09-17": {
+    "deployable": [],
+    "killed": [
+      "absorption_long",
+      "compressionbreakoutcontinuation_short",
+      "downsidejumpcontinuation_short",
+      "downsidevolatilitycascade_short",
+      "drawdownhazardcontinuation_short",
+      "drawupreversalhazard_short",
+      "signentropycollapse_short",
+      "timeregime_short",
+      "trend_long",
+      "trend_short",
+      "trendpullbackcontinuation_short",
+      "volatilitycarry_short",
+      "volatilityregime_long"
+    ],
+    "pre_retired_not_tested": [
+      "timeregime_long"
+    ],
+    "summary": "0 of 14 USOIL edges deployable (0%). Second consecutive zero-survivor asset (after USDMXN). All 13 tested edges removed from config/edge_universe.json; folder deletion from disk pending user confirmation."
+  },
+  "full_catalog_sweep_2026-10-14": {
+    "date": "2026-10-14",
+    "cost_bps": 6.01,
+    "edges": 50,
+    "status_counts": {
+      "KILLED_GATE_A": 34,
+      "KILLED_GATE_C": 10,
+      "FLOOR_FAIL": 6
+    },
+    "per_edge": {
+      "sequentialpressure_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 4458,
+        "events": 4916,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04375,
+          "best_gross": -0.00256,
+          "best_cost": 0.04119,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0042
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03794,
+          "best_gross": 0.00763,
+          "best_cost": 0.04557,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00763
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03235,
+          "best_gross": -0.00536,
+          "best_cost": 0.02699,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00205
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "momentumaccelerationcontinuation_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2959,
+        "events": 3223,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03428,
+          "best_gross": 0.00802,
+          "best_cost": 0.0423,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.05029
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02356,
+          "best_gross": 0.00997,
+          "best_cost": 0.03352,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01317
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02356,
+          "best_gross": 0.00997,
+          "best_cost": 0.03352,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01317
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "explosiveregimecontinuation_long": {
+        "status": "KILLED_GATE_C",
+        "rows": 2053,
+        "events": 2256,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 2,
+          "best_net": 0.02259,
+          "best_gross": 0.06404,
+          "best_cost": 0.04146,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.06404
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 43,
+          "best_net": 0.03158,
+          "best_gross": 0.07478,
+          "best_cost": 0.0432,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.07478
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 209,
+          "best_net": 0.02948,
+          "best_gross": 0.06323,
+          "best_cost": 0.03374,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 200,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0651
+        },
+        "n_pos_total": 254,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.03158,
+          "gross": 0.07478,
+          "grid": "fine1",
+          "hvol": 15.0,
+          "ewm": 300,
+          "hv": 18.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "15:300:18:1:1",
+          "label": "H15_E300_V18_PT1_SL1",
+          "meanR": -0.038142,
+          "ci_lo": -0.10028,
+          "ci_hi": 0.025778,
+          "pf": 0.9068,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "trendefficiencycontinuation_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2898,
+        "events": 3196,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0295,
+          "best_gross": 0.01366,
+          "best_cost": 0.04316,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01661
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01758,
+          "best_gross": 0.01483,
+          "best_cost": 0.03241,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01718
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01359,
+          "best_gross": 0.01485,
+          "best_cost": 0.02844,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0179
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "trendefficiencycontinuation_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2747,
+        "events": 2974,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01532,
+          "best_gross": 0.03977,
+          "best_cost": 0.05509,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.06075
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 26,
+          "best_net": 0.00863,
+          "best_gross": 0.04252,
+          "best_cost": 0.03389,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04482
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 85,
+          "best_net": 0.00863,
+          "best_gross": 0.04252,
+          "best_cost": 0.03389,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04441
+        },
+        "n_pos_total": 111,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00863,
+          "gross": 0.04252,
+          "grid": "fine1",
+          "hvol": 30.0,
+          "ewm": 300,
+          "hv": 16.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "30:300:16:1:1",
+          "label": "H30_E300_V16_PT1_SL1",
+          "meanR": -0.03543,
+          "ci_lo": -0.088405,
+          "ci_hi": 0.019846,
+          "pf": 0.8969,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "gapreversion_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2764,
+        "events": 2840,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04913,
+          "best_gross": 0.0061,
+          "best_cost": 0.05523,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0061
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03483,
+          "best_gross": 0.00114,
+          "best_cost": 0.03597,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00515
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02465,
+          "best_gross": 0.01009,
+          "best_cost": 0.03474,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01009
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "thrustcontinuation_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 5318,
+        "events": 5818,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02924,
+          "best_gross": 0.01294,
+          "best_cost": 0.04218,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01634
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02782,
+          "best_gross": 0.01671,
+          "best_cost": 0.04453,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01671
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02149,
+          "best_gross": 0.00761,
+          "best_cost": 0.02909,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00852
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "thrustcontinuation_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 5394,
+        "events": 5901,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03511,
+          "best_gross": 0.00667,
+          "best_cost": 0.04178,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00667
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0185,
+          "best_gross": 0.01332,
+          "best_cost": 0.03181,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01377
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01364,
+          "best_gross": 0.01494,
+          "best_cost": 0.02858,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01563
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "compressionbreakoutcontinuation_long": {
+        "status": "FLOOR_FAIL",
+        "rows": 1846,
+        "events": 2032
+      },
+      "overextensionfade_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 2669,
+        "events": 2949,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02617,
+          "best_gross": 0.02261,
+          "best_cost": 0.04877,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02261
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.012,
+          "best_gross": 0.0202,
+          "best_cost": 0.03219,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0233
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01526,
+          "best_gross": 0.01945,
+          "best_cost": 0.03471,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 200,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01945
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volatilityshockcontinuation_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2662,
+        "events": 2910,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03372,
+          "best_gross": 0.00908,
+          "best_cost": 0.0428,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04306
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02235,
+          "best_gross": 0.02257,
+          "best_cost": 0.04492,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02257
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02161,
+          "best_gross": 0.00703,
+          "best_cost": 0.02864,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00703
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volatilityshockcontinuation_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2366,
+        "events": 2600,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02087,
+          "best_gross": 0.02086,
+          "best_cost": 0.04173,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02086
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0027,
+          "best_gross": 0.02903,
+          "best_cost": 0.03173,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02903
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 17,
+          "best_net": 0.00578,
+          "best_gross": 0.03305,
+          "best_cost": 0.02727,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03305
+        },
+        "n_pos_total": 17,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00578,
+          "gross": 0.03305,
+          "grid": "fine2",
+          "hvol": 50.0,
+          "ewm": 500,
+          "hv": 14.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "50:500:14:1:1",
+          "label": "H50_E500_V14_PT1_SL1",
+          "meanR": -0.0246,
+          "ci_lo": -0.060519,
+          "ci_hi": 0.012289,
+          "pf": 0.9141,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "openingrangereversion_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 6978,
+        "events": 7588,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04313,
+          "best_gross": -0.00143,
+          "best_cost": 0.0417,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00028
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03662,
+          "best_gross": -0.00469,
+          "best_cost": 0.03193,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00645
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03167,
+          "best_gross": -0.00202,
+          "best_cost": 0.02965,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00202
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "openingrangereversion_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 6766,
+        "events": 7401,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02446,
+          "best_gross": 0.01824,
+          "best_cost": 0.0427,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01824
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01157,
+          "best_gross": 0.0206,
+          "best_cost": 0.03217,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0238
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01702,
+          "best_gross": 0.01039,
+          "best_cost": 0.0274,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01397
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volatilitytermstructure_long": {
+        "status": "FLOOR_FAIL",
+        "rows": 707,
+        "events": 781
+      },
+      "volatilitytermstructure_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 902,
+        "events": 993
+      },
+      "exhaustionreversal_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2819,
+        "events": 3066,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0568,
+          "best_gross": -0.01516,
+          "best_cost": 0.04164,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01306
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04906,
+          "best_gross": -0.01732,
+          "best_cost": 0.03174,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.011
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.032,
+          "best_gross": -0.00328,
+          "best_cost": 0.02873,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00328
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "exhaustionreversal_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 2865,
+        "events": 3110,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01794,
+          "best_gross": 0.04283,
+          "best_cost": 0.06077,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04283
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00309,
+          "best_gross": 0.03182,
+          "best_cost": 0.03492,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03358
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00083,
+          "best_gross": 0.02672,
+          "best_cost": 0.02755,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03182
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "kalmandeviationfade_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3070,
+        "events": 3337,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.06658,
+          "best_gross": -0.0246,
+          "best_cost": 0.04198,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01915
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05442,
+          "best_gross": -0.02206,
+          "best_cost": 0.03237,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02151
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03729,
+          "best_gross": -0.00725,
+          "best_cost": 0.03004,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00725
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "kalmandeviationfade_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 3092,
+        "events": 3358,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0452,
+          "best_gross": -0.0037,
+          "best_cost": 0.0415,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00478
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02657,
+          "best_gross": 0.00515,
+          "best_cost": 0.03172,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0054
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02378,
+          "best_gross": 0.00358,
+          "best_cost": 0.02736,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0067
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "liquiditysweepreversal_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2978,
+        "events": 3222,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04639,
+          "best_gross": -0.00506,
+          "best_cost": 0.04134,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.0046
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04127,
+          "best_gross": -0.00985,
+          "best_cost": 0.03142,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00248
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02057,
+          "best_gross": 0.00793,
+          "best_cost": 0.0285,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00793
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "liquiditysweepreversal_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2959,
+        "events": 3226,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0256,
+          "best_gross": 0.01582,
+          "best_cost": 0.04142,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03702
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00275,
+          "best_gross": 0.03236,
+          "best_cost": 0.0351,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03236
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 3,
+          "best_net": 0.0022,
+          "best_gross": 0.02927,
+          "best_cost": 0.02707,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03256
+        },
+        "n_pos_total": 3,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.0022,
+          "gross": 0.02927,
+          "grid": "fine2",
+          "hvol": 50.0,
+          "ewm": 500,
+          "hv": 18.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "50:500:18:1:1",
+          "label": "H50_E500_V18_PT1_SL1",
+          "meanR": -0.039469,
+          "ci_lo": -0.077588,
+          "ci_hi": -0.000131,
+          "pf": 0.8718,
+          "coverage": 1.0
+        }
+      },
+      "rsidivergencereversal_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2195,
+        "events": 2378,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01503,
+          "best_gross": 0.0253,
+          "best_cost": 0.04033,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04961
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00305,
+          "best_gross": 0.03971,
+          "best_cost": 0.04276,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03971
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0101,
+          "best_gross": 0.01939,
+          "best_cost": 0.02949,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 400,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02456
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rsidivergencereversal_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 2139,
+        "events": 2335,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03175,
+          "best_gross": 0.00963,
+          "best_cost": 0.04138,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00963
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01468,
+          "best_gross": 0.01673,
+          "best_cost": 0.03141,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01925
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00735,
+          "best_gross": 0.02235,
+          "best_cost": 0.0297,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 400,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02424
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volskewregimecontinuation_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2733,
+        "events": 2981,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01831,
+          "best_gross": 0.02265,
+          "best_cost": 0.04096,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02564
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01753,
+          "best_gross": 0.02087,
+          "best_cost": 0.0384,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02238
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01137,
+          "best_gross": 0.01583,
+          "best_cost": 0.0272,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 17.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01957
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volskewregimecontinuation_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2708,
+        "events": 2938,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0088,
+          "best_gross": 0.03174,
+          "best_cost": 0.04054,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03244
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 2,
+          "best_net": 0.00098,
+          "best_gross": 0.03683,
+          "best_cost": 0.03585,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 200,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03683
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01807,
+          "best_gross": 0.0097,
+          "best_cost": 0.02777,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01128
+        },
+        "n_pos_total": 2,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00098,
+          "gross": 0.03683,
+          "grid": "fine1",
+          "hvol": 30.0,
+          "ewm": 200,
+          "hv": 6.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "30:200:6:1:1",
+          "label": "H30_E200_V6_PT1_SL1",
+          "meanR": -0.042183,
+          "ci_lo": -0.084524,
+          "ci_hi": -0.001125,
+          "pf": 0.8481,
+          "coverage": 1.0
+        }
+      },
+      "waveletcleantrend_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2746,
+        "events": 2983,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05024,
+          "best_gross": -0.0076,
+          "best_cost": 0.04265,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01934
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02799,
+          "best_gross": 0.00377,
+          "best_cost": 0.03176,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00377
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01925,
+          "best_gross": 0.00926,
+          "best_cost": 0.02851,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00926
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "waveletcleantrend_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 2326,
+        "events": 2503,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02752,
+          "best_gross": 0.0155,
+          "best_cost": 0.04302,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01977
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00054,
+          "best_gross": 0.03179,
+          "best_cost": 0.03232,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03228
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00035,
+          "best_gross": 0.02846,
+          "best_cost": 0.02882,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03334
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "updownvolasymmetry_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2726,
+        "events": 2982,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02697,
+          "best_gross": 0.01499,
+          "best_cost": 0.04196,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03405
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01757,
+          "best_gross": 0.01427,
+          "best_cost": 0.03184,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01451
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00981,
+          "best_gross": 0.01817,
+          "best_cost": 0.02798,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02312
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "updownvolasymmetry_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2676,
+        "events": 2895,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 1,
+          "best_net": 0.00032,
+          "best_gross": 0.04189,
+          "best_cost": 0.04157,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.07867
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 76,
+          "best_net": 0.02005,
+          "best_gross": 0.06411,
+          "best_cost": 0.04406,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 100,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.06411
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 195,
+          "best_net": 0.02257,
+          "best_gross": 0.05011,
+          "best_cost": 0.02755,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.05347
+        },
+        "n_pos_total": 272,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.02257,
+          "gross": 0.05011,
+          "grid": "fine2",
+          "hvol": 50.0,
+          "ewm": 500,
+          "hv": 13.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "50:500:13:1:1",
+          "label": "H50_E500_V13_PT1_SL1",
+          "meanR": -0.007312,
+          "ci_lo": -0.055963,
+          "ci_hi": 0.043535,
+          "pf": 0.9722,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "rvgimomentumturn_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3079,
+        "events": 3332,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05907,
+          "best_gross": -0.01697,
+          "best_cost": 0.04209,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01399
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05245,
+          "best_gross": -0.02014,
+          "best_cost": 0.03232,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01602
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03927,
+          "best_gross": -0.01162,
+          "best_cost": 0.02765,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01045
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rvgimomentumturn_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 3005,
+        "events": 3256,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05787,
+          "best_gross": -0.0162,
+          "best_cost": 0.04167,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00854
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03892,
+          "best_gross": -0.00561,
+          "best_cost": 0.03331,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00288
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05014,
+          "best_gross": -0.02299,
+          "best_cost": 0.02715,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02007
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "stcmomentumturn_long": {
+        "status": "FLOOR_FAIL",
+        "rows": 19,
+        "events": 19
+      },
+      "stcmomentumturn_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 3201,
+        "events": 3471,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.00281,
+          "best_gross": 0.03862,
+          "best_cost": 0.04143,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04443
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 17,
+          "best_net": 0.00588,
+          "best_gross": 0.04101,
+          "best_cost": 0.03513,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 300,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04124
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 62,
+          "best_net": 0.00432,
+          "best_gross": 0.03652,
+          "best_cost": 0.0322,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 300,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0391
+        },
+        "n_pos_total": 79,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00588,
+          "gross": 0.04101,
+          "grid": "fine1",
+          "hvol": 25.0,
+          "ewm": 300,
+          "hv": 10.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "25:300:10:1:1",
+          "label": "H25_E300_V10_PT1_SL1",
+          "meanR": -0.046003,
+          "ci_lo": -0.085555,
+          "ci_hi": -0.00356,
+          "pf": 0.8508,
+          "coverage": 1.0
+        }
+      },
+      "bbsqueezebreakout_long": {
+        "status": "FLOOR_FAIL",
+        "rows": 610,
+        "events": 668
+      },
+      "bbsqueezebreakout_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 636,
+        "events": 695
+      },
+      "macdhistaccel_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2479,
+        "events": 2700,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01972,
+          "best_gross": 0.02082,
+          "best_cost": 0.04054,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03665
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00829,
+          "best_gross": 0.034,
+          "best_cost": 0.04228,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.034
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00195,
+          "best_gross": 0.02708,
+          "best_cost": 0.02903,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03057
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "macdhistaccel_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2470,
+        "events": 2685,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 3,
+          "best_net": 0.00854,
+          "best_gross": 0.05645,
+          "best_cost": 0.04791,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.06487
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 74,
+          "best_net": 0.01454,
+          "best_gross": 0.05762,
+          "best_cost": 0.04309,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.06162
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 95,
+          "best_net": 0.01271,
+          "best_gross": 0.04097,
+          "best_cost": 0.02827,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04552
+        },
+        "n_pos_total": 172,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.01454,
+          "gross": 0.05762,
+          "grid": "fine1",
+          "hvol": 15.0,
+          "ewm": 300,
+          "hv": 12.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "15:300:12:1:1",
+          "label": "H15_E300_V12_PT1_SL1",
+          "meanR": -0.055875,
+          "ci_lo": -0.121218,
+          "ci_hi": 0.006511,
+          "pf": 0.8586,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "stochkdspread_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3343,
+        "events": 3630,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02625,
+          "best_gross": 0.01484,
+          "best_cost": 0.04109,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01484
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0213,
+          "best_gross": 0.02252,
+          "best_cost": 0.04382,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02252
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0158,
+          "best_gross": 0.01339,
+          "best_cost": 0.02919,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01339
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "stochkdspread_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 3297,
+        "events": 3576,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03579,
+          "best_gross": 0.00551,
+          "best_cost": 0.0413,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00551
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02545,
+          "best_gross": 0.0059,
+          "best_cost": 0.03135,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00946
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01813,
+          "best_gross": 0.01391,
+          "best_cost": 0.03204,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 300,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01391
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "williamsrextreme_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3842,
+        "events": 4163,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04524,
+          "best_gross": -0.00307,
+          "best_cost": 0.04218,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01151
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04356,
+          "best_gross": -0.01148,
+          "best_cost": 0.03209,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00127
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0257,
+          "best_gross": 0.00408,
+          "best_cost": 0.02978,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00408
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "williamsrextreme_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 3939,
+        "events": 4278,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03862,
+          "best_gross": 0.00329,
+          "best_cost": 0.04191,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00884
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01495,
+          "best_gross": 0.0169,
+          "best_cost": 0.03185,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0169
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02637,
+          "best_gross": 0.00095,
+          "best_cost": 0.02733,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00854
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rocmomentum_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2866,
+        "events": 3121,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03706,
+          "best_gross": 0.01188,
+          "best_cost": 0.04894,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01273
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02538,
+          "best_gross": 0.00762,
+          "best_cost": 0.033,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0125
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01079,
+          "best_gross": 0.01702,
+          "best_cost": 0.02781,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01953
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rocmomentum_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 2871,
+        "events": 3111,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 1,
+          "best_net": 0.00266,
+          "best_gross": 0.06249,
+          "best_cost": 0.05983,
+          "geom": {
+            "hvol": 5.0,
+            "ewm": 100,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.07504
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 68,
+          "best_net": 0.01541,
+          "best_gross": 0.05386,
+          "best_cost": 0.03845,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 200,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0578
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 155,
+          "best_net": 0.01775,
+          "best_gross": 0.0562,
+          "best_cost": 0.03845,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 200,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0562
+        },
+        "n_pos_total": 224,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.01775,
+          "gross": 0.0562,
+          "grid": "fine2",
+          "hvol": 25.0,
+          "ewm": 200,
+          "hv": 15.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "25:200:15:1:1",
+          "label": "H25_E200_V15_PT1_SL1",
+          "meanR": -0.033049,
+          "ci_lo": -0.089967,
+          "ci_hi": 0.023058,
+          "pf": 0.9092,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "donchiandistance_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 2842,
+        "events": 3105,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.07076,
+          "best_gross": -0.02944,
+          "best_cost": 0.04132,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02909
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05558,
+          "best_gross": -0.02361,
+          "best_cost": 0.03196,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02361
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04548,
+          "best_gross": -0.01566,
+          "best_cost": 0.02982,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01566
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "donchiandistance_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 2764,
+        "events": 3005,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04694,
+          "best_gross": 0.00628,
+          "best_cost": 0.05323,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01243
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03204,
+          "best_gross": -0.00086,
+          "best_cost": 0.03118,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00746
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02947,
+          "best_gross": -0.00241,
+          "best_cost": 0.02706,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00296
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "natrregime_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3110,
+        "events": 3424,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.08627,
+          "best_gross": -0.04814,
+          "best_cost": 0.03812,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04703
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.07648,
+          "best_gross": -0.0463,
+          "best_cost": 0.03018,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.0463
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.08406,
+          "best_gross": -0.05677,
+          "best_cost": 0.02729,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.05677
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "natrregime_short": {
+        "status": "KILLED_GATE_C",
+        "rows": 3110,
+        "events": 3424,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 30,
+          "best_net": 0.05259,
+          "best_gross": 0.09585,
+          "best_cost": 0.04326,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.10743
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 105,
+          "best_net": 0.05065,
+          "best_gross": 0.08189,
+          "best_cost": 0.03124,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.09032
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 216,
+          "best_net": 0.05777,
+          "best_gross": 0.08944,
+          "best_cost": 0.03166,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.08944
+        },
+        "n_pos_total": 351,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.05777,
+          "gross": 0.08944,
+          "grid": "fine2",
+          "hvol": 25.0,
+          "ewm": 500,
+          "hv": 19.0,
+          "pt": 1.0,
+          "sl": 1.0
+        },
+        "gate_c": {
+          "finalist": "25:500:19:1:1",
+          "label": "H4h_E100_V4h_PT2_SL1",
+          "meanR": -0.082753,
+          "ci_lo": -0.164778,
+          "ci_hi": -0.01098,
+          "pf": 0.8145,
+          "coverage": 1.0,
+          "reparsed": true
+        }
+      },
+      "bbpextreme_long": {
+        "status": "KILLED_GATE_A",
+        "rows": 3288,
+        "events": 3567,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03561,
+          "best_gross": 0.01426,
+          "best_cost": 0.04987,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01426
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03544,
+          "best_gross": -0.00337,
+          "best_cost": 0.03208,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00999
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01649,
+          "best_gross": 0.01321,
+          "best_cost": 0.0297,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01321
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "bbpextreme_short": {
+        "status": "KILLED_GATE_A",
+        "rows": 3334,
+        "events": 3621,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02318,
+          "best_gross": 0.01866,
+          "best_cost": 0.04184,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01866
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00873,
+          "best_gross": 0.02633,
+          "best_cost": 0.03506,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 200,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02633
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00127,
+          "best_gross": 0.02714,
+          "best_cost": 0.02842,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 17.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02774
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Full replication of the NASDAQ/USDMXN catalog (16 ported + 20 batch-2 recalibrated + 14 phase-2), default grid + two fine geometry sweeps per edge, Gate C on the top positive geometry. Cross-asset thesis excluded per user instruction.",
+    "status_counts_note": "KILLED_GATE_A=34 (no positive net_mean_R cell in default+2 fine grids), KILLED_GATE_C=10 (a positive Gate A cell existed; exact bid/ask replay meanR<0 for all 10), FLOOR_FAIL=6 (<2000 model rows).",
+    "parser_note": "7 of the 10 Gate C results were initially stored with meanR=None because the runner regex rejected a leading + on CI upper bounds; re-parsed from the saved raw output and corrected here. No result changed class (all meanR<0).",
+    "gate_c_methodology_note": "CORRECTED 2026-10-15: the Gate C runs in this sweep passed --cost-bps 6.01 as an EXTRA charge on top of exact Bid/Ask fills -- this was an error (double-charges the spread), NOT project procedure; all live edges were certified at extra 0. They also replayed only the top-1 cell per edge. Superseded by GATE_C_EXTRA0_RERUN_2026-10-15. Original note: Gate C exec_r = (gross_exact_bidask - signal_mid*extra_bps/1e4)/sl_dist: real bid/ask spread is already paid in gross, THEN an additional cost_bps (6.01) is subtracted. Established project procedure (same for all assets) so comparable to the live edges, but it is a second charge on top of the spread. Back-of-envelope: adding back Gate A cost_r at the same geometry puts the best (updownvolasymmetry_short) at ~+0.02R with CI spanning ~+-0.05 -- not distinguishable from zero after selection among ~15,700 geometry cells.",
+    "final_disposition": "0 of 50 mechanisms pass Gate C on USOIL. No edge to take to PBO/Gate D. Paused per user instruction."
+  },
+  "GATE_C_EXTRA0_RERUN_2026-10-15": {
+    "date": "2026-10-15",
+    "procedure": "Same as NASDAQ GATE_C_EXTRA0_RERUN_2026-10-14: ALL Gate-B-positive cells pooled across each edge's default+FINE1+FINE2 grids (deduped), exact Bid/Ask, extra 0, delay 0, PBO s=16 compound_velocity_stat, PASS = PBO<0.5 AND Prob[OOS<=0]<0.5, survivors -> Steps 01-09 -> Gate D.",
+    "scope": "Exactly the 10 edges with any Gate-B-positive cell (1379 unique cells total; originally only 1 cell/edge replayed). Source files of all 10 unchanged since their grids. The other 40 USOIL edges died at Gate B or row floor -- unaffected.",
+    "results": {
+      "volskewregimecontinuation_short": {
+        "replayed": 2,
+        "exec_positive": 0,
+        "best": -0.0037,
+        "verdict": "KILLED_GATE_C"
+      },
+      "liquiditysweepreversal_short": {
+        "replayed": 3,
+        "exec_positive": 0,
+        "best": -0.0124,
+        "verdict": "KILLED_GATE_C"
+      },
+      "volatilityshockcontinuation_short": {
+        "replayed": 17,
+        "exec_positive": 3,
+        "winner": "H50_E500_V14_PT1_SL1",
+        "exec_mean_R": 0.0027,
+        "pbo": 0.6246,
+        "prob_oos_nonpositive": 0.5218,
+        "slope": -0.599,
+        "verdict": "KILLED_PBO"
+      },
+      "stcmomentumturn_short": {
+        "replayed": 75,
+        "exec_positive": 0,
+        "best": -0.0037,
+        "verdict": "KILLED_GATE_C"
+      },
+      "trendefficiencycontinuation_short": {
+        "replayed": 94,
+        "exec_positive": 2,
+        "winner": "H25_E300_V16_PT1_SL1",
+        "exec_mean_R": 0.0013,
+        "compound_velocity_score": "negative",
+        "pbo": 0.6853,
+        "prob_oos_nonpositive": 0.5371,
+        "slope": -0.634,
+        "verdict": "KILLED_PBO"
+      },
+      "macdhistaccel_short": {
+        "replayed": 159,
+        "exec_positive": 1,
+        "winner": "H50_E500_V14_PT1_SL1",
+        "exec_mean_R": 0.00048,
+        "ci95": [
+          -0.0514,
+          0.0531
+        ],
+        "compound_velocity_score": -4.15e-05,
+        "pbo": null,
+        "verdict": "KILLED (judgment): only 1 exec-positive cell so CSCV/PBO not computable; its compound_velocity_score (locked selection metric) is NEGATIVE -- log-growth at f=0.01 loses money despite +0.0005R arithmetic mean."
+      },
+      "rocmomentum_short": {
+        "replayed": 208,
+        "exec_positive": 44,
+        "winner": "H25_E300_V15_PT1_SL1",
+        "exec_mean_R": 0.0077,
+        "pbo": 0.9038,
+        "prob_oos_nonpositive": 0.6165,
+        "slope": -0.4,
+        "verdict": "KILLED_PBO"
+      },
+      "explosiveregimecontinuation_long": {
+        "replayed": 236,
+        "exec_positive": 186,
+        "winner": "H35_E200_V18_PT1_SL1",
+        "exec_mean_R": 0.0201,
+        "ci95": [
+          -0.0368,
+          0.0787
+        ],
+        "pbo": 0.7241,
+        "prob_oos_nonpositive": 0.5348,
+        "slope": -0.534,
+        "verdict": "KILLED_PBO"
+      },
+      "updownvolasymmetry_short": {
+        "replayed": 254,
+        "exec_positive": 206,
+        "winner": "H50_E500_V13_PT1_SL1",
+        "exec_mean_R": 0.0202,
+        "ci95": [
+          -0.0283,
+          0.0707
+        ],
+        "pbo": 0.5422,
+        "prob_oos_nonpositive": 0.4844,
+        "slope": -0.576,
+        "verdict": "KILLED_PBO (near miss: Prob[OOS<=0] passes, PBO 54.2% fails)"
+      },
+      "natrregime_short": {
+        "replayed": 331,
+        "exec_positive": 314,
+        "winner": "H35_E200_V19_PT1_SL1",
+        "exec_mean_R": 0.05,
+        "ci95": [
+          -0.0314,
+          0.124
+        ],
+        "R_per_week": 0.741,
+        "pbo": 0.3629,
+        "prob_oos_nonpositive": 0.2518,
+        "slope": -0.623,
+        "half_year_meanR": {
+          "2022H1": 0.4615,
+          "2022H2": -0.0048,
+          "2023H1": 0.1294,
+          "2023H2": 0.0416,
+          "2024H1": -0.0073,
+          "2024H2": 0.0191,
+          "2025H1": 0.1238,
+          "2025H2": 0.0461,
+          "2026H1": -0.0364
+        },
+        "drift_note": "Trigger is direction-agnostic (short on every bar with NATR_21 rank >= 0.90; docstring claiming a down-bar condition is wrong; identical event set to natrregime_long). Results track oil direction: strongest in falling halves, -0.036 in the +33% 2026H1 rally; but ~0 in 2022H2 (oil -28%), so not pure drift.",
+        "geometry_locked": "EVENT_VOL_LOOKBACK_HOURS 4->35, EWM 100->200, VERTICAL_HORIZON_HOURS 4->19, PT 2->1, SL 1",
+        "model_rows": 3110,
+        "task2a_matches_gate_c": "3110/3110 events, executed_r == exec_r to 1.8e-14, mean +0.04999",
+        "steps_01_09": "ALL PASS (Step05 31/31, Step06 8/8, Step08 0 mismatches, Step09 PASS) but approved rate 97.94% at default threshold (meta-filter ~no-op)",
+        "gate_d": {
+          "auc": 0.4888,
+          "p_value": 0.8591,
+          "n_oof": 3110,
+          "verdict": "FAIL"
+        },
+        "verdict": "KILLED_GATE_D. Raw event has PBO-clean positive executable expectancy but the meta-model has no discriminative power. Folder kept (no-delete policy); edge.yaml stays research_in_progress; NOT promoted. Geometry lock left in source (same precedent as NASDAQ thrustcontinuation_long)."
+      }
+    },
+    "outcome": "0 USOIL edges clear everything. 1 (natrregime_short) passed Gate C+PBO but failed Gate D. Verdicts unchanged from the double-charged sweep, but kill reasons are now correct (mostly PBO, not Gate C)."
+  },
+  "coverage_shorts1_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 6.01,
+    "edges": 5,
+    "status_counts": {
+      "KILLED_GATE_B": 5
+    },
+    "per_edge": {
+      "volatilitycarry_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4079,
+        "events": 4425,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04526,
+          "best_gross": -0.00455,
+          "best_cost": 0.04071,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01094
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02777,
+          "best_gross": 0.00401,
+          "best_cost": 0.03179,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00414
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02765,
+          "best_gross": 0.00044,
+          "best_cost": 0.02809,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00142
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rangestructure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3826,
+        "events": 4077,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.06308,
+          "best_gross": -0.00133,
+          "best_cost": 0.06176,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00061
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03111,
+          "best_gross": 0.00132,
+          "best_cost": 0.03244,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00132
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0261,
+          "best_gross": 0.00108,
+          "best_cost": 0.02718,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00235
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "breakdownretestfailure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2175,
+        "events": 2372,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03369,
+          "best_gross": 0.0086,
+          "best_cost": 0.04229,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0086
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0148,
+          "best_gross": 0.01921,
+          "best_cost": 0.03401,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01921
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0098,
+          "best_gross": 0.02113,
+          "best_cost": 0.03093,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 300,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02113
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "compressionbreakoutcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2719,
+        "events": 2945,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0387,
+          "best_gross": 0.00357,
+          "best_cost": 0.04226,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01413
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01167,
+          "best_gross": 0.02059,
+          "best_cost": 0.03226,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02168
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00389,
+          "best_gross": 0.02377,
+          "best_cost": 0.02767,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02445
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "drawdownhazardcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4891,
+        "events": 5284,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03709,
+          "best_gross": 0.00391,
+          "best_cost": 0.041,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01796
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02004,
+          "best_gross": 0.01324,
+          "best_cost": 0.03328,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0138
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01675,
+          "best_gross": 0.01387,
+          "best_cost": 0.03062,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 300,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01658
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_mirrors2_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 6.01,
+    "edges": 1,
+    "status_counts": {
+      "KILLED_GATE_B": 1
+    },
+    "per_edge": {
+      "timeregime_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4568,
+        "events": 4919,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.033,
+          "best_gross": 0.00705,
+          "best_cost": 0.04004,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00829
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02169,
+          "best_gross": 0.01203,
+          "best_cost": 0.03372,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01203
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01845,
+          "best_gross": 0.00789,
+          "best_cost": 0.02635,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01001
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_legacy_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 6.01,
+    "edges": 9,
+    "status_counts": {
+      "KILLED_GATE_B": 7,
+      "GATE_B_POSITIVE": 1,
+      "FLOOR_FAIL": 1
+    },
+    "per_edge": {
+      "downsidejumpcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2732,
+        "events": 3001,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03261,
+          "best_gross": 0.00912,
+          "best_cost": 0.04174,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0241
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02036,
+          "best_gross": 0.01127,
+          "best_cost": 0.03164,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01752
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01304,
+          "best_gross": 0.01413,
+          "best_cost": 0.02717,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0152
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "downsidevolatilitycascade_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2528,
+        "events": 2782,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.00938,
+          "best_gross": 0.04869,
+          "best_cost": 0.05807,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.07279
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 17,
+          "best_net": 0.00642,
+          "best_gross": 0.03963,
+          "best_cost": 0.03321,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04322
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 85,
+          "best_net": 0.00744,
+          "best_gross": 0.03818,
+          "best_cost": 0.03074,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 300,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03937
+        },
+        "n_pos_total": 102,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00744,
+          "gross": 0.03818,
+          "grid": "fine2",
+          "hvol": 45.0,
+          "ewm": 300,
+          "hv": 13.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      },
+      "drawupreversalhazard_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1843,
+        "events": 1916
+      },
+      "signentropycollapse_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2022,
+        "events": 2143,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05606,
+          "best_gross": -0.01545,
+          "best_cost": 0.04061,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01723
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02327,
+          "best_gross": 0.00775,
+          "best_cost": 0.03102,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00775
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0203,
+          "best_gross": 0.00755,
+          "best_cost": 0.02785,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00755
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "absorption_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 5281,
+        "events": 5789,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02769,
+          "best_gross": 0.01414,
+          "best_cost": 0.04183,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01996
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01384,
+          "best_gross": 0.01807,
+          "best_cost": 0.0319,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0192
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00972,
+          "best_gross": 0.01768,
+          "best_cost": 0.0274,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01967
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "reversal_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4599,
+        "events": 5047,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03223,
+          "best_gross": 0.00922,
+          "best_cost": 0.04145,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01445
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01346,
+          "best_gross": 0.01816,
+          "best_cost": 0.03163,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02071
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01353,
+          "best_gross": 0.01487,
+          "best_cost": 0.0284,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01728
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "trend_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 8783,
+        "events": 9452,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03072,
+          "best_gross": 0.01162,
+          "best_cost": 0.04234,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01448
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01685,
+          "best_gross": 0.01513,
+          "best_cost": 0.03198,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01513
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01069,
+          "best_gross": 0.018,
+          "best_cost": 0.02869,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.018
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "trendpullbackcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4410,
+        "events": 4807,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05137,
+          "best_gross": -0.01117,
+          "best_cost": 0.04019,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01382
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02715,
+          "best_gross": 0.0042,
+          "best_cost": 0.03136,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0042
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01921,
+          "best_gross": 0.00795,
+          "best_cost": 0.02716,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00903
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volatilityregime_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3116,
+        "events": 3410,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03268,
+          "best_gross": 0.0094,
+          "best_cost": 0.04208,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01482
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01285,
+          "best_gross": 0.02066,
+          "best_cost": 0.03351,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02066
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01096,
+          "best_gross": 0.02338,
+          "best_cost": 0.03435,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 200,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02338
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "SHORT_COVERAGE_CAMPAIGN_2026-10-15": {
+    "summary": "15 short edges tested, 0 passed all gates. {'KILLED_GATE_B': 13, 'KILLED_PBO': 1, 'FLOOR_FAIL': 1}",
+    "detail": "see config/short_coverage_campaign_2026-10-15.json",
+    "results": {
+      "absorption_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 5281,
+        "gate_b_pos_cells": 0
+      },
+      "breakdownretestfailure_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2175,
+        "gate_b_pos_cells": 0
+      },
+      "compressionbreakoutcontinuation_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2719,
+        "gate_b_pos_cells": 0
+      },
+      "downsidejumpcontinuation_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 2732,
+        "gate_b_pos_cells": 0
+      },
+      "downsidevolatilitycascade_short": {
+        "batch": "legacy",
+        "status": "KILLED_PBO",
+        "rows": 2528,
+        "gate_b_pos_cells": 102,
+        "best_gate_b_net": 0.00744,
+        "gate_c_exec_positive": 11,
+        "gate_c_replayed": 94,
+        "winner": "H30_E300_V6_PT1_SL1",
+        "winner_exec_mean_R": 0.0022928314590905,
+        "pbo": 0.9414141414141414,
+        "prob_oos_nonpositive": 0.6544677544677545
+      },
+      "drawdownhazardcontinuation_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 4891,
+        "gate_b_pos_cells": 0
+      },
+      "drawupreversalhazard_short": {
+        "batch": "legacy",
+        "status": "FLOOR_FAIL",
+        "rows": 1843
+      },
+      "rangestructure_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 3826,
+        "gate_b_pos_cells": 0
+      },
+      "reversal_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 4599,
+        "gate_b_pos_cells": 0
+      },
+      "signentropycollapse_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 2022,
+        "gate_b_pos_cells": 0
+      },
+      "timeregime_short": {
+        "batch": "mirrors2",
+        "status": "KILLED_GATE_B",
+        "rows": 4568,
+        "gate_b_pos_cells": 0
+      },
+      "trend_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 8783,
+        "gate_b_pos_cells": 0
+      },
+      "trendpullbackcontinuation_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 4410,
+        "gate_b_pos_cells": 0
+      },
+      "volatilitycarry_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 4079,
+        "gate_b_pos_cells": 0
+      },
+      "volatilityregime_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 3116,
+        "gate_b_pos_cells": 0
+      }
+    }
+  },
+  "coverage_floor_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 6.01,
+    "edges": 1,
+    "status_counts": {
+      "GATE_B_POSITIVE": 1
+    },
+    "per_edge": {
+      "drawupreversalhazard_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2112,
+        "events": 2200,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.00586,
+          "best_gross": 0.03363,
+          "best_cost": 0.03949,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04316
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 21,
+          "best_net": 0.00746,
+          "best_gross": 0.03761,
+          "best_cost": 0.03015,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04146
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 72,
+          "best_net": 0.01014,
+          "best_gross": 0.03775,
+          "best_cost": 0.02761,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03851
+        },
+        "n_pos_total": 93,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.01014,
+          "gross": 0.03775,
+          "grid": "fine2",
+          "hvol": 40.0,
+          "ewm": 500,
+          "hv": 13.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_newshorts_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 6.01,
+    "edges": 6,
+    "status_counts": {
+      "KILLED_GATE_B": 5,
+      "GATE_B_POSITIVE": 1
+    },
+    "per_edge": {
+      "seqdownpressure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3794,
+        "events": 4132,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02779,
+          "best_gross": 0.01403,
+          "best_cost": 0.04183,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02246
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01733,
+          "best_gross": 0.01616,
+          "best_cost": 0.03348,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01958
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01892,
+          "best_gross": 0.01457,
+          "best_cost": 0.03348,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01457
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "lowerhighfailure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3706,
+        "events": 4026,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03221,
+          "best_gross": 0.0248,
+          "best_cost": 0.05702,
+          "geom": {
+            "hvol": 5.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03897
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01702,
+          "best_gross": 0.02672,
+          "best_cost": 0.04374,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 100,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02672
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01369,
+          "best_gross": 0.01612,
+          "best_cost": 0.02981,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 400,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01887
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "bulltrapfailure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3789,
+        "events": 4122,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0231,
+          "best_gross": 0.01819,
+          "best_cost": 0.04129,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01819
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01786,
+          "best_gross": 0.01707,
+          "best_cost": 0.03493,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02344
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01792,
+          "best_gross": 0.01053,
+          "best_cost": 0.02845,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01053
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "deadcatbounce_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2996,
+        "events": 3265,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05618,
+          "best_gross": -0.00665,
+          "best_cost": 0.04953,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00257
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03496,
+          "best_gross": -0.00415,
+          "best_cost": 0.03081,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00562
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03645,
+          "best_gross": -0.0099,
+          "best_cost": 0.02655,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00953
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "insidebarbreakdown_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2361,
+        "events": 2573,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02567,
+          "best_gross": 0.01643,
+          "best_cost": 0.0421,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02303
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00268,
+          "best_gross": 0.02928,
+          "best_cost": 0.03196,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02999
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00102,
+          "best_gross": 0.03161,
+          "best_cost": 0.03263,
+          "geom": {
+            "hvol": 35.0,
+            "ewm": 300,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.03161
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "priordaylowbreak_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2809,
+        "events": 3054,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02066,
+          "best_gross": 0.02008,
+          "best_cost": 0.04075,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02008
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 16,
+          "best_net": 0.01975,
+          "best_gross": 0.05535,
+          "best_cost": 0.03559,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 200,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.05535
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 171,
+          "best_net": 0.02126,
+          "best_gross": 0.05072,
+          "best_cost": 0.02946,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 400,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.05535
+        },
+        "n_pos_total": 187,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.02126,
+          "gross": 0.05072,
+          "grid": "fine2",
+          "hvol": 45.0,
+          "ewm": 400,
+          "hv": 19.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  }
+}

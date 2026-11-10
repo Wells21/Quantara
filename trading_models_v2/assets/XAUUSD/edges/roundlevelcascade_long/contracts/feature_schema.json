@@ -1,0 +1,3105 @@
+{
+  "schema_version": "v2.1",
+  "edge_id": "XAUUSD/roundlevelcascade_long",
+  "feature_strategy_policy": "docs/FEATURE_STRATEGY_POLICY.md",
+  "candidate_scope": "V1-compatible OHLC/TA/Kalman/verified-FFD/verified-HMM-regime features",
+  "features": [
+    {
+      "feature_name": "Log_Return_1",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 1 bar.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 2 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_3",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 3 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_5",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 5 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 10 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 20 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Return_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log close return over 100 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Abs_Log_Return_1",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Absolute value of Log_Return_1.",
+      "required_inputs": [
+        "Log_Return_1"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Abs_Log_Return_5",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Absolute value of Log_Return_5.",
+      "required_inputs": [
+        "Log_Return_5"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Abs_Log_Return_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Absolute value of Log_Return_10.",
+      "required_inputs": [
+        "Log_Return_10"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Fractional_Change",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Current closed-bar fractional change: (Close - Open) / Open.",
+      "required_inputs": [
+        "Open",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_Bps",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Closed-bar range in basis points relative to Open.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Low"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body_Bps",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Closed-bar body in basis points relative to Open.",
+      "required_inputs": [
+        "Open",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Abs_Body_Bps",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Absolute closed-bar body in basis points.",
+      "required_inputs": [
+        "Body_Bps"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body_Share",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Absolute body divided by closed-bar range.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upper_Wick_Share",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Upper wick divided by closed-bar range.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Lower_Wick_Share",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Lower wick divided by closed-bar range.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Wick_Imbalance",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Upper wick minus lower wick divided by range.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_Location_Recalc",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close position inside the closed-bar high-low range.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Gap_Bps",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Log gap from previous Close to current Open in basis points.",
+      "required_inputs": [
+        "Open",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_EMA_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close distance from EMA_10 normalized by EMA_10.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_EMA_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close distance from EMA_20 normalized by EMA_20.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_EMA_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close distance from EMA_50 normalized by EMA_50.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_EMA_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close distance from EMA_100 normalized by EMA_100.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_EMA_200",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close distance from EMA_200 normalized by EMA_200.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "EMA_10_20_Gap",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "EMA_10 minus EMA_20 normalized by Close.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "EMA_20_50_Gap",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "EMA_20 minus EMA_50 normalized by Close.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "EMA_50_100_Gap",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "EMA_50 minus EMA_100 normalized by Close.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RSI_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "RSI of Close over 14 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RSI_21",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "RSI of Close over 21 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RSI_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "RSI of Close over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "MACD",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "MACD line from Close using 12/26/9.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "MACD_Signal",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "MACD signal line from Close using 12/26/9.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "MACD_Hist",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "MACD histogram from Close using 12/26/9.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Stoch_K",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Stochastic K from closed-bar High/Low/Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Stoch_D",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Stochastic D from closed-bar High/Low/Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Williams_R_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Williams percent R over 14 bars.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "ROC_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Rate of change of Close over 10 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "ROC_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Rate of change of Close over 20 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "ROC_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Rate of change of Close over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "NATR",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "ATR_14 divided by Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "NATR_21",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "ATR_21 divided by Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "NATR_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "ATR_50 divided by Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Vol_Regime_14_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "ATR_14 divided by ATR_50.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Vol_Regime_21_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "ATR_21 divided by ATR_100.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_ATR_Ratio_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Closed-bar range divided by ATR_14.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Return_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Shifted rolling z-score of Log_Return_1 over 20 bars; baseline excludes current bar.",
+      "required_inputs": [
+        "Log_Return_1"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_Bps_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Shifted rolling z-score of Range_Bps over 20 bars; baseline excludes current bar.",
+      "required_inputs": [
+        "Range_Bps"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_Ratio_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Range_Bps divided by prior rolling 20-bar average Range_Bps.",
+      "required_inputs": [
+        "Range_Bps"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Compression_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "20-bar average Range_Bps divided by 100-bar average Range_Bps.",
+      "required_inputs": [
+        "Range_Bps"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_Slope_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "OLS slope of log Close over 20 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_Slope_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "OLS slope of log Close over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_R2_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Rolling linear trend R-squared of log Close over 20 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_R2_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Rolling linear trend R-squared of log Close over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Efficiency_Ratio_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Net Close movement divided by path length over 20 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Efficiency_Ratio_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Net Close movement divided by path length over 50 bars.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Position_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close position inside 20-bar rolling high-low channel.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Position_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close position inside 50-bar rolling high-low channel.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Width_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "20-bar rolling channel width normalized by Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Width_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "50-bar rolling channel width normalized by Close.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "BBP_20_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "20-bar Bollinger percent position.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "BBB_20_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "20-bar Bollinger bandwidth.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Donchian_Position_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Close position inside 20-bar Donchian channel.",
+      "required_inputs": [
+        "High",
+        "Low",
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Overhead_Sweep_ATR",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Upper-wick sweep proxy normalized by NATR.",
+      "required_inputs": [
+        "Open",
+        "High",
+        "Close",
+        "NATR"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Support_Sweep_ATR",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Lower-wick sweep proxy normalized by NATR.",
+      "required_inputs": [
+        "Open",
+        "Low",
+        "Close",
+        "NATR"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upper_Wick_Dominance",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Upper_Wick_Share minus Lower_Wick_Share.",
+      "required_inputs": [
+        "Upper_Wick_Share",
+        "Lower_Wick_Share"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Lower_Wick_Dominance",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Lower_Wick_Share minus Upper_Wick_Share.",
+      "required_inputs": [
+        "Lower_Wick_Share",
+        "Upper_Wick_Share"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Exhaustion_Spike",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "RSI_14 multiplied by Overhead_Sweep_ATR.",
+      "required_inputs": [
+        "RSI_14",
+        "Overhead_Sweep_ATR"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Spring_Spike",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "(100 - RSI_14) multiplied by Support_Sweep_ATR.",
+      "required_inputs": [
+        "RSI_14",
+        "Support_Sweep_ATR"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Range.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Body.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upper_Wick",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upper_Wick.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Lower_Wick",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Lower_Wick.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Candle_Direction",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Candle_Direction.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Upper_Wick",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Log_Upper_Wick.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Lower_Wick",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Log_Lower_Wick.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Log_Body",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Log_Body.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upper_Wick_to_Body_Ratio",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upper_Wick_to_Body_Ratio.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Lower_Wick_to_Body_Ratio",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Lower_Wick_to_Body_Ratio.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Open_Location",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Open_Location.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Gap_Log_Return",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Gap_Log_Return.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "core_returns_price_action",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Kalman_Close",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Kalman_Close.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_Kalman",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_Kalman.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smoothed_references",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RSI_14_Delta_5",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: RSI_14_Delta_5.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RSI_14_Delta_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: RSI_14_Delta_10.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "MACD_Hist_Delta_5",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: MACD_Hist_Delta_5.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Stoch_K_D",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Stoch_K_D.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RVGI",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: RVGI.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RVGI_Signal",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: RVGI_Signal.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "RVGI_Diff",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: RVGI_Diff.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "STC",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: STC.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "momentum_oscillators",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "ATR_Ratio_14_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: ATR_Ratio_14_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body_ATR_Ratio_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Body_ATR_Ratio_14.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upper_Wick_ATR_Ratio_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upper_Wick_ATR_Ratio_14.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Lower_Wick_ATR_Ratio_14",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Lower_Wick_ATR_Ratio_14.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Wavelet_Noise_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Wavelet_Noise_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Wavelet_Noise_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Wavelet_Noise_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Roll_Skew_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Roll_Skew_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Roll_Skew_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Roll_Skew_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Roll_Kurt_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Roll_Kurt_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Roll_Kurt_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Roll_Kurt_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Downside_Vol_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Downside_Vol_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Downside_Vol_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Downside_Vol_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Downside_Vol_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Downside_Vol_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upside_Vol_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upside_Vol_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upside_Vol_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upside_Vol_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upside_Vol_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upside_Vol_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upside_Downside_Vol_Ratio_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upside_Downside_Vol_Ratio_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Upside_Downside_Vol_Ratio_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Upside_Downside_Vol_Ratio_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "price_volatility_range",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Return_Z_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Return_Z_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Abs_Return_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Abs_Return_Z_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_Bps_Z_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Range_Bps_Z_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body_Bps_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Body_Bps_Z_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Body_To_Range_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Body_To_Range_Z_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_Location_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_Location_Z_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Range_Ratio_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Range_Ratio_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Compression_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Compression_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "compression_expansion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_Slope_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Trend_Slope_10.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_Slope_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Trend_Slope_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Trend_R2_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Trend_R2_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Efficiency_Ratio_10",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Efficiency_Ratio_10.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "trend_efficiency",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_20_Low",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_20_Low.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_20_High",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_20_High.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_50_Low",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_50_Low.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_50_High",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_50_High.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_100_Low",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_100_Low.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_100_High",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_100_High.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_200_Low",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_200_Low.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_200_High",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_200_High.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Position_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Channel_Position_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Position_200",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Channel_Position_200.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Width_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Channel_Width_100.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Channel_Width_200",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Channel_Width_200.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "BBL_20_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: BBL_20_2.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "BBM_20_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: BBM_20_2.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "BBU_20_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: BBU_20_2.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_BB_Upper",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_BB_Upper.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_BB_Lower",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_BB_Lower.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "DCL_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: DCL_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "DCM_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: DCM_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "DCU_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: DCU_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_Donchian_Upper",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_Donchian_Upper.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Dist_Donchian_Lower",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Dist_Donchian_Lower.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "breakout_channel_bands",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Div_Price_RSI_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Div_Price_RSI_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Div_Price_RSI_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Div_Price_RSI_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "FVG_Upward_Void",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: FVG_Upward_Void.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "FVG_Downward_Void",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: FVG_Downward_Void.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 1,
+      "feature_group": "smc_reversal_exhaustion",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Open_FFD",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Open_FFD.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "High_FFD",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: High_FFD.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Low_FFD",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Low_FFD.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_FFD",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_FFD.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_FFD_Z_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_FFD_Z_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_FFD_Z_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_FFD_Z_50.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_FFD_Momentum_5",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_FFD_Momentum_5.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Close_FFD_Momentum_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "V1-compatible expanded feature: Close_FFD_Momentum_20.",
+      "required_inputs": [
+        "closed_bar_ohlc_or_verified_ffd"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "ffd_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Regime_State",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "int64",
+      "formula_description": "Verified shared HMM/regime feature: Regime_State.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Regime_Entropy",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Verified shared HMM/regime feature: Regime_Entropy.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Regime_Duration",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "int64",
+      "formula_description": "Verified shared HMM/regime feature: Regime_Duration.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Prob_State_0",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Verified shared HMM/regime feature: Prob_State_0.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Prob_State_1",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Verified shared HMM/regime feature: Prob_State_1.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Prob_State_2",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Verified shared HMM/regime feature: Prob_State_2.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "Prob_State_3",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "Verified shared HMM/regime feature: Prob_State_3.",
+      "required_inputs": [
+        "verified_asset_hmm_regime_manifest"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "regime_context",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/runtime.py::build_features"
+    },
+    {
+      "feature_name": "SADF_ct_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Supremum Augmented Dickey-Fuller SADF_t (s.17.4.2, p.253) on log(Close): supremum of the ADF t-values of beta in Delta y_t = alpha + beta y_t-1 + gamma_1 Delta y_t-1 + delta t + eps_t (Snippets 17.1-17.4, 'ct', 1 lag, minSL 10) over backward-expanding start points within the 50 log closes ending at the current bar, computed at every bar (D061); the 50-bar window is a registered deviation from the book's whole-sample start points (D062). See shared/features/afml_ch17_structural_breaks.py.",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "QADF_ct_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Quantile ADF centrality Q_t,q (s.17.4.2.4, p.255): the q = 0.95 quantile (numpy linear) of the same set s_t of ADF t-values SADF_ct_50 takes the supremum of (D063).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "QADF_Dispersion_ct_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Quantile ADF dispersion Q._t,q,v = Q_t,q+v - Q_t,q-v (s.17.4.2.4, p.255), q = 0.95, v = 0.025, on the same s_t as SADF_ct_50 (D063).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "CADF_ct_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Conditional ADF centrality C_t,q (s.17.4.2.5, p.256): mean of the values of s_t at or above Q_t,q (q = 0.95; empirical f), same s_t as SADF_ct_50 (D063).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "CADF_Dispersion_ct_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Conditional ADF dispersion C._t,q (s.17.4.2.5, p.256): standard deviation of the values of s_t at or above Q_t,q (q = 0.95), same s_t as SADF_ct_50 (D063).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "CSW_Up_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Chu-Stinchcombe-White CUSUM on log-price levels (s.17.3.2, p.251): sup over n < t of S_n,t = (y_t - y_n) / (sigma_t sqrt(t - n)), sigma_t^2 = mean squared log-close change, on the 50 log closes ending at the current bar (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "CSW_Down_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 Chu-Stinchcombe-White CUSUM (s.17.3.2) on -log(Close) = log(1/Close) (exercise 17.5: the one-sided test needs the reciprocal to see bursts); same window and sigma as CSW_Up_50 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly1_phi0_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly1 (s.17.4.3, pp.259-261): y_t = alpha + gamma t + beta t^2 on raw Close, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0 (unpenalised) (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly1_phi05_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly1 (s.17.4.3, pp.259-261): y_t = alpha + gamma t + beta t^2 on raw Close, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0.5 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly1_phi1_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly1 (s.17.4.3, pp.259-261): y_t = alpha + gamma t + beta t^2 on raw Close, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 1 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly2_phi0_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly2 (s.17.4.3, pp.259-261): log y_t = alpha + gamma t + beta t^2, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0 (unpenalised) (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly2_phi05_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly2 (s.17.4.3, pp.259-261): log y_t = alpha + gamma t + beta t^2, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0.5 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Poly2_phi1_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Poly2 (s.17.4.3, pp.259-261): log y_t = alpha + gamma t + beta t^2, fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 1 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Exp_phi0_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Exp (s.17.4.3, pp.259-261): log y_t = log alpha + beta t (linearised y = alpha e^(beta t)), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0 (unpenalised) (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Exp_phi05_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Exp (s.17.4.3, pp.259-261): log y_t = log alpha + beta t (linearised y = alpha e^(beta t)), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0.5 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Exp_phi1_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Exp (s.17.4.3, pp.259-261): log y_t = log alpha + beta t (linearised y = alpha e^(beta t)), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 1 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Power_phi0_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Power (s.17.4.3, pp.259-261): log y_t = log alpha + beta log t (linearised y = alpha t^beta), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0 (unpenalised) (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Power_phi05_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Power (s.17.4.3, pp.259-261): log y_t = log alpha + beta log t (linearised y = alpha t^beta), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 0.5 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "SMT_Power_phi1_50",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.17 sub/super-martingale test SM-Power (s.17.4.3, pp.259-261): log y_t = log alpha + beta log t (linearised y = alpha t^beta), fitted by OLS on every sample of 11-50 closes ending at the current bar, time counted from the sample start; SMT_t = sup over start points t0 of |beta| / (sigma_beta (t - t0)^phi), phi = 1 (D064).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_structural_breaks",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "Entropy_Kontoyiannis_Binary_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.18 Kontoyiannis entropy-rate estimate (Snippet 18.4, expanding window) of the 100 log returns of Close ending at the current bar, binary encoding (sign of r_t, zeros removed; s.18.5.1); asset manifest assets/<ASSET>/bars/entropy/entropy_encoding_manifest.json (see shared/features/afml_ch18_entropy.py).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_entropy",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "Entropy_Kontoyiannis_Quantile10_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.18 Kontoyiannis entropy-rate estimate (Snippet 18.4, expanding window) of the 100 log returns of Close ending at the current bar, quantile encoding, 10 letters, boundaries frozen on the asset's research history (s.18.5.2); asset manifest assets/<ASSET>/bars/entropy/entropy_encoding_manifest.json (see shared/features/afml_ch18_entropy.py).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_entropy",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "Entropy_Kontoyiannis_Sigma_100",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.18 Kontoyiannis entropy-rate estimate (Snippet 18.4, expanding window) of the 100 log returns of Close ending at the current bar, sigma encoding, step = standard deviation of all research-history bar returns (s.18.5.3, exercise 18.1(c)); asset manifest assets/<ASSET>/bars/entropy/entropy_encoding_manifest.json (see shared/features/afml_ch18_entropy.py).",
+      "required_inputs": [
+        "Close"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_entropy",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "Parkinson_Vol_20",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.19 Parkinson (1980) high-low volatility estimator over a trailing 20-bar window (see shared/features/afml_ch19_microstructure.py).",
+      "required_inputs": [
+        "High",
+        "Low"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_microstructure_hl",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    },
+    {
+      "feature_name": "Becker_Parkinson_Vol_1",
+      "owner_stage": "edge_runtime_feature_factory",
+      "dtype": "float64",
+      "formula_description": "AFML Ch.19 Snippet 19.2 Becker-Parkinson volatility from the Corwin-Schultz beta/gamma decomposition, sample length 1, as printed (k2 where the paper has sqrt(4 log 2); D073) (see shared/features/afml_ch19_microstructure.py).",
+      "required_inputs": [
+        "High",
+        "Low"
+      ],
+      "live_available": true,
+      "uses_future_information": false,
+      "allowed_for_model_input": true,
+      "missing_value_policy": "drop_until_available",
+      "feature_tier": 2,
+      "feature_group": "afml_microstructure_hl",
+      "computed_by": "assets/XAUUSD/edges/roundlevelcascade_long/feature_expansion.py::add_v1_feature_expansion"
+    }
+  ],
+  "deferred_feature_groups": [
+    {
+      "feature_tier": 2,
+      "group": "ffd_context",
+      "reason": "Deferred until V2 shared FFD runtime can reproduce research/live outputs exactly."
+    },
+    {
+      "feature_tier": 2,
+      "group": "regime_context",
+      "reason": "Deferred until V2 shared HMM/regime runtime can reproduce research/live outputs exactly."
+    }
+  ],
+  "notes": [
+    "Feature schema declared before runtime build_features implementation.",
+    "This is a broad Tier 1 candidate universe inspired by V1 XAUUSD trend feature factory, not a final selected model input list.",
+    "All declared features are live-safe from verified asset-level closed standard_quote_tick OHLC bars.",
+    "Tier 2 FFD/regime features are intentionally deferred until V2 shared runtime modules exist.",
+    "Selected features must later be produced by iterative feature surgery and saved in artifacts/selected_features.json.",
+    "If a selected feature is missing live, fix runtime.py/schema; do not patch the dashboard."
+  ],
+  "deferred_features": [
+    {
+      "feature_group": "regime_context",
+      "status": "resolved_by_shared_v2_hmm_regime_runtime",
+      "examples": [
+        "Regime_State",
+        "Regime_Entropy",
+        "Regime_Duration",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3"
+      ],
+      "resolved_features": [
+        "Regime_State",
+        "Regime_Entropy",
+        "Regime_Duration",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3"
+      ]
+    }
+  ],
+  "generic_feature_count": 5,
+  "total_feature_count": 5
+}

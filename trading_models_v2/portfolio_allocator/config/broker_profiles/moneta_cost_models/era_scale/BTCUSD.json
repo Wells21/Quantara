@@ -1,0 +1,886 @@
+{
+ "asset": "BTCUSD",
+ "rule": "STANDING 2026-11-09 (owner): full-history Gate C prices the broker half-spread x factor[UTC month]",
+ "method": "factor = max(1, min(monthly median of duka_minute_spread / duka_fit_window_median[same vol state], ref_price / monthly median duka mid))  [points-ratio cap approved 2026-11-09]",
+ "ref_price": 83076.345,
+ "cost_model": "portfolio_allocator/config/broker_profiles/moneta_cost_models/BTCUSD.json",
+ "cost_model_fit_span": [
+  "2025-12-11 01:24:00+00:00",
+  "2026-10-17 18:45:00+00:00"
+ ],
+ "vol_state_thresholds_rv1d_bps": [],
+ "fit_window_duka_median_bps_by_state": {
+  "0": 6.9105
+ },
+ "min_minutes_per_month": 2000,
+ "built_utc": "2026-11-09T17:49:41.341682+00:00",
+ "n_tick_files": 469,
+ "factors": {
+  "2017-05": 1.2023,
+  "2017-06": 1.0752,
+  "2017-07": 1.0,
+  "2017-08": 1.0,
+  "2017-09": 1.0,
+  "2017-10": 1.0,
+  "2017-11": 1.0,
+  "2017-12": 1.0,
+  "2018-01": 7.0611,
+  "2018-02": 8.6589,
+  "2018-03": 9.4844,
+  "2018-04": 10.3562,
+  "2018-05": 9.8808,
+  "2018-06": 12.4108,
+  "2018-07": 12.3767,
+  "2018-08": 12.7171,
+  "2018-09": 12.8615,
+  "2018-10": 12.9162,
+  "2018-11": 15.2958,
+  "2018-12": 22.3751,
+  "2019-01": 23.0011,
+  "2019-02": 23.1195,
+  "2019-03": 21.2853,
+  "2019-04": 16.0641,
+  "2019-05": 10.66,
+  "2019-06": 9.2838,
+  "2019-07": 7.8858,
+  "2019-08": 7.9864,
+  "2019-09": 8.1781,
+  "2019-10": 10.0909,
+  "2019-11": 9.7321,
+  "2019-12": 11.4862,
+  "2020-01": 9.8309,
+  "2020-02": 8.5392,
+  "2020-03": 12.5819,
+  "2020-04": 11.7005,
+  "2020-05": 9.0406,
+  "2020-06": 8.7772,
+  "2020-07": 8.9743,
+  "2020-08": 7.1416,
+  "2020-09": 6.0879,
+  "2020-10": 5.5804,
+  "2020-11": 3.6788,
+  "2020-12": 3.3296,
+  "2021-01": 2.1765,
+  "2021-02": 1.7576,
+  "2021-03": 1.4953,
+  "2021-04": 1.4419,
+  "2021-05": 1.7374,
+  "2021-06": 2.3172,
+  "2021-07": 2.4737,
+  "2021-08": 1.7926,
+  "2021-09": 1.805,
+  "2021-10": 1.396,
+  "2021-11": 1.3683,
+  "2021-12": 1.7011,
+  "2022-01": 1.9816,
+  "2022-02": 2.0433,
+  "2022-03": 2.0071,
+  "2022-04": 2.0457,
+  "2022-05": 2.7531,
+  "2022-06": 3.871,
+  "2022-07": 3.9057,
+  "2022-08": 3.6138,
+  "2022-09": 4.2113,
+  "2022-10": 4.2791,
+  "2022-11": 4.97,
+  "2022-12": 4.9293,
+  "2023-01": 3.956,
+  "2023-02": 3.5594,
+  "2023-03": 3.2994,
+  "2023-04": 2.9125,
+  "2023-05": 3.0426,
+  "2023-06": 3.0993,
+  "2023-07": 2.7464,
+  "2023-08": 2.8609,
+  "2023-09": 3.1612,
+  "2023-10": 2.9459,
+  "2023-11": 2.2626,
+  "2023-12": 1.95,
+  "2024-01": 1.9408,
+  "2024-02": 1.6263,
+  "2024-03": 1.2249,
+  "2024-04": 1.2644,
+  "2024-05": 1.2622,
+  "2024-06": 1.2538,
+  "2024-07": 1.3032,
+  "2024-08": 1.3913,
+  "2024-09": 1.3887,
+  "2024-10": 1.2463,
+  "2024-11": 1.0,
+  "2024-12": 1.0,
+  "2025-01": 1.0,
+  "2025-02": 1.0,
+  "2025-03": 1.0,
+  "2025-04": 1.0,
+  "2025-05": 1.0,
+  "2025-06": 1.0,
+  "2025-07": 1.0,
+  "2025-08": 1.0,
+  "2025-09": 1.0,
+  "2025-10": 1.0,
+  "2025-11": 1.0,
+  "2025-12": 1.0,
+  "2026-01": 1.0,
+  "2026-02": 1.0631,
+  "2026-03": 1.0357,
+  "2026-04": 1.0082
+ },
+ "monthly": {
+  "2017-05": {
+   "ratio": 1.2023,
+   "minutes": 22201,
+   "duka_median_bps": 8.3087,
+   "median_mid": 2027.45,
+   "points_ratio": 40.9758
+  },
+  "2017-06": {
+   "ratio": 1.0752,
+   "minutes": 27549,
+   "duka_median_bps": 7.4304,
+   "median_mid": 2587.25,
+   "points_ratio": 32.1099
+  },
+  "2017-07": {
+   "ratio": 0.8595,
+   "minutes": 28447,
+   "duka_median_bps": 5.9398,
+   "median_mid": 2520.95,
+   "points_ratio": 32.9544
+  },
+  "2017-08": {
+   "ratio": 0.5475,
+   "minutes": 28856,
+   "duka_median_bps": 3.7835,
+   "median_mid": 4073.775,
+   "points_ratio": 20.393
+  },
+  "2017-09": {
+   "ratio": 0.5927,
+   "minutes": 26717,
+   "duka_median_bps": 4.096,
+   "median_mid": 4043.75,
+   "points_ratio": 20.5444
+  },
+  "2017-10": {
+   "ratio": 0.4206,
+   "minutes": 31615,
+   "duka_median_bps": 2.9064,
+   "median_mid": 5568.55,
+   "points_ratio": 14.9188
+  },
+  "2017-11": {
+   "ratio": 0.5516,
+   "minutes": 32399,
+   "duka_median_bps": 3.8116,
+   "median_mid": 7441.9,
+   "points_ratio": 11.1633
+  },
+  "2017-12": {
+   "ratio": 0.5666,
+   "minutes": 30842,
+   "duka_median_bps": 3.9153,
+   "median_mid": 15445.0,
+   "points_ratio": 5.3789
+  },
+  "2018-01": {
+   "ratio": 12.3111,
+   "minutes": 31761,
+   "duka_median_bps": 85.0767,
+   "median_mid": 11765.35,
+   "points_ratio": 7.0611
+  },
+  "2018-02": {
+   "ratio": 16.3691,
+   "minutes": 28779,
+   "duka_median_bps": 113.1195,
+   "median_mid": 9594.35,
+   "points_ratio": 8.6589
+  },
+  "2018-03": {
+   "ratio": 24.7813,
+   "minutes": 31060,
+   "duka_median_bps": 171.2524,
+   "median_mid": 8759.3,
+   "points_ratio": 9.4844
+  },
+  "2018-04": {
+   "ratio": 26.1712,
+   "minutes": 30100,
+   "duka_median_bps": 180.8573,
+   "median_mid": 8021.875,
+   "points_ratio": 10.3562
+  },
+  "2018-05": {
+   "ratio": 22.8726,
+   "minutes": 32864,
+   "duka_median_bps": 158.0619,
+   "median_mid": 8407.85,
+   "points_ratio": 9.8808
+  },
+  "2018-06": {
+   "ratio": 28.0247,
+   "minutes": 29833,
+   "duka_median_bps": 193.6656,
+   "median_mid": 6693.85,
+   "points_ratio": 12.4108
+  },
+  "2018-07": {
+   "ratio": 25.8818,
+   "minutes": 31819,
+   "duka_median_bps": 178.8573,
+   "median_mid": 6712.3,
+   "points_ratio": 12.3767
+  },
+  "2018-08": {
+   "ratio": 26.596,
+   "minutes": 32793,
+   "duka_median_bps": 183.7926,
+   "median_mid": 6532.65,
+   "points_ratio": 12.7171
+  },
+  "2018-09": {
+   "ratio": 26.8981,
+   "minutes": 28920,
+   "duka_median_bps": 185.8802,
+   "median_mid": 6459.325,
+   "points_ratio": 12.8615
+  },
+  "2018-10": {
+   "ratio": 27.0139,
+   "minutes": 29690,
+   "duka_median_bps": 186.6806,
+   "median_mid": 6431.95,
+   "points_ratio": 12.9162
+  },
+  "2018-11": {
+   "ratio": 31.9753,
+   "minutes": 28640,
+   "duka_median_bps": 220.967,
+   "median_mid": 5431.3,
+   "points_ratio": 15.2958
+  },
+  "2018-12": {
+   "ratio": 46.4282,
+   "minutes": 28801,
+   "duka_median_bps": 320.8442,
+   "median_mid": 3712.9,
+   "points_ratio": 22.3751
+  },
+  "2019-01": {
+   "ratio": 47.9447,
+   "minutes": 40696,
+   "duka_median_bps": 331.3241,
+   "median_mid": 3611.85,
+   "points_ratio": 23.0011
+  },
+  "2019-02": {
+   "ratio": 48.2027,
+   "minutes": 35649,
+   "duka_median_bps": 333.1068,
+   "median_mid": 3593.35,
+   "points_ratio": 23.1195
+  },
+  "2019-03": {
+   "ratio": 44.1476,
+   "minutes": 39346,
+   "duka_median_bps": 305.0841,
+   "median_mid": 3903.0,
+   "points_ratio": 21.2853
+  },
+  "2019-04": {
+   "ratio": 32.0749,
+   "minutes": 40209,
+   "duka_median_bps": 221.6552,
+   "median_mid": 5171.55,
+   "points_ratio": 16.0641
+  },
+  "2019-05": {
+   "ratio": 21.3461,
+   "minutes": 42521,
+   "duka_median_bps": 147.5134,
+   "median_mid": 7793.25,
+   "points_ratio": 10.66
+  },
+  "2019-06": {
+   "ratio": 18.6043,
+   "minutes": 41370,
+   "duka_median_bps": 128.566,
+   "median_mid": 8948.575,
+   "points_ratio": 9.2838
+  },
+  "2019-07": {
+   "ratio": 15.6705,
+   "minutes": 41427,
+   "duka_median_bps": 108.2917,
+   "median_mid": 10534.9,
+   "points_ratio": 7.8858
+  },
+  "2019-08": {
+   "ratio": 15.755,
+   "minutes": 42534,
+   "duka_median_bps": 108.8759,
+   "median_mid": 10402.175,
+   "points_ratio": 7.9864
+  },
+  "2019-09": {
+   "ratio": 16.2331,
+   "minutes": 41511,
+   "duka_median_bps": 112.1796,
+   "median_mid": 10158.4,
+   "points_ratio": 8.1781
+  },
+  "2019-10": {
+   "ratio": 20.0372,
+   "minutes": 42086,
+   "duka_median_bps": 138.4678,
+   "median_mid": 8232.8,
+   "points_ratio": 10.0909
+  },
+  "2019-11": {
+   "ratio": 19.4162,
+   "minutes": 41197,
+   "duka_median_bps": 134.1764,
+   "median_mid": 8536.35,
+   "points_ratio": 9.7321
+  },
+  "2019-12": {
+   "ratio": 22.8204,
+   "minutes": 41531,
+   "duka_median_bps": 157.7011,
+   "median_mid": 7232.7,
+   "points_ratio": 11.4862
+  },
+  "2020-01": {
+   "ratio": 19.4813,
+   "minutes": 41774,
+   "duka_median_bps": 134.6263,
+   "median_mid": 8450.575,
+   "points_ratio": 9.8309
+  },
+  "2020-02": {
+   "ratio": 16.9624,
+   "minutes": 38884,
+   "duka_median_bps": 117.2196,
+   "median_mid": 9728.825,
+   "points_ratio": 8.5392
+  },
+  "2020-03": {
+   "ratio": 24.9168,
+   "minutes": 40316,
+   "duka_median_bps": 172.1883,
+   "median_mid": 6602.85,
+   "points_ratio": 12.5819
+  },
+  "2020-04": {
+   "ratio": 23.2844,
+   "minutes": 40213,
+   "duka_median_bps": 160.9081,
+   "median_mid": 7100.25,
+   "points_ratio": 11.7005
+  },
+  "2020-05": {
+   "ratio": 17.8155,
+   "minutes": 39812,
+   "duka_median_bps": 123.1146,
+   "median_mid": 9189.25,
+   "points_ratio": 9.0406
+  },
+  "2020-06": {
+   "ratio": 17.2546,
+   "minutes": 39050,
+   "duka_median_bps": 119.2385,
+   "median_mid": 9465.05,
+   "points_ratio": 8.7772
+  },
+  "2020-07": {
+   "ratio": 17.7003,
+   "minutes": 41599,
+   "duka_median_bps": 122.3189,
+   "median_mid": 9257.15,
+   "points_ratio": 8.9743
+  },
+  "2020-08": {
+   "ratio": 14.139,
+   "minutes": 38308,
+   "duka_median_bps": 97.7084,
+   "median_mid": 11632.8,
+   "points_ratio": 7.1416
+  },
+  "2020-09": {
+   "ratio": 6.0879,
+   "minutes": 43134,
+   "duka_median_bps": 42.0706,
+   "median_mid": 10670.85,
+   "points_ratio": 7.7854
+  },
+  "2020-10": {
+   "ratio": 5.5804,
+   "minutes": 44560,
+   "duka_median_bps": 38.5635,
+   "median_mid": 11429.15,
+   "points_ratio": 7.2688
+  },
+  "2020-11": {
+   "ratio": 3.6788,
+   "minutes": 43108,
+   "duka_median_bps": 25.4225,
+   "median_mid": 16297.925,
+   "points_ratio": 5.0974
+  },
+  "2020-12": {
+   "ratio": 3.3296,
+   "minutes": 44421,
+   "duka_median_bps": 23.0093,
+   "median_mid": 19782.25,
+   "points_ratio": 4.1995
+  },
+  "2021-01": {
+   "ratio": 2.1765,
+   "minutes": 43312,
+   "duka_median_bps": 15.0411,
+   "median_mid": 34302.15,
+   "points_ratio": 2.4219
+  },
+  "2021-02": {
+   "ratio": 2.2688,
+   "minutes": 40307,
+   "duka_median_bps": 15.6786,
+   "median_mid": 47267.05,
+   "points_ratio": 1.7576
+  },
+  "2021-03": {
+   "ratio": 2.1514,
+   "minutes": 44630,
+   "duka_median_bps": 14.8672,
+   "median_mid": 55558.75,
+   "points_ratio": 1.4953
+  },
+  "2021-04": {
+   "ratio": 1.9712,
+   "minutes": 43189,
+   "duka_median_bps": 13.622,
+   "median_mid": 57616.3,
+   "points_ratio": 1.4419
+  },
+  "2021-05": {
+   "ratio": 2.4135,
+   "minutes": 44638,
+   "duka_median_bps": 16.6787,
+   "median_mid": 47816.6,
+   "points_ratio": 1.7374
+  },
+  "2021-06": {
+   "ratio": 3.3661,
+   "minutes": 43194,
+   "duka_median_bps": 23.2615,
+   "median_mid": 35851.95,
+   "points_ratio": 2.3172
+  },
+  "2021-07": {
+   "ratio": 3.5864,
+   "minutes": 44637,
+   "duka_median_bps": 24.784,
+   "median_mid": 33583.35,
+   "points_ratio": 2.4737
+  },
+  "2021-08": {
+   "ratio": 2.7579,
+   "minutes": 44474,
+   "duka_median_bps": 19.0588,
+   "median_mid": 46343.8,
+   "points_ratio": 1.7926
+  },
+  "2021-09": {
+   "ratio": 3.2045,
+   "minutes": 43177,
+   "duka_median_bps": 22.1446,
+   "median_mid": 46026.25,
+   "points_ratio": 1.805
+  },
+  "2021-10": {
+   "ratio": 2.9781,
+   "minutes": 44636,
+   "duka_median_bps": 20.58,
+   "median_mid": 59508.35,
+   "points_ratio": 1.396
+  },
+  "2021-11": {
+   "ratio": 2.6859,
+   "minutes": 43183,
+   "duka_median_bps": 18.5607,
+   "median_mid": 60715.5,
+   "points_ratio": 1.3683
+  },
+  "2021-12": {
+   "ratio": 3.2992,
+   "minutes": 44209,
+   "duka_median_bps": 22.7996,
+   "median_mid": 48837.05,
+   "points_ratio": 1.7011
+  },
+  "2022-01": {
+   "ratio": 3.7716,
+   "minutes": 43240,
+   "duka_median_bps": 26.0638,
+   "median_mid": 41924.25,
+   "points_ratio": 1.9816
+  },
+  "2022-02": {
+   "ratio": 3.3942,
+   "minutes": 38585,
+   "duka_median_bps": 23.456,
+   "median_mid": 40656.95,
+   "points_ratio": 2.0433
+  },
+  "2022-03": {
+   "ratio": 3.4342,
+   "minutes": 41266,
+   "duka_median_bps": 23.7319,
+   "median_mid": 41392.175,
+   "points_ratio": 2.0071
+  },
+  "2022-04": {
+   "ratio": 3.2228,
+   "minutes": 43009,
+   "duka_median_bps": 22.2712,
+   "median_mid": 40611.0,
+   "points_ratio": 2.0457
+  },
+  "2022-05": {
+   "ratio": 4.4105,
+   "minutes": 44631,
+   "duka_median_bps": 30.4789,
+   "median_mid": 30175.35,
+   "points_ratio": 2.7531
+  },
+  "2022-06": {
+   "ratio": 5.6816,
+   "minutes": 43163,
+   "duka_median_bps": 39.2629,
+   "median_mid": 21461.35,
+   "points_ratio": 3.871
+  },
+  "2022-07": {
+   "ratio": 5.4229,
+   "minutes": 43964,
+   "duka_median_bps": 37.4752,
+   "median_mid": 21270.75,
+   "points_ratio": 3.9057
+  },
+  "2022-08": {
+   "ratio": 4.8,
+   "minutes": 43434,
+   "duka_median_bps": 33.1707,
+   "median_mid": 22988.325,
+   "points_ratio": 3.6138
+  },
+  "2022-09": {
+   "ratio": 5.4373,
+   "minutes": 42124,
+   "duka_median_bps": 37.5744,
+   "median_mid": 19727.225,
+   "points_ratio": 4.2113
+  },
+  "2022-10": {
+   "ratio": 5.4194,
+   "minutes": 40196,
+   "duka_median_bps": 37.4513,
+   "median_mid": 19414.45,
+   "points_ratio": 4.2791
+  },
+  "2022-11": {
+   "ratio": 6.06,
+   "minutes": 40724,
+   "duka_median_bps": 41.878,
+   "median_mid": 16715.625,
+   "points_ratio": 4.97
+  },
+  "2022-12": {
+   "ratio": 6.3873,
+   "minutes": 38683,
+   "duka_median_bps": 44.1396,
+   "median_mid": 16853.55,
+   "points_ratio": 4.9293
+  },
+  "2023-01": {
+   "ratio": 5.1343,
+   "minutes": 39497,
+   "duka_median_bps": 35.481,
+   "median_mid": 21000.3,
+   "points_ratio": 3.956
+  },
+  "2023-02": {
+   "ratio": 4.4794,
+   "minutes": 38508,
+   "duka_median_bps": 30.9554,
+   "median_mid": 23339.925,
+   "points_ratio": 3.5594
+  },
+  "2023-03": {
+   "ratio": 3.9468,
+   "minutes": 43046,
+   "duka_median_bps": 27.2742,
+   "median_mid": 25179.525,
+   "points_ratio": 3.2994
+  },
+  "2023-04": {
+   "ratio": 3.6326,
+   "minutes": 40860,
+   "duka_median_bps": 25.103,
+   "median_mid": 28523.8,
+   "points_ratio": 2.9125
+  },
+  "2023-05": {
+   "ratio": 3.676,
+   "minutes": 40170,
+   "duka_median_bps": 25.403,
+   "median_mid": 27304.25,
+   "points_ratio": 3.0426
+  },
+  "2023-06": {
+   "ratio": 3.4083,
+   "minutes": 40938,
+   "duka_median_bps": 23.5531,
+   "median_mid": 26805.05,
+   "points_ratio": 3.0993
+  },
+  "2023-07": {
+   "ratio": 3.065,
+   "minutes": 36805,
+   "duka_median_bps": 21.1808,
+   "median_mid": 30249.45,
+   "points_ratio": 2.7464
+  },
+  "2023-08": {
+   "ratio": 3.5994,
+   "minutes": 38460,
+   "duka_median_bps": 24.874,
+   "median_mid": 29039.0,
+   "points_ratio": 2.8609
+  },
+  "2023-09": {
+   "ratio": 4.1971,
+   "minutes": 42298,
+   "duka_median_bps": 29.0041,
+   "median_mid": 26279.65,
+   "points_ratio": 3.1612
+  },
+  "2023-10": {
+   "ratio": 3.7183,
+   "minutes": 44316,
+   "duka_median_bps": 25.6957,
+   "median_mid": 28200.575,
+   "points_ratio": 2.9459
+  },
+  "2023-11": {
+   "ratio": 2.9629,
+   "minutes": 41357,
+   "duka_median_bps": 20.4754,
+   "median_mid": 36717.55,
+   "points_ratio": 2.2626
+  },
+  "2023-12": {
+   "ratio": 2.4779,
+   "minutes": 41233,
+   "duka_median_bps": 17.1238,
+   "median_mid": 42603.05,
+   "points_ratio": 1.95
+  },
+  "2024-01": {
+   "ratio": 2.448,
+   "minutes": 42573,
+   "duka_median_bps": 16.9169,
+   "median_mid": 42805.15,
+   "points_ratio": 1.9408
+  },
+  "2024-02": {
+   "ratio": 2.1164,
+   "minutes": 40396,
+   "duka_median_bps": 14.6257,
+   "median_mid": 51083.175,
+   "points_ratio": 1.6263
+  },
+  "2024-03": {
+   "ratio": 1.8142,
+   "minutes": 44407,
+   "duka_median_bps": 12.5369,
+   "median_mid": 67822.6,
+   "points_ratio": 1.2249
+  },
+  "2024-04": {
+   "ratio": 1.7855,
+   "minutes": 43196,
+   "duka_median_bps": 12.3391,
+   "median_mid": 65706.325,
+   "points_ratio": 1.2644
+  },
+  "2024-05": {
+   "ratio": 1.5245,
+   "minutes": 44545,
+   "duka_median_bps": 10.5352,
+   "median_mid": 65820.7,
+   "points_ratio": 1.2622
+  },
+  "2024-06": {
+   "ratio": 1.4632,
+   "minutes": 43061,
+   "duka_median_bps": 10.1115,
+   "median_mid": 66259.95,
+   "points_ratio": 1.2538
+  },
+  "2024-07": {
+   "ratio": 1.4873,
+   "minutes": 44633,
+   "duka_median_bps": 10.2779,
+   "median_mid": 63749.05,
+   "points_ratio": 1.3032
+  },
+  "2024-08": {
+   "ratio": 1.6445,
+   "minutes": 44608,
+   "duka_median_bps": 11.3647,
+   "median_mid": 59711.125,
+   "points_ratio": 1.3913
+  },
+  "2024-09": {
+   "ratio": 1.6166,
+   "minutes": 43181,
+   "duka_median_bps": 11.1715,
+   "median_mid": 59825.25,
+   "points_ratio": 1.3887
+  },
+  "2024-10": {
+   "ratio": 1.3809,
+   "minutes": 44463,
+   "duka_median_bps": 9.5428,
+   "median_mid": 66656.75,
+   "points_ratio": 1.2463
+  },
+  "2024-11": {
+   "ratio": 0.9745,
+   "minutes": 43191,
+   "duka_median_bps": 6.7346,
+   "median_mid": 90440.5,
+   "points_ratio": 0.9186
+  },
+  "2024-12": {
+   "ratio": 1.1204,
+   "minutes": 43397,
+   "duka_median_bps": 7.7427,
+   "median_mid": 97689.5,
+   "points_ratio": 0.8504
+  },
+  "2025-01": {
+   "ratio": 1.1311,
+   "minutes": 43750,
+   "duka_median_bps": 7.8168,
+   "median_mid": 100731.625,
+   "points_ratio": 0.8247
+  },
+  "2025-02": {
+   "ratio": 1.6948,
+   "minutes": 40247,
+   "duka_median_bps": 11.7119,
+   "median_mid": 96586.45,
+   "points_ratio": 0.8601
+  },
+  "2025-03": {
+   "ratio": 1.3215,
+   "minutes": 44533,
+   "duka_median_bps": 9.132,
+   "median_mid": 84322.0,
+   "points_ratio": 0.9852
+  },
+  "2025-04": {
+   "ratio": 0.8673,
+   "minutes": 43134,
+   "duka_median_bps": 5.9935,
+   "median_mid": 84700.7,
+   "points_ratio": 0.9808
+  },
+  "2025-05": {
+   "ratio": 0.7098,
+   "minutes": 44534,
+   "duka_median_bps": 4.9048,
+   "median_mid": 103838.625,
+   "points_ratio": 0.8001
+  },
+  "2025-06": {
+   "ratio": 0.6877,
+   "minutes": 43115,
+   "duka_median_bps": 4.7523,
+   "median_mid": 105537.6,
+   "points_ratio": 0.7872
+  },
+  "2025-07": {
+   "ratio": 0.6146,
+   "minutes": 44624,
+   "duka_median_bps": 4.2474,
+   "median_mid": 117723.9,
+   "points_ratio": 0.7057
+  },
+  "2025-08": {
+   "ratio": 0.6301,
+   "minutes": 44615,
+   "duka_median_bps": 4.3544,
+   "median_mid": 114830.9,
+   "points_ratio": 0.7235
+  },
+  "2025-09": {
+   "ratio": 0.6417,
+   "minutes": 43144,
+   "duka_median_bps": 4.4346,
+   "median_mid": 112761.25,
+   "points_ratio": 0.7367
+  },
+  "2025-10": {
+   "ratio": 0.6431,
+   "minutes": 44633,
+   "duka_median_bps": 4.444,
+   "median_mid": 112518.9,
+   "points_ratio": 0.7383
+  },
+  "2025-11": {
+   "ratio": 0.757,
+   "minutes": 43198,
+   "duka_median_bps": 5.2311,
+   "median_mid": 95627.25,
+   "points_ratio": 0.8688
+  },
+  "2025-12": {
+   "ratio": 0.8174,
+   "minutes": 44036,
+   "duka_median_bps": 5.6484,
+   "median_mid": 88538.75,
+   "points_ratio": 0.9383
+  },
+  "2026-01": {
+   "ratio": 0.801,
+   "minutes": 43598,
+   "duka_median_bps": 5.5355,
+   "median_mid": 90586.05,
+   "points_ratio": 0.9171
+  },
+  "2026-02": {
+   "ratio": 1.0631,
+   "minutes": 40316,
+   "duka_median_bps": 7.3463,
+   "median_mid": 68163.0,
+   "points_ratio": 1.2188
+  },
+  "2026-03": {
+   "ratio": 1.0357,
+   "minutes": 44610,
+   "duka_median_bps": 7.1575,
+   "median_mid": 69874.15,
+   "points_ratio": 1.1889
+  },
+  "2026-04": {
+   "ratio": 1.0082,
+   "minutes": 28723,
+   "duka_median_bps": 6.9673,
+   "median_mid": 71767.0,
+   "points_ratio": 1.1576
+  }
+ }
+}

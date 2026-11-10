@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — NASDAQ/downsidevolatilitycascade_short
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\research_dataset\nasdaq_downsidevolatilitycascade_short_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\feature_surgery\nasdaq_downsidevolatilitycascade_short_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\model\nasdaq_downsidevolatilitycascade_short_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof
+AFML Ch.4 weights | source=assets/NASDAQ/bars/standard_quote_tick/nasdaq_standard_quote_tick_bars.csv | events=2,535 | mean_uniqueness=0.362364 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 2,535/2,535 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 2,535
+Rows after selected-feature NaN filter : 2,535
+Date range: 2022-06-12 22:49:10.765000+00:00 -> 2026-03-23 00:35:44.180000+00:00
+Rows used: 2,535
+Selected feature count: 98
+Target mean: 0.342801
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=1,421 test=1,014 thr=0.69 train_f1=0.5231 test_f1=0.4938 precision=0.3358 recall=0.9331 logloss=1.09146
+Fold 02: train=1,318 test=1,014 thr=0.69 train_f1=0.5170 test_f1=0.4992 precision=0.3485 recall=0.8799 logloss=1.08196
+Fold 03: train=1,319 test=1,014 thr=0.65 train_f1=0.5231 test_f1=0.5100 precision=0.3447 recall=0.9801 logloss=1.09323
+Fold 04: train=1,418 test=1,014 thr=0.67 train_f1=0.4978 test_f1=0.5330 precision=0.3685 recall=0.9629 logloss=1.12193
+Fold 05: train=1,419 test=1,014 thr=0.70 train_f1=0.5350 test_f1=0.4859 precision=0.3239 recall=0.9726 logloss=1.13980
+Fold 06: train=1,317 test=1,014 thr=0.71 train_f1=0.5493 test_f1=0.4798 precision=0.3239 recall=0.9252 logloss=1.06004
+Fold 07: train=1,416 test=1,014 thr=0.71 train_f1=0.5165 test_f1=0.5048 precision=0.3400 recall=0.9798 logloss=1.11883
+Fold 08: train=1,418 test=1,014 thr=0.72 train_f1=0.5274 test_f1=0.4958 precision=0.3330 recall=0.9701 logloss=1.09554
+Fold 09: train=1,415 test=1,014 thr=0.75 train_f1=0.5071 test_f1=0.5212 precision=0.3564 recall=0.9695 logloss=1.14874
+Fold 10: train=1,519 test=1,014 thr=0.72 train_f1=0.5069 test_f1=0.5103 precision=0.3489 recall=0.9492 logloss=1.13816
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 2,535 / 2,535
+Coverage rate: 1.0000
+Raw log loss: 1.104543
+Raw Brier: 0.421237
+Raw ROC AUC: 0.503521
+Raw PR AUC: 0.348498
+Diagnostic global F1 threshold: 0.3
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\nasdaq_downsidevolatilitycascade_short_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\downsidevolatilitycascade_short\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

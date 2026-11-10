@@ -1,0 +1,35 @@
+asset=HK edge=volatilityregime_long gate_c_exit=0 elapsed_seconds=144
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/volatilityregime_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V10_PT2_SL1 [CONTROL]
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 1863
+  250/1863 elapsed=19.9s
+  500/1863 elapsed=34.4s
+  750/1863 elapsed=49.7s
+  1000/1863 elapsed=68.6s
+  1250/1863 elapsed=88.4s
+  1500/1863 elapsed=105.0s
+  1750/1863 elapsed=127.5s
+  1863/1863 elapsed=136.4s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V10_PT2_SL1 | -0.158440 | [-0.220004,-0.095468] | 0.7589 | 4.095 | 10.960 | -0.928584 | -1.439136 | 1.000 | 1.000 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.058764 | [-0.154782,+0.046602] | 0.9166 | 21.837 | 83.416 | -0.064583 | -0.522876 | 0.070 | 0.188 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.051755 | [-0.153919,+0.060017] | 0.9260 | 27.113 | 96.545 | -0.045813 | -0.460513 | 0.049 | 0.151 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.048538 | [-0.144646,+0.057654] | 0.9306 | 21.090 | 82.148 | -0.055236 | -0.431889 | 0.059 | 0.194 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T124601Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T124601Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilityregime_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

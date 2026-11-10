@@ -1,0 +1,124 @@
+# =====================================================================
+# QUANTARA — GIT LFS / BINARY ARTIFACT POLICY
+# =====================================================================
+#
+# Large canonical CSV artifacts are stored using Git LFS.
+#
+# "-text" is deliberate:
+# Quantara manifests/hash contracts depend on exact artifact bytes.
+# Git must not perform CRLF/LF text normalization on these files.
+# =====================================================================
+
+
+# =====================================================================
+# 1. LARGE STATIC ASSET-LEVEL DATA
+# =====================================================================
+
+trading_models_v2/assets/*/bars/standard_quote_tick/*_standard_quote_tick_bars.csv filter=lfs diff=lfs merge=lfs -text
+
+trading_models_v2/assets/*/bars/ffd/*_ffd_features.csv filter=lfs diff=lfs merge=lfs -text
+
+trading_models_v2/assets/*/bars/regime/*_hmm_regime_features.csv filter=lfs diff=lfs merge=lfs -text
+
+
+# =====================================================================
+# 2. SMALL BAR-CONTRACT CSVs
+# =====================================================================
+#
+# These remain ordinary Git files because they are tiny.
+# -text prevents newline conversion from changing artifact hashes.
+# =====================================================================
+
+trading_models_v2/assets/*/bars/standard_quote_tick/daily_thresholds.csv -text
+trading_models_v2/assets/*/bars/standard_quote_tick/daily_tick_profile.csv -text
+
+
+# =====================================================================
+# 3. FROZEN MODEL ROWS
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/research_dataset/*_model_rows.csv filter=lfs diff=lfs merge=lfs -text
+
+trading_models_v2/assets/*/edges/*/artifacts/research_dataset/*_mldp_execution_resolution.csv filter=lfs diff=lfs merge=lfs -text
+
+
+# =====================================================================
+# 4. STEP 03 OOF PREDICTIONS
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/oof/*_oof_predictions.csv filter=lfs diff=lfs merge=lfs -text
+
+
+# =====================================================================
+# 5. STEP 03A EXACT BID/ASK EXECUTION
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/execution/*_oof_exact_execution.csv filter=lfs diff=lfs merge=lfs -text
+
+
+# =====================================================================
+# 6. STEP 04 CALIBRATED OOF PREDICTIONS
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/calibration/*_calibrated_oof_predictions.csv filter=lfs diff=lfs merge=lfs -text
+
+
+# =====================================================================
+# 7. CALIBRATED THRESHOLD SWEEPS
+# =====================================================================
+#
+# Tiny canonical CSVs. Keep in ordinary Git but preserve exact bytes.
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/thresholds/*_calibrated_threshold_sweep.csv -text
+
+
+# =====================================================================
+# 8. BROKER CONVERSION HISTORIES
+# =====================================================================
+#
+# Ordinary Git; preserve exact bytes.
+# =====================================================================
+
+trading_models_v2/portfolio_allocator/config/broker_conversions/*.csv -text
+
+
+# =====================================================================
+# 9. ALL EDGE-OWNED ARTIFACT/REPORT JSON+PKL (Step 01-09 hash-chain files)
+# =====================================================================
+#
+# shared/validation/v3_semantic_contract.py's validate_stepXX_generation
+# chain SHA256-hashes these files' raw bytes and compares against a value
+# stored inside another manifest (chain-of-custody). Any of these crossing
+# machines via git (Colab download -> local commit -> VPS pull, or the
+# reverse) must arrive byte-identical, or the chain fails closed with a
+# "stale/mismatched sha256" error even though the content is unchanged.
+# Covers every artifact/report file not already given a specific rule
+# above (those keep their existing filter=lfs + -text combination).
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/artifacts/**/*.json -text
+trading_models_v2/assets/*/edges/*/artifacts/**/*.pkl -text
+trading_models_v2/assets/*/edges/*/reports/**/*.json -text
+trading_models_v2/assets/*/edges/*/contracts/**/*.json -text
+
+
+# =====================================================================
+# 10. EDGE-OWNED RESEARCH SCRIPTS (Step 01-03, byte-identical templates)
+# =====================================================================
+#
+# tests/test_sequential_bootstrap_bagging_sync.py and tests/test_leakage_
+# columns_sync.py both do byte-for-byte comparison of an inlined code block
+# across all 141 edges' copies of these scripts (Colab-portability requires
+# each edge to carry its own copy rather than import shared/). Without
+# -text, Windows git's CRLF normalization on checkout can make two
+# byte-identical-in-the-repo files diverge on a working tree that was
+# checked out at a different time/machine, causing a sync-test false
+# failure that looks like real drift. Python itself does not care about
+# line-ending style, so this has no effect on execution, only on hash/
+# text-equality checks over the file bytes.
+# =====================================================================
+
+trading_models_v2/assets/*/edges/*/research/01_feature_surgery_clustered_mda.py -text
+trading_models_v2/assets/*/edges/*/research/02_train_meta_model_optuna.py -text
+trading_models_v2/assets/*/edges/*/research/03_generate_oof_predictions.py -text

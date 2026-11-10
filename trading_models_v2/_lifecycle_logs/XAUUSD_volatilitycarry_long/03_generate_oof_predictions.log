@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — XAUUSD/volatilitycarry_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\research_dataset\xauusd_volatilitycarry_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\feature_surgery\xauusd_volatilitycarry_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\model\xauusd_volatilitycarry_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\oof
+AFML Ch.4 weights | source=assets/XAUUSD/bars/standard_quote_tick/xauusd_standard_quote_tick_bars.csv | events=4,591 | mean_uniqueness=0.218042 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,591/4,591 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,591
+Rows after selected-feature NaN filter : 4,591
+Date range: 2022-06-15 08:56:04.220000+00:00 -> 2026-03-31 19:45:33.240000+00:00
+Rows used: 4,591
+Selected feature count: 149
+Target mean: 0.381616
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,655 test=1,836 thr=0.57 train_f1=0.5920 test_f1=0.4996 precision=0.3333 recall=0.9967 logloss=0.91579
+Fold 02: train=2,552 test=1,836 thr=0.60 train_f1=0.5757 test_f1=0.5387 precision=0.3703 recall=0.9882 logloss=0.90447
+Fold 03: train=2,547 test=1,836 thr=0.57 train_f1=0.5702 test_f1=0.5253 precision=0.3570 recall=0.9939 logloss=0.95078
+Fold 04: train=2,646 test=1,837 thr=0.63 train_f1=0.5541 test_f1=0.5510 precision=0.4027 recall=0.8726 logloss=0.92793
+Fold 05: train=2,655 test=1,836 thr=0.58 train_f1=0.5675 test_f1=0.5347 precision=0.3672 recall=0.9837 logloss=0.92060
+Fold 06: train=2,547 test=1,836 thr=0.57 train_f1=0.5674 test_f1=0.5241 precision=0.3551 recall=1.0000 logloss=0.92373
+Fold 07: train=2,646 test=1,837 thr=0.56 train_f1=0.5473 test_f1=0.5648 precision=0.3955 recall=0.9876 logloss=0.93179
+Fold 08: train=2,652 test=1,836 thr=0.63 train_f1=0.5371 test_f1=0.5443 precision=0.3876 recall=0.9138 logloss=0.95752
+Fold 09: train=2,643 test=1,837 thr=0.54 train_f1=0.5231 test_f1=0.5968 precision=0.4320 recall=0.9646 logloss=0.93152
+Fold 10: train=2,746 test=1,837 thr=0.56 train_f1=0.5271 test_f1=0.5901 precision=0.4196 recall=0.9935 logloss=0.92132
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,591 / 4,591
+Coverage rate: 1.0000
+Raw log loss: 0.925150
+Raw Brier: 0.353785
+Raw ROC AUC: 0.517666
+Raw PR AUC: 0.399324
+Diagnostic global F1 threshold: 0.56
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\oof\xauusd_volatilitycarry_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilitycarry_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

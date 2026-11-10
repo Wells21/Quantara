@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/XAUUSD/bars/ffd/xauusd_ffd_features.csv",
+      "sha256": "5e7ec35eb80c922adb6c6a87d541a0292c6717089dcb95ab85a0d452c8377968",
+      "size_bytes": 87609700
+    },
+    "state_bundle": {
+      "path": "assets/XAUUSD/bars/ffd/xauusd_ffd_state_bundle.pkl",
+      "sha256": "e1ff1e3643a92bfa5da43ff89a2beebac7f7a90ebd13e536fe6e7cee793e0cce",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "XAUUSD",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 348519,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 348519,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 1088.97,
+  "end_output": "2026-04-07 22:49:02.264000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.375,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.9936646533033733,
+    "High_orig_vs_ffd_corr": 0.9938951349942439,
+    "Low_orig_vs_ffd_corr": 0.9937015167016127,
+    "Open_orig_vs_ffd_corr": 0.9936658583341963
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9936646533033733,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/XAUUSD/bars/ffd/xauusd_ffd_features.csv",
+    "manifest": "assets/XAUUSD/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/XAUUSD/bars/ffd/xauusd_ffd_state_bundle.pkl"
+  },
+  "rows_input": 348519,
+  "rows_output": 347520,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/XAUUSD/bars/standard_quote_tick/xauusd_standard_quote_tick_bars.csv",
+  "start_output": "2005-02-14 09:55:46.014000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -3.4172010680670812,
+      "lags": 78,
+      "nobs": 173681,
+      "p_value": 0.010386279522074453
+    },
+    "full": {
+      "adf_stat": -2.957827757588186,
+      "lags": 92,
+      "nobs": 347427,
+      "p_value": 0.03902488065082712
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -2.073625277121457,
+      "lags": 77,
+      "nobs": 173682,
+      "p_value": 0.2552513814880742
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

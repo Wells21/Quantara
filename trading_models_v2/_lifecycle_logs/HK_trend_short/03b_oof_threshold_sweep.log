@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — HK/trend_short
+================================================================================
+Edge: HK/trend_short
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\hk_trend_short_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 7,248
+Date range: 2022-08-01 16:32:46.302000+00:00 -> 2026-06-09 05:16:37.646000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    HK/trend_short
+segment                       trend_short
+threshold                            0.78
+candidate_count                      7248
+take_rate                        0.199089
+trade_count                          1443
+win_rate                          0.32571
+avg_win_r                             2.0
+avg_loss_r                      -1.057861
+expectancy_r                    -0.061884
+payoff_ratio                     1.890607
+profit_factor                    0.913243
+gross_profit_r                      940.0
+gross_loss_r                  1029.299014
+cumulative_r                   -89.299014
+max_drawdown_r                -165.893927
+sharpe_r                         -0.04239
+sortino_r                       -0.184029
+calmar_r                         -0.53829
+selected_precision                0.32571
+selected_recall                       1.0
+selected_f1                      0.491375
+clf_precision                     0.32571
+clf_recall                        0.21709
+clf_f1                           0.260532
+clf_accuracy                     0.631898
+clf_balanced_accuracy            0.512834
+predicted_positive_rate          0.199089
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\hk_trend_short_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\hk_trend_short_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trend_short\artifacts\oof\hk_trend_short_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

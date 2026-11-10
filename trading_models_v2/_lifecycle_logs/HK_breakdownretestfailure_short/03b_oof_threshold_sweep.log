@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — HK/breakdownretestfailure_short
+================================================================================
+Edge: HK/breakdownretestfailure_short
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\breakdownretestfailure_short\artifacts\oof\hk_breakdownretestfailure_short_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\breakdownretestfailure_short\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 1,679
+Date range: 2022-08-02 02:38:32.915000+00:00 -> 2026-06-30 03:06:49.941000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    HK/breakdownretestfailure_short
+segment                       breakdownretestfailure_short
+threshold                                              0.8
+candidate_count                                       1679
+take_rate                                         0.094699
+trade_count                                            159
+win_rate                                          0.446541
+avg_win_r                                         1.968962
+avg_loss_r                                       -1.091078
+expectancy_r                                      0.275355
+payoff_ratio                                      1.804602
+profit_factor                                     1.455986
+gross_profit_r                                  139.796323
+gross_loss_r                                      96.01489
+cumulative_r                                     43.781433
+max_drawdown_r                                  -10.085919
+sharpe_r                                          0.178327
+sortino_r                                         1.018761
+calmar_r                                          4.340847
+selected_precision                                0.446541
+selected_recall                                        1.0
+selected_f1                                       0.617391
+clf_precision                                     0.446541
+clf_recall                                        0.116203
+clf_f1                                            0.184416
+clf_accuracy                                      0.625968
+clf_balanced_accuracy                             0.516903
+predicted_positive_rate                           0.094699
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\breakdownretestfailure_short\artifacts\oof\hk_breakdownretestfailure_short_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\breakdownretestfailure_short\artifacts\oof\hk_breakdownretestfailure_short_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\breakdownretestfailure_short\artifacts\oof\hk_breakdownretestfailure_short_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

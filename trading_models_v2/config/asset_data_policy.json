@@ -1,0 +1,21 @@
+{
+  "schema_version": "asset_data_policy_v1",
+  "description": "Per-asset tick data policy (AFML Ch.2 walkthrough 2026-10-23, shared/data/tick_curation.py). tick_source=curated makes AssetLayout.tick_root point to assets/{ASSET}/curated/ticks (quality-filtered, roll-adjusted where roll_adjust is true). Same quote-tick bar type for every asset.",
+  "default": {
+    "tick_source": "curated",
+    "roll_adjust": false,
+    "quality_filter": {
+      "k_daily_sigma": 10.0,
+      "floor": 0.03,
+      "ewm_span_days": 20,
+      "warmup_days": 5,
+      "reanchor_hours": 4.0
+    }
+  },
+  "assets": {
+    "USOIL": {
+      "roll_adjust": true,
+      "roll_note": "Dukascopy E_Light follows the WTI front month; monthly roll gaps detected from early-stop daily breaks (AFML s.2.4.3; Snippet 2.2 gaps applied multiplicatively so Snippet 2.3 returns are preserved; latest prices equal raw). Moneta live roll handling must be checked before any USOIL edge goes live."
+    }
+  }
+}

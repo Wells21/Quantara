@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — XAUUSD/absorption_long
+================================================================================
+Edge: XAUUSD/absorption_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\absorption_long\artifacts\oof\xauusd_absorption_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\absorption_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 5,203
+Date range: 2022-06-13 17:53:02.476000+00:00 -> 2026-03-17 14:40:18.667000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    XAUUSD/absorption_long
+segment                           absorption_long
+threshold                                    0.78
+candidate_count                              5203
+take_rate                                0.500673
+trade_count                                  2605
+win_rate                                 0.365451
+avg_win_r                                     2.0
+avg_loss_r                              -1.023356
+expectancy_r                             0.081533
+payoff_ratio                             1.954355
+profit_factor                            1.125557
+gross_profit_r                             1904.0
+gross_loss_r                          1691.607068
+cumulative_r                           212.392932
+max_drawdown_r                        -104.518771
+sharpe_r                                 0.055917
+sortino_r                                 0.87033
+calmar_r                                 2.032103
+selected_precision                       0.365451
+selected_recall                               1.0
+selected_f1                              0.535283
+clf_precision                            0.365451
+clf_recall                               0.514595
+clf_f1                                   0.427385
+clf_accuracy                             0.509706
+clf_balanced_accuracy                    0.510802
+predicted_positive_rate                  0.500673
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\absorption_long\artifacts\oof\xauusd_absorption_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\absorption_long\artifacts\oof\xauusd_absorption_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\absorption_long\artifacts\oof\xauusd_absorption_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

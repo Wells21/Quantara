@@ -1,0 +1,19 @@
+================================================================================
+GATE D (AUC-based, raw OOF predictions): JPN/rangestructure_long
+================================================================================
+edge_id: JPN/rangestructure_long
+oof_predictions_csv: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\artifacts\oof\jpn_rangestructure_long_oof_predictions.csv
+n_rows: 4461
+n_positive: 1802
+n_negative: 2659
+positive_rate: 0.40394530374355525
+auc: 0.5068779873100758
+p_value_mannwhitney: 0.21747202888029382
+alpha: 0.05
+verdict: FAIL
+reason: AUC=0.5069 (P[raw_probability of a true positive > a true negative]), p=0.2175 (>= alpha=0.05) via one-sided Mann-Whitney U on 4461 OOF observations (FAIL: no significant discrimination, or AUC<=0.5).
+diagnostic_kendall_tau_raw_probability_vs_realized_r: -0.0003029942046413198
+diagnostic_kendall_tau_p_value: 0.9757943527126485
+diagnostic_note: Non-gating context only: rank correlation between raw model score and the continuous realized economic outcome across all OOF rows.
+
+Report: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\rangestructure_long\reports\gate_d_calibration_monotonicity_report.json

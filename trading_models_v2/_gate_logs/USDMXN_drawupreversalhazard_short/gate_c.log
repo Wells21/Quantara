@@ -1,0 +1,35 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: USDMXN/drawupreversalhazard_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E50_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 2208
+  250/2208 elapsed=48.4s
+  500/2208 elapsed=100.0s
+  750/2208 elapsed=136.7s
+  1000/2208 elapsed=161.8s
+  1250/2208 elapsed=200.8s
+  1500/2208 elapsed=244.5s
+  1750/2208 elapsed=282.3s
+  2000/2208 elapsed=313.1s
+  2208/2208 elapsed=353.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E50_V1000_PT2_SL1 | -0.161556 | [-0.248646,-0.073817] | 0.7818 | 6.155 | 21.588 | -0.629996 | -1.705905 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.049448 | [-0.173532,+0.070384] | 0.9293 | 19.817 | 80.774 | -0.059884 | -0.522128 | 0.095 | 0.311 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.024715 | [-0.125282,+0.075824] | 0.9601 | 14.473 | 66.028 | -0.040985 | -0.260975 | 0.065 | 0.425 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.049845 | [-0.165315,+0.064052] | 0.9288 | 17.718 | 77.357 | -0.067519 | -0.526329 | 0.107 | 0.347 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\drawupreversalhazard_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T212939Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\drawupreversalhazard_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T212939Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\USDMXN\edges\drawupreversalhazard_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

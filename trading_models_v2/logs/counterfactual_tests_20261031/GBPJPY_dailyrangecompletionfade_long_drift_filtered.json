@@ -1,0 +1,61 @@
+{
+ "asset": "GBPJPY",
+ "edge": "dailyrangecompletionfade_long",
+ "final_live_threshold": 0.38,
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md (addendum)",
+ "oof_rows": 4049,
+ "all_oof": {
+  "n": 4049,
+  "mean_R": 0.12265,
+  "ci_lo": 0.00229,
+  "ci_hi": 0.24301,
+  "weeks": 202
+ },
+ "taken": {
+  "n": 2738,
+  "mean_R": 0.1911,
+  "ci_lo": 0.05423,
+  "ci_hi": 0.32798,
+  "weeks": 197
+ },
+ "not_taken": {
+  "n": 1311,
+  "mean_R": -0.02032,
+  "ci_lo": -0.13525,
+  "ci_hi": 0.09462,
+  "weeks": 196
+ },
+ "F1_U_unconditional": {
+  "baseline_mean_R": 0.09661,
+  "baseline_se": 0.0354,
+  "diff": 0.09449,
+  "diff_ci_lo": -0.05896,
+  "diff_ci_hi": 0.24794,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0005
+ },
+ "F1_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.06431,
+  "baseline_se": 0.02707,
+  "diff": 0.12679,
+  "diff_ci_lo": -0.02,
+  "diff_ci_hi": 0.27359,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "F1_H_hour_matched": {
+  "baseline_mean_R": 0.09468,
+  "baseline_se": 0.02751,
+  "diff": 0.09642,
+  "diff_ci_lo": -0.05069,
+  "diff_ci_hi": 0.24352,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0003
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+ "F2_taken_minus_not_taken": {
+  "diff": 0.21142,
+  "ci_lo": 0.0327,
+  "ci_hi": 0.39014
+ }
+}

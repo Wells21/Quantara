@@ -1,0 +1,43 @@
+edge=candlehammer_long gate_c_exit=0 elapsed_seconds=329
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: US500/candlehammer_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H20_E20_V10_PT2_SL1 [CONTROL]
+ - H20_E100_V20_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+No research_dataset_manifest.json found -> runtime fallback for execution-finalist inputs (brand-new edge, export_research_dataset.py not yet run).
+C:\Users\Administrator\Desktop\Trading Models\venv39\lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.9.1 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+Exact quote replay events: 2714
+  250/2714 elapsed=21.9s
+  500/2714 elapsed=36.5s
+  750/2714 elapsed=43.0s
+  1000/2714 elapsed=50.8s
+  1250/2714 elapsed=56.9s
+  1500/2714 elapsed=68.6s
+  1750/2714 elapsed=78.3s
+  2000/2714 elapsed=96.2s
+  2250/2714 elapsed=105.9s
+  2500/2714 elapsed=119.8s
+  2714/2714 elapsed=136.6s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H20_E20_V10_PT2_SL1 | -0.033220 | [-0.072823,+0.009458] | 0.9285 | 4.178 | 10.993 | -0.190817 | -0.425508 | 1.000 | 1.000 | 1.0000
+H20_E100_V20_PT2_SL1 | +0.015612 | [-0.027129,+0.059822] | 1.0355 | 8.707 | 52.372 | +0.043034 | +0.199967 | -0.226 | 0.480 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.021451 | [-0.058808,+0.104372] | 1.0318 | 21.120 | 82.715 | +0.024376 | +0.270204 | -0.128 | 0.198 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.011243 | [-0.069470,+0.090816] | 1.0166 | 17.594 | 73.363 | +0.015337 | +0.141623 | -0.080 | 0.237 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V20_PT2_SL1 | meanR=+0.015612 | R/occupied_day=+0.043034 | R/week=+0.199967 | mean_hold_h=8.707
+ 2. H20_E100_V1000_PT2_SL1 | meanR=+0.021451 | R/occupied_day=+0.024376 | R/week=+0.270204 | mean_hold_h=21.120
+ 3. H20_E50_V1000_PT2_SL1 | meanR=+0.011243 | R/occupied_day=+0.015337 | R/week=+0.141623 | mean_hold_h=17.594
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260914T171543Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260914T171543Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\candlehammer_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

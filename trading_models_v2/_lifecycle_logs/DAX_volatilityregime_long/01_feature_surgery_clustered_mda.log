@@ -1,0 +1,31 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — DAX/volatilityregime_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\research_dataset\dax_volatilityregime_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\feature_surgery
+Task 2B eligibility filter: 2,573/2,574 rows retained (mldp_target_eligible==True); 1 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 2,573
+Rows after feature NaN filter : 2,573
+Date range: 2022-06-13 12:16:47.257000+00:00 -> 2026-06-12 13:18:20.058000+00:00
+Schema allowed features: 168
+Fixed features: []
+Candidate features for clustering: 156
+
+------------------------------------------------------------------------
+ITERATION 1
+Current candidate feature count: 156
+AFML Ch.4 weights | source=assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv | events=2,574 | mean_uniqueness=0.566641 | mean_return_weight=1.000000
+ cluster_id  n_features  avg_mda  std_mda
+          0          98 0.009161 0.016292
+          1          58 0.004900 0.008430
+Base F1=0.377384 | Precision=0.359957 | Recall=0.417792 | Mean train-selected threshold=0.7020 | Folds=10
+Stopping: no negative MDA clusters remain.
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 156
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\feature_surgery\dax_volatilityregime_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py

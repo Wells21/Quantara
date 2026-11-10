@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Standing research methodology rules (user-approved). Read before any Gate A/B/C/PBO/D run or any edge certification.",
+  "rules": [
+    {
+      "id": "GATE_B_COST_IS_BROKER_MEDIAN_SPREAD",
+      "adopted": "2026-10-16",
+      "rule": "v5.1 (2026-10-16): Gate A/B --cost-bps = the broker cost model's mean_spread_bps_time_weighted (recent 2-week level) from portfolio_allocator/config/broker_profiles/<firm>_cost_models/<ASSET>.json. Not the Dukascopy full-history median, not a 28-day tick median.",
+      "why": "Dukascopy's full-history median is inflated by old wide-spread years and is not the spread we pay (2026-10-16 parity check: config/mid_parity_check_2026-10-16.json). Most Gate B kills on USOIL/BTCUSD/HK/NASDAQ/XAUUSD were cost, not missing gross edge.",
+      "superseded_text": "v5: broker 28-day tick median from broker_spread_profile.json"
+    },
+    {
+      "id": "GATE_C_REPLAYS_BROKER_SPREAD_ON_DUKASCOPY_MID",
+      "adopted": "2026-10-16",
+      "rule": "v5.1: Gate C = --execution-spread-model broker --execution-cost-model <firm>_cost_models/<ASSET>.json: tick replay on the Dukascopy mid with the broker's spread (FIXED_POINTS or hour-of-week x vol-state TABLE fitted on the broker's ticks, level = last 2 weeks x live-entry calibration), swap per rollover actually crossed at today's spec rate, commission from deals; no guard. Level mode (1.4x) retired.",
+      "why": "Dukascopy mid returns match the broker's (60m corr 0.96-1.00); only the spread differs. Identity test (self mode) reproduces the raw replay exactly.",
+      "superseded_text": "v5: level mode, L = 1.4 x broker median, Dukascopy weekly-normalised pattern"
+    },
+    {
+      "id": "EDGE_CERTIFIED_MAX_SPREAD",
+      "adopted": "2026-10-16",
+      "rule": "v5.1: decision = net R under the broker cost model at the point estimate; stress re-run at spread x (1 + asset level_uncertainty_pct) is a KILL gate (D079, owner 2026-11-04: exec mean R <= 0 there kills the edge; shared/research/gate_c_stress.py); break-even recorded for the per-trade live guard. 0.7 x break-even retired.",
+      "why": "Broker-independent certification: switching prop firm = run portfolio_allocator (00c measures the new firm, allocator re-prices and filters) then portfolio_live -- no edge re-research."
+    },
+    {
+      "id": "GATE_C_ENTRY_DELAY_5700MS",
+      "adopted": "2026-10-16",
+      "rule": "Gate C uses --execution-entry-delay-ms 5700 (measured live bar-close->fill median; config/live_latency_sensitivity_2026-10-15.json). Replaces the runbook's 250 ms.",
+      "why": "User instruction 2026-10-16."
+    },
+    {
+      "id": "PBO_PASS_RULE",
+      "adopted": "2026-10-16",
+      "rule": "PBO/CSCV (s=16, daily prorated compound-velocity) PASS iff PBO < 0.5 AND Prob[OOS<=0] < 0.5 (three-metric judgment; degradation slope reported). Replaces runbook v4's 60%/40% control rule.",
+      "why": "User instruction 2026-10-16: the authorized three-metric judgment is authoritative."
+    },
+    {
+      "id": "GATE_A_RUNBOOK_GRID",
+      "adopted": "2026-09-25 (re-affirmed 2026-10-16; EWM spans 20,50,100 -> 100,150,200 on 2026-10-31, register D074)",
+      "rule": "Gate A grid is exactly: --event-vol-lookbacks 1,2,4,6,8 --event-vol-ewm-spans 100,150,200 --vertical-horizons 1,2,4,8,16,24,48,96,168 --barriers 1:1,1.5:1,2:1 --hybrid-fast-grid --save (calendar hours); KILL if best-cell gross_mean_R < +0.05. Never the lab's default grid.",
+      "why": "2026-10-15/16 campaigns wrongly used 1:1-only grids with verticals <= 22h; those kills are invalid."
+    },
+    {
+      "id": "PROP_FIRM_SWITCH_FLOW",
+      "adopted": "2026-10-16",
+      "rule": "Switching firm: portfolio_allocator from the top -- 00a specs/swaps, 00c builds + validates the firm's cost model from its MT5 ticks/deals, allocator re-prices every edge's trades with it, then portfolio_live. Edge folders untouched.",
+      "pending": [
+        "00c builder without Dukascopy overlap",
+        "allocator re-pricing step",
+        "per-trade live guard in R"
+      ]
+    },
+    {
+      "id": "THEORY_CHECK_GATE_0_D075",
+      "adopted": "2026-11-02 (amended 2026-11-04)",
+      "rule": "Theory before backtest (MLAM Ch.1 pp.2-4, 8-9). Every new thesis (new or ported, every asset, both sides) passes Gate 0 before Gate A: pre-registered counterfactual gate-inversion tests (diff vs inverted, joint week-clustered SE) and a drift baseline vs month-matched random same-side entries, gross mid R. A: Gate 0 cell pre-registered on the card from the panel (1:1, EWM 100, lookback 1/4/8 h x vertical 4/24/96 h, matched to the thesis horizon; default H4_V24; never changed after a result). B: Gate 0 one-sided 95% (diff - 1.645 SE > 0) for the drift baseline, counterfactuals and the post-Gate C drift re-check (owner 2026-11-04: 1.645 at both). C: Gate 0 runs the thesis on all assets at once per side and tests the pooled diff (week clusters shared across assets); each asset proceeds only if its own diff > 0. FAIL kills the thesis as written; no re-tuning. Drift baseline repeated at the locked geometry after Gate C (one-sided). 2026-11-04 amendment: the model-filtered drift test at the allocator's threshold is DELETED -- edge-level gates never depend on the allocator. All edges re-checked (counterfactuals + drift at the locked geometry) at every RECERT before any gate that removes edges. Rule C amended 2026-11-04: the card pre-registers its asset universe (where the mechanism exists) before any data; Gate 0 pools over that universe, every asset still reported. Tiered drift bar (2026-11-04): drift baseline one-sided 90 % (z 1.28) when every counterfactual passes at 95 %, else 95 %.",
+      "canonical": "docs/mldp/rules/THEORY_CHECK_RULE_D075.md",
+      "register": "D075",
+      "amended": "2026-11-02 (A + B + C)",
+      "superseded_in_part_by": "THEORY_CHECK_GATE_0_D090 (2026-11-09): the Gate 0 / re-check pass rule"
+    },
+    {
+      "id": "DENOISE_BEFORE_CLUSTERING_D076",
+      "adopted": "2026-11-02",
+      "rule": "Every correlation matrix that is clustered or inverted is denoised first (MLAM p.24: assumed throughout the Element; p.87: denoise and detone before clustering): Marcenko-Pastur fit (findMaxEval, bWidth .01), nFacts = eigenvalues above lambda+ with no floor (Snippet 2.4), constant residual eigenvalue (Snippet 2.5); detone one market component only when the market test passes (first eigenvalue > lambda+ and first-eigenvector loadings one-signed in >= 95% of 1,000 iid row bootstraps, seed 0). Applies to Step 07 HRP (clustering matrix only; weights use the denoised, never the detoned, matrix) and to backtest-trial ONC (DSR/FWER E[K], 07b portfolio trials, threshold PBO). Exception: Step 01 clusters features on the variation-of-information matrix (MLAM Ch.3), where Marcenko-Pastur does not apply.",
+      "canonical": "shared/backtest_statistics/afml_ch14_dsr.py TRIAL_CORR_RULE; portfolio_allocator/07_hrp_linkage_robustness.py DENOISE_RULE; register D076"
+    },
+    {
+      "id": "ONC_SEARCH_CONVERGENCE_D077",
+      "adopted": "2026-11-03",
+      "rule": "Any ONC result that drives a decision must be seed-stable: test it across seeds (partition VI, and the downstream verdict) before relying on it. Step 01 feature ONC = best silhouette-quality partition over 20 restarts x n_init 50, ties to the lowest seed. Trial ONC (DSR/FWER E[K]) = D076 unreduced at n_init 10 (seed-stable, T2/T7); the p.55 PCA reduction is not used.",
+      "canonical": "shared/features/clustered_feature_importance.py onc_best_of_restarts; register D077"
+    },
+    {
+      "id": "EDGE_LEVEL_GATES_BEFORE_EDGE_UNIVERSE",
+      "adopted": "2026-11-04",
+      "rule": "An edge enters config/edge_universe.json only after every EDGE-LEVEL gate passes (runbook Section 6A KEY RULES: Gate 0, A, B, C, PBO, stress (D079), post-Gate C drift re-check, Task 2A exact mean, Steps 01-09, CV leakage (D080), Gate D v4 (D078), Level-1 DSR / FWER (D054)). No edge-level gate may depend on the allocator (its final_live_threshold) or on the Step 04 selected_threshold. Threshold-dependent checks are DEPLOYMENT-stage gates after the allocator: strategy risk (D055), Gate E holdout (D023), the live-threshold label audit (D081, report); a deployment failure means the edge is not deployed and returns to research (removed from edge_universe).",
+      "why": "Owner 2026-11-04 (RECERT): 'for an edge to go live ... it has passed all the necessary checks or gates in its edge level phase not going to the future (allocator) and then coming back'; the Step 04 threshold 'is never the threshold that goes live'."
+    },
+    {
+      "id": "GATE_D_V4_D078",
+      "adopted": "2026-11-04 (v4.1: D1 decision point and D2 weighted throughout approved)",
+      "rule": "Gate D = D1 (F1 of meta acting when the cross-fitted calibrated P(win) > the weighted base rate b, vs primary F1 2b/(1+b), ISO-week block bootstrap 10,000, PASS if 5th pct of the difference > 0) AND D2 (return-attribution-weighted log loss of the cross-fitted WEIGHTED calibrator vs the weighted base rate, week-clustered, PASS if mean - 1.645 SE > 0). AUC is a diagnostic. The live calibrator is fitted with the same weights (D082). Canonical: docs/mldp/rules/GATE_D_V4_D078.md.",
+      "why": "AFML s.3.7 pp.52-53, s.14.8 pp.206-207, s.4.6 pp.68-69, Snippet 7.4, s.9.4 pp.134-135, s.10.3; owner 2026-11-04."
+    },
+    {
+      "id": "NO_MODEL_ROW_FLOOR_D085",
+      "adopted": "2026-11-04",
+      "rule": "There is no minimum model-row count for an edge (the >= 2000 floor of 2026-09-29 is removed). An edge goes through every edge-level gate with the event count its own thesis produces; the statistical gates decide. Never densify a trigger (e.g. several near-duplicate entries per day) to inflate the row count. Quote the model-row count in every gate record.",
+      "why": "Owner 2026-11-04: 'we have gates that will kill it regardless ... any edge with its own thesis floor gets to go through the pipeline'.",
+      "canonical": "runbook Revision 46 Section 6A Step 7; register D085"
+    },
+    {
+      "id": "THEORY_CHECK_GATE_0_D090",
+      "adopted": "2026-11-09",
+      "rule": "Gate 0 decides per asset and side on that asset's own events: main counterfactual C1 own diff - 1.28 SE > 0 (full history), every other counterfactual > 0, own C1 diff > 0 on 2022+, >= 100 events in the edge and each counterfactual, >= 2 events/week on 2022+ (D092), a verdict only inside the card's universe. C1 must be drift-neutral (only the stated cause removed). Month-matched drift and the pooled result are reported diagnostics. The post-Gate C re-check and RECERT repeat the test at the locked cell.",
+      "why": "Owner 2026-11-09 'i approve this'; MLAM s.1.2.2 p.4, s.1.4.2 pp.8-9; AFML s.3.6.",
+      "canonical": "docs/mldp/rules/THEORY_CHECK_RULE_D075.md (D090 section); register D090"
+    },
+    {
+      "id": "FIRING_RATE_D089",
+      "adopted": "2026-11-09",
+      "rule": "Every edge fires >= 2 times a week on 2022+ (D092, 2026-11-10; was >= 3 under D089); cards state events/week before Gate 0.",
+      "why": "Owner 2026-11-09 (D089); lowered to 2 by owner 2026-11-10 (D092): the firing rate had become the main Gate 0 killer.",
+      "canonical": "register D089, D092"
+    },
+    {
+      "id": "GATE_C_FULL_HISTORY_ERA_SCALED_D088",
+      "adopted": "2026-11-09",
+      "rule": "Gate C, PBO and DSR run on the full history with the broker half-spread x the era factor max(1, min(Duka spread ratio, points ratio)); the locked cell's 2022+ exec mean (plain broker model) must be > 0; a Gate C that failed PBO stays killed.",
+      "why": "Owner 2026-11-09.",
+      "canonical": "register D088"
+    },
+    {
+      "id": "GATE_LENIENCY_D087",
+      "adopted": "2026-11-05",
+      "rule": "FWER report-only (DSR > 0.95 stays); strategy-risk deployment threshold 0.10; Gate D fail -> superseded by D091 (Gate D is not a gate); trials never reset.",
+      "why": "Owner 2026-11-05 'approve all 5'.",
+      "canonical": "register D087"
+    },
+    {
+      "id": "GATE_D_NOT_A_GATE_D091",
+      "adopted": "2026-11-09",
+      "rule": "Gate D (D078 v4.1) is run and reported for every edge but never blocks config/edge_universe.json. The primary decides the edge (Gate 0, Gates A-C, PBO, stress, D090 re-check, DSR); the allocator's 04b/04c threshold choice (lowest threshold = every trade) decides how the meta-model is used.",
+      "why": "Owner 2026-11-09; AFML s.3.7 p.53, s.14.8 pp.206-207; MLAM s.5.5.",
+      "canonical": "register D091; docs/mldp/rules/GATE_D_V4_D078.md header"
+    },
+    {
+      "id": "SEARCH_GRID_D093",
+      "adopted": "2026-11-10",
+      "rule": "Gate A/C grid = lookbacks 1,2,4,6,8 h x EWM 150 x verticals 1,2,4,8,16,24,48,96 h x PT:SL 1:1,1.5:1,2:1 = 120 cells; every cell searched and paid (D050-A). No per-card holding-period band.",
+      "why": "Owner 2026-11-10; EWM spans and 168 h were near-duplicate trials.",
+      "canonical": "register D093; shared/research/gate_a_grid.sh"
+    }
+  ],
+  "authoritative_runbook": "config/us500_edge_search_ledger.json -> RUNBOOK_v5.1_2026-10-16.full_text"
+}

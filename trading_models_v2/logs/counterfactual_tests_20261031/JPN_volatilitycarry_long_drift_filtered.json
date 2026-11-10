@@ -1,0 +1,61 @@
+{
+ "asset": "JPN",
+ "edge": "volatilitycarry_long",
+ "final_live_threshold": 0.42,
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md (addendum)",
+ "oof_rows": 4891,
+ "all_oof": {
+  "n": 4891,
+  "mean_R": 0.11574,
+  "ci_lo": 0.00409,
+  "ci_hi": 0.22739,
+  "weeks": 211
+ },
+ "taken": {
+  "n": 173,
+  "mean_R": 0.10983,
+  "ci_lo": -0.21008,
+  "ci_hi": 0.42973,
+  "weeks": 47
+ },
+ "not_taken": {
+  "n": 4718,
+  "mean_R": 0.11596,
+  "ci_lo": 0.00173,
+  "ci_hi": 0.23018,
+  "weeks": 211
+ },
+ "F1_U_unconditional": {
+  "baseline_mean_R": 0.08342,
+  "baseline_se": 0.03664,
+  "diff": 0.02641,
+  "diff_ci_lo": -0.30146,
+  "diff_ci_hi": 0.35428,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.39776
+ },
+ "F1_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.13755,
+  "baseline_se": 0.10848,
+  "diff": -0.02772,
+  "diff_ci_lo": -0.41184,
+  "diff_ci_hi": 0.35641,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.58414
+ },
+ "F1_H_hour_matched": {
+  "baseline_mean_R": 0.08371,
+  "baseline_se": 0.1094,
+  "diff": 0.02612,
+  "diff_ci_lo": -0.359,
+  "diff_ci_hi": 0.41124,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.39596
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+ "F2_taken_minus_not_taken": {
+  "diff": -0.00613,
+  "ci_lo": -0.34582,
+  "ci_hi": 0.33356
+ }
+}

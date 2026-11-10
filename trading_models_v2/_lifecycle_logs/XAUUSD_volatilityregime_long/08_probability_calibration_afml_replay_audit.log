@@ -1,0 +1,30 @@
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\feature_expansion.py:266: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["SADF_ct_50"] = sadf_series(
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\feature_expansion.py:275: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Entropy_Kontoyiannis_100"] = rolling_entropy(
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\feature_expansion.py:287: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Parkinson_Vol_20"] = parkinson_volatility(high, low, window=20)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\feature_expansion.py:288: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Corwin_Schultz_Spread_1"] = corwin_schultz_spread(high, low, sample_length=1)
+C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\feature_expansion.py:289: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  out["Becker_Parkinson_Vol_1"] = becker_parkinson_volatility(high, low, sample_length=1)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\sklearn\base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\sklearn\base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.1 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+================================================================================
+V2 STEP 08: PROBABILITY/CALIBRATION/AFML REPLAY AUDIT — XAUUSD/volatilityregime_long
+================================================================================
+Status: PASS
+Pass: 11 | Warn: 1 | Fail: 0
+Runtime rows scored: 2,644
+Research overlap rows: 2,641
+Approved signals: 149 (5.64%)
+Raw replay max diff: 0.000e+00
+Calibrated replay max diff: 0.000e+00
+AFML replay max diff: 0.000e+00
+Threshold mismatches: 0
+Report: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\volatilityregime_long\reports\probability_calibration_afml_replay_audit_report.json
+✅ Replay audit passed. Edge is ready for edge_manifest export, but remains non-deployable until manifest export and allocator gates.

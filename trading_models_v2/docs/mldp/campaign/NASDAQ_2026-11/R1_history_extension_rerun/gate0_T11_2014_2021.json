@@ -1,0 +1,973 @@
+{
+ "thesis": "T11",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T11_fix_pressure_reversal/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 1.0,
+  "ewm_span": 100,
+  "vertical_h": 1.0,
+  "pt": 1.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "NASDAQ": {
+   "both_touch_bars": 66,
+   "LONG": {
+    "n_edge": 438,
+    "edge_mean_R": 0.06773,
+    "random_all_mean_R": 0.02434,
+    "drift_month_matched": {
+     "diff": 0.04824,
+     "se": 0.04752,
+     "lower_bound_1p645": -0.02993,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.0084,
+     "se": 0.04692,
+     "lower_bound_1p645": -0.06878,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.04147,
+      "se": 0.04003,
+      "lower_bound_1p645": -0.02438,
+      "PASS": false,
+      "n": 452,
+      "inverted_mean_R": 0.02625
+     },
+     "C2": {
+      "diff": 0.05511,
+      "se": 0.04053,
+      "lower_bound_1p645": -0.01157,
+      "PASS": false,
+      "n": 899,
+      "inverted_mean_R": 0.01262
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.0031,
+     "se": 0.06067,
+     "lower_bound_1p645": -0.10291,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 452,
+    "edge_mean_R": -0.02625,
+    "random_all_mean_R": -0.02296,
+    "drift_month_matched": {
+     "diff": 0.00119,
+     "se": 0.04481,
+     "lower_bound_1p645": -0.07252,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.01079,
+     "se": 0.04501,
+     "lower_bound_1p645": -0.06325,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.04604,
+      "se": 0.03942,
+      "lower_bound_1p645": -0.0188,
+      "PASS": false,
+      "n": 438,
+      "inverted_mean_R": -0.07229
+     },
+     "C2": {
+      "diff": -0.01187,
+      "se": 0.03456,
+      "lower_bound_1p645": -0.06872,
+      "PASS": false,
+      "n": 1051,
+      "inverted_mean_R": -0.01439
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.05592,
+     "se": 0.0608,
+     "lower_bound_1p645": -0.04409,
+     "PASS": false
+    }
+   }
+  },
+  "US500": {
+   "both_touch_bars": 49,
+   "LONG": {
+    "n_edge": 333,
+    "edge_mean_R": 0.02445,
+    "random_all_mean_R": 0.01323,
+    "drift_month_matched": {
+     "diff": 0.01394,
+     "se": 0.05533,
+     "lower_bound_1p645": -0.07708,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.05977,
+     "se": 0.05627,
+     "lower_bound_1p645": -0.0328,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.00948,
+      "se": 0.05244,
+      "lower_bound_1p645": -0.09575,
+      "PASS": false,
+      "n": 315,
+      "inverted_mean_R": 0.03393
+     },
+     "C2": {
+      "diff": 0.00976,
+      "se": 0.04635,
+      "lower_bound_1p645": -0.06648,
+      "PASS": false,
+      "n": 692,
+      "inverted_mean_R": 0.0147
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.00982,
+     "se": 0.0637,
+     "lower_bound_1p645": -0.1146,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 315,
+    "edge_mean_R": -0.03393,
+    "random_all_mean_R": -0.00922,
+    "drift_month_matched": {
+     "diff": -0.01726,
+     "se": 0.05592,
+     "lower_bound_1p645": -0.10924,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.02347,
+     "se": 0.05579,
+     "lower_bound_1p645": -0.11524,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.00948,
+      "se": 0.05244,
+      "lower_bound_1p645": -0.09575,
+      "PASS": false,
+      "n": 333,
+      "inverted_mean_R": -0.02445
+     },
+     "C2": {
+      "diff": 0.02048,
+      "se": 0.04542,
+      "lower_bound_1p645": -0.05423,
+      "PASS": false,
+      "n": 758,
+      "inverted_mean_R": -0.05442
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.07685,
+     "se": 0.07858,
+     "lower_bound_1p645": -0.05242,
+     "PASS": false
+    }
+   }
+  },
+  "DAX": {
+   "both_touch_bars": 32,
+   "LONG": {
+    "n_edge": 893,
+    "edge_mean_R": 0.01345,
+    "random_all_mean_R": -0.00121,
+    "drift_month_matched": {
+     "diff": 0.01467,
+     "se": 0.03195,
+     "lower_bound_1p645": -0.03788,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.02677,
+     "se": 0.03012,
+     "lower_bound_1p645": -0.02279,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.00891,
+      "se": 0.02628,
+      "lower_bound_1p645": -0.03432,
+      "PASS": false,
+      "n": 1097,
+      "inverted_mean_R": 0.00454
+     },
+     "C2": {
+      "diff": 0.04511,
+      "se": 0.03187,
+      "lower_bound_1p645": -0.00732,
+      "PASS": false,
+      "n": 943,
+      "inverted_mean_R": -0.03166
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.01086,
+     "se": 0.04331,
+     "lower_bound_1p645": -0.0604,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 1097,
+    "edge_mean_R": -0.00454,
+    "random_all_mean_R": -0.01118,
+    "drift_month_matched": {
+     "diff": 0.01499,
+     "se": 0.02822,
+     "lower_bound_1p645": -0.03143,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.0256,
+     "se": 0.02691,
+     "lower_bound_1p645": -0.01868,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.00891,
+      "se": 0.02628,
+      "lower_bound_1p645": -0.03432,
+      "PASS": false,
+      "n": 893,
+      "inverted_mean_R": -0.01345
+     },
+     "C2": {
+      "diff": -0.02606,
+      "se": 0.02939,
+      "lower_bound_1p645": -0.07442,
+      "PASS": false,
+      "n": 946,
+      "inverted_mean_R": 0.02152
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.00667,
+     "se": 0.03395,
+     "lower_bound_1p645": -0.04919,
+     "PASS": false
+    }
+   }
+  },
+  "JPN": {
+   "both_touch_bars": 40,
+   "LONG": {
+    "n_edge": 532,
+    "edge_mean_R": 0.04433,
+    "random_all_mean_R": 0.01561,
+    "drift_month_matched": {
+     "diff": 0.02475,
+     "se": 0.04496,
+     "lower_bound_1p645": -0.04921,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.01875,
+     "se": 0.04418,
+     "lower_bound_1p645": -0.05393,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.01077,
+      "se": 0.04431,
+      "lower_bound_1p645": -0.06212,
+      "PASS": false,
+      "n": 597,
+      "inverted_mean_R": 0.03355
+     },
+     "C2": {
+      "diff": 0.08032,
+      "se": 0.04736,
+      "lower_bound_1p645": 0.00241,
+      "PASS": true,
+      "n": 404,
+      "inverted_mean_R": -0.036
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.05895,
+     "se": 0.06485,
+     "lower_bound_1p645": -0.04772,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 597,
+    "edge_mean_R": -0.0369,
+    "random_all_mean_R": -0.00724,
+    "drift_month_matched": {
+     "diff": -0.02671,
+     "se": 0.04128,
+     "lower_bound_1p645": -0.09461,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.03658,
+     "se": 0.04028,
+     "lower_bound_1p645": -0.10284,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.00742,
+      "se": 0.0444,
+      "lower_bound_1p645": -0.06561,
+      "PASS": false,
+      "n": 532,
+      "inverted_mean_R": -0.04433
+     },
+     "C2": {
+      "diff": -0.06325,
+      "se": 0.04459,
+      "lower_bound_1p645": -0.1366,
+      "PASS": false,
+      "n": 462,
+      "inverted_mean_R": 0.02635
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.04299,
+     "se": 0.05596,
+     "lower_bound_1p645": -0.04907,
+     "PASS": false
+    }
+   }
+  },
+  "HK": {
+   "both_touch_bars": 37,
+   "LONG": {
+    "n_edge": 946,
+    "edge_mean_R": -0.01654,
+    "random_all_mean_R": 0.00864,
+    "drift_month_matched": {
+     "diff": -0.02093,
+     "se": 0.03019,
+     "lower_bound_1p645": -0.0706,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.03247,
+     "se": 0.02766,
+     "lower_bound_1p645": -0.07796,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.0568,
+      "se": 0.02779,
+      "lower_bound_1p645": -0.10251,
+      "PASS": false,
+      "n": 964,
+      "inverted_mean_R": 0.04026
+     },
+     "C2": {
+      "diff": 0.05995,
+      "se": 0.11476,
+      "lower_bound_1p645": -0.12882,
+      "PASS": null,
+      "n": 29,
+      "inverted_mean_R": -0.07649
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.06248,
+     "se": 0.03875,
+     "lower_bound_1p645": -0.12622,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 964,
+    "edge_mean_R": -0.04233,
+    "random_all_mean_R": -0.00622,
+    "drift_month_matched": {
+     "diff": -0.03548,
+     "se": 0.02957,
+     "lower_bound_1p645": -0.08413,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.01801,
+     "se": 0.02658,
+     "lower_bound_1p645": -0.06174,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.05676,
+      "se": 0.02781,
+      "lower_bound_1p645": -0.10251,
+      "PASS": false,
+      "n": 946,
+      "inverted_mean_R": 0.01443
+     },
+     "C2": {
+      "diff": 0.13944,
+      "se": 0.10152,
+      "lower_bound_1p645": -0.02756,
+      "PASS": null,
+      "n": 23,
+      "inverted_mean_R": -0.18177
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.01941,
+     "se": 0.03858,
+     "lower_bound_1p645": -0.04406,
+     "PASS": false
+    }
+   }
+  },
+  "XAUUSD": {
+   "both_touch_bars": 110,
+   "LONG": {
+    "n_edge": 1042,
+    "edge_mean_R": 0.01112,
+    "random_all_mean_R": -0.00299,
+    "drift_month_matched": {
+     "diff": 0.01813,
+     "se": 0.03328,
+     "lower_bound_1p645": -0.03661,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.02091,
+     "se": 0.03499,
+     "lower_bound_1p645": -0.03666,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.0359,
+      "se": 0.03661,
+      "lower_bound_1p645": -0.09612,
+      "PASS": false,
+      "n": 1003,
+      "inverted_mean_R": 0.04702
+     },
+     "C2": {
+      "diff": 0.02625,
+      "se": 0.0379,
+      "lower_bound_1p645": -0.03609,
+      "PASS": false,
+      "n": 855,
+      "inverted_mean_R": -0.01513
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.01652,
+     "se": 0.05392,
+     "lower_bound_1p645": -0.07219,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 1003,
+    "edge_mean_R": -0.04702,
+    "random_all_mean_R": 0.00777,
+    "drift_month_matched": {
+     "diff": -0.05101,
+     "se": 0.03448,
+     "lower_bound_1p645": -0.10773,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.0673,
+     "se": 0.03626,
+     "lower_bound_1p645": -0.12694,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.03398,
+      "se": 0.03648,
+      "lower_bound_1p645": -0.094,
+      "PASS": false,
+      "n": 1042,
+      "inverted_mean_R": -0.01304
+     },
+     "C2": {
+      "diff": -0.07445,
+      "se": 0.0376,
+      "lower_bound_1p645": -0.13631,
+      "PASS": false,
+      "n": 849,
+      "inverted_mean_R": 0.02743
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.05022,
+     "se": 0.05097,
+     "lower_bound_1p645": -0.13406,
+     "PASS": false
+    }
+   }
+  },
+  "GBPJPY": {
+   "both_touch_bars": 78,
+   "LONG": {
+    "n_edge": 1042,
+    "edge_mean_R": 0.01302,
+    "random_all_mean_R": 0.01089,
+    "drift_month_matched": {
+     "diff": 0.00481,
+     "se": 0.03397,
+     "lower_bound_1p645": -0.05106,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.01082,
+     "se": 0.03399,
+     "lower_bound_1p645": -0.04509,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.01444,
+      "se": 0.03394,
+      "lower_bound_1p645": -0.0414,
+      "PASS": false,
+      "n": 1011,
+      "inverted_mean_R": -0.00141
+     },
+     "C2": {
+      "diff": -0.00632,
+      "se": 0.03692,
+      "lower_bound_1p645": -0.06706,
+      "PASS": false,
+      "n": 1004,
+      "inverted_mean_R": 0.01934
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.02534,
+     "se": 0.04813,
+     "lower_bound_1p645": -0.10451,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 1011,
+    "edge_mean_R": 0.00141,
+    "random_all_mean_R": -0.0013,
+    "drift_month_matched": {
+     "diff": 0.00501,
+     "se": 0.03269,
+     "lower_bound_1p645": -0.04877,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.00993,
+     "se": 0.03261,
+     "lower_bound_1p645": -0.0437,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.01444,
+      "se": 0.03394,
+      "lower_bound_1p645": -0.0414,
+      "PASS": false,
+      "n": 1042,
+      "inverted_mean_R": -0.01302
+     },
+     "C2": {
+      "diff": 0.04646,
+      "se": 0.03356,
+      "lower_bound_1p645": -0.00874,
+      "PASS": false,
+      "n": 1003,
+      "inverted_mean_R": -0.04505
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.00978,
+     "se": 0.04753,
+     "lower_bound_1p645": -0.06841,
+     "PASS": false
+    }
+   }
+  },
+  "USDMXN": {
+   "both_touch_bars": 67,
+   "LONG": {
+    "n_edge": 1043,
+    "edge_mean_R": 0.00034,
+    "random_all_mean_R": 0.0133,
+    "drift_month_matched": {
+     "diff": -0.00839,
+     "se": 0.03426,
+     "lower_bound_1p645": -0.06474,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.01072,
+     "se": 0.03481,
+     "lower_bound_1p645": -0.06798,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.03424,
+      "se": 0.0371,
+      "lower_bound_1p645": -0.09526,
+      "PASS": false,
+      "n": 1007,
+      "inverted_mean_R": 0.03458
+     },
+     "C2": {
+      "diff": 0.04427,
+      "se": 0.03796,
+      "lower_bound_1p645": -0.01817,
+      "PASS": false,
+      "n": 993,
+      "inverted_mean_R": -0.04393
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.02666,
+     "se": 0.04756,
+     "lower_bound_1p645": -0.10489,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 1007,
+    "edge_mean_R": -0.03458,
+    "random_all_mean_R": -0.00946,
+    "drift_month_matched": {
+     "diff": -0.02394,
+     "se": 0.03505,
+     "lower_bound_1p645": -0.08159,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.04553,
+     "se": 0.03564,
+     "lower_bound_1p645": -0.10416,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": -0.03424,
+      "se": 0.0371,
+      "lower_bound_1p645": -0.09526,
+      "PASS": false,
+      "n": 1043,
+      "inverted_mean_R": -0.00034
+     },
+     "C2": {
+      "diff": -0.10313,
+      "se": 0.04069,
+      "lower_bound_1p645": -0.17008,
+      "PASS": false,
+      "n": 974,
+      "inverted_mean_R": 0.06856
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.06592,
+     "se": 0.04916,
+     "lower_bound_1p645": -0.01495,
+     "PASS": false
+    }
+   }
+  },
+  "USOIL": {
+   "both_touch_bars": 1,
+   "LONG": {
+    "n_edge": 165,
+    "edge_mean_R": 0.02794,
+    "random_all_mean_R": 0.00152,
+    "drift_month_matched": {
+     "diff": 0.02762,
+     "se": 0.0713,
+     "lower_bound_1p645": -0.08966,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.05023,
+     "se": 0.06635,
+     "lower_bound_1p645": -0.05892,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.05688,
+      "se": 0.05574,
+      "lower_bound_1p645": -0.03482,
+      "PASS": false,
+      "n": 214,
+      "inverted_mean_R": -0.02894
+     },
+     "C2": {
+      "diff": 0.08236,
+      "se": 0.07019,
+      "lower_bound_1p645": -0.03311,
+      "PASS": false,
+      "n": 202,
+      "inverted_mean_R": -0.05442
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.02523,
+     "se": 0.0879,
+     "lower_bound_1p645": -0.11937,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 214,
+    "edge_mean_R": 0.02894,
+    "random_all_mean_R": -0.00615,
+    "drift_month_matched": {
+     "diff": 0.03908,
+     "se": 0.06287,
+     "lower_bound_1p645": -0.06435,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.02213,
+     "se": 0.0596,
+     "lower_bound_1p645": -0.07591,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.05688,
+      "se": 0.05574,
+      "lower_bound_1p645": -0.03482,
+      "PASS": false,
+      "n": 165,
+      "inverted_mean_R": -0.02794
+     },
+     "C2": {
+      "diff": 0.09671,
+      "se": 0.05738,
+      "lower_bound_1p645": 0.00232,
+      "PASS": true,
+      "n": 248,
+      "inverted_mean_R": -0.06777
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.03273,
+     "se": 0.08164,
+     "lower_bound_1p645": -0.16703,
+     "PASS": false
+    }
+   }
+  },
+  "BTCUSD": {
+   "both_touch_bars": 87,
+   "LONG": {
+    "n_edge": 506,
+    "edge_mean_R": -0.00472,
+    "random_all_mean_R": -0.00135,
+    "drift_month_matched": {
+     "diff": -0.00349,
+     "se": 0.04519,
+     "lower_bound_1p645": -0.07783,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.00745,
+     "se": 0.04656,
+     "lower_bound_1p645": -0.08405,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.06529,
+      "se": 0.04389,
+      "lower_bound_1p645": -0.00691,
+      "PASS": false,
+      "n": 481,
+      "inverted_mean_R": -0.07
+     },
+     "C2": {
+      "diff": -0.08704,
+      "se": 0.04849,
+      "lower_bound_1p645": -0.1668,
+      "PASS": false,
+      "n": 451,
+      "inverted_mean_R": 0.08232
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": -0.11246,
+     "se": 0.06936,
+     "lower_bound_1p645": -0.22655,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 481,
+    "edge_mean_R": 0.06169,
+    "random_all_mean_R": -0.00874,
+    "drift_month_matched": {
+     "diff": 0.0711,
+     "se": 0.04314,
+     "lower_bound_1p645": 0.00013,
+     "PASS": true
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.10474,
+     "se": 0.04422,
+     "lower_bound_1p645": 0.03201,
+     "PASS": true
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.05697,
+      "se": 0.04324,
+      "lower_bound_1p645": -0.01415,
+      "PASS": false,
+      "n": 506,
+      "inverted_mean_R": 0.00472
+     },
+     "C2": {
+      "diff": 0.04583,
+      "se": 0.04518,
+      "lower_bound_1p645": -0.02849,
+      "PASS": false,
+      "n": 504,
+      "inverted_mean_R": 0.01586
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": 0.00399,
+     "se": 0.06755,
+     "lower_bound_1p645": -0.10713,
+     "PASS": false
+    }
+   }
+  }
+ },
+ "universe": [
+  "XAUUSD",
+  "GBPJPY",
+  "USDMXN"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": "2014-01-01",
+  "end": "2022-01-01"
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 3127,
+   "drift_month_matched": {
+    "diff": 0.00465,
+    "se": 0.01891,
+    "lower_bound_1p645": -0.02646,
+    "PASS": false,
+    "lower_bound_tiered": -0.02646,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": -0.0185,
+     "se": 0.02019,
+     "lower_bound_1p645": -0.05172,
+     "PASS": false,
+     "n": 3021
+    },
+    "C2": {
+     "diff": 0.02118,
+     "se": 0.02002,
+     "lower_bound_1p645": -0.01175,
+     "PASS": false,
+     "n": 2852
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 3021,
+   "drift_month_matched": {
+    "diff": -0.02327,
+    "se": 0.01961,
+    "lower_bound_1p645": -0.05553,
+    "PASS": false,
+    "lower_bound_tiered": -0.05553,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": -0.01786,
+     "se": 0.02012,
+     "lower_bound_1p645": -0.05097,
+     "PASS": false,
+     "n": 3127
+    },
+    "C2": {
+     "diff": -0.04254,
+     "se": 0.02011,
+     "lower_bound_1p645": -0.07563,
+     "PASS": false,
+     "n": 2826
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  },
+  "SHORT": {
+   "z": 1.645,
+   "reason": "standard 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "XAUUSD": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "GBPJPY": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "USDMXN": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "XAUUSD": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "GBPJPY": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  },
+  "USDMXN": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "seconds": 16.6
+}

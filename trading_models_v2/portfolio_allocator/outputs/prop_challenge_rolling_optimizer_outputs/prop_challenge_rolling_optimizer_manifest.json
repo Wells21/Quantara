@@ -1,0 +1,1080 @@
+{
+  "active_account_rules": {
+    "account_stage": "phase1",
+    "artifact_policy": "hashless_structural_account_rules",
+    "assume_fresh_daily_reset_at_simulation_start": true,
+    "current_balance": 23558.12,
+    "current_high_watermark": 25146.73,
+    "daily_drawdown": {
+      "breach_basis": "lower_of_balance_or_equity",
+      "bucket_offset_hours": 2.0,
+      "enabled": true,
+      "mode": "pct_of_higher_day_start_balance_or_equity",
+      "pct": 0.05,
+      "reset_hour_utc": 22,
+      "reset_timezone": "UTC boundary corresponding to the prop rule; verify DST before each run"
+    },
+    "daily_symbol_risk": {
+      "enabled": false,
+      "enforcement_mode": "disabled",
+      "internal_operating_amount": null,
+      "internal_operating_pct": null,
+      "max_amount": null,
+      "max_pct": null
+    },
+    "description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name.",
+    "floating_loss_guard": {
+      "action": "block_new_trades",
+      "amount": null,
+      "enabled": false,
+      "internal_operating_amount": null,
+      "internal_operating_pct": null,
+      "pct": null
+    },
+    "initial_balance": 25000.0,
+    "maximum_risk_per_trade": {
+      "amount": null,
+      "enabled": false,
+      "pct": null
+    },
+    "minimum_trading_days": {
+      "day_count_mode": "minimum_profit",
+      "enabled": true,
+      "minimum_day_profit_amount": 125.0,
+      "minimum_day_profit_pct": 0.005,
+      "required_days": 3
+    },
+    "operational_permissions": {
+      "automation_allowed": true,
+      "news_trading_allowed": true,
+      "vps_allowed": true,
+      "weekend_holding_allowed": true
+    },
+    "overall_drawdown": {
+      "amount": 2500.0,
+      "breach_basis": "lower_of_balance_or_equity",
+      "enabled": true,
+      "high_watermark_basis": "balance",
+      "pct": 0.1,
+      "trailing_stops_at_initial_balance": false,
+      "type": "static"
+    },
+    "profile_label": "current_prop_account",
+    "profit_target": {
+      "enabled": true,
+      "pct": 0.05,
+      "stop_immediately_when_eligible": true,
+      "target_balance": 26250.0
+    },
+    "schema_version": "v1",
+    "source_path": "portfolio_allocator/config/active_account_rules.json"
+  },
+  "counts": {
+    "fast_frontier_eligible_scenarios": 9,
+    "fast_safe_eligible_scenarios": 4,
+    "foundation_candidate_specs": 43,
+    "hrp_scenario_groups": 1,
+    "ledger_rows": 14662,
+    "ranked_scenarios": 43,
+    "scenario_configs": 43,
+    "speed_safety_frontier_rows": 23,
+    "stage1_rows": 516,
+    "stage2_candidate_ids": 43,
+    "stage2_rows": 34400
+  },
+  "created_at": "2026-10-17T21:39:54+00:00",
+  "failure_definition": "FAIL = active-account overall drawdown breach, active daily-drawdown breach, enabled daily-symbol-risk breach, or the configured profit target plus minimum-valid-day requirement not reached before available history ends.",
+  "fast_frontier_metrics": {
+    "base_daily_drawdown_fail_rate": 0.0,
+    "base_daily_symbol_risk_fail_rate": 0.0,
+    "base_end_of_history_fail_rate": 0.1,
+    "base_fail_rate": 0.195,
+    "base_hard_fail_rate": 0.095,
+    "base_max_actual_trade_risk_pct": 0.004996250176756618,
+    "base_max_drawdown_fail_rate": 0.095,
+    "base_max_single_trade_risk_pct": 0.005,
+    "base_median_actual_trade_risk_pct": 0.0003826149691720284,
+    "base_median_days": 100.0,
+    "base_median_min_lot_binding_rate": 0.5627452687408757,
+    "base_median_skipped_asset_trade_count": 0.0,
+    "base_median_skipped_edge_trade_count": 0.0,
+    "base_median_skipped_min_lot_exceeds_total_capacity": 0.0,
+    "base_median_skipped_min_lot_inflation_guard": 0.0,
+    "base_median_skipped_zero_total_capacity": 0.0,
+    "base_median_target_trade_risk_pct": 0.0002846443947417201,
+    "base_median_trade_acceptance_rate": 0.9989194320100316,
+    "base_p95_days": 200.84999999999997,
+    "base_p99_calendar_days": 355.00086171134285,
+    "base_p99_days": 255.11000000000018,
+    "base_pass_rate": 0.805,
+    "base_prob_under_30": 0.09006211180124224,
+    "base_worst_days": 284.0,
+    "foundation_candidate_name": "afmlconc_q95_cap2p00_budget20_trade50",
+    "foundation_research_role": "afml_ch10_concurrency_budget",
+    "max_asset_open_risk_pct": 0.016,
+    "max_daily_drawdown_fail_rate_across_costs": 0.0,
+    "max_edge_open_risk_pct": 0.013,
+    "max_family_open_risk_pct": 0.013,
+    "max_hard_fail_rate_across_costs": 0.1175,
+    "max_min_lot_risk_inflation": NaN,
+    "max_open_trades_per_asset": 80,
+    "max_open_trades_per_edge": 40,
+    "max_total_open_risk_pct": 0.02,
+    "min_pass_rate_across_costs": 0.7825,
+    "min_worst_buffer_across_costs": -32.07153565171393,
+    "overlap_mode": "afmlconc_cap2p00",
+    "scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap2p00_budget20_trade50__budget20p0000pct__maxtrade0p5000pct__afmlconc_cap2p00__minlotinfloff__current_prop_account",
+    "stress02_daily_drawdown_fail_rate": 0.0,
+    "stress02_daily_symbol_risk_fail_rate": 0.0,
+    "stress02_end_of_history_fail_rate": 0.1,
+    "stress02_fail_rate": 0.2175,
+    "stress02_hard_fail_rate": 0.1175,
+    "stress02_max_drawdown_fail_rate": 0.1175,
+    "stress02_p99_days": 275.52,
+    "stress02_pass_rate": 0.7825
+  },
+  "fast_frontier_scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap2p00_budget20_trade50__budget20p0000pct__maxtrade0p5000pct__afmlconc_cap2p00__minlotinfloff__current_prop_account",
+  "fast_frontier_selected_by": "fastest_frontier_for_step09",
+  "fast_frontier_source": "speed_safety_frontier",
+  "fast_safe_metrics": {
+    "base_daily_drawdown_fail_rate": 0.0,
+    "base_daily_symbol_risk_fail_rate": 0.0,
+    "base_end_of_history_fail_rate": 0.1,
+    "base_fail_rate": 0.1575,
+    "base_hard_fail_rate": 0.0575,
+    "base_max_actual_trade_risk_pct": 0.004997896422472497,
+    "base_max_drawdown_fail_rate": 0.0575,
+    "base_max_single_trade_risk_pct": 0.005,
+    "base_median_actual_trade_risk_pct": 0.00031926691053238594,
+    "base_median_days": 130.0,
+    "base_median_min_lot_binding_rate": 0.68021621474241,
+    "base_median_skipped_asset_trade_count": 0.0,
+    "base_median_skipped_edge_trade_count": 0.0,
+    "base_median_skipped_min_lot_exceeds_total_capacity": 0.0,
+    "base_median_skipped_min_lot_inflation_guard": 0.0,
+    "base_median_skipped_zero_total_capacity": 0.0,
+    "base_median_target_trade_risk_pct": 0.00021275154989963636,
+    "base_median_trade_acceptance_rate": 0.9988577006507593,
+    "base_p95_days": 249.2,
+    "base_p99_calendar_days": 409.56757809120353,
+    "base_p99_days": 295.1199999999999,
+    "base_pass_rate": 0.8425,
+    "base_prob_under_30": 0.06231454005934718,
+    "base_worst_days": 305.0,
+    "foundation_candidate_name": "afmlconc_q95_cap1p50_budget15_trade50",
+    "foundation_research_role": "afml_ch10_concurrency_budget",
+    "max_asset_open_risk_pct": 0.012,
+    "max_daily_drawdown_fail_rate_across_costs": 0.0,
+    "max_edge_open_risk_pct": 0.01,
+    "max_family_open_risk_pct": 0.01,
+    "max_hard_fail_rate_across_costs": 0.075,
+    "max_min_lot_risk_inflation": NaN,
+    "max_open_trades_per_asset": 80,
+    "max_open_trades_per_edge": 40,
+    "max_total_open_risk_pct": 0.015,
+    "min_pass_rate_across_costs": 0.825,
+    "min_worst_buffer_across_costs": -31.248205460226018,
+    "overlap_mode": "afmlconc_cap1p50",
+    "scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap1p50_budget15_trade50__budget15p0000pct__maxtrade0p5000pct__afmlconc_cap1p50__minlotinfloff__current_prop_account",
+    "stress02_daily_drawdown_fail_rate": 0.0,
+    "stress02_daily_symbol_risk_fail_rate": 0.0,
+    "stress02_end_of_history_fail_rate": 0.1,
+    "stress02_fail_rate": 0.175,
+    "stress02_hard_fail_rate": 0.075,
+    "stress02_max_drawdown_fail_rate": 0.075,
+    "stress02_p99_days": 288.67999999999984,
+    "stress02_pass_rate": 0.825
+  },
+  "fast_safe_scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap1p50_budget15_trade50__budget15p0000pct__maxtrade0p5000pct__afmlconc_cap1p50__minlotinfloff__current_prop_account",
+  "fast_safe_selected_by": "fastest_after_safety_gates",
+  "no_deadline_evaluation": true,
+  "outputs": {
+    "best_fast_frontier_scenario": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/best_fast_frontier_scenario.csv",
+    "best_fast_safe_scenario": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/best_fast_safe_scenario.csv",
+    "best_robust_scenario": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/best_robust_scenario.csv",
+    "foundation_candidate_comparison": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/foundation_candidate_comparison.csv",
+    "manifest": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/prop_challenge_rolling_optimizer_manifest.json",
+    "ranked_scenarios": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/ranked_scenarios.csv",
+    "speed_safety_frontier": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/speed_safety_frontier.csv",
+    "stage1_aggregate": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/stage1_aggregate.csv",
+    "stage1_run_results": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/stage1_run_results.csv",
+    "stage2_aggregate": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/stage2_aggregate.csv",
+    "stage2_run_results": "portfolio_allocator/outputs/prop_challenge_rolling_optimizer_outputs/stage2_run_results.csv"
+  },
+  "pipeline_mode": "v2_generic_active_account_foundation_probe_targeted_budget_overlap_minlot_diagnostics",
+  "profile_roles": [
+    "compound_velocity"
+  ],
+  "robust_scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap1p50_budget10_trade50__budget10p0000pct__maxtrade0p5000pct__afmlconc_cap1p50__minlotinfloff__current_prop_account",
+  "rolling_optimizer_status": "PASS",
+  "schema_version": "v2.3",
+  "selected_by": "robust_pass_rate_first",
+  "selected_metrics": {
+    "base_daily_drawdown_fail_rate": 0.0,
+    "base_daily_symbol_risk_fail_rate": 0.0,
+    "base_end_of_history_fail_rate": 0.1,
+    "base_fail_rate": 0.115,
+    "base_hard_fail_rate": 0.015,
+    "base_max_actual_trade_risk_pct": 0.004986567899446856,
+    "base_max_drawdown_fail_rate": 0.015,
+    "base_max_single_trade_risk_pct": 0.005,
+    "base_median_actual_trade_risk_pct": 0.0002730073617329072,
+    "base_median_days": 175.0,
+    "base_median_min_lot_binding_rate": 0.8147671954299555,
+    "base_median_skipped_asset_trade_count": 0.0,
+    "base_median_skipped_edge_trade_count": 0.0,
+    "base_median_skipped_min_lot_exceeds_total_capacity": 0.0,
+    "base_median_skipped_min_lot_inflation_guard": 0.0,
+    "base_median_skipped_zero_total_capacity": 0.0,
+    "base_median_target_trade_risk_pct": 0.0001438217654806684,
+    "base_median_trade_acceptance_rate": 0.9983660130718954,
+    "base_p95_days": 311.0,
+    "base_p99_calendar_days": 562.0321148305554,
+    "base_p99_days": 401.93999999999994,
+    "base_pass_rate": 0.885,
+    "base_prob_under_30": 0.05367231638418079,
+    "base_worst_days": 418.0,
+    "foundation_candidate_name": "afmlconc_q95_cap1p50_budget10_trade50",
+    "foundation_research_role": "afml_ch10_concurrency_budget",
+    "max_asset_open_risk_pct": 0.012,
+    "max_daily_drawdown_fail_rate_across_costs": 0.0,
+    "max_edge_open_risk_pct": 0.01,
+    "max_family_open_risk_pct": 0.01,
+    "max_hard_fail_rate_across_costs": 0.0475,
+    "max_min_lot_risk_inflation": NaN,
+    "max_open_trades_per_asset": 80,
+    "max_open_trades_per_edge": 40,
+    "max_total_open_risk_pct": 0.015,
+    "min_pass_rate_across_costs": 0.8525,
+    "min_worst_buffer_across_costs": -12.837597349040152,
+    "overlap_mode": "afmlconc_cap1p50",
+    "scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap1p50_budget10_trade50__budget10p0000pct__maxtrade0p5000pct__afmlconc_cap1p50__minlotinfloff__current_prop_account",
+    "stress02_daily_drawdown_fail_rate": 0.0,
+    "stress02_daily_symbol_risk_fail_rate": 0.0,
+    "stress02_end_of_history_fail_rate": 0.1,
+    "stress02_fail_rate": 0.1475,
+    "stress02_hard_fail_rate": 0.0475,
+    "stress02_max_drawdown_fail_rate": 0.0475,
+    "stress02_p99_days": 399.4000000000001,
+    "stress02_pass_rate": 0.8525
+  },
+  "selected_scenario_id": "raw_r__core_plus_watchlist__compound_velocity__single__direct_weight__foundation_afmlconc_q95_cap1p50_budget10_trade50__budget10p0000pct__maxtrade0p5000pct__afmlconc_cap1p50__minlotinfloff__current_prop_account",
+  "settings": {
+    "account_rule_profile": "current_prop_account",
+    "account_rule_profiles_available": {
+      "current_prop_account": {
+        "account_stage": "phase1",
+        "daily_drawdown_configs": [
+          {
+            "account_rule_profile": "current_prop_account",
+            "account_rule_profile_description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name.",
+            "account_stage": "phase1",
+            "amount": 1250.0,
+            "breach_basis": "lower_of_balance_or_equity",
+            "daily_symbol_risk_enforcement_mode": "disabled",
+            "daily_symbol_risk_rule_enabled": false,
+            "enabled": true,
+            "internal_operating_risk_per_symbol_amount": null,
+            "internal_operating_risk_per_symbol_pct": null,
+            "max_daily_risk_per_symbol_amount": null,
+            "max_daily_risk_per_symbol_pct": null,
+            "max_overall_loss_pct": 0.1,
+            "mode": "pct_of_higher_day_start_balance_or_equity",
+            "name": "current_prop_account",
+            "pct": 0.05,
+            "symbol_risk_admission_policy": "disabled",
+            "symbol_risk_mode": "disabled",
+            "symbol_risk_safety_reserve_amount": null,
+            "trailing_drawdown": false,
+            "trailing_stops_at_initial_balance": false
+          }
+        ],
+        "description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name."
+      }
+    },
+    "account_stage": "phase1",
+    "account_start_daily_loss_floor": 22380.214,
+    "account_start_profit_to_target": 2691.880000000001,
+    "account_start_remaining_balance_buffer": 1058.119999999999,
+    "account_start_trailing_drawdown_floor": 22500.0,
+    "account_start_trailing_high_watermark": 25146.73,
+    "active_account_rule_profiles": [
+      "current_prop_account"
+    ],
+    "active_account_rules": {
+      "account_stage": "phase1",
+      "artifact_policy": "hashless_structural_account_rules",
+      "assume_fresh_daily_reset_at_simulation_start": true,
+      "current_balance": 23558.12,
+      "current_high_watermark": 25146.73,
+      "daily_drawdown": {
+        "breach_basis": "lower_of_balance_or_equity",
+        "bucket_offset_hours": 2.0,
+        "enabled": true,
+        "mode": "pct_of_higher_day_start_balance_or_equity",
+        "pct": 0.05,
+        "reset_hour_utc": 22,
+        "reset_timezone": "UTC boundary corresponding to the prop rule; verify DST before each run"
+      },
+      "daily_symbol_risk": {
+        "enabled": false,
+        "enforcement_mode": "disabled",
+        "internal_operating_amount": null,
+        "internal_operating_pct": null,
+        "max_amount": null,
+        "max_pct": null
+      },
+      "description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name.",
+      "floating_loss_guard": {
+        "action": "block_new_trades",
+        "amount": null,
+        "enabled": false,
+        "internal_operating_amount": null,
+        "internal_operating_pct": null,
+        "pct": null
+      },
+      "initial_balance": 25000.0,
+      "maximum_risk_per_trade": {
+        "amount": null,
+        "enabled": false,
+        "pct": null
+      },
+      "minimum_trading_days": {
+        "day_count_mode": "minimum_profit",
+        "enabled": true,
+        "minimum_day_profit_amount": 125.0,
+        "minimum_day_profit_pct": 0.005,
+        "required_days": 3
+      },
+      "operational_permissions": {
+        "automation_allowed": true,
+        "news_trading_allowed": true,
+        "vps_allowed": true,
+        "weekend_holding_allowed": true
+      },
+      "overall_drawdown": {
+        "amount": 2500.0,
+        "breach_basis": "lower_of_balance_or_equity",
+        "enabled": true,
+        "high_watermark_basis": "balance",
+        "pct": 0.1,
+        "trailing_stops_at_initial_balance": false,
+        "type": "static"
+      },
+      "profile_label": "current_prop_account",
+      "profit_target": {
+        "enabled": true,
+        "pct": 0.05,
+        "stop_immediately_when_eligible": true,
+        "target_balance": 26250.0
+      },
+      "schema_version": "v1",
+      "source_path": "portfolio_allocator/config/active_account_rules.json"
+    },
+    "assume_fresh_daily_reset_at_simulation_start": true,
+    "base_portfolio_risk_budget_pcts": [
+      0.1,
+      0.15,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "broker_risk_source_policy": "04B per-trade risk_per_1_lot derived from the 00A MT5 broker profile and 00B causal historical profit-currency-to-account-currency conversion",
+    "broker_volume_rounding_mode": "ceil_then_backoff_to_largest_safe_step",
+    "ceil_risk_cap_breach_policy": "backoff_to_largest_safe_executable_lot",
+    "cost_stress_values_stage2": [
+      0.0,
+      0.02
+    ],
+    "current_balance": 23558.12,
+    "daily_drawdown_configs": [
+      {
+        "account_rule_profile": "current_prop_account",
+        "account_rule_profile_description": "Edit this one file for the current prop account and current independent phase. The scripts never branch on a prop-firm name.",
+        "account_stage": "phase1",
+        "amount": 1250.0,
+        "breach_basis": "lower_of_balance_or_equity",
+        "daily_symbol_risk_enforcement_mode": "disabled",
+        "daily_symbol_risk_rule_enabled": false,
+        "enabled": true,
+        "internal_operating_risk_per_symbol_amount": null,
+        "internal_operating_risk_per_symbol_pct": null,
+        "max_daily_risk_per_symbol_amount": null,
+        "max_daily_risk_per_symbol_pct": null,
+        "max_overall_loss_pct": 0.1,
+        "mode": "pct_of_higher_day_start_balance_or_equity",
+        "name": "current_prop_account",
+        "pct": 0.05,
+        "symbol_risk_admission_policy": "disabled",
+        "symbol_risk_mode": "disabled",
+        "symbol_risk_safety_reserve_amount": null,
+        "trailing_drawdown": false,
+        "trailing_stops_at_initial_balance": false
+      }
+    ],
+    "daily_loss_amount": 1177.906,
+    "daily_loss_pct": 0.05,
+    "daily_reset_offset_hours": 2.0,
+    "daily_reset_timezone": "UTC boundary corresponding to the prop rule; verify DST before each run",
+    "daily_symbol_risk_enforcement_mode": "disabled",
+    "daily_symbol_risk_rule_enabled": false,
+    "fast_frontier_gates": {
+      "base_hard_fail_rate_max": 0.15,
+      "base_pass_rate_min": 0.8,
+      "stress02_hard_fail_rate_max": 0.27,
+      "stress02_pass_rate_min": 0.7
+    },
+    "fast_frontier_ranking_order": [
+      "base_median_days ASC",
+      "stress02_pass_rate DESC",
+      "base_pass_rate DESC",
+      "stress02_hard_fail_rate ASC",
+      "base_hard_fail_rate ASC",
+      "stress02_daily_drawdown_fail_rate ASC",
+      "base_daily_drawdown_fail_rate ASC",
+      "stress02_end_of_history_fail_rate ASC",
+      "base_end_of_history_fail_rate ASC",
+      "base_prob_under_30 DESC",
+      "base_prob_under_20 DESC",
+      "min_worst_buffer_across_costs DESC",
+      "base_max_open_risk_pct ASC",
+      "max_single_trade_risk_pct ASC"
+    ],
+    "fast_safe_gates": {
+      "base_hard_fail_rate_max": 0.1,
+      "base_pass_rate_min": 0.84,
+      "stress02_hard_fail_rate_max": 0.16,
+      "stress02_pass_rate_min": 0.75
+    },
+    "fast_safe_ranking_order": [
+      "base_median_days ASC",
+      "stress02_pass_rate DESC",
+      "base_pass_rate DESC",
+      "stress02_hard_fail_rate ASC",
+      "base_hard_fail_rate ASC",
+      "stress02_daily_drawdown_fail_rate ASC",
+      "base_daily_drawdown_fail_rate ASC",
+      "stress02_end_of_history_fail_rate ASC",
+      "base_end_of_history_fail_rate ASC",
+      "base_prob_under_30 DESC",
+      "base_prob_under_20 DESC",
+      "min_worst_buffer_across_costs DESC",
+      "base_max_open_risk_pct ASC",
+      "max_single_trade_risk_pct ASC"
+    ],
+    "floating_loss_guard": {
+      "action": "block_new_trades",
+      "amount": null,
+      "enabled": false,
+      "internal_operating_amount": null,
+      "internal_operating_pct": null,
+      "pct": null
+    },
+    "foundation_investigation_mode": true,
+    "foundation_run_all_candidates_in_stage2": true,
+    "foundation_scenario_specs": [
+      {
+        "base_portfolio_risk_budget_pct": 0.9,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p50_budget90_trade20",
+        "overlap_mode": "cap1p50",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0025,
+        "name": "pairwise_cap1p50_budget100_trade25",
+        "overlap_mode": "cap1p50",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.003,
+        "name": "pairwise_cap1p50_budget100_trade30",
+        "overlap_mode": "cap1p50",
+        "research_role": "higher_single_trade_risk_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0035,
+        "name": "pairwise_cap1p70_budget100_trade35",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "higher_single_trade_risk_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.9,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p50relaxed_budget90_trade20",
+        "overlap_mode": "cap1p50_relaxed_counts",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0025,
+        "name": "pairwise_cap1p50relaxed_budget100_trade25",
+        "overlap_mode": "cap1p50_relaxed_counts",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.8,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p60_budget80_trade20",
+        "overlap_mode": "cap1p60_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.9,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0025,
+        "name": "pairwise_cap1p60_budget90_trade25",
+        "overlap_mode": "cap1p60_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.8,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0025,
+        "name": "pairwise_cap1p70_budget80_trade25",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": 6.0,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_minlotcap6x",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "min_lot_inflation_guard_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.8,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0025,
+        "name": "pairwise_cap1p80_budget80_trade25",
+        "overlap_mode": "cap1p80_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p80_budget100_trade20",
+        "overlap_mode": "cap1p80_diversified",
+        "research_role": "pairwise_covering_design"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.8,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0012,
+        "name": "pairwise_cap1p00_budget80_trade12",
+        "overlap_mode": "cap1p00_diversified",
+        "research_role": "lower_total_risk_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.7,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0012,
+        "name": "pairwise_cap1p20_budget70_trade12",
+        "overlap_mode": "cap1p20_diversified",
+        "research_role": "lower_total_risk_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 0.9,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.0018,
+        "name": "pairwise_cap1p20_budget90_trade18",
+        "overlap_mode": "cap1p20_diversified",
+        "research_role": "lower_total_risk_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge1",
+        "overlap_mode": "cap1p70_edge1",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge2",
+        "overlap_mode": "cap1p70_edge2",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge4",
+        "overlap_mode": "cap1p70_edge4",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge6",
+        "overlap_mode": "cap1p70_edge6",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge8",
+        "overlap_mode": "cap1p70_edge8",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_edge10",
+        "overlap_mode": "cap1p70_edge10",
+        "research_role": "open_trades_per_edge_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": 2.0,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_minlotcap2x",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "min_lot_inflation_guard_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": 3.0,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_minlotcap3x",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "min_lot_inflation_guard_probe"
+      },
+      {
+        "base_portfolio_risk_budget_pct": 1.0,
+        "max_min_lot_risk_inflation": 4.0,
+        "max_single_trade_risk_pct": 0.002,
+        "name": "pairwise_cap1p70_budget100_trade20_minlotcap4x",
+        "overlap_mode": "cap1p70_diversified",
+        "research_role": "min_lot_inflation_guard_probe"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.1,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap1p50_budget10_trade50",
+        "overlap_mode": "afmlconc_cap1p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.15,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap1p50_budget15_trade50",
+        "overlap_mode": "afmlconc_cap1p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.15,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap2p00_budget15_trade50",
+        "overlap_mode": "afmlconc_cap2p00",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.2,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap2p00_budget20_trade50",
+        "overlap_mode": "afmlconc_cap2p00",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.3,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap2p50_budget30_trade50",
+        "overlap_mode": "afmlconc_cap2p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.1,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap1p50_budget10_trade50",
+        "overlap_mode": "afmlconc_cap1p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.15,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap1p50_budget15_trade50",
+        "overlap_mode": "afmlconc_cap1p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.15,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap2p00_budget15_trade50",
+        "overlap_mode": "afmlconc_cap2p00",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.2,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap2p00_budget20_trade50",
+        "overlap_mode": "afmlconc_cap2p00",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.3,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap2p50_budget30_trade50",
+        "overlap_mode": "afmlconc_cap2p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 1.0,
+        "base_portfolio_risk_budget_pct": 0.2,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_qmax_cap2p00_budget20_trade50",
+        "overlap_mode": "afmlconc_cap2p00",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 1.0,
+        "base_portfolio_risk_budget_pct": 0.3,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_qmax_cap2p50_budget30_trade50",
+        "overlap_mode": "afmlconc_cap2p50",
+        "research_role": "afml_ch10_concurrency_budget"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.4,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap3p00_budget40_trade50",
+        "overlap_mode": "afmlconc_cap3p00",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.5,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap3p50_budget50_trade50",
+        "overlap_mode": "afmlconc_cap3p50",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      },
+      {
+        "afml_concurrency_quantile": 0.95,
+        "base_portfolio_risk_budget_pct": 0.6,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q95_cap4p00_budget60_trade50",
+        "overlap_mode": "afmlconc_cap4p00",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.4,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap3p00_budget40_trade50",
+        "overlap_mode": "afmlconc_cap3p00",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.5,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap3p50_budget50_trade50",
+        "overlap_mode": "afmlconc_cap3p50",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      },
+      {
+        "afml_concurrency_quantile": 0.9,
+        "base_portfolio_risk_budget_pct": 0.6,
+        "max_min_lot_risk_inflation": null,
+        "max_single_trade_risk_pct": 0.005,
+        "name": "afmlconc_q90_cap4p00_budget60_trade50",
+        "overlap_mode": "afmlconc_cap4p00",
+        "research_role": "afml_ch10_concurrency_budget_fast"
+      }
+    ],
+    "initial_balance": 25000.0,
+    "initial_drawdown_floor": 22500.0,
+    "internal_operating_risk_per_symbol_amount": null,
+    "internal_operating_risk_per_symbol_pct": null,
+    "max_daily_risk_per_symbol_amount": null,
+    "max_daily_risk_per_symbol_pct": null,
+    "max_min_lot_risk_inflation_values": [
+      2.0,
+      3.0,
+      4.0,
+      6.0
+    ],
+    "max_overall_loss_pct": 0.1,
+    "max_single_trade_risk_pcts": [
+      0.0012,
+      0.0018,
+      0.002,
+      0.0025,
+      0.003,
+      0.0035,
+      0.005
+    ],
+    "maximum_risk_per_trade": {
+      "amount": null,
+      "enabled": false,
+      "pct": null
+    },
+    "min_lot_risk_inflation_guard_applies_only_when_min_lot_binds": true,
+    "min_remaining_observation_days_after_start": 0,
+    "minimum_lot_fallback_preserved": true,
+    "minimum_trading_days": {
+      "day_count_mode": "minimum_profit",
+      "enabled": true,
+      "minimum_day_profit_amount": 125.0,
+      "minimum_day_profit_pct": 0.005,
+      "required_days": 3
+    },
+    "overall_drawdown_type": "static",
+    "overlap_mode_library": {
+      "afmlconc_cap1p50": {
+        "max_asset_open_risk_pct": 0.012,
+        "max_edge_open_risk_pct": 0.01,
+        "max_family_open_risk_pct": 0.01,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.015,
+        "name": "afmlconc_cap1p50"
+      },
+      "afmlconc_cap2p00": {
+        "max_asset_open_risk_pct": 0.016,
+        "max_edge_open_risk_pct": 0.013,
+        "max_family_open_risk_pct": 0.013,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.02,
+        "name": "afmlconc_cap2p00"
+      },
+      "afmlconc_cap2p50": {
+        "max_asset_open_risk_pct": 0.02,
+        "max_edge_open_risk_pct": 0.016,
+        "max_family_open_risk_pct": 0.016,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.025,
+        "name": "afmlconc_cap2p50"
+      },
+      "afmlconc_cap3p00": {
+        "max_asset_open_risk_pct": 0.024,
+        "max_edge_open_risk_pct": 0.019,
+        "max_family_open_risk_pct": 0.019,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.03,
+        "name": "afmlconc_cap3p00"
+      },
+      "afmlconc_cap3p50": {
+        "max_asset_open_risk_pct": 0.028,
+        "max_edge_open_risk_pct": 0.022,
+        "max_family_open_risk_pct": 0.022,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.035,
+        "name": "afmlconc_cap3p50"
+      },
+      "afmlconc_cap4p00": {
+        "max_asset_open_risk_pct": 0.032,
+        "max_edge_open_risk_pct": 0.025,
+        "max_family_open_risk_pct": 0.025,
+        "max_open_trades_per_asset": 80,
+        "max_open_trades_per_edge": 40,
+        "max_total_open_risk_pct": 0.04,
+        "name": "afmlconc_cap4p00"
+      },
+      "cap1p00_diversified": {
+        "max_asset_open_risk_pct": 0.008,
+        "max_edge_open_risk_pct": 0.0025,
+        "max_family_open_risk_pct": 0.0065,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.01,
+        "name": "cap1p00_diversified"
+      },
+      "cap1p20_diversified": {
+        "max_asset_open_risk_pct": 0.009,
+        "max_edge_open_risk_pct": 0.003,
+        "max_family_open_risk_pct": 0.007,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.012,
+        "name": "cap1p20_diversified"
+      },
+      "cap1p50": {
+        "max_asset_open_risk_pct": 0.012,
+        "max_edge_open_risk_pct": 0.01,
+        "max_family_open_risk_pct": 0.01,
+        "max_open_trades_per_asset": 10,
+        "max_open_trades_per_edge": 3,
+        "max_total_open_risk_pct": 0.015,
+        "name": "cap1p50"
+      },
+      "cap1p50_relaxed_counts": {
+        "max_asset_open_risk_pct": 0.012,
+        "max_edge_open_risk_pct": 0.01,
+        "max_family_open_risk_pct": 0.01,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.015,
+        "name": "cap1p50_relaxed_counts"
+      },
+      "cap1p60_diversified": {
+        "max_asset_open_risk_pct": 0.009,
+        "max_edge_open_risk_pct": 0.0035,
+        "max_family_open_risk_pct": 0.0075,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.016,
+        "name": "cap1p60_diversified"
+      },
+      "cap1p70_diversified": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_diversified"
+      },
+      "cap1p70_edge1": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 1,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge1"
+      },
+      "cap1p70_edge10": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 10,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge10"
+      },
+      "cap1p70_edge2": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 2,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge2"
+      },
+      "cap1p70_edge4": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 4,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge4"
+      },
+      "cap1p70_edge6": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 6,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge6"
+      },
+      "cap1p70_edge8": {
+        "max_asset_open_risk_pct": 0.0095,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 20,
+        "max_open_trades_per_edge": 8,
+        "max_total_open_risk_pct": 0.017,
+        "name": "cap1p70_edge8"
+      },
+      "cap1p80_diversified": {
+        "max_asset_open_risk_pct": 0.01,
+        "max_edge_open_risk_pct": 0.004,
+        "max_family_open_risk_pct": 0.008,
+        "max_open_trades_per_asset": 15,
+        "max_open_trades_per_edge": 5,
+        "max_total_open_risk_pct": 0.018,
+        "name": "cap1p80_diversified"
+      }
+    },
+    "reduce_trade_to_fit_effective_risk_cap": true,
+    "robust_ranking_order": [
+      "stress02_pass_rate DESC",
+      "base_pass_rate DESC",
+      "stress02_hard_fail_rate ASC",
+      "base_hard_fail_rate ASC",
+      "stress02_daily_drawdown_fail_rate ASC",
+      "base_daily_drawdown_fail_rate ASC",
+      "stress02_end_of_history_fail_rate ASC",
+      "base_end_of_history_fail_rate ASC",
+      "base_median_days ASC",
+      "base_prob_under_30 DESC",
+      "base_prob_under_20 DESC",
+      "min_worst_buffer_across_costs DESC",
+      "base_max_open_risk_pct ASC",
+      "max_single_trade_risk_pct ASC"
+    ],
+    "skip_trade_if_no_executable_lot_fits": true,
+    "stage2_max_rolling_starts": 400,
+    "stage2_robust_candidate_share": 43,
+    "stage2_top_n_candidates": 43,
+    "target_balance": 26250.0,
+    "trailing_drawdown_stop_floor": 25000.0
+  }
+}

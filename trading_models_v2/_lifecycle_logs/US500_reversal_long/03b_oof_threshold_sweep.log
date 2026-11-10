@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — US500/reversal_long
+================================================================================
+Edge: US500/reversal_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\oof\us500_reversal_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,565
+Date range: 2022-06-10 14:00:35.240000+00:00 -> 2026-06-12 16:03:39.898000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    US500/reversal_long
+segment                          reversal_long
+threshold                                 0.56
+candidate_count                           4565
+take_rate                             0.989923
+trade_count                               4519
+win_rate                              0.347201
+avg_win_r                                  2.0
+avg_loss_r                           -1.033435
+expectancy_r                          0.019776
+payoff_ratio                          1.935293
+profit_factor                         1.029313
+gross_profit_r                          3138.0
+gross_loss_r                       3048.634115
+cumulative_r                         89.365885
+max_drawdown_r                     -184.296176
+sharpe_r                              0.013621
+sortino_r                             0.108141
+calmar_r                              0.484904
+selected_precision                    0.347201
+selected_recall                            1.0
+selected_f1                            0.51544
+clf_precision                         0.347201
+clf_recall                             0.99053
+clf_f1                                0.514173
+clf_accuracy                          0.350493
+clf_balanced_accuracy                 0.500465
+predicted_positive_rate               0.989923
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\oof\us500_reversal_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\oof\us500_reversal_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\oof\us500_reversal_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

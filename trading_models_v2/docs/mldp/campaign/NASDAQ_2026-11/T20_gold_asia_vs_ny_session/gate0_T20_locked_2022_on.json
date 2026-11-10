@@ -1,0 +1,190 @@
+{
+ "thesis": "T20",
+ "card": "docs/mldp/campaign/NASDAQ_2026-11/T20_gold_asia_vs_ny_session/PREREGISTRATION.md",
+ "cell": {
+  "lookback_h": 8.0,
+  "ewm_span": 150,
+  "vertical_h": 4.0,
+  "pt": 2.0,
+  "sl": 1.0
+ },
+ "seed": 20261102,
+ "assets": {
+  "XAUUSD": {
+   "both_touch_bars": 5,
+   "LONG": {
+    "n_edge": 1067,
+    "edge_mean_R": 0.04828,
+    "random_all_mean_R": 0.0347,
+    "drift_month_matched": {
+     "diff": 0.01527,
+     "se": 0.03048,
+     "lower_bound_1p645": -0.03486,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": 0.02125,
+     "se": 0.02692,
+     "lower_bound_1p645": -0.02303,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.07255,
+      "se": 0.03223,
+      "lower_bound_1p645": 0.01953,
+      "PASS": true,
+      "n": 1094,
+      "inverted_mean_R": -0.02427
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": NaN,
+     "se": 0.01904,
+     "lower_bound_1p645": NaN,
+     "PASS": false
+    }
+   },
+   "SHORT": {
+    "n_edge": 1094,
+    "edge_mean_R": 0.01857,
+    "random_all_mean_R": -0.01367,
+    "drift_month_matched": {
+     "diff": 0.03079,
+     "se": 0.03629,
+     "lower_bound_1p645": -0.02892,
+     "PASS": false
+    },
+    "diag_drift_hour_matched": {
+     "diff": -0.01033,
+     "se": 0.04156,
+     "lower_bound_1p645": -0.0787,
+     "PASS": false
+    },
+    "counterfactuals": {
+     "C1": {
+      "diff": 0.06222,
+      "se": 0.03212,
+      "lower_bound_1p645": 0.00939,
+      "PASS": true,
+      "n": 1067,
+      "inverted_mean_R": -0.04365
+     }
+    },
+    "diag_C3_magnitude_top_vs_bottom": {
+     "diff": NaN,
+     "se": 0.02785,
+     "lower_bound_1p645": NaN,
+     "PASS": false
+    }
+   }
+  }
+ },
+ "universe": [
+  "XAUUSD"
+ ],
+ "post_hoc": false,
+ "window": {
+  "start": "2022-01-01",
+  "end": null
+ },
+ "pooled": {
+  "LONG": {
+   "n_edge": 1067,
+   "drift_month_matched": {
+    "diff": 0.01512,
+    "se": 0.03075,
+    "lower_bound_1p645": -0.03546,
+    "PASS": false,
+    "lower_bound_tiered": -0.02424,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.07255,
+     "se": 0.03223,
+     "lower_bound_1p645": 0.01953,
+     "PASS": true,
+     "n": 1094
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 1094,
+   "drift_month_matched": {
+    "diff": 0.031,
+    "se": 0.03598,
+    "lower_bound_1p645": -0.02819,
+    "PASS": false,
+    "lower_bound_tiered": -0.01505,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.06222,
+     "se": 0.03212,
+     "lower_bound_1p645": 0.00939,
+     "PASS": true,
+     "n": 1067
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "NO_EVENTS",
+  "SHORT": "NO_EVENTS"
+ },
+ "drift_bar": {
+  "LONG": {
+   "z": 1.28,
+   "reason": "every counterfactual passes at 95 %"
+  },
+  "SHORT": {
+   "z": 1.28,
+   "reason": "every counterfactual passes at 95 %"
+  }
+ },
+ "verdict_by_asset": {
+  "XAUUSD": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "verdict_by_asset_rev47": {
+  "XAUUSD": {
+   "LONG": "FAIL",
+   "SHORT": "FAIL"
+  }
+ },
+ "window_tests_d090": {
+  "XAUUSD": {
+   "LONG": {
+    "verdict": "PASS",
+    "n_edge": 1067,
+    "C1_diff": 0.07255,
+    "C1_se": 0.03223,
+    "C1_z": 2.251,
+    "C1_pass_90": true,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": 0.01527,
+    "in_card_universe": true
+   },
+   "SHORT": {
+    "verdict": "PASS",
+    "n_edge": 1094,
+    "C1_diff": 0.06222,
+    "C1_se": 0.03212,
+    "C1_z": 1.937,
+    "C1_pass_90": true,
+    "other_cf_diffs": {},
+    "other_cf_ok": true,
+    "thin_counterfactuals": [],
+    "diag_drift_month_matched": 0.03079,
+    "in_card_universe": true
+   }
+  }
+ },
+ "seconds": 2.6
+}

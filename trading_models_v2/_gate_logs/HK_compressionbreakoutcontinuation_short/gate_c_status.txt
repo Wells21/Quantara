@@ -1,0 +1,38 @@
+asset=HK edge=compressionbreakoutcontinuation_short gate_c_exit=0 elapsed_seconds=131
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/compressionbreakoutcontinuation_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H10_E100_V1000_PT2_SL1 [CONTROL]
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 2054
+  250/2054 elapsed=15.5s
+  500/2054 elapsed=26.9s
+  750/2054 elapsed=37.5s
+  1000/2054 elapsed=50.7s
+  1250/2054 elapsed=65.1s
+  1500/2054 elapsed=82.9s
+  1750/2054 elapsed=100.7s
+  2000/2054 elapsed=121.5s
+  2054/2054 elapsed=125.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H10_E100_V1000_PT2_SL1 | -0.013163 | [-0.104971,+0.079209] | 0.9809 | 15.610 | 67.868 | -0.020238 | -0.134516 | 1.000 | 1.000 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.030327 | [-0.074425,+0.129396] | 1.0448 | 23.297 | 87.140 | +0.031242 | +0.309912 | -1.544 | 0.670 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.038286 | [-0.072717,+0.147271] | 1.0570 | 29.052 | 94.754 | +0.031628 | +0.391244 | -1.563 | 0.537 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.014131 | [-0.092835,+0.121049] | 1.0207 | 22.218 | 83.804 | +0.015264 | +0.144402 | -0.754 | 0.703 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V1000_PT2_SL1 | meanR=+0.038286 | R/occupied_day=+0.031628 | R/week=+0.391244 | mean_hold_h=29.052
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.030327 | R/occupied_day=+0.031242 | R/week=+0.309912 | mean_hold_h=23.297
+ 3. H15_E100_V1000_PT2_SL1 | meanR=+0.014131 | R/occupied_day=+0.015264 | R/week=+0.144402 | mean_hold_h=22.218
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\compressionbreakoutcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T123935Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\compressionbreakoutcontinuation_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T123935Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\compressionbreakoutcontinuation_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

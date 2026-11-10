@@ -1,0 +1,61 @@
+{
+ "asset": "HK",
+ "edge": "drawdownhazardcontinuation_short",
+ "final_live_threshold": 0.38,
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION_DRIFT_BASELINE.md (addendum)",
+ "oof_rows": 4205,
+ "all_oof": {
+  "n": 4205,
+  "mean_R": 0.13521,
+  "ci_lo": 0.01693,
+  "ci_hi": 0.25348,
+  "weeks": 202
+ },
+ "taken": {
+  "n": 2571,
+  "mean_R": 0.216,
+  "ci_lo": 0.08631,
+  "ci_hi": 0.34569,
+  "weeks": 197
+ },
+ "not_taken": {
+  "n": 1634,
+  "mean_R": 0.00807,
+  "ci_lo": -0.15279,
+  "ci_hi": 0.16894,
+  "weeks": 160
+ },
+ "F1_U_unconditional": {
+  "baseline_mean_R": 0.09394,
+  "baseline_se": 0.04351,
+  "diff": 0.12206,
+  "diff_ci_lo": -0.03315,
+  "diff_ci_hi": 0.27727,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "F1_M_month_matched_PRIMARY": {
+  "baseline_mean_R": 0.13241,
+  "baseline_se": 0.02793,
+  "diff": 0.08359,
+  "diff_ci_lo": -0.05718,
+  "diff_ci_hi": 0.22436,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0018
+ },
+ "F1_H_hour_matched": {
+  "baseline_mean_R": 0.09104,
+  "baseline_se": 0.02836,
+  "diff": 0.12496,
+  "diff_ci_lo": -0.01614,
+  "diff_ci_hi": 0.26606,
+  "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+  "perm_p_one_sided": 0.0001
+ },
+ "verdict": "NOT DISTINGUISHABLE FROM DRIFT",
+ "F2_taken_minus_not_taken": {
+  "diff": 0.20793,
+  "ci_lo": 0.0013,
+  "ci_hi": 0.41456
+ }
+}

@@ -1,0 +1,109 @@
+AFML Ch.19 "Microstructural Features" audit evidence (2026-10-31)
+==================================================================
+Book: AFML Ch.19 = pdf 308-327 = pp.281-300 (s.19.1-19.7, Snippets 19.1-19.2, Figures 19.1-19.3, exercises 19.1-19.12),
+read line by line from the text; every equation page also read from the page image (pp.284, 286-287, 291-292).
+Source paper read for Snippet 19.2: Corwin and Schultz, NBER 2009 conference version of "A simple way to estimate bid-ask
+spreads from daily high and low prices" (projects.nber.org/confer/2009/mms09/Corwin_Schultz.pdf), eqs (4)-(16) and s.2.1-2.3
+(published version: Journal of Finance 67(2) 2012, pp.719-760, not read).
+Tools: shared/research/ch19_microstructure_audit/ (book_snippets_19_1_19_2.py = Snippets 19.1-19.2 as printed; ch19_audit.py);
+per-asset results: shared/research/ch19_microstructure_audit/results/{ASSET}.json (venv312, BelowNormal).
+Data: research bars = each asset's FFD manifest source bars (mid-quote tick bars, 54k-78k rows, 2022-01 .. 2026-04/07);
+tick sample = the last 4 weekly research tick files per asset (1.0-7.3 M quote ticks, 785-1,583 bars). Holdout never read.
+
+== What Quantara has
+shared/features/afml_ch19_microstructure.py: Parkinson_Vol_20 (p.284, k1 form, 20-bar window), Corwin_Schultz_Spread_1
+(Snippet 19.1, sl = 1), Becker_Parkinson_Vol_1 (Snippet 19.2, sl = 1). In all 6 feature_schema.json (uniform); model inputs:
+HK dhc, JPN rs, XAU rs (all three), JPN vc (Parkinson, Becker-Parkinson), XAU vc (Corwin-Schultz); GBPJPY drc none.
+Live: native_one_row_feature_engine (same formulas on the last 20 bars / current + previous bar), certified every step by
+Phase C.2 (the columns are part of the core feature set).
+Bars (shared/bars/standard_quote_tick_builder.py): OHLC of the MID quote (bid+ask)/2, fixed tick count per bar, no volume
+("No broker volume, vendor volume, or dollar/proxy volume is used"). Raw ticks: timestamp, bidPrice, askPrice, bidVolume,
+askVolume (Dukascopy quoted sizes at the top of the book, not traded volume). No trade prints, no aggressor flags, no order
+book messages, no options.
+
+== 1. Port vs Snippets 19.1-19.2 as printed (all 10 assets)
+max |port - book| on the rows the book returns: Corwin-Schultz 2.2e-16 (sl = 1, 2, 20), Becker-Parkinson 0.0.
+Only difference: rows the book drops (warm-up NaN) the port sets to 0 -- `alpha.where(alpha >= 0, 0)` and
+`sigma.where(sigma >= 0, 0)` map NaN to 0; the book's `alpha[alpha<0]=0` keeps NaN. sl = 1: research bar 0 only
+(Corwin_Schultz_Spread_1 = Becker_Parkinson_Vol_1 = 0 there, every asset); sl = 2: 2 rows, sl = 20: 20 rows (unused).
+Live never sees it (always has a previous bar). Parkinson: equals sqrt(mean(log(H/L)^2) / (4 log 2)) (p.284).
+
+== 2. Corwin-Schultz on mid bars is not a spread
+The estimator rests on "high prices are almost always matched against the offer, and low prices ... against the bid" (p.284;
+paper s.1). Our High/Low are mid quotes, so the bar range contains no spread.
+asset  min/bar CS=0   rho(quoted,CS mid) rho(quoted,CS askH/bidL) CS mid median  quoted median  Roll c / half quoted  k1/cc bar day week  k2/cc bar day week
+BTCUSD  22.7  0.400  +0.070  +0.083  9.11e-04  7.04e-04  0.313  0.978 1.019 1.059  0.829 0.895 0.986
+DAX     14.9  0.395  +0.009  +0.057  3.27e-04  6.51e-05  0.333  0.969 0.975 0.978  0.826 0.859 0.893
+GBPJPY  19.5  0.375  +0.001  +0.061  1.39e-04  7.44e-05  0.044  0.999 1.025 1.064  0.884 0.920 0.981
+HK      13.4  0.408  +0.076  +0.071  2.95e-04  4.69e-04  0.079  0.932 0.950 1.001  0.825 0.877 0.945
+JPN     16.7  0.396  +0.034  +0.035  6.57e-04  1.01e-04  0.380  0.964 0.991 0.970  0.842 0.892 0.894
+NASDAQ  16.2  0.392  +0.111  +0.108  2.87e-04  4.51e-05  0.102  0.969 0.955 0.991  0.807 0.858 0.923
+US500   14.2  0.397  -0.029  -0.010  2.52e-04  6.82e-05  0.374  0.962 0.957 0.973  0.830 0.836 0.886
+USDMXN  17.0  0.397  +0.029  +0.084  1.40e-04  1.79e-04  0.056  0.959 1.061 1.042  0.826 0.961 0.968
+USOIL   15.3  0.402  -0.026  -0.008  9.57e-04  6.82e-04  0.146  0.954 1.008 1.012  0.825 0.869 0.881
+XAUUSD  18.9  0.391  +0.077  +0.096  8.25e-04  1.79e-04  0.000  0.993 0.985 1.042  0.840 0.846 0.942
+(CS=0: share of bars where alpha < 0 was clipped, full history. rho: Spearman with the mean relative quoted spread
+(ask-bid)/mid of the bar's ticks, tick sample. CS on ask-High / bid-Low = the paper's premise rebuilt from quotes.
+Medians: tick sample, per bar, as a fraction of price.)
+=> 37-41 % of bars exactly 0; rank correlation with the spread actually quoted -0.03 to +0.11 (even with ask-High/bid-Low:
+-0.01 to +0.11); median 0.6x (HK) to 6.5x (JPN) the quoted spread. Daily (exercise 19.4): C-S mean 0.23-0.98 % vs quoted
+0.005-0.07 % on the sample days, 33-43 % of days 0. On our data the statistic measures how much a 2-bar range falls short of
+the sum of the 1-bar ranges (beta vs gamma), not liquidity. Spearman(C-S, Parkinson_20) +0.10..+0.18.
+Becker-Parkinson_1 vs Parkinson_20: +0.34..+0.46 (a 2-bar estimate); Parkinson_20 vs rolling std of 20 returns: +0.93..+0.96.
+Step 01 importance (feature_importance_audit.json, MDA mean +- std):
+  GBPJPY drc  Parkinson +0.000276 +- 0.000256  C-S -0.000104 +- 0.000350  B-P -0.000029 +- 0.000279
+  HK dhc      Parkinson -0.000875 +- 0.000658  C-S +0.000009 +- 0.000319  B-P -0.000441 +- 0.000211
+  XAU rs      Parkinson +0.000159 +- 0.000151  C-S +0.000101 +- 0.000203  B-P -0.000011 +- 0.000332
+  XAU vc      Parkinson +0.000123 +- 0.000199  C-S -0.000044 +- 0.000186  B-P +0.000305 +- 0.000184
+  (JPN rs, JPN vc: no audit file.) All within about 1-2 std of 0.
+
+== 3. Snippet 19.2 vs the paper
+Paper eq.(12): sigma = sqrt(k beta / 2) - sqrt(k) alpha with k = 1/(4 log 2) (footnote 3: E[ln(H/L)] = sqrt(sigma^2/k) =
+sqrt(2.77 sigma^2)), i.e. the squared-range constant k1 throughout. Substituting eq.(15) gives Snippet 19.2's form with sqrt(k1)
+where the snippet has k2 = sqrt(8/pi) (the mean-range constant). Zero spread (beta = gamma = 2 k1 sigma^2): alpha = 0, paper
+sigma = 1.0000, Snippet 19.2 = 1.0435 = sqrt(4 log 2) / sqrt(8/pi). A constant factor (no effect on tree splits).
+
+== 4. Roll and the tick rule on mid quotes (s.19.3.1-19.3.2, exercise 19.2)
+Roll c from tick-to-tick mid changes = 0.00-0.38 of the half quoted spread (mid has no bid-ask bounce; lag-1 autocorrelation of
+mid changes -0.46 (BTCUSD) to +0.04 (XAUUSD) reflects quote updating, not trades). On bar closes: lag-1 autocorrelation
+-0.021..+0.008. Zero mid changes (tick rule carries b_t-1): 0.0-5.7 % of ticks. The book's reason to use Roll (quotes absent
+or unrepresentative, p.283) does not apply: we observe quotes; but our quotes are Dukascopy's, not the live broker's
+(reference_broker_spread_decoupling), so an observed-spread feature would differ between research and live.
+
+== 5. Exercise 19.3 (Parkinson vs close-to-close std; bars instead of dollar bars, days, weeks): table above.
+k1 form 0.93-1.06 x close-to-close std; k2 form 0.81-0.99 (lower on bars: discrete ticks shrink the mean range more than its
+square). Exercise 19.4 daily: Snippet 19.2 sigma mean 0.84-0.94 x pooled daily Parkinson.
+
+== 6. Book errata / checks (page images)
+- p.287: alpha = p0 sqrt(sigma_u^2 / Sigma0) printed without the minus: the book's own alpha = -mu/(2 lambda) with mu = p0 and
+  beta = 1/(2 lambda) gives alpha = -p0 sqrt(sigma_u^2 / Sigma0) (Kyle 1985: x = beta (v - p0)).
+- p.292: E[V^B - V^S] middle line swaps the news terms: as printed alpha(1-delta)(eps-(mu+eps)) + alpha delta(mu+eps-eps)
+  = alpha mu (2 delta - 1), not the stated alpha mu (1 - 2 delta); with the p.291 mixture (bad news, prob alpha delta, sells
+  at mu + eps) the terms are alpha(1-delta)((mu+eps)-eps) + alpha delta(eps-(mu+eps)).
+- Snippet 19.2 uses k2 where the paper uses sqrt(k1) (s.3 above).
+- Snippets 19.1-19.2 do not run as printed: pd.stats.moments.* (removed from pandas in 0.23) and typeset en-dashes for minus.
+- p.285 "Becker-Parkinson" vs Beckers [1983] (p.284 and references); p.293 heading "Distibution"; Carlin et al. cited [2007]
+  on p.294, listed (2005) in the references; "Easley et al. [2012]" on pp.293-294 does not say 2012a or 2012b.
+Checked correct: Roll sigma^2[dp] = 2c^2 + sigma_u^2, cov = -c^2, c and sigma_u^2 (p.283); Parkinson k1 = 4 log 2, k2 =
+sqrt(8/pi) (p.284); C-S alpha and S (p.284 = paper eqs 15-16); Kyle x*, beta, lambda, E[pi] = (v-p0)^2/(4 lambda) (p.287);
+PIN bid/ask, spread, delta = 1/2 case and the Poisson mixture (p.291); VPIN, V = alpha mu + 2 eps (p.292).
+
+== 7. Not applicable on our data (book's own data requirements)
+Tick rule and its transformations (19.3.1), Roll (19.3.2): trade prices. Kyle / Amihud / Hasbrouck lambdas (19.4): signed
+traded volume / dollar volume (tick bars have a constant tick count, so ticks cannot stand in for volume). PIN / VPIN (19.5):
+buy- and sell-initiated volume. 19.6.1 order sizes, 19.6.2 cancellations / order types, 19.6.3 TWAP (per-second traded volume),
+19.6.4 options, 19.6.5 signed order flow: trade or order-book data. 19.7 microstructural information phi: a market maker's
+classifier on market-making P&L labels; we are position takers (a variant on our own meta-model's loss would not be the book's
+quantity, and our labels resolve only after the barrier, up to 168 h). Exercises 19.1-19.12 use E-mini tick data / FIX tags
+(not held); 19.2-19.4 run in adapted form above.
+
+== 2026-10-31 implementation (owner: "Approved, proceed with (a) through (e)")
+D071 warm-up NaN (.mask); D072 Corwin_Schultz_Spread_1 removed (6 feature_expansion.py, 6 feature_schema.json -> 187 entries,
+native_one_row_feature_engine v1_7); D073 Snippet 19.2 note; Parkinson kept; module docstring rewritten. Runbook Revision 28.
+tests/test_afml_ch19_microstructure.py 10 pass (venv39 + venv312): equal to Snippets 19.1-19.2 for sl = 1, 2, 20 with NaN on
+the dropped rows; 1.0435 constant; no schema / expansion / live engine computes Corwin_Schultz_Spread_1.
+Scratch Phase C.1: GBPJPY drc, JPN vc compile (187 core); HK dhc, JPN rs, XAU rs, XAU vc: "selected features absent from
+feature schema: ['Corwin_Schultz_Spread_1', 'Entropy_Kontoyiannis_100']" (until the RECERT retrain).
+Phase C.2 (venv39, scratch contract forced PASS for GBPJPY + JPN): PASS, core 187, 128 steps, p50 210 ms / p95 269 ms per step.
+Full venv39 suite: 562 passed, 74 skipped, 7 failed + 3 errors = the 8 Phase C consequence tests, the clock-dependent
+test_live_bar_memory_authority, and test_mldp_backlog (D067 / D068 / D071 records gap; fixed, 30 targeted tests pass).

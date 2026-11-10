@@ -1,0 +1,38 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: GBPJPY/volatilityregime_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 2788
+  250/2788 elapsed=65.6s
+  500/2788 elapsed=139.6s
+  750/2788 elapsed=181.5s
+  1000/2788 elapsed=216.6s
+  1250/2788 elapsed=252.5s
+  1500/2788 elapsed=287.0s
+  1750/2788 elapsed=341.0s
+  2000/2788 elapsed=387.6s
+  2250/2788 elapsed=439.4s
+  2500/2788 elapsed=469.8s
+  2750/2788 elapsed=514.3s
+  2788/2788 elapsed=519.2s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V1000_PT2_SL1 | -0.147933 | [-0.203171,-0.090461] | 0.8012 | 4.659 | 16.761 | -0.762039 | -1.936020 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.025446 | [-0.105884,+0.057112] | 0.9632 | 21.571 | 81.417 | -0.028311 | -0.333019 | 0.037 | 0.216 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.039538 | [-0.104779,+0.027893] | 0.9372 | 16.460 | 66.590 | -0.057648 | -0.517440 | 0.076 | 0.283 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.030681 | [-0.107395,+0.044682] | 0.9559 | 17.036 | 68.868 | -0.043223 | -0.401531 | 0.057 | 0.273 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T141357Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T141357Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\volatilityregime_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

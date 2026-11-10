@@ -1,0 +1,36 @@
+asset=BTCUSD edge=signentropycollapse_short gate_c_exit=0 elapsed_seconds=520
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: BTCUSD/signentropycollapse_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H20_E20_V1000_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V1000_PT1.5_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 2018
+  250/2018 elapsed=117.0s
+  500/2018 elapsed=187.6s
+  750/2018 elapsed=227.6s
+  1000/2018 elapsed=303.3s
+  1250/2018 elapsed=364.8s
+  1500/2018 elapsed=418.9s
+  1750/2018 elapsed=455.5s
+  2000/2018 elapsed=504.5s
+  2018/2018 elapsed=507.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H20_E20_V1000_PT1_SL1 | -0.200499 | [-0.270007,-0.132895] | 0.6701 | 6.012 | 24.116 | -0.800427 | -2.016852 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.091959 | [-0.215918,+0.029946] | 0.8691 | 18.405 | 74.890 | -0.119915 | -0.925024 | 0.150 | 0.327 | 1.0000
+H20_E100_V1000_PT1.5_SL1 | -0.112733 | [-0.210981,-0.011627] | 0.8264 | 14.427 | 53.796 | -0.187540 | -1.134000 | 0.234 | 0.417 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.100717 | [-0.215729,+0.013371] | 0.8574 | 14.891 | 60.506 | -0.162332 | -1.013129 | 0.203 | 0.404 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\signentropycollapse_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T230433Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\signentropycollapse_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T230433Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\BTCUSD\edges\signentropycollapse_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

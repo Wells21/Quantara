@@ -1,0 +1,41 @@
+edge=autocorrelationreversal_long gate_c_exit=0 elapsed_seconds=143
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: US500/autocorrelationreversal_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H20_E50_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E100_V20_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 2952
+  250/2952 elapsed=21.2s
+  500/2952 elapsed=33.3s
+  750/2952 elapsed=39.6s
+  1000/2952 elapsed=47.6s
+  1250/2952 elapsed=52.6s
+  1500/2952 elapsed=58.9s
+  1750/2952 elapsed=69.3s
+  2000/2952 elapsed=80.0s
+  2250/2952 elapsed=98.7s
+  2500/2952 elapsed=108.6s
+  2750/2952 elapsed=122.2s
+  2952/2952 elapsed=136.4s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H20_E50_V1000_PT2_SL1 | -0.000170 | [-0.083928,+0.089464] | 0.9997 | 13.785 | 66.326 | -0.000297 | -0.002343 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.026163 | [-0.060221,+0.120188] | 1.0390 | 17.350 | 73.395 | +0.036190 | +0.359842 | -122.034 | 0.795 | 1.0000
+H20_E100_V20_PT2_SL1 | +0.011435 | [-0.042383,+0.065129] | 1.0252 | 7.940 | 20.562 | +0.034565 | +0.159660 | -116.554 | 1.736 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.024553 | [-0.059177,+0.114511] | 1.0365 | 13.763 | 64.699 | +0.042814 | +0.337698 | -144.370 | 1.002 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H15_E100_V1000_PT2_SL1 | meanR=+0.024553 | R/occupied_day=+0.042814 | R/week=+0.337698 | mean_hold_h=13.763
+ 2. H20_E100_V1000_PT2_SL1 | meanR=+0.026163 | R/occupied_day=+0.036190 | R/week=+0.359842 | mean_hold_h=17.350
+ 3. H20_E100_V20_PT2_SL1 | meanR=+0.011435 | R/occupied_day=+0.034565 | R/week=+0.159660 | mean_hold_h=7.940
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\autocorrelationreversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260914T192902Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\autocorrelationreversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260914T192902Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\autocorrelationreversal_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

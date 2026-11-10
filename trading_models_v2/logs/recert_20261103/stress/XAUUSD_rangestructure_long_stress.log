@@ -1,0 +1,40 @@
+schema_feature_names from 63f4a570:trading_models_v2/assets/XAUUSD/edges/rangestructure_long/contracts/feature_schema.json -> 168 features
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: XAUUSD/rangestructure_long
+entry_delay_ms: 5700
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - H8_E200_V16_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+spread_model: broker
+Exact quote replay events: 4379
+  250/4379 elapsed=48.9s
+  500/4379 elapsed=69.3s
+  750/4379 elapsed=92.3s
+  1000/4379 elapsed=120.6s
+  1250/4379 elapsed=134.7s
+  1500/4379 elapsed=155.9s
+  1750/4379 elapsed=175.5s
+  2000/4379 elapsed=202.6s
+  2250/4379 elapsed=228.0s
+  2500/4379 elapsed=254.1s
+  2750/4379 elapsed=281.0s
+  3000/4379 elapsed=308.1s
+  3250/4379 elapsed=336.1s
+  3500/4379 elapsed=362.5s
+  3750/4379 elapsed=383.0s
+  4000/4379 elapsed=420.4s
+  4250/4379 elapsed=452.5s
+  4379/4379 elapsed=482.7s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage | guard_blocked
+H8_E200_V16_PT2_SL1 | +0.145467 | [+0.067971,+0.222330] | 1.3434 | 15.910 | 56.239 | +0.219432 | +3.215959 | nan | nan | 1.0000 | 0
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H8_E200_V16_PT2_SL1 | meanR=+0.145467 | R/occupied_day=+0.219432 | R/week=+3.215959 | mean_hold_h=15.910
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20261103T225438Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20261103T225438Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\rangestructure_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-22T11:02:37+00:00",
+  "input_edge_returns": "portfolio_allocator\\outputs\\return_streams\\profile_return_streams_daily_core_plus_watchlist_compound_velocity.csv",
+  "input_portfolio_returns": "portfolio_allocator\\outputs\\hrp_linkage_robustness_outputs\\hrp_portfolio_returns_raw_r_core_plus_watchlist_compound_velocity_average.csv",
+  "methodology": {
+    "drawdown_time_under_water": "AFML SS14.5.2 (p.201-202): 95th-percentile drawdown (R units) and 95th-percentile time-under-water (years), computed on each series' own calendar-time equity curve.",
+    "not_a_gate": "This lab is diagnostic only. It does not kill, promote, or reweight edges.",
+    "returns_concentration": "AFML SS14.5.1 (p.199-200): HHI on positive returns, negative returns, and monthly bet counts. 0=uniform, 1=fully concentrated.",
+    "strategy_risk": "AFML Ch.15 (p.211-219): bin_hr gives the minimum precision needed to sustain a target Sharpe ratio given this edge's own payoff ratio and betting frequency; prob_strategy_failure estimates the probability true precision falls short of that bar. Target Sharpe = each target's own observed annualized Sharpe (self-consistency check)."
+  },
+  "n_targets_evaluated": 7,
+  "n_targets_hhi_concentration_flag_above_0p30": 0,
+  "n_targets_prob_strategy_failure_above_50pct": 0,
+  "outputs": {
+    "manifest": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\backtest_statistics_outputs\\backtest_statistics_manifest.json",
+    "report": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\outputs\\backtest_statistics_outputs\\backtest_statistics_report.csv"
+  },
+  "schema_version": "v1.0",
+  "status": "PASS"
+}

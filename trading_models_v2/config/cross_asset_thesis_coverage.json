@@ -1,0 +1,1539 @@
+{
+ "schema_version": "1.0",
+ "created": "2026-10-15",
+ "standing_rule": "USER INSTRUCTION 2026-10-15: every thesis (family) built on ANY asset must be tried on EVERY other asset, and on BOTH sides (long AND short) wherever the mechanism has a mirror, so the search genuinely covers everything. Cross-asset-FEED theses (needing another asset's live data) stay excluded per 2026-10-07 decision. Short side is a priority: recent market-wide selloffs left the long-only live book in deep drawdown.",
+ "how_to_use": "Before starting any asset leg, read not_yet_attempted_on for every family and queue those ports (both sides). After each attempt, regenerate/update this file. 'attempted_on' = an edge folder exists for that asset (folder presence, not a pass); per-attempt verdicts live in each asset's config/<asset>_edge_search_ledger.json.",
+ "caveat_vs_older_memory": "Supersedes the earlier 'don't port families as a shortcut' guidance: porting is now REQUIRED for coverage, but each port must still clear Gates A-D+PBO on its own, and trials are counted for deflated-Sharpe skepticism.",
+ "assets": [
+  "BTCUSD",
+  "DAX",
+  "GBPJPY",
+  "HK",
+  "JPN",
+  "NASDAQ",
+  "US500",
+  "USDMXN",
+  "USOIL",
+  "XAUUSD"
+ ],
+ "n_family_sides": 78,
+ "n_open_asset_gaps": 319,
+ "families_only_ever_built_on_one_side": [
+  "breakdownretestfailure",
+  "candleengulfing",
+  "dailyrangecompletionfade",
+  "downsidejumpcontinuation",
+  "downsidevolatilitycascade",
+  "drawdownhazardcontinuation",
+  "drawupreversalhazard",
+  "explosiveregimecontinuation",
+  "gapreversion",
+  "momentumaccelerationcontinuation",
+  "openingrangebreakout",
+  "overextensionfade",
+  "roundnumberrejection",
+  "sequentialpressure",
+  "signentropycollapse",
+  "upsidebreakoutfailure"
+ ],
+ "matrix": {
+  "absorption_long": {
+   "family": "absorption",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "US500",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "DAX",
+    "US500"
+   ]
+  },
+  "absorption_short": {
+   "family": "absorption",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "bbpextreme_long": {
+   "family": "bbpextreme",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "bbpextreme_short": {
+   "family": "bbpextreme",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "bbsqueezebreakout_long": {
+   "family": "bbsqueezebreakout",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "bbsqueezebreakout_short": {
+   "family": "bbsqueezebreakout",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "breakdownretestfailure_short": {
+   "family": "breakdownretestfailure",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": [
+    "HK"
+   ]
+  },
+  "candleengulfing_long": {
+   "family": "candleengulfing",
+   "side": "long",
+   "attempted_on": [
+    "US500"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "compressionbreakoutcontinuation_long": {
+   "family": "compressionbreakoutcontinuation",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "compressionbreakoutcontinuation_short": {
+   "family": "compressionbreakoutcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "dailyrangecompletionfade_long": {
+   "family": "dailyrangecompletionfade",
+   "side": "long",
+   "attempted_on": [
+    "GBPJPY",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "GBPJPY"
+   ]
+  },
+  "donchiandistance_long": {
+   "family": "donchiandistance",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "donchiandistance_short": {
+   "family": "donchiandistance",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "downsidejumpcontinuation_short": {
+   "family": "downsidejumpcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "downsidevolatilitycascade_short": {
+   "family": "downsidevolatilitycascade",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "drawdownhazardcontinuation_short": {
+   "family": "drawdownhazardcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": [
+    "HK"
+   ]
+  },
+  "drawupreversalhazard_short": {
+   "family": "drawupreversalhazard",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "exhaustionreversal_long": {
+   "family": "exhaustionreversal",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "exhaustionreversal_short": {
+   "family": "exhaustionreversal",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "explosiveregimecontinuation_long": {
+   "family": "explosiveregimecontinuation",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "gapreversion_long": {
+   "family": "gapreversion",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "kalmandeviationfade_long": {
+   "family": "kalmandeviationfade",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "kalmandeviationfade_short": {
+   "family": "kalmandeviationfade",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "liquiditysweepreversal_long": {
+   "family": "liquiditysweepreversal",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "liquiditysweepreversal_short": {
+   "family": "liquiditysweepreversal",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "macdhistaccel_long": {
+   "family": "macdhistaccel",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "macdhistaccel_short": {
+   "family": "macdhistaccel",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "momentumaccelerationcontinuation_long": {
+   "family": "momentumaccelerationcontinuation",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "natrregime_long": {
+   "family": "natrregime",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "natrregime_short": {
+   "family": "natrregime",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "openingrangebreakout_long": {
+   "family": "openingrangebreakout",
+   "side": "long",
+   "attempted_on": [
+    "US500"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "openingrangereversion_long": {
+   "family": "openingrangereversion",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "openingrangereversion_short": {
+   "family": "openingrangereversion",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "overextensionfade_short": {
+   "family": "overextensionfade",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "rangestructure_long": {
+   "family": "rangestructure",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "JPN",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "JPN",
+    "XAUUSD"
+   ]
+  },
+  "rangestructure_short": {
+   "family": "rangestructure",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "reversal_long": {
+   "family": "reversal",
+   "side": "long",
+   "attempted_on": [
+    "DAX",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "DAX"
+   ]
+  },
+  "reversal_short": {
+   "family": "reversal",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "rocmomentum_long": {
+   "family": "rocmomentum",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "rocmomentum_short": {
+   "family": "rocmomentum",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "roundnumberrejection_long": {
+   "family": "roundnumberrejection",
+   "side": "long",
+   "attempted_on": [
+    "US500"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "rsidivergencereversal_long": {
+   "family": "rsidivergencereversal",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "rsidivergencereversal_short": {
+   "family": "rsidivergencereversal",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "rvgimomentumturn_long": {
+   "family": "rvgimomentumturn",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "rvgimomentumturn_short": {
+   "family": "rvgimomentumturn",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "sequentialpressure_long": {
+   "family": "sequentialpressure",
+   "side": "long",
+   "attempted_on": [
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "XAUUSD"
+   ],
+   "live_on": [
+    "NASDAQ"
+   ]
+  },
+  "signentropycollapse_short": {
+   "family": "signentropycollapse",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "stcmomentumturn_long": {
+   "family": "stcmomentumturn",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "stcmomentumturn_short": {
+   "family": "stcmomentumturn",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "stochkdspread_long": {
+   "family": "stochkdspread",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "stochkdspread_short": {
+   "family": "stochkdspread",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "thrustcontinuation_long": {
+   "family": "thrustcontinuation",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "thrustcontinuation_short": {
+   "family": "thrustcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "timeregime_long": {
+   "family": "timeregime",
+   "side": "long",
+   "attempted_on": [
+    "DAX",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "DAX"
+   ]
+  },
+  "timeregime_short": {
+   "family": "timeregime",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "trend_long": {
+   "family": "trend",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "NASDAQ",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": []
+  },
+  "trend_short": {
+   "family": "trend",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "trendefficiencycontinuation_long": {
+   "family": "trendefficiencycontinuation",
+   "side": "long",
+   "attempted_on": [
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "trendefficiencycontinuation_short": {
+   "family": "trendefficiencycontinuation",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "trendpullbackcontinuation_long": {
+   "family": "trendpullbackcontinuation",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "NASDAQ",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": []
+  },
+  "trendpullbackcontinuation_short": {
+   "family": "trendpullbackcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "updownvolasymmetry_long": {
+   "family": "updownvolasymmetry",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "updownvolasymmetry_short": {
+   "family": "updownvolasymmetry",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "upsidebreakoutfailure_short": {
+   "family": "upsidebreakoutfailure",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD"
+   ],
+   "not_yet_attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "volatilitycarry_long": {
+   "family": "volatilitycarry",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "JPN",
+    "US500"
+   ]
+  },
+  "volatilitycarry_short": {
+   "family": "volatilitycarry",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "volatilityregime_long": {
+   "family": "volatilityregime",
+   "side": "long",
+   "attempted_on": [
+    "BTCUSD",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL"
+   ],
+   "live_on": [
+    "XAUUSD"
+   ]
+  },
+  "volatilityregime_short": {
+   "family": "volatilityregime",
+   "side": "short",
+   "attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [],
+   "live_on": []
+  },
+  "volatilityshockcontinuation_long": {
+   "family": "volatilityshockcontinuation",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": [
+    "NASDAQ"
+   ]
+  },
+  "volatilityshockcontinuation_short": {
+   "family": "volatilityshockcontinuation",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "volatilitytermstructure_long": {
+   "family": "volatilitytermstructure",
+   "side": "long",
+   "attempted_on": [
+    "NASDAQ",
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "volatilitytermstructure_short": {
+   "family": "volatilitytermstructure",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "volskewregimecontinuation_long": {
+   "family": "volskewregimecontinuation",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "volskewregimecontinuation_short": {
+   "family": "volskewregimecontinuation",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "waveletcleantrend_long": {
+   "family": "waveletcleantrend",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "waveletcleantrend_short": {
+   "family": "waveletcleantrend",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  },
+  "williamsrextreme_long": {
+   "family": "williamsrextreme",
+   "side": "long",
+   "attempted_on": [
+    "USDMXN",
+    "USOIL"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "XAUUSD"
+   ],
+   "live_on": []
+  },
+  "williamsrextreme_short": {
+   "family": "williamsrextreme",
+   "side": "short",
+   "attempted_on": [
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+   ],
+   "not_yet_attempted_on": [
+    "BTCUSD"
+   ],
+   "live_on": []
+  }
+ },
+ "updated": "2026-10-15 (after short-side coverage campaign)",
+ "open_gaps_excluding_btcusd": {
+  "short": 9,
+  "long": 254
+ },
+ "short_campaign_note": "2026-10-15 short campaign covered every short family with buildable source on all 9 non-BTCUSD assets (see config/short_coverage_campaign_2026-10-15.json). Remaining short gap: upsidebreakoutfailure_short (no source code exists). Long-side gaps remain open."
+}

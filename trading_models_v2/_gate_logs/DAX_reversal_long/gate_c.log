@@ -1,0 +1,47 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: DAX/reversal_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V10_PT1.5_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 4593
+  250/4593 elapsed=21.6s
+  500/4593 elapsed=47.9s
+  750/4593 elapsed=66.7s
+  1000/4593 elapsed=85.5s
+  1250/4593 elapsed=98.4s
+  1500/4593 elapsed=120.6s
+  1750/4593 elapsed=133.0s
+  2000/4593 elapsed=139.5s
+  2250/4593 elapsed=145.8s
+  2500/4593 elapsed=153.7s
+  2750/4593 elapsed=161.9s
+  3000/4593 elapsed=167.8s
+  3250/4593 elapsed=178.2s
+  3500/4593 elapsed=186.6s
+  3750/4593 elapsed=194.8s
+  4000/4593 elapsed=203.5s
+  4250/4593 elapsed=215.3s
+  4500/4593 elapsed=232.4s
+  4593/4593 elapsed=238.9s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V10_PT1.5_SL1 | -0.055530 | [-0.095671,-0.017496] | 0.9008 | 2.525 | 6.672 | -0.527746 | -1.205608 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.059951 | [-0.020981,+0.140785] | 1.0912 | 21.111 | 84.877 | +0.068157 | +1.282031 | -0.129 | 0.120 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.042350 | [-0.034723,+0.119254] | 1.0637 | 16.926 | 68.843 | +0.060050 | +0.905646 | -0.114 | 0.149 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.046759 | [-0.026618,+0.120339] | 1.0705 | 17.556 | 71.675 | +0.063920 | +0.999916 | -0.121 | 0.144 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E100_V1000_PT2_SL1 | meanR=+0.059951 | R/occupied_day=+0.068157 | R/week=+1.282031 | mean_hold_h=21.111
+ 2. H20_E50_V1000_PT2_SL1 | meanR=+0.046759 | R/occupied_day=+0.063920 | R/week=+0.999916 | mean_hold_h=17.556
+ 3. H15_E100_V1000_PT2_SL1 | meanR=+0.042350 | R/occupied_day=+0.060050 | R/week=+0.905646 | mean_hold_h=16.926
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T095831Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T095831Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\reversal_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

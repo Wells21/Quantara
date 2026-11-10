@@ -1,0 +1,67 @@
+{
+  "alpha": 0.05,
+  "asset_scope": [
+    "BTCUSD",
+    "DAX",
+    "GBPJPY",
+    "HK",
+    "JPN",
+    "NASDAQ",
+    "US500",
+    "USDMXN",
+    "USOIL",
+    "XAUUSD"
+  ],
+  "deployed_only": true,
+  "edge_count_loaded": 13,
+  "edge_ids": [
+    "DAX/absorption_long",
+    "DAX/reversal_long",
+    "DAX/timeregime_long",
+    "GBPJPY/dailyrangecompletionfade_long",
+    "HK/breakdownretestfailure_short",
+    "HK/drawdownhazardcontinuation_short",
+    "JPN/rangestructure_long",
+    "JPN/volatilitycarry_long",
+    "US500/absorption_long",
+    "US500/volatilitycarry_long",
+    "XAUUSD/rangestructure_long",
+    "XAUUSD/volatilitycarry_long",
+    "XAUUSD/volatilityregime_long"
+  ],
+  "load_errors": [],
+  "methodology": {
+    "multiple_comparison_correction": "Benjamini-Hochberg FDR q-values (q_corr_bh, q_overlap_bh) computed across all pairs tested in this run, since testing many pairs simultaneously inflates false-positive 'looks dependent' findings.",
+    "not_a_gate": "This lab is diagnostic only. It does not kill, promote, or reweight edges. Portfolio-level treatment of these statistics is decided separately in portfolio_allocator/.",
+    "pairwise_test": "Circular-shift permutation test. Edge B's daily return/active-trade series is circularly shifted by every possible offset (exhaustive) or, if that exceeds n_permutation_cap, a random sample of that many offsets, preserving edge B's own autocorrelation/clustering while nulling any real cross-edge timing relationship. Two-sided empirical p-values are reported for both the observed Pearson correlation and the observed max trade-timing overlap fraction.",
+    "random_matrix_theory": "Marcenko-Pastur eigenvalue bound fit to the full edge daily-return correlation matrix (N edges, T observations, q=N/T). Eigenvalues at or below the bound are statistically indistinguishable from a purely random correlation matrix of the same shape; eigenvalues above it indicate genuine common structure. effective_number_of_bets is a participation-ratio diversification measure (N^2/sum(lambda_i^2))."
+  },
+  "mode": "selected_trades",
+  "n_pairs_dependence_detected_at_alpha": 62,
+  "n_pairs_tested": 78,
+  "n_permutation_cap": 5000,
+  "outputs": {
+    "combined_daily_returns": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\combined_daily_returns.csv",
+    "combined_returns": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\combined_returns.csv",
+    "correlation_matrix": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\correlation_matrix.csv",
+    "correlation_matrix_denoised": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\correlation_matrix_denoised.csv",
+    "edge_summary": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\edge_summary.csv",
+    "eigenvalue_spectrum": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\eigenvalue_spectrum.csv",
+    "marginal_contribution": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\marginal_contribution.csv",
+    "pairwise_independence_scorecard": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\shared\\independence\\outputs\\independence_13edges_2026-09-25\\pairwise_independence_scorecard.csv"
+  },
+  "probability_threshold": null,
+  "random_matrix_diagnostic": {
+    "applicable": true,
+    "aspect_ratio_q_n_over_t": 0.008620689655172414,
+    "effective_number_of_bets_denoised": 10.995462484738493,
+    "effective_number_of_bets_raw": 10.474185062070184,
+    "marcenko_pastur_lambda_plus": 1.194316027832224,
+    "n_edges": 13,
+    "n_noise_eigenvalues": 9,
+    "n_observations": 1508,
+    "n_signal_eigenvalues": 4
+  },
+  "seed": 7,
+  "threshold_policy": "selected"
+}

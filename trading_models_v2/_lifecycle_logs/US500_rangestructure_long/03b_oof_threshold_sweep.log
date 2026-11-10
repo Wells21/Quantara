@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — US500/rangestructure_long
+================================================================================
+Edge: US500/rangestructure_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\rangestructure_long\artifacts\oof\us500_rangestructure_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\rangestructure_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,604
+Date range: 2022-06-15 14:09:38.051000+00:00 -> 2026-06-15 00:04:38.172000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    US500/rangestructure_long
+segment                          rangestructure_long
+threshold                                       0.82
+candidate_count                                 4604
+take_rate                                   0.014335
+trade_count                                       66
+win_rate                                    0.378788
+avg_win_r                                        2.0
+avg_loss_r                                  -1.02307
+expectancy_r                                0.122032
+payoff_ratio                                  1.9549
+profit_factor                               1.192012
+gross_profit_r                                  50.0
+gross_loss_r                               41.945885
+cumulative_r                                8.054115
+max_drawdown_r                            -17.400843
+sharpe_r                                    0.082528
+sortino_r                                   1.765904
+calmar_r                                    0.462858
+selected_precision                          0.378788
+selected_recall                                  1.0
+selected_f1                                 0.549451
+clf_precision                               0.378788
+clf_recall                                  0.015106
+clf_f1                                      0.029053
+clf_accuracy                                0.637055
+clf_balanced_accuracy                       0.500601
+predicted_positive_rate                     0.014335
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\rangestructure_long\artifacts\oof\us500_rangestructure_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\rangestructure_long\artifacts\oof\us500_rangestructure_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\rangestructure_long\artifacts\oof\us500_rangestructure_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

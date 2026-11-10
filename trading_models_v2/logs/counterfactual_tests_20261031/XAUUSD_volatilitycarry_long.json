@@ -1,0 +1,44 @@
+{
+ "asset": "XAUUSD",
+ "edge": "volatilitycarry_long",
+ "preregistration": "logs/counterfactual_tests_20261031/PREREGISTRATION.md",
+ "feature_input": "runtime.build_features(drop_warmup_rows=False)",
+ "reproduction": {
+  "events_regenerated": 5045,
+  "events_labeled": 5043,
+  "events_stored": 5045,
+  "event_times_equal": true,
+  "stored_model_rows": 4606,
+  "matched_model_rows": 4606,
+  "max_abs_realized_r_diff": 2.220446049250313e-16,
+  "PASS": true
+ },
+ "edge_events": {
+  "set": "edge events (no clause replaced)",
+  "n": 5043,
+  "mean_R": 0.12374,
+  "ci_lo": 0.05588,
+  "ci_hi": 0.19159,
+  "weeks": 220
+ },
+ "tests": {
+  "C1": {
+   "n": 4536,
+   "mean_R": 0.12001,
+   "ci_lo": 0.05284,
+   "ci_hi": 0.18719,
+   "weeks": 219,
+   "overlap_with_edge_events": 0,
+   "verdict": "PASS"
+  },
+  "C2": {
+   "n": 3251,
+   "mean_R": 0.14383,
+   "ci_lo": 0.06367,
+   "ci_hi": 0.22398,
+   "weeks": 220,
+   "overlap_with_edge_events": 0,
+   "verdict": "FAIL"
+  }
+ }
+}

@@ -1,0 +1,80 @@
+{
+  "asset": "XAUUSD",
+  "classification_policy": {
+    "alpha_duplicate_class": {
+      "duplicate_watch": "max trade overlap >= 0.30 or abs(corr) >= 0.80, but not enough to reject automatically.",
+      "likely_duplicate": "max trade overlap >= 0.50 OR abs(corr) >= 0.80 AND max trade overlap >= 0.30.",
+      "not_duplicate": "max trade overlap < 0.30 and abs(corr) < 0.80, unless stronger duplicate rule triggers."
+    },
+    "correlation_cluster_class": {
+      "high_corr_cluster": "abs(corr) >= 0.80",
+      "low_corr": "abs(corr) < 0.40",
+      "moderate_corr_cluster": "0.60 <= abs(corr) < 0.80",
+      "weak_corr_cluster": "0.40 <= abs(corr) < 0.60"
+    },
+    "correlation_note": "High daily correlation alone is cluster-weighting evidence, not automatic rejection evidence.",
+    "loss_day_overlap_note": "Loss-day overlap is a stress/risk warning only. It does not force duplicate/redundant classification.",
+    "portfolio_decision": {
+      "keep_but_cluster_weight": "High or moderate correlation cluster; keep for HRP/allocator cluster weighting, not deletion.",
+      "keep_candidate": "No duplicate/correlation/stress warning.",
+      "keep_with_stress_risk_warning": "Low duplicate risk but high same-loss-day stress overlap.",
+      "manual_review_before_accept": "Crowded overlap or very high correlation without enough evidence to auto-reject.",
+      "reject_or_merge_candidate": "Likely duplicate based on high overlap, or high correlation plus crowded overlap."
+    }
+  },
+  "edge_count_loaded": 10,
+  "edge_names": [
+    "absorption_long",
+    "compressionbreakoutcontinuation_long",
+    "dailyrangecompletionfade_long",
+    "rangestructure_long",
+    "reversal_long",
+    "timeregime_long",
+    "trend_long",
+    "trendpullbackcontinuation_long",
+    "volatilitycarry_long",
+    "volatilityregime_long"
+  ],
+  "include_non_pass": false,
+  "interpretation_thresholds": {
+    "cluster_corr": 0.6,
+    "crowded_overlap": 0.3,
+    "high_corr": 0.8,
+    "high_overlap": 0.5,
+    "loss_overlap_warning": 0.5,
+    "low_corr": 0.2,
+    "low_overlap": 0.2,
+    "mid_corr": 0.4
+  },
+  "load_errors": [],
+  "mode": "selected_trades",
+  "notes": [
+    "Duplicate rejection is based mainly on trade overlap, or high correlation plus crowded overlap.",
+    "High correlation without high overlap is reported as correlation_cluster_class and should be handled by HRP/allocator/risk caps.",
+    "Same-loss-day overlap is reported as stress_overlap_class and loss_overlap_warning, not as alpha duplication.",
+    "research_events mode is candidate-opportunity overlap only, not deployability evidence.",
+    "scored_candidates or selected_trades with --threshold-policy override --probability-threshold 0.10 can reveal overlap hidden by selected deployable thresholds.",
+    "This lab consumes artifacts only; it does not score models or engineer edge features."
+  ],
+  "output_mode": "selected_trades",
+  "outputs": {
+    "alpha_common_trade_count_matrix": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_common_trade_count_matrix.csv",
+    "alpha_correlation_matrix": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_correlation_matrix.csv",
+    "alpha_daily_correlation_matrix": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_daily_correlation_matrix.csv",
+    "alpha_independence_scorecard": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_independence_scorecard.csv",
+    "alpha_loss_day_overlap_matrix": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_loss_day_overlap_matrix.csv",
+    "alpha_marginal_contribution": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_marginal_contribution.csv",
+    "alpha_summary": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_summary.csv",
+    "alpha_trade_overlap_matrix": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\alpha_trade_overlap_matrix.csv",
+    "combined_alpha_daily_returns": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\combined_alpha_daily_returns.csv",
+    "combined_alpha_returns": "C:\\Users\\wells\\Documents\\WELLSMART Company\\Trading Models\\trading_models_v2\\assets\\XAUUSD\\alpha_independence_lab\\outputs\\selected_trades\\combined_alpha_returns.csv"
+  },
+  "probability_threshold": null,
+  "threshold_policy": "selected",
+  "threshold_policy_notes": {
+    "all": "selected_trades/scored_candidates ignores probability thresholds and loads all scored rows with R values.",
+    "override": "selected_trades/scored_candidates uses the supplied probability threshold for every edge, e.g. 0.10.",
+    "research_events": "research_events ignores probability thresholds and uses exported research model rows.",
+    "selected": "selected_trades uses each edge's selected threshold artifact."
+  }
+}

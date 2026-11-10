@@ -1,0 +1,84 @@
+AFML Ch.20 "Multiprocessing and Vectorization" audit evidence (2026-10-31)
+=========================================================================
+Book: AFML Ch.20 = pdf 330-344 = pp.303-317 (s.20.1-20.6, Snippets 20.1-20.14, Figures 20.1-20.2, exercises 20.1-20.6),
+read line by line. A chapter on computation, not on method: the audit asks whether Quantara's parallel code follows the
+chapter's rules -- (1) a serial path for debugging that gives the parallel result (p.310), (2) output put back in order
+after asynchronous collection (Snippets 20.7 / 20.12 sort), (3) load balance: more molecules than cores, heavy first
+(p.307, p.310), (4) pickling (s.20.5.4), (5) memory-aware reduction (s.20.5.5, 20.6) -- and whether we port any engine.
+Tool: shared/research/ch20_multiprocessing_audit/book_snippets_check.py.
+
+== What Quantara has
+No port of mpPandasObj / linParts / nestedParts / processJobs / expandCall. Parallel code:
+- Step 01 (shared/features/clustered_feature_importance.select_features_clustered): ProcessPoolExecutor.map over the
+  purged folds + 1 full-sample job, seed per job; workers = 1 runs serially.
+- Allocator 08 / 08c (via 09) / 09 / 10 / 11: ProcessPoolExecutor, initializer holds the large read-only arrays, tasks
+  chunked 25 starts per task (more molecules than cores, p.310), `--workers 1` = the original serial path; results
+  collected with as_completed (completion order). 10 and 11 rebuild the input order after collection; 11 seeds every
+  task (run_seed) and sorts its start list.
+- portfolio_live/03_live_bar_threshold_diagnostic: ProcessPoolExecutor per asset, results stored by asset key.
+- Research tools (ch16_allocation_tests, feature_importance_config_test, shuffle_stability_test, thesis_feature_test,
+  tuning_objective_test): ProcessPoolExecutor.map (ordered).
+- Live orchestrator: ThreadPoolExecutor per asset / per edge (live is stopped; live settings are the owner's).
+- Per-edge research pipeline: one process per edge (parallel by default, BelowNormal); same-asset exports / self-tests
+  strictly serial because they share the per-asset HMM continuation cache (os.replace on Windows fails with WinError 5
+  while another process holds the file) -- already in the runbook (Section 6A Step 10).
+- Ch.17 / Ch.18 features: per-bar Python loops over a bounded window (equal-cost atoms, so a linear partition would
+  balance, s.20.4.1); measured 6.7 ms (Ch.17, 19 columns) + 0.8 ms (Ch.18) per bar, about +9 min per 70,000-bar export.
+
+== Findings
+1. Serial = parallel (rule 1). Step 01 on the synthetic MLAM data (20 features, 600 rows, 4 folds, 20 trees): workers = 1
+   and workers = 3 give byte-identical output (json.dumps of the whole result). No test anywhere compares serial with
+   parallel output.
+2. Order after collection (rule 2). Allocator 08 run_scenarios and 09 run_variant_set return rows in completion order
+   when workers > 1 (serial: task order). Effect traced:
+   - 08 aggregate_run_results, 08c, 09 aggregate_run_results: groupby + rates / medians / quantiles / max -> decisions
+     independent of row order (float means could differ in the last bit; ties in later sorts could in principle flip);
+   - 08 stage1/stage2_run_results.csv, 09 stage2_run_results.csv / single_variant_all_cost_run_results.csv: row order
+     changes from run to run (files not hashed into any manifest);
+   - 09 bootstrap_top draws positions rng.integers(0, n, n) with a FIXED seed over rows in completion order: its
+     confidence intervals would change run to run and differ from the serial run (a Heisenbug in the book's sense,
+     p.310 fn.1). Latent: RUN_BOOTSTRAP_ON_TOP_N = 0 and BOOTSTRAP_SAMPLES = 0, so it is switched off; report-only;
+   - 09 best_and_worst_starts: report lists; tie order follows row order;
+   - 10 replay_grid reads 09's CSV but 10 returns rows in its own input order; 11 sorts its starts -> the seeded
+     Monte Carlo does not depend on 09's row order;
+   - 08b PBO / CSCV reads 08's stage2_run_results.csv through pivot_table(index=start_ns, columns=scenario_id)
+     .sort_index() -> the CSCV matrix does not depend on row order. No step hashes these CSVs (10 records the path only).
+3. Load balance (rule 3). Allocator tasks of 25 starts (many more molecules than cores) -- matches p.310. Step 01: the
+   heaviest job (full-sample fit, all rows) is queued LAST; p.307 front-loads heavy molecules. Speed only.
+4. Pickling (rule 4). Python 3 pickles bound methods (Snippet 20.11 is Python 2 only). Windows spawn: 08c registers the
+   step-09 module at import so children can unpickle its worker (already handled). Cross-venv pickles: D065.
+5. Memory (rule 5). Largest collected outputs are run-row lists (tens of thousands of rows); no out-of-memory history;
+   s.20.6 PCA-by-blocks not needed.
+6. Book's own barrier example vs our labeler: Quantara's apply_triple_barrier_labels (all 6 model_rows.py) breaks at the
+   FIRST touch (3 breaks: tie, pt, sl). GBPJPY resolves a same-bar pt+sl tie with sl_first, the other 5 with a tick
+   replay then sl_first; GBPJPY had 1 such row (model_row_manifest) -- consistent with the Ch.3 record (s.4C).
+7. Timing context (recorded artifacts): export 212-286 s per edge (pre-Ch.17); CPCV path backtest 3,203-4,710 s; Step 01
+   feature-importance audit 8,017-17,430 s; so the +9 min Ch.17/18 export cost is not the RECERT bottleneck.
+
+== Book errata / checks (book_snippets_check.py, Python 2 -> 3 edits only)
+- Snippet 20.3 barrierTouch: `continue` where `break` is needed; the text says "the earliest time ... touch" and the
+  comment "find the index of the earliest barrier touch", but it keeps the LAST touching row: on 2,000 paths (1,000 steps,
+  sd 0.01, width 0.5) 463 touch and the index differs from the earliest touch on 448 (96.8 %).
+- Snippet 20.4: parts = linspace(0, r.shape[0], ...) uses the 1,000 ROWS but slices COLUMNS r[:, a:b]: only paths
+  0-999 of 10,000 (10 %) are processed.
+- Snippet 20.7: the body uses argList (twice) but the argument is pdObj -> NameError. Also DataFrame.append (removed in
+  pandas 2.0).
+- Snippets 20.1-20.4, 20.6-20.9, 20.11, 20.13 are Python 2 (print statement, xrange, izip, copy_reg, im_func);
+  Snippet 20.2 "from itertoolsimport".
+- p.304: "the GIL assigns write access to one thread per core ... Python's multithreading is limited to one thread per
+  processor" -- the GIL is one lock per interpreter process: one thread runs Python bytecode at a time in a process,
+  whatever the number of cores (threads still help I/O and code that releases the GIL, e.g. numpy).
+- p.305: "on a cluster with 5000 CPUs, the elapsed time will be about 1/5000" -- the snippet forms only 24 jobs.
+- p.308: nestedParts sizes "may deviate slightly" from the target: N = 1,000, M = 24: molecules 20,215-21,567 tasks
+  (target 20,854); N = 100, M = 24: 145-279 (target 210), i.e. up to +33 % when molecules hold few rows.
+Checked correct: r_1, r_2, r_m formulas and the 1/2 N(N+1) counts (p.307-308); Snippet 20.6 = those formulas;
+upperTriang reversal; linParts(20, 6) = Figure 20.1 (molecules of 3-4 tasks); processJobsRedux / mpJobList / getPCs logic.
+
+== Not applicable / not proposed
+Porting the book's engine (our pools already follow its structure); parallelising the Ch.17 / 18 per-bar loops (export is
+not the bottleneck; would be exact -- equal-cost atoms -- if ever needed); Snippet 20.11 (Python 2); s.20.6 (no memory
+limit); live ThreadPoolExecutor (live stopped; settings are the owner's; measured live latency ~5.7 s median bar-close ->
+fill was accepted earlier). Exercises 20.1-20.6 are programming exercises on the snippets (20.3-20.4 covered above).
+Side note: Step 01's synthetic test data (make_classification shuffle=False) come in class blocks (class-1 share by
+quarter 0.01 / 1.00 / 0.00 / 0.99), so contiguous purged folds give OOS AUC ~0.007 there; a property of the test data,
+not of Step 01.

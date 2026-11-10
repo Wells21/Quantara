@@ -1,0 +1,16 @@
+asset=HK edge=trendpullbackcontinuation_short started_at=2026-09-17T15:04:12+02:00
+---- 01_feature_surgery_clustered_mda.py start 2026-09-17T15:04:12+02:00 ----
+01_feature_surgery_clustered_mda.py exit=0 elapsed_seconds=129
+---- 02_train_meta_model_optuna.py start 2026-09-17T15:06:21+02:00 ----
+02_train_meta_model_optuna.py exit=0 elapsed_seconds=82
+---- 03_generate_oof_predictions.py start 2026-09-17T15:07:43+02:00 ----
+03_generate_oof_predictions.py exit=0 elapsed_seconds=139
+---- 03b_oof_threshold_sweep.py start 2026-09-17T15:10:02+02:00 ----
+03b_oof_threshold_sweep.py exit=0 elapsed_seconds=5
+---- 04_fit_sigmoid_calibrator_and_thresholds.py start 2026-09-17T15:10:07+02:00 ----
+04_fit_sigmoid_calibrator_and_thresholds.py exit=0 elapsed_seconds=6
+---- 04b_lock_selected_features_and_model_input_schema.py start 2026-09-17T15:10:14+02:00 ----
+04b_lock_selected_features_and_model_input_schema.py exit=0 elapsed_seconds=4
+---- 05_training_artifact_verifier.py start 2026-09-17T15:10:18+02:00 ----
+05_training_artifact_verifier.py exit=1 elapsed_seconds=1
+asset=HK edge=trendpullbackcontinuation_short finished_at=2026-09-17T15:10:19+02:00 result=FAILED_AT_05_training_artifact_verifier.py

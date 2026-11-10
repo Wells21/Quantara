@@ -1,0 +1,203 @@
+# =====================================================================
+# QUANTARA — REPOSITORY IGNORE POLICY
+# =====================================================================
+
+gft_quant_data/
+
+venv312/
+venv39/
+
+
+# =====================================================================
+# CSV POLICY
+# =====================================================================
+#
+# CSV files are ignored by default.
+#
+# Only canonical artifacts required to:
+#   - preserve the completed Quantara research state,
+#   - move Local -> VPS cleanly,
+#   - rebuild a replacement VPS without rerunning expensive research,
+#   - run Step 03B+ / Step 08 / Step 09 / portfolio allocator,
+# are explicitly allowed below.
+#
+# Large allowed CSVs are stored using Git LFS via .gitattributes.
+# =====================================================================
+
+*.csv
+
+*.lock
+
+
+# =====================================================================
+# 1. CANONICAL ASSET-LEVEL DATA
+# =====================================================================
+#
+# These are generated rarely and are required by runtime verification,
+# feature construction, replay, and deployment.
+# =====================================================================
+
+# Standard quote-tick bars
+!trading_models_v2/assets/*/bars/standard_quote_tick/*_standard_quote_tick_bars.csv
+
+# Bar verification dependencies
+!trading_models_v2/assets/*/bars/standard_quote_tick/daily_thresholds.csv
+!trading_models_v2/assets/*/bars/standard_quote_tick/daily_tick_profile.csv
+
+# Canonical FFD features
+!trading_models_v2/assets/*/bars/ffd/*_ffd_features.csv
+
+# Canonical HMM/regime features
+!trading_models_v2/assets/*/bars/regime/*_hmm_regime_features.csv
+
+
+# =====================================================================
+# 2. FROZEN EDGE RESEARCH DATASETS
+# =====================================================================
+#
+# Generated during research-dataset export.
+#
+# Required to preserve the completed research state and by Step 08
+# research/runtime replay audit.
+#
+# These are also the datasets manually supplied to Colab when needed.
+# =====================================================================
+
+!trading_models_v2/assets/*/edges/*/artifacts/research_dataset/*_model_rows.csv
+
+!trading_models_v2/assets/*/edges/*/artifacts/research_dataset/*_mldp_execution_resolution.csv
+
+
+# =====================================================================
+# 3. STEP 03 OOF PREDICTIONS
+# =====================================================================
+#
+# Step 03 runs locally.
+# Required by Step 03A and downstream Step 03B / Step 04 provenance.
+# =====================================================================
+
+!trading_models_v2/assets/*/edges/*/artifacts/oof/*_oof_predictions.csv
+
+
+# =====================================================================
+# 4. STEP 03A EXACT BID/ASK EXECUTION
+# =====================================================================
+#
+# Step 03A runs locally because historical ticks remain local.
+# This artifact is the executable-economics handoff to the VPS.
+# =====================================================================
+
+!trading_models_v2/assets/*/edges/*/artifacts/execution/*_oof_exact_execution.csv
+
+
+# =====================================================================
+# 5. STEP 04 CALIBRATED OOF ARTIFACT
+# =====================================================================
+#
+# Generated downstream on the VPS but must return to Git/local so the
+# completed edge can be restored on a future replacement VPS without
+# rerunning the model lifecycle.
+#
+# Required by verification / Step 09 / portfolio allocator.
+# =====================================================================
+
+!trading_models_v2/assets/*/edges/*/artifacts/calibration/*_calibrated_oof_predictions.csv
+
+
+# =====================================================================
+# 6. STEP 04 CALIBRATED THRESHOLD SWEEP
+# =====================================================================
+#
+# Small but canonical.
+# Required downstream by Step 05 / Step 09 / allocator threshold work.
+# =====================================================================
+
+!trading_models_v2/assets/*/edges/*/artifacts/thresholds/*_calibrated_threshold_sweep.csv
+
+
+# =====================================================================
+# 7. BROKER CONVERSION DATA
+# =====================================================================
+#
+# Small authoritative broker-risk inputs.
+# =====================================================================
+
+!trading_models_v2/portfolio_allocator/config/broker_conversions/*.csv
+
+
+# =====================================================================
+# DATA THAT MUST NEVER BE VERSION-CONTROLLED
+# =====================================================================
+
+# Historical raw quote/tick archives.
+# Local machine remains the historical microstructure authority.
+trading_models_v2/assets/*/raw/ticks/
+
+# Sealed holdout (embargo) ticks -- large; the holdout/*.json manifests stay tracked.
+trading_models_v2/assets/*/holdout/ticks/
+
+# Huge research/audit-only feature matrices.
+**/*_feature_matrix.csv
+
+# Reproducible candidate-event exports.
+**/*_candidate_events.csv
+
+# Portfolio simulation/output CSV history.
+trading_models_v2/portfolio_allocator/outputs/**/*.csv
+
+
+# =====================================================================
+# LIVE MACHINE-LOCAL / TRANSIENT STATE
+# =====================================================================
+
+# Streaming state is regenerated by the live runtime.
+trading_models_v2/portfolio_live/outputs/live_feature_continuation/*_streaming_state.joblib
+trading_models_v2/portfolio_live/live_state/
+trading_models_v2/portfolio_live/outputs/
+trading_models_v2/portfolio_live/live_logs/
+
+
+# =====================================================================
+# PYTHON / ENVIRONMENT / TEMPORARY FILES
+# =====================================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+*.zip
+
+
+# =====================================================================
+# LOCAL LIVE-TRADING SECRETS
+# =====================================================================
+
+trading_models_v2/portfolio_live/local_live_settings.json
+trading_models_v2/portfolio_live/local_live_settings.*.json
+
+
+# =====================================================================
+# QUANTARA LOCAL PATCH BACKUPS
+# =====================================================================
+
+.quantara_patch_backups/
+
+# =====================================================================
+# BROKER COST MODEL GENERATED OUTPUTS (RUNBOOK v5.2, 2026-10-17)
+# =====================================================================
+#
+# Regenerated by portfolio_allocator/00c_build_broker_cost_model.py and
+# 00d_reprice_edge_trades_for_broker.py on EVERY allocator run (single flow).
+# Panels contain account-specific broker tick/deal data (~127 MB); the
+# Dukascopy minute-vol caches (~193 MB) are rebuilt by 00c when missing.
+# The authoritative per-firm cost models live in
+# portfolio_allocator/config/broker_profiles/ and ARE tracked.
+# =====================================================================
+
+trading_models_v2/portfolio_allocator/outputs/broker_cost_inputs/
+trading_models_v2/portfolio_allocator/outputs/dukascopy_minute_vol/
+trading_models_v2/portfolio_allocator/outputs/broker_repricing/

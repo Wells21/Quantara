@@ -1,0 +1,39 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/volatilitycarry_short
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3162
+  250/3162 elapsed=7.1s
+  500/3162 elapsed=17.8s
+  750/3162 elapsed=26.5s
+  1000/3162 elapsed=34.0s
+  1250/3162 elapsed=40.3s
+  1500/3162 elapsed=49.4s
+  1750/3162 elapsed=56.9s
+  2000/3162 elapsed=73.3s
+  2250/3162 elapsed=85.3s
+  2500/3162 elapsed=98.6s
+  2750/3162 elapsed=112.0s
+  3000/3162 elapsed=126.5s
+  3162/3162 elapsed=134.2s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V1000_PT2_SL1 | -0.123322 | [-0.214227,-0.034969] | 0.8348 | 10.945 | 58.504 | -0.270420 | -1.940979 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.000835 | [-0.143437,+0.129155] | 0.9988 | 32.800 | 109.810 | -0.000611 | -0.013149 | 0.002 | 0.334 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.026425 | [-0.155518,+0.089834] | 0.9623 | 25.582 | 84.944 | -0.024791 | -0.415903 | 0.092 | 0.428 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.020600 | [-0.145819,+0.095475] | 0.9706 | 26.945 | 89.797 | -0.018349 | -0.324227 | 0.068 | 0.406 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T124553Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilitycarry_short\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T124553Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\volatilitycarry_short\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

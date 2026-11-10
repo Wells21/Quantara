@@ -1,0 +1,58 @@
+NASDAQ {"LONG": {"drift_month_matched": [-0.00555, false]}, "SHORT": {"drift_month_matched": [0.03301, false]}} 1.5
+US500 {"LONG": {"drift_month_matched": [0.01015, false]}, "SHORT": {"drift_month_matched": [0.00381, false]}} 2.8
+DAX {"LONG": {"drift_month_matched": [0.00987, false]}, "SHORT": {"drift_month_matched": [0.02336, false]}} 4.1
+JPN {"LONG": {"drift_month_matched": [-0.03136, false]}, "SHORT": {"drift_month_matched": [0.04739, false]}} 5.6
+HK {"LONG": {"drift_month_matched": [-0.04818, false]}, "SHORT": {"drift_month_matched": [-0.02595, false]}} 7.1
+XAUUSD {"LONG": {"drift_month_matched": [0.03263, false]}, "SHORT": {"drift_month_matched": [0.03893, false]}} 9.5
+GBPJPY {"LONG": {"drift_month_matched": [-0.01258, false]}, "SHORT": {"drift_month_matched": [-0.00221, false]}} 11.3
+USDMXN {"LONG": {"drift_month_matched": [-0.02604, false]}, "SHORT": {"drift_month_matched": [-0.02384, false]}} 12.9
+USOIL {"LONG": {"drift_month_matched": [-0.01901, false]}, "SHORT": {"drift_month_matched": [-0.04502, false]}} 13.8
+BTCUSD {"LONG": {"drift_month_matched": [-0.07759, false]}, "SHORT": {"drift_month_matched": [0.00121, false]}} 15.0
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 1978,
+   "drift_month_matched": {
+    "diff": 0.03276,
+    "se": 0.02207,
+    "lower_bound_1p645": -0.00356,
+    "PASS": false,
+    "lower_bound_tiered": 0.00451,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.07708,
+     "se": 0.02393,
+     "lower_bound_1p645": 0.03772,
+     "PASS": true,
+     "n": 2052
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 2052,
+   "drift_month_matched": {
+    "diff": 0.03893,
+    "se": 0.02591,
+    "lower_bound_1p645": -0.00369,
+    "PASS": false,
+    "lower_bound_tiered": 0.00577,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.06635,
+     "se": 0.02391,
+     "lower_bound_1p645": 0.02702,
+     "PASS": true,
+     "n": 1978
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "PASS"
+ }
+}

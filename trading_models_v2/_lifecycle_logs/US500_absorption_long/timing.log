@@ -1,0 +1,24 @@
+asset=US500 edge=absorption_long started_at=2026-09-25T16:33:11+02:00
+---- 01_feature_surgery_clustered_mda.py start 2026-09-25T16:33:11+02:00 ----
+01_feature_surgery_clustered_mda.py exit=0 elapsed_seconds=141
+---- 02_train_meta_model_optuna.py start 2026-09-25T16:35:32+02:00 ----
+02_train_meta_model_optuna.py exit=0 elapsed_seconds=128
+---- 03_generate_oof_predictions.py start 2026-09-25T16:37:40+02:00 ----
+03_generate_oof_predictions.py exit=0 elapsed_seconds=288
+---- 03b_oof_threshold_sweep.py start 2026-09-25T16:42:28+02:00 ----
+03b_oof_threshold_sweep.py exit=0 elapsed_seconds=5
+---- 04_fit_sigmoid_calibrator_and_thresholds.py start 2026-09-25T16:42:33+02:00 ----
+04_fit_sigmoid_calibrator_and_thresholds.py exit=0 elapsed_seconds=7
+---- 04b_lock_selected_features_and_model_input_schema.py start 2026-09-25T16:42:40+02:00 ----
+04b_lock_selected_features_and_model_input_schema.py exit=0 elapsed_seconds=4
+---- 05_training_artifact_verifier.py start 2026-09-25T16:42:44+02:00 ----
+05_training_artifact_verifier.py exit=0 elapsed_seconds=2
+---- 06_verify_runtime_scoring_ready.py start 2026-09-25T16:42:46+02:00 ----
+06_verify_runtime_scoring_ready.py exit=0 elapsed_seconds=4
+---- 07_runtime_score_smoke_test.py start 2026-09-25T16:42:50+02:00 ----
+07_runtime_score_smoke_test.py exit=0 elapsed_seconds=279
+---- 08_probability_calibration_afml_replay_audit.py start 2026-09-25T16:47:29+02:00 ----
+08_probability_calibration_afml_replay_audit.py exit=0 elapsed_seconds=273
+---- 09_export_edge_manifest.py start 2026-09-25T16:52:02+02:00 ----
+09_export_edge_manifest.py exit=0 elapsed_seconds=0
+asset=US500 edge=absorption_long finished_at=2026-09-25T16:52:02+02:00 result=ALL_STEPS_01_09_COMPLETE

@@ -1,0 +1,64 @@
+{
+  "classification_rules": {
+    "core_rules": {
+      "min_best_calmar_r": 1.0,
+      "min_best_cumulative_r": 75.0,
+      "min_best_expectancy_r": 0.0,
+      "min_best_profit_factor": 1.08,
+      "min_eligible_rows": 3,
+      "require_passed_gates": true
+    },
+    "strong_watchlist_rules": {
+      "min_best_calmar_r": 0.5,
+      "min_best_cumulative_r": 35.0,
+      "min_best_profit_factor": 1.03
+    },
+    "watchlist_rules": {
+      "min_best_calmar_r": 0.0,
+      "min_best_cumulative_r": 0.0,
+      "min_best_expectancy_r": 0.0,
+      "min_best_profit_factor": 1.0,
+      "min_eligible_rows": 1,
+      "require_passed_gates": true
+    }
+  },
+  "classification_status": "PASS",
+  "counts": {
+    "candidate_row_counts": {
+      "core": 30
+    },
+    "classification_edge_counts": {
+      "core": 6
+    },
+    "core_candidate_rows": 30,
+    "core_edges": 6,
+    "core_plus_watchlist_candidate_rows": 30,
+    "core_plus_watchlist_edges": 6,
+    "input_candidate_rows": 30,
+    "input_unique_edges": 6,
+    "rejected_candidate_rows": 0,
+    "watchlist_candidate_rows": 0,
+    "watchlist_edges": 0
+  },
+  "created_at": "2026-10-17T20:15:14+00:00",
+  "input_candidate_bank_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank.csv",
+  "input_viability_report_csv": "portfolio_allocator/outputs/v2_edge_viability_report.csv",
+  "notes": [
+    "Port of V1 Step 03B core/watchlist/fragile logic using V2 edge_id instead of V1 leg_id.",
+    "This step classifies candidates only; final portfolio threshold/weight selection remains downstream.",
+    "Watchlist remains intentionally inclusive so HRP and rolling simulation can decide portfolio usefulness.",
+    "File-content hashes are optional compatibility metadata and are not merge keys or classification gates."
+  ],
+  "outputs": {
+    "classification_report_csv": "portfolio_allocator/outputs/v2_edge_classification_report.csv",
+    "core_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank_core.csv",
+    "core_plus_watchlist_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank_core_plus_watchlist.csv",
+    "filtered_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank_filtered.csv",
+    "filtered_json": "portfolio_allocator/outputs/v2_edge_candidate_bank_filtered.json",
+    "manifest_json": "portfolio_allocator/outputs/v2_edge_candidate_bank_filter_manifest.json",
+    "rejected_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank_rejected.csv",
+    "watchlist_csv": "portfolio_allocator/outputs/v2_edge_candidate_bank_watchlist.csv"
+  },
+  "pipeline_mode": "v2_manifest_driven_calibrated_afml",
+  "schema_version": "v2.2"
+}

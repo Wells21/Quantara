@@ -1,0 +1,48 @@
+edge=reversal_long gate_c_exit=0 elapsed_seconds=159
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: US500/reversal_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H20_E20_V10_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V20_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 4630
+  250/4630 elapsed=16.4s
+  500/4630 elapsed=28.8s
+  750/4630 elapsed=35.8s
+  1000/4630 elapsed=40.9s
+  1250/4630 elapsed=44.3s
+  1500/4630 elapsed=49.0s
+  1750/4630 elapsed=53.3s
+  2000/4630 elapsed=57.3s
+  2250/4630 elapsed=61.2s
+  2500/4630 elapsed=68.6s
+  2750/4630 elapsed=74.8s
+  3000/4630 elapsed=82.0s
+  3250/4630 elapsed=98.0s
+  3500/4630 elapsed=106.7s
+  3750/4630 elapsed=112.9s
+  4000/4630 elapsed=120.5s
+  4250/4630 elapsed=130.9s
+  4500/4630 elapsed=144.2s
+  4630/4630 elapsed=150.8s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H20_E20_V10_PT2_SL1 | -0.015792 | [-0.049248,+0.021103] | 0.9659 | 3.809 | 10.463 | -0.099496 | -0.345083 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.015998 | [-0.062041,+0.100808] | 1.0237 | 20.057 | 86.635 | +0.019143 | +0.344694 | -0.192 | 0.190 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.019028 | [-0.056352,+0.096285] | 1.0282 | 16.547 | 75.358 | +0.027598 | +0.409960 | -0.277 | 0.230 | 1.0000
+H20_E100_V20_PT2_SL1 | +0.007302 | [-0.030672,+0.047814] | 1.0166 | 8.220 | 43.407 | +0.021321 | +0.159572 | -0.214 | 0.463 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E50_V1000_PT2_SL1 | meanR=+0.019028 | R/occupied_day=+0.027598 | R/week=+0.409960 | mean_hold_h=16.547
+ 2. H20_E100_V20_PT2_SL1 | meanR=+0.007302 | R/occupied_day=+0.021321 | R/week=+0.159572 | mean_hold_h=8.220
+ 3. H20_E100_V1000_PT2_SL1 | meanR=+0.015998 | R/occupied_day=+0.019143 | R/week=+0.344694 | mean_hold_h=20.057
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260914T172431Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260914T172431Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\US500\edges\reversal_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

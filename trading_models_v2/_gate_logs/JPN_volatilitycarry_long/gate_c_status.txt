@@ -1,0 +1,49 @@
+asset=JPN edge=volatilitycarry_long gate_c_exit=0 elapsed_seconds=100
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: JPN/volatilitycarry_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V20_PT2_SL1 [CONTROL]
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H20_E100_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 4915
+  250/4915 elapsed=3.7s
+  500/4915 elapsed=7.4s
+  750/4915 elapsed=10.0s
+  1000/4915 elapsed=11.9s
+  1250/4915 elapsed=13.7s
+  1500/4915 elapsed=16.3s
+  1750/4915 elapsed=19.6s
+  2000/4915 elapsed=22.2s
+  2250/4915 elapsed=25.5s
+  2500/4915 elapsed=28.9s
+  2750/4915 elapsed=35.2s
+  3000/4915 elapsed=40.7s
+  3250/4915 elapsed=47.4s
+  3500/4915 elapsed=55.1s
+  3750/4915 elapsed=59.0s
+  4000/4915 elapsed=63.2s
+  4250/4915 elapsed=69.9s
+  4500/4915 elapsed=78.5s
+  4750/4915 elapsed=86.1s
+  4915/4915 elapsed=93.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V20_PT2_SL1 | +0.001976 | [-0.061597,+0.061522] | 1.0031 | 5.782 | 15.133 | +0.008202 | +0.046037 | 1.000 | 1.000 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.058526 | [-0.039166,+0.157589] | 1.0891 | 23.938 | 83.631 | +0.058677 | +1.339989 | 7.154 | 0.242 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.047368 | [-0.050092,+0.147242] | 1.0716 | 23.962 | 88.089 | +0.047444 | +1.084523 | 5.785 | 0.241 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.068204 | [-0.036078,+0.174524] | 1.1046 | 29.133 | 102.657 | +0.056188 | +1.561565 | 6.851 | 0.198 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H15_E100_V1000_PT2_SL1 | meanR=+0.058526 | R/occupied_day=+0.058677 | R/week=+1.339989 | mean_hold_h=23.938
+ 2. H20_E100_V1000_PT2_SL1 | meanR=+0.068204 | R/occupied_day=+0.056188 | R/week=+1.561565 | mean_hold_h=29.133
+ 3. H20_E50_V1000_PT2_SL1 | meanR=+0.047368 | R/occupied_day=+0.047444 | R/week=+1.084523 | mean_hold_h=23.962
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260914T212133Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260914T212133Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

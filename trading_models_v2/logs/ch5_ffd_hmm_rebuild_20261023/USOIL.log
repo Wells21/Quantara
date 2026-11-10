@@ -1,0 +1,114 @@
+$ shared/ffd/build_asset_ffd_features.py --asset USOIL --overwrite
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+C:\Users\Administrator\Desktop\Trading Models\venv312\Lib\site-packages\fracdiff\sklearn\stat.py:60: FutureWarning: adfuller currently returns a plain tuple whose length depends on the store and autolag arguments. In release 0.16 or after July 2027, whichever is later, the default behavior will switch to always returning an ADFullerResult. Set result_object=True to switch now, or result_object=False to keep the current behavior and silence this warning.
+  _, pvalue, _, _, _, _ = stattools.adfuller(x)
+✅ V2 asset FFD features built.
+Asset: USOIL
+Rows input: 70028
+Rows output: 70028
+Frozen d: 0.0
+FFD window: 1000
+Live buffer bars: 1010
+Memory retention passed: True
+ADF p full / first half / second half: 0.0295 / 0.0959 / 0.2990
+Min memory retention corr: 0.9999999999999998
+FFD features: assets/USOIL/bars/ffd/usoil_ffd_features.csv
+State bundle: assets/USOIL/bars/ffd/usoil_ffd_state_bundle.pkl
+Manifest: assets/USOIL/bars/ffd/ffd_manifest.json
+Elapsed seconds: 25.66
+$ shared/regime/build_asset_hmm_regime_features.py --asset USOIL --overwrite
+============================================================
+PRICE-ONLY ROLLING HMM REGIME MODEL — USOIL
+============================================================
+Rows available after HMM preprocessing: 72,602
+Date range: 2022-01-25 00:23:40.265000+00:00 -> 2026-08-25 19:13:38.113000+00:00
+HMM features: ['Close_FFD', 'Bar_Volatility_Bps', 'Abs_Bar_Return_Bps', 'Body_To_Range', 'Close_Location']
+Total OOS bars to infer: 67,602
+Train window: 5,000
+Refit frequency: 1,000
+Inference lookback: 1,000
+
+Refit at bar 5,000 | time=2022-05-12 16:34:05.820000+00:00 | converged=True
+Refit at bar 6,000 | time=2022-06-07 10:07:25.399000+00:00 | converged=True
+Refit at bar 7,000 | time=2022-06-29 00:17:14.149000+00:00 | converged=True
+Refit at bar 8,000 | time=2022-07-20 10:11:01.783000+00:00 | converged=True
+Refit at bar 9,000 | time=2022-08-12 15:18:10.776000+00:00 | converged=True
+Refit at bar 10,000 | time=2022-09-06 09:14:40.335000+00:00 | converged=True
+Refit at bar 11,000 | time=2022-09-28 07:16:04.924000+00:00 | converged=True
+Refit at bar 12,000 | time=2022-10-21 12:23:29.020000+00:00 | converged=True
+Refit at bar 13,000 | time=2022-11-16 08:14:28.404000+00:00 | converged=True
+Refit at bar 14,000 | time=2022-12-07 18:37:30.756000+00:00 | converged=True
+Refit at bar 15,000 | time=2023-01-04 15:05:00.533000+00:00 | converged=True
+Refit at bar 16,000 | time=2023-01-30 11:15:09.118000+00:00 | converged=True
+Refit at bar 17,000 | time=2023-02-22 15:32:05.844000+00:00 | converged=True
+Refit at bar 18,000 | time=2023-03-16 16:54:27.118000+00:00 | converged=True
+Refit at bar 19,000 | time=2023-04-17 12:44:10.187000+00:00 | converged=True
+Refit at bar 20,000 | time=2023-05-05 19:20:46.091000+00:00 | converged=True
+Refit at bar 21,000 | time=2023-05-31 07:03:36.500000+00:00 | converged=True
+Refit at bar 22,000 | time=2023-06-22 14:42:13.709000+00:00 | converged=True
+Refit at bar 23,000 | time=2023-07-17 14:50:13.013000+00:00 | converged=True
+Refit at bar 24,000 | time=2023-08-09 14:22:48.257000+00:00 | converged=True
+Refit at bar 25,000 | time=2023-09-01 16:33:05.953000+00:00 | converged=True
+Refit at bar 26,000 | time=2023-09-25 15:14:13.066000+00:00 | converged=True
+Refit at bar 27,000 | time=2023-10-13 16:25:32.394000+00:00 | converged=True
+Refit at bar 28,000 | time=2023-11-06 00:25:43.340000+00:00 | converged=True
+Refit at bar 29,000 | time=2023-11-30 12:18:12.461000+00:00 | converged=True
+Refit at bar 30,000 | time=2023-12-27 02:08:43.144000+00:00 | converged=True
+Refit at bar 31,000 | time=2024-01-18 16:23:38.916000+00:00 | converged=True
+Refit at bar 32,000 | time=2024-02-14 19:24:19.645000+00:00 | converged=True
+Refit at bar 33,000 | time=2024-03-08 13:00:47.835000+00:00 | converged=True
+Refit at bar 34,000 | time=2024-04-04 12:51:29.058000+00:00 | converged=True
+Refit at bar 35,000 | time=2024-04-22 19:27:36.976000+00:00 | converged=True
+Refit at bar 36,000 | time=2024-05-20 01:49:36.635000+00:00 | converged=True
+Refit at bar 37,000 | time=2024-06-11 13:35:03.832000+00:00 | converged=True
+Refit at bar 38,000 | time=2024-07-05 15:14:57.422000+00:00 | converged=True
+Refit at bar 39,000 | time=2024-07-26 18:52:04.543000+00:00 | converged=True
+Refit at bar 40,000 | time=2024-08-15 08:50:00.805000+00:00 | converged=True
+Refit at bar 41,000 | time=2024-09-05 16:45:21.591000+00:00 | converged=True
+Refit at bar 42,000 | time=2024-09-27 16:42:26.984000+00:00 | converged=True
+Refit at bar 43,000 | time=2024-10-21 13:38:15.381000+00:00 | converged=True
+Refit at bar 44,000 | time=2024-11-15 06:20:46.941000+00:00 | converged=True
+Refit at bar 45,000 | time=2024-12-12 03:32:57.650000+00:00 | converged=True
+Refit at bar 46,000 | time=2025-01-08 08:18:47.148000+00:00 | converged=True
+Refit at bar 47,000 | time=2025-01-24 16:32:17.947000+00:00 | converged=True
+Refit at bar 48,000 | time=2025-02-21 09:46:35.619000+00:00 | converged=True
+Refit at bar 49,000 | time=2025-03-17 05:34:27.646000+00:00 | converged=True
+Refit at bar 50,000 | time=2025-04-07 04:04:18.489000+00:00 | converged=True
+Refit at bar 51,000 | time=2025-04-25 10:16:14.910000+00:00 | converged=True
+Refit at bar 52,000 | time=2025-05-22 13:36:18.676000+00:00 | converged=True
+Refit at bar 53,000 | time=2025-06-13 07:50:40.338000+00:00 | converged=True
+Refit at bar 54,000 | time=2025-07-03 14:10:16.736000+00:00 | converged=True
+Refit at bar 55,000 | time=2025-08-01 13:30:02.856000+00:00 | converged=True
+Refit at bar 56,000 | time=2025-08-28 11:44:56.900000+00:00 | converged=True
+Refit at bar 57,000 | time=2025-09-19 02:08:55.877000+00:00 | converged=True
+Refit at bar 58,000 | time=2025-10-10 13:09:04.854000+00:00 | converged=True
+Refit at bar 59,000 | time=2025-10-30 14:34:19.094000+00:00 | converged=True
+Refit at bar 60,000 | time=2025-11-24 12:18:18.651000+00:00 | converged=True
+Refit at bar 61,000 | time=2025-12-18 21:00:27.492000+00:00 | converged=True
+Refit at bar 62,000 | time=2026-01-12 08:18:02.993000+00:00 | converged=True
+Refit at bar 63,000 | time=2026-01-29 14:39:34.715000+00:00 | converged=True
+Refit at bar 64,000 | time=2026-02-19 18:15:37.656000+00:00 | converged=True
+Refit at bar 65,000 | time=2026-03-05 19:53:01.856000+00:00 | converged=True
+Refit at bar 66,000 | time=2026-03-23 09:56:58.580000+00:00 | converged=True
+Refit at bar 67,000 | time=2026-04-16 14:35:38.227000+00:00 | converged=True
+Refit at bar 68,000 | time=2026-05-12 08:24:55.452000+00:00 | converged=True
+Refit at bar 69,000 | time=2026-06-08 06:53:50.168000+00:00 | converged=True
+Refit at bar 70,000 | time=2026-07-03 01:48:39.850000+00:00 | converged=True
+Refit at bar 71,000 | time=2026-07-23 01:19:03.849000+00:00 | converged=True
+Refit at bar 72,000 | time=2026-08-11 11:56:14.285000+00:00 | converged=True
+✅ V2 asset HMM regime features built.
+Asset: USOIL
+Rows after preprocessing: 72602
+Rows output: 67602
+States: 4
+Train window: 5000
+Refit frequency: 1000
+Inference lookback: 1000
+Refit points: 68
+All refits converged: True
+Output range: 2022-05-12 16:34:05.820000+00:00 -> 2026-08-25 19:13:38.113000+00:00
+Regime features: assets/USOIL/bars/regime/usoil_hmm_regime_features.csv
+Live bundle: assets/USOIL/bars/regime/usoil_hmm_regime_live_bundle.pkl
+Manifest: assets/USOIL/bars/regime/hmm_regime_manifest.json
+Elapsed seconds: 178.93

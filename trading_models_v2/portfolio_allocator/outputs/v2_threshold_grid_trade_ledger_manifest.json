@@ -1,0 +1,117 @@
+{
+  "broker_min_lot_risk_enrichment": {
+    "account_currency": "USD",
+    "assets_with_valid_trade_rows": [
+      "GBPJPY",
+      "HK",
+      "JPN",
+      "XAUUSD"
+    ],
+    "contract_count": 10,
+    "conversion_artifact_policy": "hashless_overwriteable_local_artifacts",
+    "conversion_manifest_path": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\config\\broker_conversions\\historical_conversion_manifest.json",
+    "conversion_timeframe": "H1",
+    "enabled": true,
+    "hash_coupling": "none",
+    "legacy_static_broker_contract_specs_consumed": false,
+    "max_staleness_seconds": 432000,
+    "performance_policy": {
+      "hash_coupling": "none",
+      "level_1_single_combined_raw_ledger_only": true,
+      "level_2_atomic_temp_then_replace": true,
+      "level_2_csv_write_chunk_size": 100000,
+      "level_2_full_combined_ledger_materialized_in_memory": false,
+      "level_2_stream_buffer_row_limit": 250000,
+      "level_2_stream_during_threshold_processing": true,
+      "level_3_probability_sort_count_per_edge": 1,
+      "level_3_restore_chronological_order_before_metrics_and_write": true,
+      "level_3_threshold_selection_mode": "per_edge_probability_sort_searchsorted_restore_chronological_order",
+      "oof_columns": "required_columns_only",
+      "oof_edges_held_in_memory": 1,
+      "stream_flush_count": 2,
+      "stream_rows_written": 279132
+    },
+    "profile_artifact_policy": "hashless_overwriteable_snapshot",
+    "profile_path": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\config\\broker_profiles\\mt5_broker_profile.json",
+    "required_conversion_symbols": [
+      "EURUSD",
+      "USDHKD",
+      "USDJPY"
+    ],
+    "risk_contract_version": "historical_broker_conversion_v2_3",
+    "risk_model": "price_distance_x_contract_size_x_causal_profit_to_account_rate",
+    "status": "PASS",
+    "strict_all_selected_trade_rows_valid": true,
+    "warnings": []
+  },
+  "counts": {
+    "core_grid_rows": 80,
+    "grid_summary_rows": 96,
+    "input_edges": 6,
+    "ledger_core_plus_watchlist_rows": 279132,
+    "ledger_core_rows": 279132,
+    "ledger_watchlist_rows": 0,
+    "summary_rows": 80,
+    "validation_rows": 80,
+    "viable_grid_rows": 80,
+    "watchlist_grid_rows": 0
+  },
+  "created_at": "2026-10-17T20:15:48+00:00",
+  "deprecated_outputs_not_written": [
+    "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_core.csv",
+    "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_watchlist.csv"
+  ],
+  "gates": {
+    "min_calmar_r": 0.5,
+    "min_cumulative_r": 0.0,
+    "min_expectancy_r": 0.0,
+    "min_local_positive_ratio": 0.6,
+    "min_profit_factor": 1.02,
+    "min_trade_abs": 100,
+    "min_trade_frac_of_side_max": 0.08
+  },
+  "notes": [
+    "Port of V1 Step 04B threshold-grid ledger logic using V2 edge_id and manifest-declared calibrated OOF paths.",
+    "This step expands the calibrated threshold grid before Step 04C plateau compression.",
+    "No final position sizing is applied here.",
+    "Broker minimum-lot risk is derived from the local MT5 profile captured in Step 00A and causal H1 conversions built in Step 00B.",
+    "The deprecated static quote_to_simulation_rate is not consumed; legacy compatibility columns carry the resolved per-trade conversion rate.",
+    "File-content hashes are not consumed by Step 04B. MD5 values used for trade_uid are stable row identifiers only.",
+    "Level 1: only the core+watchlist raw threshold ledger is written; core/watchlist separation is preserved as row metadata and recreated later at the representative stage.",
+    "Level 2: selected threshold rows are streamed into one bounded-memory atomic CSV during threshold processing; the full combined ledger is never materialized in RAM.",
+    "Level 3: each edge OOF is probability-sorted once and every threshold uses binary-search cutoff selection, then restores chronological row order before metrics and writing."
+  ],
+  "outputs": {
+    "grid_summary_all": "portfolio_allocator/outputs/v2_threshold_grid_summary_all.csv",
+    "grid_viability": "portfolio_allocator/outputs/v2_threshold_grid_viability.csv",
+    "ledger_core_plus_watchlist": "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_core_plus_watchlist.csv",
+    "ledger_summary": "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_summary.csv",
+    "manifest": "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_manifest.json",
+    "validation": "portfolio_allocator/outputs/v2_threshold_grid_trade_ledger_validation_report.csv"
+  },
+  "pipeline_mode": "v2_manifest_driven_calibrated_afml",
+  "schema_version": "v2.6",
+  "settings": {
+    "afml_column": "afml_bet_size",
+    "broker_conversion_manifest_path": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\config\\broker_conversions\\historical_conversion_manifest.json",
+    "broker_profile_path": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\portfolio_allocator\\config\\broker_profiles\\mt5_broker_profile.json",
+    "broker_risk_hash_coupling": "none",
+    "ledger_write_chunk_size": 100000,
+    "local_window": 5,
+    "probability_column": "calibrated_probability",
+    "raw_ledger_output_policy": "single_core_plus_watchlist_only",
+    "stream_buffer_row_limit": 250000,
+    "stream_during_threshold_processing": true,
+    "strict_broker_risk": true,
+    "threshold_selection_mode": "per_edge_probability_sort_searchsorted_restore_chronological_order",
+    "write_only_viable_thresholds": true
+  },
+  "threshold_grid_ledger_status": "PASS",
+  "validation": {
+    "broker_min_lot_risk_missing_rows": 0,
+    "broker_min_lot_risk_valid_rows": 279132,
+    "empty_selection_count": 0,
+    "mismatch_count": 0,
+    "strict_trade_count_validation": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "afml_ch18_entropy_encoding_v1",
+  "asset": "DAX",
+  "created_at": "2026-11-07T21:13:27+00:00",
+  "source_bars_path": "assets/DAX/bars/standard_quote_tick/dax_standard_quote_tick_bars.csv",
+  "source_bars_sha256": "a890d305d5e71757c82728b07898cefac9e8e22bfe219d9c5b8e1283651f7c4d",
+  "source_bars_rows": 184978,
+  "source_first_datetime": "2014-02-04 08:17:11.409000+00:00",
+  "source_last_datetime": "2026-07-03 17:49:51.605000+00:00",
+  "return_definition": "r_t = numpy.diff(numpy.log(Close)) on the research bars",
+  "returns": 184977,
+  "estimation_policy": "full_research_history_then_freeze (as the FFD d); sealed holdout and live never used",
+  "quantile_letters": 10,
+  "quantile_levels": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "quantile_method": "numpy.quantile default (linear)",
+  "quantile_boundaries": [
+    -0.0015452708061907572,
+    -0.0009163942609905718,
+    -0.0005365114121456572,
+    -0.00024482080993664095,
+    1.8476619739971056e-05,
+    0.000274766699634199,
+    0.0005610648034807042,
+    0.0009331177111228338,
+    0.001548969956040125
+  ],
+  "quantile_in_sample_letter_shares": [
+    0.1000016218232537,
+    0.1000016218232537,
+    0.09999621574574136,
+    0.1000016218232537,
+    0.09999621574574136,
+    0.1000016218232537,
+    0.1000016218232537,
+    0.09999621574574136,
+    0.1000016218232537,
+    0.1000016218232537
+  ],
+  "sigma": 0.001609239257643577,
+  "sigma_definition": "standard deviation of all research-history bar returns (AFML exercise 18.1(c)), numpy ddof=0",
+  "zero_return_share": 0.0019191575168804771,
+  "book": "AFML s.18.5.2 p.270 (quantile boundaries from the in-sample period), s.18.5.3 p.270-271 (sigma encoding), exercise 18.1(b)-(c) p.277"
+}

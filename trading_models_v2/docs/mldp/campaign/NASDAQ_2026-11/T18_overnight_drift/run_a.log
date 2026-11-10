@@ -1,0 +1,58 @@
+NASDAQ {"LONG": {"drift_month_matched": [0.06109, false]}, "SHORT": {"drift_month_matched": [0.01964, false]}} 1.5
+US500 {"LONG": {"drift_month_matched": [-0.02133, false]}, "SHORT": {"drift_month_matched": [0.00768, false]}} 3.2
+DAX {"LONG": {"drift_month_matched": [0.01783, false]}, "SHORT": {"drift_month_matched": [0.01191, false]}} 5.6
+JPN {"LONG": {"drift_month_matched": [0.00329, false]}, "SHORT": {"drift_month_matched": [0.03508, false]}} 7.3
+HK {"LONG": {"drift_month_matched": [0.01659, false]}, "SHORT": {"drift_month_matched": [0.02208, false]}} 9.1
+XAUUSD {"LONG": {}, "SHORT": {}} 10.2
+GBPJPY {"LONG": {}, "SHORT": {}} 10.9
+USDMXN {"LONG": {}, "SHORT": {}} 11.6
+USOIL {"LONG": {}, "SHORT": {}} 11.9
+BTCUSD {"LONG": {}, "SHORT": {}} 12.3
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 7049,
+   "drift_month_matched": {
+    "diff": 0.01617,
+    "se": 0.01731,
+    "lower_bound_1p645": -0.0123,
+    "PASS": false,
+    "lower_bound_tiered": -0.00599,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.03173,
+     "se": 0.0139,
+     "lower_bound_1p645": 0.00887,
+     "PASS": true,
+     "n": 8711
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 8711,
+   "drift_month_matched": {
+    "diff": 0.01793,
+    "se": 0.01523,
+    "lower_bound_1p645": -0.00713,
+    "PASS": false,
+    "lower_bound_tiered": -0.00156,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.03167,
+     "se": 0.01387,
+     "lower_bound_1p645": 0.00886,
+     "PASS": true,
+     "n": 7049
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}

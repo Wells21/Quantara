@@ -1,0 +1,422 @@
+{
+  "schema_version": "mldp_implementation_backlog_v1",
+  "purpose": "Owner rule 2026-10-26: nothing approved in a chapter may be forgotten. Every register item that is approved but not yet fully in effect is listed here with what is left, where, and when. tests/test_mldp_backlog.py fails if an open register item is missing from this file.",
+  "states": {
+    "code_pending": "approved, code NOT written yet",
+    "code_done_awaiting_retrain": "code written and tested; takes effect when the edges are retrained (Steps 01-09 + allocator)",
+    "task_after_retrain": "a test / decision to run after the retrain",
+    "decision_pending": "owner decision scheduled at a later chapter",
+    "review_legacy": "pre-walkthrough audit item whose status must be re-checked against the chapter decisions"
+  },
+  "items": [
+    {
+      "id": "D052",
+      "chapter": "AFML Ch.12",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "code DONE 2026-10-26 (tests/test_afml_ch12_cpcv_paths.py): Step 03 N=10 k=2 + per-path columns (all 6 edges), Step 04 calibrator on stacked paths (fail closed), 04b per-path ledger, 04c mean-across-paths selection",
+        "takes effect when Step 03 + Step 04 are re-run on every edge (retrain batch) and the allocator 04b -> 11 is re-run (RECERT)",
+        "f* once on the main path + gates on the main path: CONFIRMED by owner 2026-10-26",
+        "Ch.14: feed the path Sharpe distribution into PSR / DSR"
+      ],
+      "where": "assets/*/edges/*/research/03_*.py (inlined helper), shared/models/cpcv_paths.py, shared/calibration/fit_sigmoid_calibrator_and_thresholds.py, portfolio_allocator/04b, 04c",
+      "when": "retrain batch + allocator re-run"
+    },
+    {
+      "id": "D054",
+      "chapter": "AFML Ch.14",
+      "state": "task_after_retrain",
+      "left": [
+        "at the RECERT: run dsr_all_trials on every retrained edge; gate = Level 1 DSR > 0.95 and FWER alpha_K < 0.05; report Level 2 alongside; remove failing edges from edge_universe then (owner 2026-10-27: nothing removed before)",
+        "wire the gate into the promotion flow after Gate C / PBO and into 07b enforcement",
+        "D052 path PSRs; D028 meta-model DSR comparison"
+      ],
+      "where": "shared/research/dsr_all_trials.py, portfolio_allocator/07b, edge promotion",
+      "when": "RECERT (after the walkthrough + retrain)"
+    },
+    {
+      "id": "D057",
+      "chapter": "AFML Ch.11 / portfolio allocator",
+      "state": "task_after_retrain",
+      "left": [
+        "diagnostic (not a gate): run shared/research/allocator_threshold_pbo.py on the retrained edges at RECERT and report threshold PBO + threshold-inclusive DSR beside the D054 gate"
+      ],
+      "where": "portfolio_allocator/04b, 04c; shared/research/gate_c_pbo.py (CSCV); shared/research/dsr_all_trials.py",
+      "when": "RECERT"
+    },
+    {
+      "id": "D055",
+      "chapter": "AFML Ch.15",
+      "state": "task_after_retrain",
+      "left": [
+        "at the RECERT: gate P[p < p_theta*] <= .05 on bets (theta* = 0, k = 2) for every retrained edge; report theta* = 1, k = 1 and trades alongside (nothing removed before)"
+      ],
+      "where": "config/strategy_risk.json, portfolio_allocator/07c, portfolio_live/decommission_rule.py",
+      "when": "RECERT"
+    },
+    {
+      "id": "D030",
+      "chapter": "AFML Ch.4",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "retrain all edges"
+      ],
+      "where": "Steps 02/03",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D031",
+      "chapter": "AFML Ch.5",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "re-export research datasets of GBPJPY, HK, XAUUSD edges on the new FFD/HMM (JPN done 2026-10-26)",
+        "retrain"
+      ],
+      "where": "export_research_dataset.py per edge",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D034",
+      "chapter": "AFML Ch.6",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "retrain all edges"
+      ],
+      "where": "Steps 02/03",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D036",
+      "chapter": "AFML Ch.7",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "retrain all edges"
+      ],
+      "where": "Steps 02-04",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D044",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "run Step 01 on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D039",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "sequential bootstrap + purged CV in feature importance: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D040",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "seeded k-means in ONC: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D041",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "min_weight_fraction_leaf 0.05 in importance trees: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D042",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "no residual features: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D043",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "SFI dropped from routine certification: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D045",
+      "chapter": "AFML Ch.8",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "5 MDA shuffles per fold: in shared/features/clustered_feature_importance.py (Step 01); takes effect when Step 01 runs on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 01",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D046",
+      "chapter": "AFML Ch.9",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "run Step 02 on every edge (JPN done 2026-10-26)"
+      ],
+      "where": "Step 02",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D048",
+      "chapter": "AFML Ch.10",
+      "state": "task_after_retrain",
+      "left": [
+        "re-run ch10_remaining_return_test.py and ch10_dynamic_sizing_sim.py with --approved-only on the retrained edges"
+      ],
+      "where": "shared/research/",
+      "when": "after the retrain"
+    },
+    {
+      "id": "D007",
+      "chapter": "AFML Ch.10",
+      "state": "decision_pending",
+      "left": [
+        "clean OOS benchmark of the book's 10.3 formula vs payoff-aware sizing, when the owner asks"
+      ],
+      "where": "shared/calibration/sigmoid_afml.py",
+      "when": "owner"
+    },
+    {
+      "id": "D028",
+      "chapter": "AFML Ch.3 / Ch.14",
+      "state": "task_after_retrain",
+      "left": [
+        "at the RECERT: DSR of the meta-filtered strategy vs taking every primary signal (approved 2026-10-26, walkthrough s.4N.1), on the retrained models; owner judges the meta-model's value on that result"
+      ],
+      "where": "-",
+      "when": "RECERT"
+    },
+    {
+      "id": "RECERT",
+      "chapter": "AFML Ch.1-13",
+      "state": "task_after_retrain",
+      "left": [
+        "2026-11-04: the RECERT run (logs/recert_20261103/RECERT_LOG.md) ended at the edge level -- all 4 edges failed D075 (JPN also Gate D) and the owner removed them; config/edge_universe.json has 0 edges. The items below apply to the next edges (each new edge passes the edge-level gates of runbook Section 6A before it enters edge_universe, then the allocator and deployment gates).",
+        "allocator re-run 00a-11 on retrained edges (thresholds, D017 divisors, HRP weights)",
+        "07 runs on venv39 (pandas < 3: clean_corr fill_diagonal fails under pandas 3 copy-on-write); no pin (owner)",
+        "venv39 must load every pickle the retrain writes on venv312: run ..\\venv39\\Scripts\\python.exe docs\\tools\\scan_pickles_loadable.py after the retrain and before Phase C (D065; FFD / HMM bundles and live states already use shared/io/portable_pickle.py; model.pkl loads across sklearn 1.9.1 -> 1.6.1 today with a version warning)",
+        "portfolio_live manifest rebuild + edge_versions",
+        "Gate E holdout one-look on the final design",
+        "live redeploy (owner)"
+      ],
+      "where": "portfolio_allocator, portfolio_live",
+      "when": "after the retrain"
+    },
+    {
+      "id": "D008",
+      "chapter": "pre-walkthrough",
+      "state": "review_legacy",
+      "left": [
+        "artifact rebuild -> retrain batch"
+      ],
+      "where": "register",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D010",
+      "chapter": "pre-walkthrough",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "07 denoise / conditional detone (mlam_ch2_book_v2) takes effect at the RECERT allocator re-run (07 outputs and live manifest stale until then)"
+      ],
+      "where": "portfolio_allocator/07",
+      "when": "RECERT"
+    },
+    {
+      "id": "D014",
+      "chapter": "pre-walkthrough",
+      "state": "review_legacy",
+      "left": [
+        "artifact regeneration -> retrain batch"
+      ],
+      "where": "register",
+      "when": "retrain batch"
+    },
+    {
+      "id": "D059",
+      "chapter": "AFML Ch.16",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "06 mark-to-market booking takes effect at the RECERT allocator re-run (06 -> 07 -> 07b / 07c); check the 06 manifest records date_aggregation mark_to_market_daily and bet_frequency_alignment daily"
+      ],
+      "where": "portfolio_allocator/06_build_representative_return_streams.py",
+      "when": "RECERT"
+    },
+    {
+      "id": "D060",
+      "chapter": "AFML Ch.16",
+      "state": "task_after_retrain",
+      "left": [
+        "re-run T1-T4 (venv39: shared/research/ch16_allocation_tests.py) at every edge_universe change and at RECERT; diagnostic"
+      ],
+      "where": "shared/research/ch16_allocation_tests.py",
+      "when": "every universe change; RECERT"
+    },
+    {
+      "id": "D061",
+      "chapter": "AFML Ch.17",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "re-export research_dataset for every edge (feature_expansion changed: SADF every bar + 4 QADF/CADF columns), then Steps 01-09 and Gate D",
+        "Phase C.1 contract regeneration + Phase C.2 certification incl. structural_break_research_rule_parity on all assets"
+      ],
+      "where": "assets/*/edges/*/feature_expansion.py; shared/edges/native_one_row_feature_engine.py; portfolio_live/phase_c_02",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D063",
+      "chapter": "AFML Ch.17",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "QADF / CADF columns enter Step 01 feature selection at the retrain (no separate action beyond D061's re-export)"
+      ],
+      "where": "shared/features/afml_ch17_structural_breaks.py; feature_schema.json (6)",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D064",
+      "chapter": "AFML Ch.17",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "CSW / SMT columns enter Step 01 feature selection at the retrain (no action beyond D061's re-export)"
+      ],
+      "where": "shared/features/afml_ch17_structural_breaks.py; feature_schema.json (6)",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D066",
+      "chapter": "AFML Ch.18",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "re-export research_dataset for every edge (feature_expansion changed: 3 entropy columns replace Entropy_Kontoyiannis_100; D066/D068/D069), then Steps 01-09 and Gate D -- REQUIRED before HK dhc / JPN rs / XAU rs / XAU vc can be compiled into Phase C again",
+        "Phase C.1 contract regeneration + Phase C.2 certification incl. entropy_research_rule_parity on all assets",
+        "re-run shared/features/build_asset_entropy_encoding.py only if an asset's research bars change (then re-export)"
+      ],
+      "where": "shared/features/afml_ch18_entropy.py; assets/*/bars/entropy; assets/*/edges/*/feature_expansion.py + feature_schema.json; shared/edges/native_one_row_feature_engine.py; portfolio_live/phase_c_02",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D068",
+      "chapter": "AFML Ch.18",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "RECERT retrain of the models that select the removed Entropy_Kontoyiannis_100 (HK dhc, JPN rs, XAU rs, XAU vc) -- the same re-export + Steps 01-09 + Gate D as D066; Step 01 chooses among the three new entropy columns"
+      ],
+      "where": "assets/*/edges/*/feature_expansion.py + feature_schema.json",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D070",
+      "chapter": "AFML Ch.18",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "read pc_effective_number_of_bets in the RECERT allocator run (report only)"
+      ],
+      "where": "portfolio_allocator/07_hrp_linkage_robustness.py",
+      "when": "RECERT allocator re-run"
+    },
+    {
+      "id": "D071",
+      "chapter": "AFML Ch.19",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "re-export research_dataset for every edge (Becker_Parkinson_Vol_1 warm-up rows now NaN, not 0) -- the same RECERT re-export as D066 / D072"
+      ],
+      "where": "shared/features/afml_ch19_microstructure.py",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D072",
+      "chapter": "AFML Ch.19",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "re-export research_dataset for every edge (feature_expansion changed: Corwin_Schultz_Spread_1 removed, D071 warm-up NaN; 187-entry schema), then Steps 01-09 and Gate D -- REQUIRED before HK dhc / JPN rs / XAU rs / XAU vc can be compiled into Phase C again (same retrain as D066)",
+        "Phase C.1 contract regeneration + Phase C.2 certification on all assets (live engine v1_7)"
+      ],
+      "where": "shared/features/afml_ch19_microstructure.py; assets/*/edges/*/feature_expansion.py + feature_schema.json; shared/edges/native_one_row_feature_engine.py",
+      "when": "RECERT retrain"
+    },
+    {
+      "id": "D074",
+      "chapter": "Runbook grid (post-AFML, 2026-10-31)",
+      "state": "task_after_retrain",
+      "left": [
+        "at the RECERT: each edge's Gate A-C re-selection uses EWM 100,150,200 (405 cells); PBO over that run's replayed cells; DSR over all the edge's Gate C trials including the 2026-10-31 EWM span test runs and every earlier runbook replay (D050-A rule 4)"
+      ],
+      "where": "runbook Section 6A Step 7; config/research_methodology_standing_rules.json GATE_A_RUNBOOK_GRID; docs/mldp/rules/GEOMETRY_RULE_D050A.md",
+      "when": "RECERT"
+    },
+    {
+      "id": "D075",
+      "chapter": "MLAM Ch.1 (2026-11-02)",
+      "state": "code_pending",
+      "left": [
+        "build one Gate 0 tool for new edges from shared/research/counterfactual_tests/: reads the card's counterfactuals and pre-registered Gate 0 cell (rule A), writes the pre-registration stub first, runs every asset per side, the one-sided 1.645 bound (rule B), the pooled cross-asset test with shared week clusters + per-asset consistency (rule C)",
+        "edge.yaml contract: require testable counterfactuals (clause, inversion, prediction), a pre-registered gate_0.cell from the panel, and a gate_0 result block before Gate A artifacts are accepted",
+        "at every RECERT: every edge_universe edge re-runs the counterfactuals and the drift baseline at its locked geometry (one-sided 1.645), pre-registered, before any gate that removes edges; failures to the owner (2026-11-04 amendment: the model-filtered test at the allocator threshold is deleted; RECERT 2026-11-04 done: all 4 failed and were removed)"
+      ],
+      "where": "docs/mldp/rules/THEORY_CHECK_RULE_D075.md; runbook Section 2, Section 6A Steps 4B, 6B, 7, 12; config/research_methodology_standing_rules.json THEORY_CHECK_GATE_0_D075",
+      "when": "before the first new thesis after MLAM; RECERT"
+    },
+    {
+      "id": "D076",
+      "chapter": "MLAM Ch.2 (2026-11-02)",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "at the RECERT: re-run shared/research/dsr_all_trials.py for every edge (all trials incl. the RECERT runs) so artifacts/feature_importance_audit/ch14_dsr_all_trials.json carries the denoised/detoned E[K]; then 07b and the D057 threshold PBO; report verdict changes (JPN rs FWER 0.038 -> 0.057 on the 2026-10-26 trials) to the owner"
+      ],
+      "where": "shared/backtest_statistics/afml_ch14_dsr.py (TRIAL_CORR_RULE); shared/research/dsr_all_trials.py; portfolio_allocator/07b_dsr_psr_validation.py; shared/research/allocator_threshold_pbo.py; shared/colab_portable/denoise_onc_snippet.py + Step 01 copies",
+      "when": "RECERT"
+    },
+    {
+      "id": "D077",
+      "chapter": "MLAM Ch.4 (2026-11-03)",
+      "state": "code_done_awaiting_retrain",
+      "left": [
+        "at the RECERT: Step 01 re-run on every edge picks up best-of-20 ONC (kept sets change on the volatilitycarry edges: JPN 123, XAU 32 features at the max-q partition); then Steps 02-09 as the geometry workflow"
+      ],
+      "where": "shared/features/clustered_feature_importance.py (STEP01_ONC_N_INIT, STEP01_ONC_RESTARTS, onc_best_of_restarts)",
+      "when": "RECERT"
+    },
+    {
+      "id": "D084",
+      "chapter": "NASDAQ campaign (2026-11-04)",
+      "state": "code_pending",
+      "left": [
+        "build the 4 mechanism features in the shared feature pipeline (research = live, Phase C certifiable), add them identically to every edge feature_schema, unit tests; first used by the first NASDAQ thesis that passes Gate 0"
+      ],
+      "where": "shared/features/, assets/*/edges/*/contracts/feature_schema.json",
+      "when": "before the first NASDAQ thesis's export"
+    },
+    {
+      "id": "D086",
+      "chapter": "NASDAQ campaign (2026-11-05)",
+      "state": "code_pending",
+      "left": [
+        "add calendar features (hours_to_next / hours_since_last per FOMC, CPI, NFP) to the live incremental feature engine with Phase C.2 certification -- before the first calendar edge deploys; show the owner the live-code change first",
+        "update config/economic_event_calendar.json when the Fed publishes the 2027 FOMC calendar (FOMC coverage ends 2026-12-09) and on any BLS reschedule"
+      ],
+      "where": "config/economic_event_calendar.json, shared/features/economic_calendar.py, live incremental engine",
+      "when": "before the first calendar edge's deployment"
+    }
+  ]
+}

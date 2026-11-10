@@ -1,0 +1,2781 @@
+{
+  "schema_version": "v2.1",
+  "asset": "NASDAQ",
+  "description": "Gate A-D edge search ledger for NASDAQ, following the same workflow as JPN/US500/XAUUSD.",
+  "gate_a_2026-09-15": {
+    "cost_bps": 2.87,
+    "cost_bps_source": "NASDAQ empirical p95-p99 bid/ask spread band (p95=2.823, p99=2.923), see per_asset_empirical_spread_bps_2026-09-14 in config/us500_edge_search_ledger.json",
+    "kill_bar": "gross_mean_R >= 0.05 (standard bar, cost-independent)",
+    "edges_tested": 15,
+    "results": {
+      "absorption_long": {
+        "gross_mean_R": 0.0798,
+        "verdict": "PASS"
+      },
+      "rangestructure_long": {
+        "gross_mean_R": 0.1459,
+        "verdict": "PASS"
+      },
+      "rangestructure_short": {
+        "gross_mean_R": 0.0706,
+        "verdict": "PASS"
+      },
+      "reversal_long": {
+        "gross_mean_R": 0.0555,
+        "verdict": "PASS"
+      },
+      "timeregime_long": {
+        "gross_mean_R": 0.1016,
+        "verdict": "PASS"
+      },
+      "trend_long": {
+        "gross_mean_R": 0.1186,
+        "verdict": "PASS"
+      },
+      "trendpullbackcontinuation_long": {
+        "gross_mean_R": 0.0615,
+        "verdict": "PASS"
+      },
+      "volatilitycarry_long": {
+        "gross_mean_R": 0.1286,
+        "verdict": "PASS"
+      },
+      "volatilityregime_long": {
+        "gross_mean_R": 0.0868,
+        "verdict": "PASS"
+      },
+      "trend_short": {
+        "gross_mean_R": 0.0248,
+        "verdict": "KILL at 0.05 bar"
+      },
+      "signentropycollapse_short": {
+        "gross_mean_R": 0.0296,
+        "verdict": "KILL at 0.05 bar"
+      },
+      "volatilitycarry_short": {
+        "gross_mean_R": 0.0446,
+        "verdict": "KILL at 0.05 bar"
+      },
+      "breakdownretestfailure_short": {
+        "gross_mean_R": 0.0427,
+        "verdict": "KILL at 0.05 bar"
+      },
+      "downsidevolatilitycascade_short": {
+        "gross_mean_R": 0.0485,
+        "verdict": "KILL at 0.05 bar"
+      },
+      "drawdownhazardcontinuation_short": {
+        "gross_mean_R": 0.0378,
+        "verdict": "KILL at 0.05 bar"
+      }
+    }
+  },
+  "gate_a_shorts_reexamination_2026-09-15": {
+    "instruction": "User explicitly requested lowering the Gate A bar to gross_mean_R >= 0.02 for the 6 killed NASDAQ short edges specifically, to see if they survive Gate B-D despite the lower initial screen. All 6 clear 0.02. This is a NASDAQ-only, one-time experiment -- Gate A reverts to the standard 0.05 bar for all subsequent assets.",
+    "re_admitted_edges": [
+      "trend_short",
+      "signentropycollapse_short",
+      "volatilitycarry_short",
+      "breakdownretestfailure_short",
+      "downsidevolatilitycascade_short",
+      "drawdownhazardcontinuation_short"
+    ],
+    "result": "Of the 6, only downsidevolatilitycascade_short survived Gate C (exact bid/ask replay). The other 5 (trend_short, signentropycollapse_short, volatilitycarry_short, breakdownretestfailure_short, drawdownhazardcontinuation_short) were killed at Gate C. downsidevolatilitycascade_short then also completed Step01-09 (manifest PASS) but was killed at Gate D (AUC=0.5035, p=0.385 -- no significant discrimination). Conclusion: lowering the Gate A bar for shorts did not yield any additional deployable NASDAQ edges."
+  },
+  "gate_b_2026-09-15": {
+    "rule": "Rank Gate A survivors' cells by net_R_per_mean_hold_bar at cost_bps=2.87 (real empirical p95-p99 spread), take top-3 finalists per edge. Not a kill gate.",
+    "note": "Applied identically to the 9 original 0.05-bar survivors and the 1 re-admitted short (downsidevolatilitycascade_short) that reached Gate C."
+  },
+  "gate_c_2026-09-15": {
+    "rule": "Exact bid/ask tick replay on Gate B's top-3 finalists + control geometry. Filter to executable_r (meanR) STRICTLY > 0. Winner = argmax(R/occupied_day) among positive finalists. KILL if none positive.",
+    "results": {
+      "absorption_long": {
+        "verdict": "PASS",
+        "winner": "H15_E100_V20_PT2_SL1",
+        "meanR": 0.0327,
+        "R_per_occupied_day": 0.0877
+      },
+      "rangestructure_long": {
+        "verdict": "PASS",
+        "winner": "H20_E20_V1000_PT2_SL1",
+        "meanR": 0.084,
+        "R_per_occupied_day": 0.1316
+      },
+      "rangestructure_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0099"
+      },
+      "reversal_long": {
+        "verdict": "PASS",
+        "winner": "H15_E100_V1000_PT2_SL1",
+        "meanR": 0.0208,
+        "R_per_occupied_day": 0.0302
+      },
+      "timeregime_long": {
+        "verdict": "PASS",
+        "winner": "H15_E50_V1000_PT2_SL1",
+        "meanR": 0.0536,
+        "R_per_occupied_day": 0.0823
+      },
+      "trend_long": {
+        "verdict": "PASS",
+        "winner": "H20_E50_V1000_PT2_SL1",
+        "meanR": 0.074,
+        "R_per_occupied_day": 0.0887
+      },
+      "trendpullbackcontinuation_long": {
+        "verdict": "PASS",
+        "winner": "H15_E100_V1000_PT2_SL1",
+        "meanR": 0.0279,
+        "R_per_occupied_day": 0.0387
+      },
+      "volatilitycarry_long": {
+        "verdict": "PASS",
+        "winner": "H20_E50_V1000_PT2_SL1",
+        "meanR": 0.0784,
+        "R_per_occupied_day": 0.0811
+      },
+      "volatilityregime_long": {
+        "verdict": "PASS",
+        "winner": "H15_E50_V1000_PT2_SL1",
+        "meanR": 0.0256,
+        "R_per_occupied_day": 0.0479
+      },
+      "volatilitycarry_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0518"
+      },
+      "signentropycollapse_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0209"
+      },
+      "trend_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0690"
+      },
+      "breakdownretestfailure_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0181"
+      },
+      "downsidevolatilitycascade_short": {
+        "verdict": "PASS",
+        "winner": "H20_E100_V1000_PT2_SL1",
+        "meanR": 0.0182,
+        "R_per_occupied_day": 0.0219
+      },
+      "drawdownhazardcontinuation_short": {
+        "verdict": "KILL",
+        "reason": "all 3 finalists net-negative, best R/occupied_day=-0.0567"
+      }
+    }
+  },
+  "geometry_locks_2026-09-16": {
+    "note": "For every Gate C survivor, the winning finalist's (event_vol_lookback, event_vol_ewm_span, vertical_horizon, pt, sl) was locked into candidate_events.py + model_rows.py constants AND edge.yaml's labeling: block, matching the JPN/US500/XAUUSD pattern.",
+    "locks": {
+      "absorption_long": {
+        "lookback": 15,
+        "ewm_span": 100,
+        "vertical_horizon": 20,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "rangestructure_long": {
+        "lookback": 20,
+        "ewm_span": 20,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "reversal_long": {
+        "lookback": 15,
+        "ewm_span": 100,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "timeregime_long": {
+        "lookback": 15,
+        "ewm_span": 50,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "trend_long": {
+        "lookback": 20,
+        "ewm_span": 50,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "trendpullbackcontinuation_long": {
+        "lookback": 15,
+        "ewm_span": 100,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "volatilitycarry_long": {
+        "lookback": 20,
+        "ewm_span": 50,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "volatilityregime_long": {
+        "lookback": 15,
+        "ewm_span": 50,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      },
+      "downsidevolatilitycascade_short": {
+        "lookback": 20,
+        "ewm_span": 100,
+        "vertical_horizon": 1000,
+        "pt": 2.0,
+        "sl": 1.0
+      }
+    },
+    "task2a_prerequisite_bug_note": "build_mldp_executable_targets.py (Task 2A) had not been run for any NASDAQ edge before Step01-09 -- this is a required prerequisite (produces artifacts/research_dataset/*_mldp_execution_resolution.csv) that had been missed. Run for all 9 geometry-locked survivors before Step01-09; timeregime_long's Task2A coverage came in at 98.86% (below the pipeline's hard 99% minimum, TASK2A_MIN_COVERAGE_RATE in shared/edges/export_edge_manifest.py), causing a genuine Step09 kill (49/4303 events hit vertical_deadline_bar_not_found -- their 1000-bar vertical horizon ran past the end of available tick history)."
+  },
+  "step01_09_2026-09-17": {
+    "results": {
+      "absorption_long": "PASS (deployment_status=PASS)",
+      "rangestructure_long": "PASS (deployment_status=PASS)",
+      "reversal_long": "PASS (deployment_status=PASS)",
+      "timeregime_long": "FAILED_AT_09_export_edge_manifest.py -- coverage_rate=0.988613 below required 0.99",
+      "trend_long": "PASS (deployment_status=PASS)",
+      "trendpullbackcontinuation_long": "PASS (deployment_status=PASS)",
+      "volatilitycarry_long": "PASS (deployment_status=PASS)",
+      "volatilityregime_long": "PASS (deployment_status=PASS)",
+      "downsidevolatilitycascade_short": "PASS (deployment_status=PASS)"
+    }
+  },
+  "gate_d_v3_2026-09-17": {
+    "method": "shared/edges/gate_d_calibration_monotonicity.py -- AUC-ROC/Mann-Whitney U on raw Step03 OOF predictions vs quote_executable_meta_label. PASS requires AUC>0.5 and p<0.05. Same method used to finally grade JPN/US500/XAUUSD.",
+    "results": {
+      "absorption_long": {
+        "n": 5067,
+        "auc": 0.5015,
+        "p": 0.4256,
+        "verdict": "FAIL"
+      },
+      "rangestructure_long": {
+        "n": 4659,
+        "auc": 0.4882,
+        "p": 0.9102,
+        "verdict": "FAIL"
+      },
+      "reversal_long": {
+        "n": 4127,
+        "auc": 0.507,
+        "p": 0.2284,
+        "verdict": "FAIL"
+      },
+      "trend_long": {
+        "n": 6537,
+        "auc": 0.5284,
+        "p": 6.52e-05,
+        "verdict": "PASS"
+      },
+      "trendpullbackcontinuation_long": {
+        "n": 4991,
+        "auc": 0.5154,
+        "p": 0.03607,
+        "verdict": "PASS"
+      },
+      "volatilitycarry_long": {
+        "n": 4798,
+        "auc": 0.5467,
+        "p": 3.51e-08,
+        "verdict": "PASS"
+      },
+      "volatilityregime_long": {
+        "n": 2015,
+        "auc": 0.5217,
+        "p": 0.054,
+        "verdict": "FAIL (barely misses significance)"
+      },
+      "downsidevolatilitycascade_short": {
+        "n": 2535,
+        "auc": 0.5035,
+        "p": 0.3854,
+        "verdict": "FAIL"
+      }
+    }
+  },
+  "final_disposition_2026-09-17": {
+    "deployable": [
+      "trend_long",
+      "trendpullbackcontinuation_long",
+      "volatilitycarry_long"
+    ],
+    "killed_kept_on_disk_pending_gate_d_methodology_review": [
+      "absorption_long",
+      "rangestructure_long",
+      "rangestructure_short",
+      "reversal_long",
+      "timeregime_long",
+      "volatilityregime_long",
+      "downsidevolatilitycascade_short",
+      "volatilitycarry_short",
+      "signentropycollapse_short",
+      "trend_short",
+      "breakdownretestfailure_short",
+      "drawdownhazardcontinuation_short"
+    ],
+    "registry_note": "The 12 killed edges are removed from config/edge_universe.json (ordinary-asset disposition policy) but their source folders are deliberately NOT deleted yet -- user explicitly requested keeping them on disk pending an active Gate D methodology review (AUC-ROC/Mann-Whitney vs precision-recall-based alternatives per AFML Ch.3/Ch.14.8), since a methodology change could flip some verdicts (volatilityregime_long at p=0.054 is a near-miss worth re-checking first).",
+    "summary": "3 of 15 NASDAQ edges deployable (20%). All 3 survivors are long-side, from the original 0.05 Gate A cohort. None of the 6 shorts re-admitted at the loosened 0.02 Gate A bar survived to deployment -- 5 died at Gate C, and the 1 that passed Gate C (downsidevolatilitycascade_short) died at Gate D."
+  },
+  "SEQUENTIALPRESSURE_LONG_PBO_BORDERLINE_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "N=3 consecutive bullish bars, monotonically increasing closes, min 0.30 ATR cumulative displacement. Retried on NASDAQ (cost_bps=1.12) after US500 (passed A/C, failed PBO) and JPN (killed Gate C).",
+    "gate_a_result": {
+      "best_gross_mean_R": 0.122165118599438,
+      "cells_clearing_0.05_kill_bar": 234,
+      "net_positive_cells": 332
+    },
+    "gate_c_result": {
+      "candidates_positive_exec_mean_R": 49,
+      "best_candidate": "H8_E100_V96_PT2_SL1",
+      "best_exec_mean_R": 0.039834,
+      "note": "Gate C run as 3 batches of 198 finalists each (full grid hit the background job time limit as one call -- NASDAQ's raw tick data is 23GB, ~4-6x larger than JPN/US500, so execution replay is genuinely slower here, not stuck)."
+    },
+    "pbo_three_metric": {
+      "old_raw_mean_pbo": 0.4712,
+      "new_compound_velocity_pbo": 0.5546,
+      "old_degradation_slope": -0.808,
+      "new_degradation_slope": -0.5299,
+      "old_prob_oos_nonpositive": 0.4386,
+      "new_prob_oos_nonpositive": 0.4989
+    },
+    "comparison_to_us500": "Better than US500's original 3-bar/0.30 result (PBO 62.0%/Prob[OOS<=0] 61.8%) but still outside the 11-clean-live-edges range (PBO 0.1-0.55, Prob[OOS<=0] 0.1-0.45): PBO=55.5% sits right at the upper edge, Prob[OOS<=0]=49.9% is clearly above it.",
+    "verdict": "KILL under the established standard (does not match the 11-clean-live-edges PBO profile). Folder kept on disk per the universal no-delete policy, never promoted to edge_universe.json."
+  },
+  "MOMENTUMACCELERATIONCONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "Accelerating uptrend (momentum acceleration) -> long continuation. Retried on NASDAQ (cost_bps=1.12) after US500 (passed Gate A, died Gate C on weak gross signal).",
+    "self_test": "PASSED cleanly: 2817 model rows, balanced meta-label (49.3%/50.7%), 0 anomalous drops.",
+    "export_research_dataset": "PASSED: 2817 model rows, manifest rows_after_feature_nan_filter=2817, matches self-test.",
+    "gate_a_result": "FAILED TO RUN -- HorizonLabError: HYBRID FAST CONTROL PARITY FAILED (rows expected=2817 actual=2429).",
+    "root_cause_diagnosis": "This edge's candidate_events.py computes its calendar-time Event_Vol (_add_event_vol) over the FEATURES frame AFTER dropping rows with any NaN in required momentum-acceleration columns (Trend_Slope_Raw, Acceleration_Rank, etc.), not over the full raw bar grid. shared/research/v3_horizon_lab.py's hybrid-fast-grid control-parity check recomputes Event_Vol independently via calendar_time_event_vol against the FULL raw bar grid (_hfg_load_bars -> runtime._load_asset_bars()). Confirmed via direct debug: persisted Event_Vol at the 307 'dropped' event timestamps is valid/finite (~0.009-0.013), bars are unique/monotonic (no duplicate-timestamp bug), and all event Datetimes are exact bar-grid points -- so this is NOT a bar-loading or timestamp-alignment bug in the shared script. The divergence is specifically that NASDAQ's momentum/regime features have scattered mid-series NaN gaps (unlike US500's, where this same code apparently never produced a mismatch large enough to fail parity) which silently shifts the effective 4-hour lookback window used inside candidate_events.py's own vol computation relative to a true full-bar-grid calendar lookback.",
+    "disposition": "NOT a shared-script bug to patch (v3_horizon_lab.py's recompute against the full bar grid is the methodologically correct behavior; the edge's own vol computation silently deviating from a true full-grid calendar lookback whenever features have NaN gaps is the edge-specific quirk). NOT patching the edge's vol computation either, since that would change established geometry mid-exploration (forbidden per feedback_edge_geometry_change_full_workflow -- edits before Gate A/B/C exploration is finished corrupt the parity reference). KILLED for NASDAQ: abandon this mechanism here, move to next priority mechanism (explosiveregimecontinuation_long). Folder kept on disk per the universal no-delete policy, never promoted to edge_universe.json."
+  },
+  "EXPLOSIVEREGIMECONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "SADF explosive regime, upward direction -> long continuation. Retried on NASDAQ (cost_bps=1.12).",
+    "self_test": "PASSED: 2008 model rows (barely clears the 2000 floor), balanced meta-label (50.5%/49.4%).",
+    "export_research_dataset": "PASSED: 2008 model rows, matches self-test.",
+    "gate_a_result": "FAILED TO RUN -- HorizonLabError: HYBRID FAST CONTROL PARITY FAILED (rows expected=2008 actual=1722).",
+    "root_cause": "SAME PATTERN as MOMENTUMACCELERATIONCONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02: candidate_events.py/_normalize_feature_input() drops rows with any NaN in required feature columns (here, SADF_ct_50 and related regime columns) BEFORE _add_event_vol() computes the calendar-time Event_Vol via calendar_time_event_vol(). This makes the 4-hour lookback run over a non-contiguous, feature-availability-dependent bar subset rather than the true full calendar bar grid, so the independent Gate A reproduction (which recomputes over the full bar grid) cannot reproduce the persisted model rows. Confirmed this is a SHARED TEMPLATE PATTERN (same _normalize_feature_input -> _add_event_vol structure) likely present across several of the 12 US500-ported mechanisms -- worth expecting this failure mode to recur on others that require derived regime/momentum feature columns with scattered NaN gaps on NASDAQ specifically.",
+    "disposition": "KILLED for NASDAQ. Not patching the shared Gate A tool or the edge template: the parity failure reflects a genuine methodological soft spot (this edge's realized label geometry is sensitive to feature-NaN-driven gaps in its own vol lookback, not robust to independent reproduction) -- consistent with the standing principle that edges unable to survive the project's existing audit tooling on a given asset are not suitable for that asset as currently implemented. Folder kept on disk per the universal no-delete policy. Moving to next mechanism: trendefficiencycontinuation_long."
+  },
+  "TRENDEFFICIENCYCONTINUATION_LONG_KILLED_GATE_A_TOOLING_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "High trend-efficiency regime, positive displacement -> long continuation. Retried on NASDAQ (cost_bps=1.12) as Attempt 4, chosen specifically because its candidate_events.py only requires ATR_14 (warmup-only NaN) before computing Event_Vol -- successfully avoided the HYBRID FAST CONTROL PARITY bug that killed Attempts 2-3.",
+    "self_test": "PASSED: 3030 model rows, meta-label 60.8%/39.2%, barrier distribution pt=38.6%/sl=60.6%/vertical=0.8% (this edge has a 168-hour/7-day vertical horizon, far longer than the 4-8hr horizons of other mechanisms, so almost all events resolve via OHLC touch well before the vertical deadline).",
+    "export_research_dataset": "PASSED: 3030 model rows, matches self-test.",
+    "gate_a_result": "FAILED TO RUN -- different error this time: HorizonLabError: No eligible rows for vertical_horizon=168.0 (raised inside materialize_horizon during the control-parity recompute). NOT the same Event_Vol-filtering parity bug as Attempts 2-3 (confirmed: no traceback inside _hfg_event_vol_calendar_time/_hfg_attach_target this time -- the CONTROL PARITY GATE got past vol computation fine).",
+    "diagnosis": "Likely a v3_horizon_lab.py Gate A tooling edge case specific to this mechanism's unusually long 168-hour (7-day) calendar vertical horizon -- every other NASDAQ mechanism tried uses a 4-8 hour horizon. Not deep-dived further: this mechanism is already globally deprioritized (failed Gate D with AUC~0.50 identically on both US500 and JPN, suspected structural issue with binary regime-gate triggers for meta-labeling), so even a clean Gate A pass here would not be expected to survive Gate D. Spending further effort debugging a tooling edge case for an already-weak mechanism is poor use of time versus trying fresh mechanisms.",
+    "disposition": "KILLED for NASDAQ (tooling/tried-and-weak-elsewhere, not a clean economic kill). Folder kept on disk per the no-delete policy. Moving to next mechanism."
+  },
+  "GAPREVERSION_LONG_KILLED_ROW_FLOOR_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "Bar-to-bar downward gap -> long reversion (gap fill). Retried on NASDAQ (cost_bps=1.12) as Attempt 5.",
+    "self_test": "FAILED 2000-row floor: only 275 model rows (282 candidate events). Gap events are structurally rare on NASDAQ bar-to-bar basis, consistent with feedback_edge_minimum_model_rows memory noting gap-based theses may be structurally unreachable.",
+    "disposition": "KILLED immediately, no export/Gate A run (not worth the ~6min export cost on a mechanism that already fails the hard row floor). Folder kept on disk. Moving to next mechanism."
+  },
+  "THRUSTCONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02": {
+    "date": "2026-10-02",
+    "thesis": "Bullish thrust bar -> long momentum-ignition continuation. Retried on NASDAQ (cost_bps=1.12) as Attempt 6.",
+    "self_test": "PASSED comfortably: 4683 model rows, meta-label 57.1%/42.9%.",
+    "export_research_dataset": "PASSED: 4683 model rows, matches self-test.",
+    "gate_a_result": "FAILED TO RUN -- HorizonLabError: HYBRID FAST CONTROL PARITY FAILED (rows expected=4683 actual=4132).",
+    "root_cause_CORRECTED": "Initially hypothesized this was the SAME Event_Vol-filtering bug as momentumaccelerationcontinuation_long/explosiveregimecontinuation_long, since this mechanism also required a derived feature column (ATR_14) before vol computation. DISPROVEN by direct check: ATR_14 is clean on NASDAQ (NaN only in the 14-bar warmup, zero NaN thereafter across all 66605 bars). Instrumented debug of the full chain instead found: 5125 events -> 4987 survive vol-attach (138 dropped, vol lookback is only 1hr/span50 for this edge, mostly fine) -> 4684 of those are in valid_feature_times (303 legitimately excluded for schema-feature NaN, not a bug) -> but materialize_horizon only returns 4132 rows, a further ~552-row drop with NO corresponding drop in model_rows.py own self-test stats (which only dropped 1 for horizon + 10 ambiguous-same-bar, nowhere near 552). This means the generic shared compute_first_touch_paths/materialize_horizon functions apply SOME additional eligibility filter beyond valid_feature_times that model_rows.py's own bespoke triple-barrier code does not apply (exact mechanism not yet isolated -- candidates include different same-bar PT/SL tie-break handling, since this edge's self-test shows unusually frequent ambiguous_same_bar/fallback_resolved events, or a stricter deadline-within-history requirement).",
+    "significance": "This is the THIRD distinct manifestation of HYBRID FAST CONTROL PARITY FAILED on NASDAQ in 7 attempts (momentumaccelerationcontinuation_long, explosiveregimecontinuation_long, now thrustcontinuation_long) -- each with a different specific row-count divergence source, but all stemming from the shared Gate A tool's independent recompute disagreeing with each edge's own bespoke model_rows.py labeling by a meaningful margin (8-17%). No single root cause confirmed across all three. FLAGGED to the user as a cross-cutting finding rather than silently patched, since it touches shared production tooling (v3_horizon_lab.py) used across all assets, not just this one edge.",
+    "disposition": "KILLED for NASDAQ (tooling-blocked, not an economic kill). Folder kept on disk."
+  },
+  "THRUSTCONTINUATION_LONG_FULL_JOURNEY_2026-10-02": {
+    "date": "2026-10-02",
+    "summary": "NASDAQ (cost_bps=1.12) Attempt 6. Bullish thrust bar -> long momentum-ignition continuation. The furthest any NASDAQ attempt got this session -- cleared Gates A/B/C/PBO and the full Step01-09 training pipeline, but FAILED Gate D.",
+    "journey": [
+      "Self-test + export: PASSED (4683 model rows at default geometry H1_E50/V4h/PT2/SL1).",
+      "Gate A: initially FAILED with HYBRID FAST CONTROL PARITY (rows expected=4683 actual=4132) -- traced to a confirmed bug in shared/research/v3_horizon_lab.py: 5 call sites used pd.DatetimeIndex.asi8 without normalizing to nanosecond unit first; on venv312 bars are datetime64[us]-dtype so .asi8 returned MICROSECONDS, making every calendar-time hour-based lookback/horizon ~1000x too wide (4h became ~166 days). Same root cause explained the earlier momentumaccelerationcontinuation_long and explosiveregimecontinuation_long parity failures too. FIXED (user-approved) by adding .as_unit(\"ns\") at all 5 call sites, matching the fix already present in every edge model_rows.py.",
+      "Gate A re-run after fix: PASSED cleanly. Best gross_mean_R=0.0578, 7/36 cells cleared the 0.05 kill bar.",
+      "Gate C (7 finalists, exact bid/ask replay): 3/7 positive exec_mean_R. Best: H20_E200_V10_PT1_SL1 (EVENT_VOL_LOOKBACK_HOURS=20, EWM_SPAN=200, VERTICAL_HORIZON_HOURS=10, PT=1, SL=1), exec_mean_R=+0.0238.",
+      "PBO (fixed rule, compound_velocity_stat): PBO=40.3% (<50% pass), Prob[OOS<=0]=5.8% (<50% pass). PASSED cleanly, better than most of the 12 live edges.",
+      "Winning geometry locked into candidate_events.py/model_rows.py/edge.yaml. Re-exported: 4681 model rows, re-ran Task 2A (build_mldp_executable_targets.py, newly (re)discovered prerequisite -- 100% resolution coverage, mean R=+0.038).",
+      "Step 01 (feature surgery): PASSED. F1=0.636, 156/156 candidate features kept (no negative-MDA clusters).",
+      "Step 02 (Optuna training): PASSED. Best CPCV F1=0.704.",
+      "Step 03 (OOF predictions): PASSED but raw ROC AUC=0.5095 -- a weak, near-coin-flip warning sign flagged at the time.",
+      "Step 03b/04/04b/05/06/07/08/09: ALL PASSED cleanly (Step05: 31/31, Step06: 8/8, Step07 smoke test approved, Step08 replay audit: 11 pass/1 warn/0 fail with ZERO replay diffs, Step09: deployment_status=PASS, deployable=True).",
+      "GATE D: FAILED. AUC=0.5095, p=0.1299 (one-sided Mann-Whitney, alpha=0.05) -- no statistically significant discrimination between true-positive and true-negative raw probabilities. Diagnostic Kendall tau (raw_probability vs realized_r) also near-zero (0.0045, p=0.64)."
+    ],
+    "interpretation": "The underlying thrust-continuation EVENT (bar-level trigger + winning barrier geometry) has real, PBO-clean positive expectancy in backtest (gross_mean_R=0.058, exec_mean_R=0.024, PBO=40%). But the META-LABELING MODEL trained on top of it (predicting WHICH thrust events will win vs lose, using the 156-feature schema) has essentially no discriminative power -- AUC barely above 0.5, not significant. This means the edge as currently defined has no real way to filter good thrust events from bad ones beyond the base rate; it is economically interesting as a raw signal but not deployable as a trained meta-labeled edge in its current form. A plain unconditional strategy (take every signal) would reproduce the backtest result, but that is not how this project deploys edges (meta-label filtering + calibrated probability threshold is required by the pipeline).",
+    "disposition": "KILLED for NASDAQ, but a genuine, informative, non-tooling kill -- the furthest any NASDAQ mechanism got this session. Folder kept on disk, deployable=True in its own manifest is misleading in isolation (Step09 checks internal pipeline consistency, not Gate D) -- NOT promoted to config/edge_universe.json, NOT run through promote_edge_status.py or portfolio_allocator per explicit instruction to stop and report before any further action."
+  },
+  "MOMENTUMACCELERATIONCONTINUATION_LONG_KILLED_GATE_A_CLEAN_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "Accelerating uptrend -> long continuation. Re-tested on NASDAQ (cost_bps=1.12) after the asi8 nanosecond-unit bug in shared/research/v3_horizon_lab.py was fixed (2026-10-02) -- the original 2026-10-02 kill (MOMENTUMACCELERATIONCONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02) was a tooling artifact, not a real result.",
+    "gate_a_result_post_fix": "Control-parity check now PASSES cleanly (no error) across the full 36-cell grid, confirming the fix generalizes beyond thrustcontinuation_long. Best gross_mean_R=0.0419 at H20_E200_V5_PT1_SL1 -- 0/36 cells clear the 0.05 kill bar.",
+    "disposition": "KILLED on a genuine, clean Gate A economic result (close to the kill bar but does not clear it). Folder kept on disk per no-delete policy. Superseded by this entry; the earlier parity-bug kill entry should be read as context only, not as this edge's real verdict."
+  },
+  "EXPLOSIVEREGIMECONTINUATION_LONG_KILLED_GATE_A_CLEAN_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "SADF explosive regime, upward direction -> long continuation. Re-tested on NASDAQ (cost_bps=1.12) after the asi8 bug fix -- the original 2026-10-02 kill (EXPLOSIVEREGIMECONTINUATION_LONG_KILLED_PARITY_BUG_2026-10-02) was a tooling artifact.",
+    "gate_a_result_post_fix": "Control-parity check now PASSES cleanly (no error) across the full 36-cell grid. Best gross_mean_R=0.0229 at H5_E20_V20_PT1_SL1 -- 0/36 cells clear the 0.05 kill bar, clearly weak signal.",
+    "disposition": "KILLED on a genuine, clean Gate A economic result (well below the kill bar). Folder kept on disk per no-delete policy. Superseded by this entry."
+  },
+  "COMPRESSIONBREAKOUTCONTINUATION_LONG_KILLED_PBO_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "Volatility-compression upside breakout -> long continuation. Attempt 10 on NASDAQ (cost_bps=1.12).",
+    "bug_found": "US500 template model_rows.py had a stale copy-paste leftover manifest string (gapreversion_longs description) instead of its own primary_side_rule; primary_side.py had the correct string. Fixed in the NASDAQ copy (not touching US500 original). Never caught before because US500s own copy of this edge was never successfully exported.",
+    "gate_a_result": "PASSED: best gross_mean_R=0.0624 at H20_E20_V20_PT1_SL1, 5/36 cells cleared the kill bar.",
+    "gate_c_result": "3/5 candidates exec-positive: H10_E100_V20_PT1_SL1 (+0.0157), H10_E200_V20_PT1_SL1 (+0.0136), H10_E50_V10_PT1_SL1 (+0.0021).",
+    "pbo_result": "FAILED badly: PBO=93.0% (needs <50%), Prob[OOS<=0]=51.3% (needs <50%), degradation_slope=-0.594. Both metrics fail the fixed rule.",
+    "disposition": "KILLED on PBO (genuine statistical overfitting signal, not a tooling issue). Folder kept on disk per no-delete policy. Moving to next mechanism: trendefficiencycontinuation_short."
+  },
+  "TRENDEFFICIENCYCONTINUATION_SHORT_KILLED_GATE_A_CLEAN_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "High trend-efficiency regime, negative displacement -> short continuation. Attempt 11 on NASDAQ (cost_bps=1.12) -- the short-side counterpart to trendefficiencycontinuation_long (already deprioritized globally after failing Gate D on both US500 and JPN with AUC~0.50).",
+    "gate_a_result": "FAILED cleanly (no tooling error): best gross_mean_R=0.0368 at H10_E100_V20_PT1_SL1, 0/36 cells cleared the 0.05 kill bar.",
+    "disposition": "KILLED. Confirms this mechanism family (trend-efficiency regime trigger) is weak on both long and short sides on NASDAQ, consistent with its documented structural weakness on US500/JPN. Folder kept on disk. Moving to overextensionfade_short."
+  },
+  "OVEREXTENSIONFADE_SHORT_KILLED_GATE_A_CLEAN_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "Overbought overextension -> short reversion. Attempt 12 on NASDAQ (cost_bps=1.12).",
+    "gate_a_result": "FAILED decisively: best gross_mean_R=-0.0567 (negative) at H20_E200_V5_PT1_SL1 -- the ENTIRE 36-cell grid is underwater, 0/36 cleared the kill bar.",
+    "disposition": "KILLED. Clear, unambiguous economic fail -- fading overextension does not work as a short-continuation-style mechanism on NASDAQ. Folder kept on disk. Moving to thrustcontinuation_short."
+  },
+  "THRUSTCONTINUATION_SHORT_KILLED_GATE_A_CLEAN_2026-10-04": {
+    "date": "2026-10-04",
+    "thesis": "Bearish thrust bar -> short momentum-ignition continuation. Attempt 13 on NASDAQ (cost_bps=1.12) -- final mechanism in the 12-mechanism catalog, short-side counterpart to thrustcontinuation_long (which cleared Gates A/B/C/PBO + full Step01-09 but failed Gate D).",
+    "gate_a_result": "FAILED cleanly: best gross_mean_R=-0.0082 (negative) at H10_E200_V20_PT1_SL1, 0/36 cells cleared the kill bar.",
+    "interpretation": "Asymmetric result vs the long side (which had gross_mean_R=0.0578) -- consistent with NASDAQ/equity-index markets having an upward drift bias, where bullish thrust-continuation works better than bearish thrust-continuation.",
+    "disposition": "KILLED. This completes the full 12-mechanism US500 catalog retry on NASDAQ. Folder kept on disk."
+  },
+  "VOLATILITYSHOCKCONTINUATION_SHORT_KILLED_GATE_A_CLEAN_2026-10-05": {
+    "date": "2026-10-05",
+    "thesis": "Abnormal bearish-conviction volatility shock -> short continuation. GENUINELY NEW thesis (not US500-ported), short side.",
+    "self_test": "Required loosening MIN_RANGE_Z 2.0->1.5 to clear the 2000-row floor (2238 rows at 1.5).",
+    "gate_a_result": "FAILED cleanly: best gross_mean_R=-0.0097 (negative) at H20_E20_V10_PT1_SL1, 0/36 cells cleared the kill bar.",
+    "disposition": "KILLED. The long side of this same mechanism (bullish shock) DID clear Gate A (0.0514) -- confirms directional asymmetry consistent with NASDAQs well-known upward drift bias. Folder kept on disk."
+  },
+  "VOLATILITYSHOCKCONTINUATION_LONG_KILLED_GATE_C_2026-10-05": {
+    "date": "2026-10-05",
+    "thesis": "Abnormal bullish-conviction volatility shock -> long continuation. GENUINELY NEW thesis (not US500-ported), long side.",
+    "self_test": "Required loosening MIN_RANGE_Z 2.0->1.3 to clear the 2000-row floor (2187 rows at 1.3).",
+    "gate_a_result": "PASSED: best gross_mean_R=0.0514 at H20_E20_V10_PT1_SL1, 2/36 cells cleared the kill bar (the first genuinely new NASDAQ thesis to clear Gate A this session).",
+    "gate_c_result": "FAILED: both candidates go negative under exact bid/ask execution costs (H20_E20_V10_PT1_SL1 exec_mean_R=-0.0236, H20_E20_V20_PT1_SL1 exec_mean_R=-0.0249). No finalist had positive executable mean.",
+    "disposition": "KILLED at Gate C. The gross-level Gate A signal did not survive real execution costs -- same failure pattern seen repeatedly this session on other mechanisms (a real but too-small gross edge relative to the 1.12bps cost at this candidates turnover frequency)."
+  },
+  "OPENINGRANGEREVERSION_LONG_KILLED_GATE_A_CLEAN_2026-10-05": {
+    "date": "2026-10-05",
+    "thesis": "Downside morning-session overshoot from the day open -> long reversion. GENUINELY NEW thesis (not US500-ported), third new mechanism designed this session, long side.",
+    "bug_found": "US500/openingrangebreakout_long template export_research_dataset.py validator was mismatched to its OWN thesis (validated dailyrangecompletionfade fields entirely, a stale copy-paste from a sibling template) -- same class of bug as compressionbreakoutcontinuation_long earlier. Rewrote the validator from scratch, not patched the wrong one.",
+    "gate_a_result": "FAILED cleanly: best gross_mean_R=0.0396 at H10_E200_V10_PT1_SL1, 0/36 cells cleared the 0.05 kill bar.",
+    "disposition": "KILLED. Close to the kill bar but does not clear it. Folder kept on disk."
+  },
+  "OPENINGRANGEREVERSION_SHORT_KILLED_GATE_A_CLEAN_2026-10-05": {
+    "date": "2026-10-05",
+    "thesis": "Upside morning-session overshoot from the day open -> short reversion. GENUINELY NEW thesis (not US500-ported), third new mechanism, short side.",
+    "bug_found": "model_rows.py (templated from thrustcontinuation_short, no day-boundary concepts) was missing Daily_Date/Day_Open/Bars_Into_Day in its _safe_label_columns passthrough list, causing export_research_dataset.py to fail with a missing-columns error on first attempt. Fixed and re-exported successfully.",
+    "gate_a_result": "FAILED cleanly: best gross_mean_R=-0.0218 (negative) at H10_E20_V5_PT1_SL1, 0/36 cells cleared the kill bar.",
+    "disposition": "KILLED. Both sides of openingrangereversion now fail (long=0.0396, short=-0.0218) -- this is the third genuinely new NASDAQ thesis (6 total attempts across its 2 sides) to fail this session. Folder kept on disk."
+  },
+  "VOLATILITYTERMSTRUCTURE_BOTH_SIDES_ROW_FLOOR_2026-10-06": {
+    "date": "2026-10-06",
+    "thesis": "Inverted volatility term structure (12-bar RV / 144-bar RV) with directional move. Fourth genuinely new NASDAQ thesis, both sides.",
+    "row_floor_result": {
+      "initial_thresholds": "TS_INVERSION_RATIO=1.5, TS_MOVE_Z=1.0",
+      "long_model_rows": 419,
+      "short_model_rows": 695,
+      "loosened_thresholds": "TS_INVERSION_RATIO=1.3, TS_MOVE_Z=0.75",
+      "long_model_rows_loosened": 982,
+      "short_model_rows_loosened": 1387
+    },
+    "disposition": "NOT GATED. Both sides remain below the 2000-row floor after one loosening. Stopped rather than loosening further, since beyond this the trigger stops being a genuine term-structure inversion. Structural finding: the conjunction (ratio inversion AND large directional move) is too rare on NASDAQ bar-level data. Folders kept on disk."
+  },
+  "GATE_C_EXTRA0_RERUN_2026-10-14": {
+    "date": "2026-10-14",
+    "why": "Every NASDAQ Gate C run from 2026-10-02 to 2026-10-05 passed the asset research cost (1.12 bps) as an EXTRA charge on top of exact Bid/Ask fills (spread double-charged). All 13 live edges were certified at extra_cost_bps=0.0 and entry_delay_ms=0. v3_horizon_lab.py now rejects --cost-bps in --execution-finalists mode; extra cost goes through --extra-cost-bps (default 0) with a guard against extra == asset research spread.",
+    "procedure": "Replay ALL Gate-B-positive cells (net_mean_R>0 in the edge's original Gate A/B grid at 1.12 bps) with exact Bid/Ask, extra 0, delay 0 ms, --save. Candidates = non-control, exec_mean_R>0, coverage>=0.99. Winner = argmax compound_velocity_score. PBO/CSCV s=16 on daily-prorated log(1+0.01*exec_r) with compound_velocity_stat; PASS = PBO<0.5 AND Prob[OOS<=0]<0.5. Survivors -> geometry lock -> self-test -> export -> Task 2A -> Steps 01-09 -> Gate D.",
+    "exactness_check": "For thrust/compression/volshock, every trade of every cell present in both the old and new run has identical entry/exit fills and new_exec_r == old_exec_r + signal_mid*1.12e-4/sl_dist to <=3.6e-15. sequentialpressure_long's old run ALSO used --execution-entry-delay-ms 250 (audits 20261002T10xxxxZ); entry fills therefore differ legitimately (event_vol/sl_dist identical). The 0 ms re-run matches the live-edge certification standard.",
+    "previously_under_replayed": "Original runs replayed only a subset: thrust 7/36, compression 5/33, volshock 2/31 Gate-B-positive cells (sequentialpressure replayed the full 594 grid).",
+    "results": {
+      "thrustcontinuation_long": {
+        "rerun_stamp": "20261014T151654Z",
+        "replayed": 36,
+        "exec_positive": 34,
+        "winner": "H20_E200_V10_PT1_SL1",
+        "exec_mean_R": 0.038,
+        "ci95": [
+          0.0048,
+          0.0713
+        ],
+        "pbo": 0.038,
+        "prob_oos_nonpositive": 0.0305,
+        "degradation_slope": -0.75,
+        "gate_d": "FAIL (unchanged): winner == geometry already locked/trained 2026-10-02; Gate D AUC=0.5095 p=0.130 (reports/gate_d_calibration_monotonicity_report.json). Gate D does not depend on the Gate C extra charge.",
+        "verdict": "KILLED_GATE_D (unchanged)"
+      },
+      "compressionbreakoutcontinuation_long": {
+        "rerun_stamp": "20261014T152724Z",
+        "replayed": 33,
+        "exec_positive": 31,
+        "winner": "H10_E100_V20_PT1_SL1",
+        "exec_mean_R": 0.0362,
+        "ci95": [
+          -0.0229,
+          0.0946
+        ],
+        "pbo": 0.7027,
+        "prob_oos_nonpositive": 0.2967,
+        "degradation_slope": -0.496,
+        "verdict": "KILLED_PBO (unchanged)"
+      },
+      "volatilityshockcontinuation_long": {
+        "rerun_stamp": "20261014T153828Z",
+        "replayed": 31,
+        "exec_positive": 27,
+        "winner": "H20_E200_V5_PT1_SL1",
+        "exec_mean_R": 0.0237,
+        "ci95": [
+          -0.0116,
+          0.0596
+        ],
+        "R_per_week": 0.258,
+        "pbo": 0.2941,
+        "prob_oos_nonpositive": 0.3144,
+        "degradation_slope": -0.554,
+        "note": "edge's scaffold control H4h_E50_V4h_PT2_SL1 replayed +0.0319 R but lower compound_velocity_score (0.00091 vs winner 0.00127); control excluded from ranking per procedure.",
+        "geometry_locked": "EVENT_VOL_LOOKBACK_HOURS 4->20, EWM 50->200, VERTICAL_HORIZON_HOURS 4->5, PT 2->1, SL 1",
+        "model_rows": 2187,
+        "steps_01_09": "ALL PASS (Step05 31/31, Step06 8/8, Step08 0 threshold mismatches, Step09 deployment_status=PASS, approved rate 10.65% at default threshold)",
+        "gate_d": {
+          "auc": 0.533,
+          "p_value": 0.0038,
+          "n_oof": 2187,
+          "kendall_tau_p": 0.028,
+          "verdict": "PASS"
+        },
+        "verdict": "CLEARS GATES A-D + PBO (previously KILLED_GATE_C under double charge). NOT promoted -- awaiting user."
+      },
+      "sequentialpressure_long": {
+        "rerun_stamps": [
+          "20261014T155934Z",
+          "20261014T161955Z",
+          "20261014T163926Z"
+        ],
+        "replayed": 332,
+        "exec_positive": 182,
+        "winner": "H4_E50_V96_PT2_SL1",
+        "exec_mean_R": 0.0524,
+        "ci95": [
+          -0.016,
+          0.1236
+        ],
+        "R_per_week": 1.189,
+        "mean_hold_h": 16.1,
+        "pbo": 0.476,
+        "prob_oos_nonpositive": 0.3704,
+        "degradation_slope": -0.533,
+        "geometry_locked": "EWM 100->50, VERTICAL_HORIZON_HOURS 4->96 (H=4, PT2, SL1 unchanged)",
+        "bug_fixed": "export_research_dataset.py validator hardcoded Sequence_Displacement_ATR>=0.50 (stale US500 4-bar variant) vs edge constant 0.30; now references candidate_events.MIN_SEQUENCE_DISPLACEMENT_ATR",
+        "model_rows": 4562,
+        "steps_01_09": "ALL PASS (Step05 31/31, Step06 8/8, Step08 0 mismatches, Step09 PASS, approved rate 31.48%)",
+        "gate_d": {
+          "auc": 0.5148,
+          "p_value": 0.0475,
+          "n_oof": 4562,
+          "kendall_tau_p": 0.054,
+          "verdict": "PASS (marginal)"
+        },
+        "verdict": "CLEARS GATES A-D + PBO, but both PBO (47.6%) and Gate D (p=0.0475) are borderline. Previously KILLED_PBO under double charge + 250ms delay. NOT promoted -- awaiting user."
+      }
+    },
+    "not_promoted": "Neither survivor added to config/edge_universe.json, promote_edge_status.py, or portfolio_allocator -- user instructed to pause after each asset's re-run.",
+    "caveats": [
+      "All Gate C numbers are at 0 ms entry latency (live-certification standard); a 250 ms sensitivity replay of the two winners has NOT been run.",
+      "Both winners' weekly-cluster 95% CIs on exec_mean_R include zero.",
+      "Trials: NASDAQ 16 thesis attempts; grid scanning hundreds of cells per edge -- read with deflated-Sharpe skepticism."
+    ]
+  },
+  "PROMOTION_2026-10-15": {
+    "date": "2026-10-15",
+    "by": "user instruction",
+    "edges": [
+      "NASDAQ/volatilityshockcontinuation_long",
+      "NASDAQ/sequentialpressure_long"
+    ],
+    "action": "Registry rows added to config/edge_universe.json, then shared/edges/promote_edge_status.py --status deployability_pass --write (dry-run validated: manifest PASS, deployable, identity match, replay fields true). edge.yaml status -> deployability_pass. edge_universe.json now 15 edges.",
+    "not_done": "portfolio_allocator run, live_manifest update, live redeploy -- separate steps.",
+    "live_edge_latency_check": "All 13 previously-live edges' certifying Gate C audits (2026-09-24/25) used entry_delay_ms=0 and extra_cost_bps=0.0; 250 ms only in superseded early US500 runs (absorption 09-14, volatilitycarry 09-12)."
+  },
+  "coverage_shorts1_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 20,
+    "status_counts": {
+      "KILLED_GATE_B": 17,
+      "FLOOR_FAIL": 3
+    },
+    "per_edge": {
+      "bbpextreme_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3145,
+        "events": 3417,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05633,
+          "best_gross": -0.03882,
+          "best_cost": 0.01751,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.0324
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04817,
+          "best_gross": -0.03288,
+          "best_cost": 0.01529,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03288
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05721,
+          "best_gross": -0.04651,
+          "best_cost": 0.0107,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 400,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04651
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "bbsqueezebreakout_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 616,
+        "events": 678
+      },
+      "breakdownretestfailure_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1807,
+        "events": 2023
+      },
+      "compressionbreakoutcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2286,
+        "events": 2569,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0164,
+          "best_gross": 0.00479,
+          "best_cost": 0.02119,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00479
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01846,
+          "best_gross": -0.00761,
+          "best_cost": 0.01085,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 12.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00689
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01326,
+          "best_gross": -0.00343,
+          "best_cost": 0.00983,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00343
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "donchiandistance_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2662,
+        "events": 2875,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05855,
+          "best_gross": -0.04246,
+          "best_cost": 0.01609,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04246
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.06281,
+          "best_gross": -0.05133,
+          "best_cost": 0.01148,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04883
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05948,
+          "best_gross": -0.05027,
+          "best_cost": 0.00921,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.05023
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "drawdownhazardcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4233,
+        "events": 4827,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01307,
+          "best_gross": 0.0058,
+          "best_cost": 0.01887,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0058
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02635,
+          "best_gross": -0.00905,
+          "best_cost": 0.0173,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00905
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03494,
+          "best_gross": -0.02537,
+          "best_cost": 0.00957,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02537
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "exhaustionreversal_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2559,
+        "events": 2787,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04437,
+          "best_gross": -0.03052,
+          "best_cost": 0.01385,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03052
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04464,
+          "best_gross": -0.03389,
+          "best_cost": 0.01075,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03389
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04095,
+          "best_gross": -0.03166,
+          "best_cost": 0.00929,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 17.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03166
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "kalmandeviationfade_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2809,
+        "events": 3039,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.07411,
+          "best_gross": -0.05754,
+          "best_cost": 0.01657,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.05619
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.06171,
+          "best_gross": -0.05103,
+          "best_cost": 0.01068,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.05103
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05274,
+          "best_gross": -0.04345,
+          "best_cost": 0.00929,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04345
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "liquiditysweepreversal_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2638,
+        "events": 2867,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05683,
+          "best_gross": -0.04254,
+          "best_cost": 0.01429,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04254
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05333,
+          "best_gross": -0.04234,
+          "best_cost": 0.01099,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04234
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04759,
+          "best_gross": -0.0381,
+          "best_cost": 0.00949,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.0381
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "macdhistaccel_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2327,
+        "events": 2538,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02489,
+          "best_gross": -0.00646,
+          "best_cost": 0.01843,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00646
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01902,
+          "best_gross": -0.00796,
+          "best_cost": 0.01107,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00796
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01899,
+          "best_gross": -0.00878,
+          "best_cost": 0.01022,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 400,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00878
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "natrregime_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2759,
+        "events": 3003,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04793,
+          "best_gross": -0.02271,
+          "best_cost": 0.02522,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 20,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02271
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04699,
+          "best_gross": -0.03348,
+          "best_cost": 0.01351,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03348
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05172,
+          "best_gross": -0.04237,
+          "best_cost": 0.00935,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04237
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rocmomentum_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2630,
+        "events": 2889,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02438,
+          "best_gross": -0.00672,
+          "best_cost": 0.01766,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00371
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02029,
+          "best_gross": -0.00832,
+          "best_cost": 0.01197,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.007
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0198,
+          "best_gross": -0.00814,
+          "best_cost": 0.01166,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00814
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rsidivergencereversal_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2166,
+        "events": 2334,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03096,
+          "best_gross": -0.00252,
+          "best_cost": 0.02844,
+          "geom": {
+            "hvol": 5.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00433
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03226,
+          "best_gross": -0.01762,
+          "best_cost": 0.01465,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01558
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01876,
+          "best_gross": -0.00892,
+          "best_cost": 0.00984,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00892
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rvgimomentumturn_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2847,
+        "events": 3091,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.06034,
+          "best_gross": -0.04655,
+          "best_cost": 0.01379,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04174
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05355,
+          "best_gross": -0.04272,
+          "best_cost": 0.01083,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 8.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04272
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05653,
+          "best_gross": -0.04697,
+          "best_cost": 0.00956,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04697
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "stcmomentumturn_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3048,
+        "events": 3311,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.06444,
+          "best_gross": -0.05043,
+          "best_cost": 0.01401,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.05043
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05898,
+          "best_gross": -0.04815,
+          "best_cost": 0.01082,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.04815
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04762,
+          "best_gross": -0.03789,
+          "best_cost": 0.00973,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03789
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "stochkdspread_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3041,
+        "events": 3318,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.01144,
+          "best_gross": 0.01343,
+          "best_cost": 0.02487,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 50,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01343
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0138,
+          "best_gross": 0.00195,
+          "best_cost": 0.01575,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 100,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00195
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02096,
+          "best_gross": -0.00921,
+          "best_cost": 0.01175,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 200,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00921
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "updownvolasymmetry_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2493,
+        "events": 2733,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.00945,
+          "best_gross": 0.0105,
+          "best_cost": 0.01995,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01237
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00712,
+          "best_gross": 0.00878,
+          "best_cost": 0.0159,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00878
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02683,
+          "best_gross": -0.0171,
+          "best_cost": 0.00973,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01387
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "volskewregimecontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2505,
+        "events": 2726,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.00917,
+          "best_gross": 0.01208,
+          "best_cost": 0.02126,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01208
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00771,
+          "best_gross": 0.00781,
+          "best_cost": 0.01552,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00781
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03935,
+          "best_gross": -0.02797,
+          "best_cost": 0.01138,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 400,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02721
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "waveletcleantrend_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1894,
+        "events": 2104
+      },
+      "williamsrextreme_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3714,
+        "events": 4031,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05568,
+          "best_gross": -0.03909,
+          "best_cost": 0.01659,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 100,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03525
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04979,
+          "best_gross": -0.03464,
+          "best_cost": 0.01515,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03464
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04964,
+          "best_gross": -0.03926,
+          "best_cost": 0.01038,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 500,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03926
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_mirrors_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 2,
+    "status_counts": {
+      "KILLED_GATE_B": 1,
+      "GATE_B_POSITIVE": 1
+    },
+    "per_edge": {
+      "volatilitycarry_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2900,
+        "events": 3253,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0117,
+          "best_gross": 0.00788,
+          "best_cost": 0.01958,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00788
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02792,
+          "best_gross": -0.01331,
+          "best_cost": 0.01461,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01217
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03281,
+          "best_gross": -0.02267,
+          "best_cost": 0.01014,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 500,
+            "hv": 15.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02267
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "rangestructure_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2995,
+        "events": 3450,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 11,
+          "best_net": 0.02348,
+          "best_gross": 0.04079,
+          "best_cost": 0.01731,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.04079
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00193,
+          "best_gross": 0.01399,
+          "best_cost": 0.01592,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01399
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02029,
+          "best_gross": -0.00841,
+          "best_cost": 0.01188,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 200,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00841
+        },
+        "n_pos_total": 11,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.02348,
+          "gross": 0.04079,
+          "grid": "default",
+          "hvol": 10.0,
+          "ewm": 100,
+          "hv": 20.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_mirrors2_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 1,
+    "status_counts": {
+      "KILLED_GATE_B": 1
+    },
+    "per_edge": {
+      "timeregime_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3788,
+        "events": 4213,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03913,
+          "best_gross": -0.02558,
+          "best_cost": 0.01356,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02558
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03471,
+          "best_gross": -0.02409,
+          "best_cost": 0.01062,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02287
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03569,
+          "best_gross": -0.02488,
+          "best_cost": 0.01081,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02488
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_legacy_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 9,
+    "status_counts": {
+      "KILLED_GATE_B": 5,
+      "GATE_B_POSITIVE": 2,
+      "FLOOR_FAIL": 2
+    },
+    "per_edge": {
+      "downsidejumpcontinuation_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2670,
+        "events": 2946,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03289,
+          "best_gross": -0.01849,
+          "best_cost": 0.0144,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01511
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03838,
+          "best_gross": -0.02234,
+          "best_cost": 0.01605,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 100,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02234
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02939,
+          "best_gross": -0.01988,
+          "best_cost": 0.00951,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01988
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "downsidevolatilitycascade_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2566,
+        "events": 2832,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 2,
+          "best_net": 0.00373,
+          "best_gross": 0.02361,
+          "best_cost": 0.01988,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02361
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01511,
+          "best_gross": 0.00095,
+          "best_cost": 0.01606,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 200,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00095
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01361,
+          "best_gross": -0.00012,
+          "best_cost": 0.01349,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 200,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00012
+        },
+        "n_pos_total": 2,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00373,
+          "gross": 0.02361,
+          "grid": "default",
+          "hvol": 10.0,
+          "ewm": 100,
+          "hv": 20.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      },
+      "drawupreversalhazard_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1411,
+        "events": 1493
+      },
+      "signentropycollapse_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1535,
+        "events": 1730
+      },
+      "absorption_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4263,
+        "events": 4741,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02201,
+          "best_gross": -0.00039,
+          "best_cost": 0.02162,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00039
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02452,
+          "best_gross": -0.00637,
+          "best_cost": 0.01815,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00637
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0293,
+          "best_gross": -0.01983,
+          "best_cost": 0.00946,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01983
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "reversal_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 4131,
+        "events": 4561,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04949,
+          "best_gross": -0.03538,
+          "best_cost": 0.01411,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03513
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04113,
+          "best_gross": -0.02576,
+          "best_cost": 0.01537,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02576
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.0446,
+          "best_gross": -0.03384,
+          "best_cost": 0.01076,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 400,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03366
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "trend_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 7189,
+        "events": 7862,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0137,
+          "best_gross": 0.0069,
+          "best_cost": 0.0206,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00838
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02756,
+          "best_gross": -0.00876,
+          "best_cost": 0.0188,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00876
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.02705,
+          "best_gross": -0.01762,
+          "best_cost": 0.00943,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01762
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "trendpullbackcontinuation_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 3562,
+        "events": 4030,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 3,
+          "best_net": 0.00516,
+          "best_gross": 0.02522,
+          "best_cost": 0.02006,
+          "geom": {
+            "hvol": 5.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02731
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01555,
+          "best_gross": 0.00168,
+          "best_cost": 0.01722,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00168
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03396,
+          "best_gross": -0.02445,
+          "best_cost": 0.00951,
+          "geom": {
+            "hvol": 45.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02445
+        },
+        "n_pos_total": 3,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00516,
+          "gross": 0.02522,
+          "grid": "default",
+          "hvol": 5.0,
+          "ewm": 200,
+          "hv": 20.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      },
+      "volatilityregime_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2064,
+        "events": 2291,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.03218,
+          "best_gross": -0.01809,
+          "best_cost": 0.0141,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00827
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.0351,
+          "best_gross": -0.02413,
+          "best_cost": 0.01096,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.024
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04042,
+          "best_gross": -0.03095,
+          "best_cost": 0.00947,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 22.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03095
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "SHORT_COVERAGE_CAMPAIGN_2026-10-15": {
+    "summary": "32 short edges tested, 0 passed all gates. {'KILLED_GATE_B': 24, 'FLOOR_FAIL': 5, 'KILLED_PBO': 2, 'KILLED_GATE_C': 1}",
+    "detail": "see config/short_coverage_campaign_2026-10-15.json",
+    "results": {
+      "absorption_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 4263,
+        "gate_b_pos_cells": 0
+      },
+      "bbpextreme_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 3145,
+        "gate_b_pos_cells": 0
+      },
+      "bbsqueezebreakout_short": {
+        "batch": "shorts1",
+        "status": "FLOOR_FAIL",
+        "rows": 616
+      },
+      "breakdownretestfailure_short": {
+        "batch": "shorts1",
+        "status": "FLOOR_FAIL",
+        "rows": 1807
+      },
+      "compressionbreakoutcontinuation_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2286,
+        "gate_b_pos_cells": 0
+      },
+      "donchiandistance_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2662,
+        "gate_b_pos_cells": 0
+      },
+      "downsidejumpcontinuation_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 2670,
+        "gate_b_pos_cells": 0
+      },
+      "downsidevolatilitycascade_short": {
+        "batch": "legacy",
+        "status": "KILLED_PBO",
+        "rows": 2566,
+        "gate_b_pos_cells": 2,
+        "best_gate_b_net": 0.00373,
+        "gate_c_exec_positive": 2,
+        "gate_c_replayed": 2,
+        "winner": "H10_E100_V20_PT1_SL1",
+        "winner_exec_mean_R": 0.0004117537290529,
+        "pbo": 0.8747474747474747,
+        "prob_oos_nonpositive": 0.5767676767676768
+      },
+      "drawdownhazardcontinuation_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 4233,
+        "gate_b_pos_cells": 0
+      },
+      "drawupreversalhazard_short": {
+        "batch": "legacy",
+        "status": "FLOOR_FAIL",
+        "rows": 1411
+      },
+      "exhaustionreversal_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2559,
+        "gate_b_pos_cells": 0
+      },
+      "kalmandeviationfade_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2809,
+        "gate_b_pos_cells": 0
+      },
+      "liquiditysweepreversal_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2638,
+        "gate_b_pos_cells": 0
+      },
+      "macdhistaccel_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2327,
+        "gate_b_pos_cells": 0
+      },
+      "natrregime_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2759,
+        "gate_b_pos_cells": 0
+      },
+      "rangestructure_short": {
+        "batch": "mirrors",
+        "status": "KILLED_PBO",
+        "rows": 2995,
+        "gate_b_pos_cells": 11,
+        "best_gate_b_net": 0.02348,
+        "gate_c_exec_positive": 2,
+        "gate_c_replayed": 11,
+        "winner": "H10_E100_V20_PT1_SL1",
+        "winner_exec_mean_R": 0.004191636767365,
+        "pbo": 0.7142191142191142,
+        "prob_oos_nonpositive": 0.5444444444444444
+      },
+      "reversal_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 4131,
+        "gate_b_pos_cells": 0
+      },
+      "rocmomentum_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2630,
+        "gate_b_pos_cells": 0
+      },
+      "rsidivergencereversal_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2166,
+        "gate_b_pos_cells": 0
+      },
+      "rvgimomentumturn_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2847,
+        "gate_b_pos_cells": 0
+      },
+      "signentropycollapse_short": {
+        "batch": "legacy",
+        "status": "FLOOR_FAIL",
+        "rows": 1535
+      },
+      "stcmomentumturn_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 3048,
+        "gate_b_pos_cells": 0
+      },
+      "stochkdspread_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 3041,
+        "gate_b_pos_cells": 0
+      },
+      "timeregime_short": {
+        "batch": "mirrors2",
+        "status": "KILLED_GATE_B",
+        "rows": 3788,
+        "gate_b_pos_cells": 0
+      },
+      "trend_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 7189,
+        "gate_b_pos_cells": 0
+      },
+      "trendpullbackcontinuation_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_C (no replayed cell with exec_mean_R>0 at >=99% coverage)",
+        "rows": 3562,
+        "gate_b_pos_cells": 3,
+        "best_gate_b_net": 0.00516,
+        "gate_c_exec_positive": 0,
+        "gate_c_replayed": 3
+      },
+      "updownvolasymmetry_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2493,
+        "gate_b_pos_cells": 0
+      },
+      "volatilitycarry_short": {
+        "batch": "mirrors",
+        "status": "KILLED_GATE_B",
+        "rows": 2900,
+        "gate_b_pos_cells": 0
+      },
+      "volatilityregime_short": {
+        "batch": "legacy",
+        "status": "KILLED_GATE_B",
+        "rows": 2064,
+        "gate_b_pos_cells": 0
+      },
+      "volskewregimecontinuation_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 2505,
+        "gate_b_pos_cells": 0
+      },
+      "waveletcleantrend_short": {
+        "batch": "shorts1",
+        "status": "FLOOR_FAIL",
+        "rows": 1894
+      },
+      "williamsrextreme_short": {
+        "batch": "shorts1",
+        "status": "KILLED_GATE_B",
+        "rows": 3714,
+        "gate_b_pos_cells": 0
+      }
+    }
+  },
+  "coverage_floor_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 2,
+    "status_counts": {
+      "KILLED_GATE_B": 2
+    },
+    "per_edge": {
+      "drawupreversalhazard_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2158,
+        "events": 2318,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.02368,
+          "best_gross": 0.00081,
+          "best_cost": 0.02449,
+          "geom": {
+            "hvol": 5.0,
+            "ewm": 50,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00081
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.03208,
+          "best_gross": -0.01807,
+          "best_cost": 0.01401,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 200,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01807
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.05492,
+          "best_gross": -0.0451,
+          "best_cost": 0.00982,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 300,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.0451
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "waveletcleantrend_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2201,
+        "events": 2439,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0157,
+          "best_gross": 0.00773,
+          "best_cost": 0.02343,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00935
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.00566,
+          "best_gross": 0.0109,
+          "best_cost": 0.01656,
+          "geom": {
+            "hvol": 25.0,
+            "ewm": 100,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0109
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04397,
+          "best_gross": -0.03426,
+          "best_cost": 0.00971,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 13.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03369
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_newshorts_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 6,
+    "status_counts": {
+      "KILLED_GATE_B": 3,
+      "GATE_B_POSITIVE": 2,
+      "FLOOR_FAIL": 1
+    },
+    "per_edge": {
+      "seqdownpressure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3566,
+        "events": 3907,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.0171,
+          "best_gross": 0.01687,
+          "best_cost": 0.03397,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 20,
+            "hv": 10.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.01687
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.02246,
+          "best_gross": -0.01148,
+          "best_cost": 0.01098,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 300,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.01148
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.01402,
+          "best_gross": -0.00453,
+          "best_cost": 0.00949,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00453
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "lowerhighfailure_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 3472,
+        "events": 3825,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 1,
+          "best_net": 0.00038,
+          "best_gross": 0.02125,
+          "best_cost": 0.02087,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 50,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02792
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.01841,
+          "best_gross": -0.00042,
+          "best_cost": 0.01799,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.00042
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.03702,
+          "best_gross": -0.02661,
+          "best_cost": 0.0104,
+          "geom": {
+            "hvol": 40.0,
+            "ewm": 500,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02661
+        },
+        "n_pos_total": 1,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.00038,
+          "gross": 0.02125,
+          "grid": "default",
+          "hvol": 20.0,
+          "ewm": 50,
+          "hv": 20.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      },
+      "bulltrapfailure_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 3669,
+        "events": 3990,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.05696,
+          "best_gross": -0.04297,
+          "best_cost": 0.01398,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 5.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03729
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.05005,
+          "best_gross": -0.03882,
+          "best_cost": 0.01123,
+          "geom": {
+            "hvol": 30.0,
+            "ewm": 300,
+            "hv": 6.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03882
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04869,
+          "best_gross": -0.03893,
+          "best_cost": 0.00976,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 400,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03893
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "deadcatbounce_short": {
+        "status": "KILLED_GATE_B",
+        "rows": 2860,
+        "events": 3124,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 0,
+          "best_net": -0.04472,
+          "best_gross": -0.03044,
+          "best_cost": 0.01428,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.02983
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 0,
+          "best_net": -0.04768,
+          "best_gross": -0.0334,
+          "best_cost": 0.01428,
+          "geom": {
+            "hvol": 20.0,
+            "ewm": 200,
+            "hv": 16.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03316
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.04291,
+          "best_gross": -0.03353,
+          "best_cost": 0.00938,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 14.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": -0.03353
+        },
+        "n_pos_total": 0,
+        "cells_total": 357
+      },
+      "insidebarbreakdown_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1986,
+        "events": 2184
+      },
+      "priordaylowbreak_short": {
+        "status": "GATE_B_POSITIVE",
+        "rows": 2546,
+        "events": 2828,
+        "gate_a": {
+          "cells": 36,
+          "n_pos": 6,
+          "best_net": 0.02067,
+          "best_gross": 0.0401,
+          "best_cost": 0.01943,
+          "geom": {
+            "hvol": 10.0,
+            "ewm": 100,
+            "hv": 20.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.0401
+        },
+        "fine1": {
+          "cells": 105,
+          "n_pos": 2,
+          "best_net": 0.00465,
+          "best_gross": 0.02265,
+          "best_cost": 0.018,
+          "geom": {
+            "hvol": 15.0,
+            "ewm": 100,
+            "hv": 18.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.02265
+        },
+        "fine2": {
+          "cells": 216,
+          "n_pos": 0,
+          "best_net": -0.00435,
+          "best_gross": 0.00531,
+          "best_cost": 0.00967,
+          "geom": {
+            "hvol": 50.0,
+            "ewm": 500,
+            "hv": 19.0,
+            "pt": 1.0,
+            "sl": 1.0
+          },
+          "max_gross": 0.00531
+        },
+        "n_pos_total": 8,
+        "cells_total": 357,
+        "top_pos": {
+          "net": 0.02067,
+          "gross": 0.0401,
+          "grid": "default",
+          "hvol": 10.0,
+          "ewm": 100,
+          "hv": 20.0,
+          "pt": 1.0,
+          "sl": 1.0
+        }
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  },
+  "coverage_bearshorts_2026-10-15": {
+    "date": "2026-10-15",
+    "cost_bps": 1.12,
+    "edges": 5,
+    "status_counts": {
+      "FLOOR_FAIL": 5
+    },
+    "per_edge": {
+      "bearrallyexhaustion_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1793,
+        "events": 2007
+      },
+      "tsmombear_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1440,
+        "events": 1661
+      },
+      "failedreclaim_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1424,
+        "events": 1583
+      },
+      "lowerlowstaircase_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 1129,
+        "events": 1294
+      },
+      "bearflagbreakdown_short": {
+        "status": "FLOOR_FAIL",
+        "rows": 544,
+        "events": 626
+      }
+    },
+    "note": "Cross-asset coverage campaign batch (config/cross_asset_thesis_coverage.json): export -> 2000-row floor -> Gate A/B default grid + FINE1 + FINE2 at the asset research cost. GATE_B_POSITIVE edges then go to gatec_rerun.py (ALL positive cells, extra 0) + pbo_rerun.py; their results are recorded separately."
+  }
+}

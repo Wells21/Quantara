@@ -1,0 +1,42 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: HK/trendpullbackcontinuation_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H10_E50_V1000_PT2_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+Eligibility fast path: persisted model_rows timestamps (same Hv as control).
+Exact quote replay events: 3927
+  250/3927 elapsed=8.4s
+  500/3927 elapsed=14.9s
+  750/3927 elapsed=22.5s
+  1000/3927 elapsed=28.8s
+  1250/3927 elapsed=36.7s
+  1500/3927 elapsed=45.6s
+  1750/3927 elapsed=51.3s
+  2000/3927 elapsed=59.5s
+  2250/3927 elapsed=67.1s
+  2500/3927 elapsed=74.0s
+  2750/3927 elapsed=85.0s
+  3000/3927 elapsed=92.8s
+  3250/3927 elapsed=101.1s
+  3500/3927 elapsed=112.3s
+  3750/3927 elapsed=127.3s
+  3927/3927 elapsed=136.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H10_E50_V1000_PT2_SL1 | -0.060757 | [-0.159462,+0.035562] | 0.9141 | 14.928 | 66.062 | -0.097682 | -1.186645 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | -0.023115 | [-0.133935,+0.094183] | 0.9665 | 27.896 | 96.318 | -0.019887 | -0.451451 | 0.204 | 0.535 | 1.0000
+H15_E100_V1000_PT2_SL1 | -0.034712 | [-0.141207,+0.079467] | 0.9500 | 22.644 | 86.855 | -0.036790 | -0.677961 | 0.377 | 0.659 | 1.0000
+H20_E50_V1000_PT2_SL1 | -0.029900 | [-0.138581,+0.080957] | 0.9569 | 23.675 | 91.470 | -0.030311 | -0.583979 | 0.310 | 0.631 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ No finalist has positive executable mean with >=99% coverage.
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T124543Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T124543Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

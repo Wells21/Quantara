@@ -1,0 +1,48 @@
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: NASDAQ/volatilitycarry_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E20_V10_PT2_SL1 [CONTROL]
+ - H15_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E100_V1000_PT1.5_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 4895
+  250/4895 elapsed=50.2s
+  500/4895 elapsed=132.5s
+  750/4895 elapsed=170.6s
+  1000/4895 elapsed=216.8s
+  1250/4895 elapsed=249.2s
+  1500/4895 elapsed=291.7s
+  1750/4895 elapsed=338.0s
+  2000/4895 elapsed=354.3s
+  2250/4895 elapsed=382.2s
+  2500/4895 elapsed=398.7s
+  2750/4895 elapsed=429.6s
+  3000/4895 elapsed=459.6s
+  3250/4895 elapsed=484.0s
+  3500/4895 elapsed=523.9s
+  3750/4895 elapsed=556.9s
+  4000/4895 elapsed=588.0s
+  4250/4895 elapsed=612.5s
+  4500/4895 elapsed=651.4s
+  4750/4895 elapsed=696.7s
+  4895/4895 elapsed=725.8s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E20_V10_PT2_SL1 | +0.003239 | [-0.046048,+0.049548] | 1.0062 | 4.165 | 8.552 | +0.018662 | +0.078992 | 1.000 | 1.000 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.070753 | [-0.037164,+0.175422] | 1.1088 | 22.043 | 88.810 | +0.077036 | +1.691481 | 4.128 | 0.189 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.078413 | [-0.029487,+0.179838] | 1.1212 | 23.199 | 92.461 | +0.081120 | +1.874625 | 4.347 | 0.180 | 1.0000
+H15_E100_V1000_PT1.5_SL1 | +0.055682 | [-0.029231,+0.136628] | 1.0956 | 17.326 | 70.806 | +0.077131 | +1.331177 | 4.133 | 0.240 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H20_E50_V1000_PT2_SL1 | meanR=+0.078413 | R/occupied_day=+0.081120 | R/week=+1.874625 | mean_hold_h=23.199
+ 2. H15_E100_V1000_PT1.5_SL1 | meanR=+0.055682 | R/occupied_day=+0.077131 | R/week=+1.331177 | mean_hold_h=17.326
+ 3. H15_E100_V1000_PT2_SL1 | meanR=+0.070753 | R/occupied_day=+0.077036 | R/week=+1.691481 | mean_hold_h=22.043
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260915T130404Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilitycarry_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260915T130404Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\volatilitycarry_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

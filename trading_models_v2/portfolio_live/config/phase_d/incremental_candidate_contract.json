@@ -1,0 +1,829 @@
+{
+  "authority_identity_mode": "structural_current_state_no_git_or_file_sha_gate",
+  "bootstrap_authority_rows": 6000,
+  "bound_provider_count": 0,
+  "candidate_logic_group_count": 5,
+  "candidate_logic_groups": [
+    {
+      "bootstrap": {
+        "authority": "current_c4_canonical_ring",
+        "rows": 6000,
+        "startup_or_dedicated_recovery_only": true
+      },
+      "candidate_logic_signature": "2b94a51f62efa9ab8f5e702a33f6ccc25230779acb97eafeb363e57a45ec0386",
+      "candidate_required_columns_by_edge": {
+        "JPN/volatilitycarry_long": [
+          "Bar_Start",
+          "Bar_Volatility_Bps",
+          "Body_Share",
+          "Close",
+          "Datetime",
+          "High",
+          "Low",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State",
+          "Ticks"
+        ]
+      },
+      "candidate_required_columns_union": [
+        "Bar_Start",
+        "Bar_Volatility_Bps",
+        "Body_Share",
+        "Close",
+        "Datetime",
+        "High",
+        "Low",
+        "Open",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3",
+        "Regime_Duration",
+        "Regime_Entropy",
+        "Regime_State",
+        "Ticks"
+      ],
+      "candidate_source_paths": [
+        "assets/JPN/edges/volatilitycarry_long/candidate_events.py"
+      ],
+      "edge_count": 1,
+      "edge_ids": [
+        "JPN/volatilitycarry_long"
+      ],
+      "history_profile": {
+        "declared_lookback_hints": {
+          "DRIFT_LOOKBACK": 50,
+          "EVENT_VOL_EWM_SPAN": 100,
+          "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+          "MIN_GAP_BARS": 3,
+          "MIN_OBS": 20,
+          "VOL_LOOKBACK": 200
+        },
+        "has_array_iteration_hint": true,
+        "has_ewm_state": false,
+        "has_python_for_loop": true,
+        "has_python_while_loop": false,
+        "has_rolling_state": true,
+        "has_shift_or_difference_state": true,
+        "has_spacing_or_sequence_state": true,
+        "history_methods": [
+          "rolling",
+          "shift"
+        ],
+        "max_declared_integer_lookback_hint": 200,
+        "requires_historical_context": true
+      },
+      "normal_path": {
+        "candidate_history_disk_reads_allowed": false,
+        "full_candidate_fallback_allowed": false,
+        "full_candidate_generator_allowed": false,
+        "full_canonical_ring_copy_allowed": false,
+        "input": "one_new_closed_c4_canonical_row",
+        "model_predict_allowed_when_candidate_false": false,
+        "model_row_build_allowed_when_candidate_false": false
+      },
+      "primary_logic_signatures": [
+        "685b447d3ab6332d3013b53b6fa0b333bc99d02f6d8b2f2240f15cd783d52af8"
+      ],
+      "provider_binding_key": "2b94a51f62efa9ab8f5e702a33f6ccc25230779acb97eafeb363e57a45ec0386",
+      "provider_binding_mode": "d1_candidate_logic_signature",
+      "provider_certification_status": "NOT_RUN",
+      "provider_module": null,
+      "provider_status": "UNBOUND",
+      "runtime_entry_functions": [
+        "generate_v1_volatilitycarry_long_candidate_events"
+      ],
+      "semantic_constants": {
+        "DRIFT_LOOKBACK": 50,
+        "DRIFT_TSTAT_THRESHOLD": 0.5,
+        "EPS": 1e-12,
+        "EVENT_CONTEXT_COLUMNS": [
+          "Event_Vol",
+          "Bar_Return",
+          "Bar_Volatility_Bps",
+          "Low_Vol_Threshold",
+          "Vol_Median",
+          "Volatility_Ratio",
+          "Is_Calm_Vol",
+          "Drift_Mean",
+          "Drift_Std",
+          "Drift_TStat",
+          "Volatility_Carry_Event_Type",
+          "Body_Direction",
+          "Body_Share",
+          "Close_Location",
+          "Regime_State",
+          "Regime_Entropy",
+          "Regime_Duration",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3"
+        ],
+        "EVENT_VOL_EWM_SPAN": 100,
+        "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+        "LOW_VOL_QUANTILE": 0.4,
+        "MAX_ACTIVITY_RATIO": 1.25,
+        "MIN_GAP_BARS": 3,
+        "MIN_OBS": 20,
+        "MIN_VOL": 1e-08,
+        "VOL_LOOKBACK": 200
+      }
+    },
+    {
+      "bootstrap": {
+        "authority": "current_c4_canonical_ring",
+        "rows": 6000,
+        "startup_or_dedicated_recovery_only": true
+      },
+      "candidate_logic_signature": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "candidate_required_columns_by_edge": {
+        "JPN/rangestructure_long": [
+          "Bar_Start",
+          "Body_Share",
+          "Close",
+          "Datetime",
+          "High",
+          "Low",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State"
+        ],
+        "XAUUSD/rangestructure_long": [
+          "Bar_Start",
+          "Body_Share",
+          "Close",
+          "Datetime",
+          "High",
+          "Low",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State"
+        ]
+      },
+      "candidate_required_columns_union": [
+        "Bar_Start",
+        "Body_Share",
+        "Close",
+        "Datetime",
+        "High",
+        "Low",
+        "Open",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3",
+        "Regime_Duration",
+        "Regime_Entropy",
+        "Regime_State"
+      ],
+      "candidate_source_paths": [
+        "assets/JPN/edges/rangestructure_long/candidate_events.py",
+        "assets/XAUUSD/edges/rangestructure_long/candidate_events.py"
+      ],
+      "edge_count": 2,
+      "edge_ids": [
+        "JPN/rangestructure_long",
+        "XAUUSD/rangestructure_long"
+      ],
+      "history_profile": {
+        "declared_lookback_hints": {
+          "EVENT_VOL_EWM_SPAN": 100,
+          "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+          "MIN_GAP_BARS": 3,
+          "MIN_OBS": 20,
+          "RANGE_LOOKBACK": 100,
+          "STRUCTURE_BIAS_LOOKBACK": 50
+        },
+        "has_array_iteration_hint": true,
+        "has_ewm_state": false,
+        "has_python_for_loop": true,
+        "has_python_while_loop": false,
+        "has_rolling_state": true,
+        "has_shift_or_difference_state": true,
+        "has_spacing_or_sequence_state": true,
+        "history_methods": [
+          "rolling",
+          "shift"
+        ],
+        "max_declared_integer_lookback_hint": 100,
+        "requires_historical_context": true
+      },
+      "normal_path": {
+        "candidate_history_disk_reads_allowed": false,
+        "full_candidate_fallback_allowed": false,
+        "full_candidate_generator_allowed": false,
+        "full_canonical_ring_copy_allowed": false,
+        "input": "one_new_closed_c4_canonical_row",
+        "model_predict_allowed_when_candidate_false": false,
+        "model_row_build_allowed_when_candidate_false": false
+      },
+      "primary_logic_signatures": [
+        "af65d91352a1f003fb80289520d963b296fef17e2563791ab3edc16f71b517a1"
+      ],
+      "provider_binding_key": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "provider_binding_mode": "d1_candidate_logic_signature",
+      "provider_certification_status": "NOT_RUN",
+      "provider_module": null,
+      "provider_status": "UNBOUND",
+      "runtime_entry_functions": [
+        "generate_v1_rangestructure_long_candidate_events"
+      ],
+      "semantic_constants": {
+        "EPS": 1e-12,
+        "EVENT_CONTEXT_COLUMNS": [
+          "Event_Vol",
+          "Bar_Return",
+          "Range_High",
+          "Range_Low",
+          "Range_Width",
+          "Range_Position",
+          "Dist_To_Range_High",
+          "Dist_To_Range_Low",
+          "Range_Width_Median",
+          "Range_Compression_Ratio",
+          "Structure_Bias_Mean",
+          "Structure_Bias_Std",
+          "Structure_Bias_TStat",
+          "Range_Structure_Event_Type",
+          "Body_Direction",
+          "Body_Share",
+          "Close_Location",
+          "Regime_State",
+          "Regime_Entropy",
+          "Regime_Duration",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3"
+        ],
+        "EVENT_VOL_EWM_SPAN": 100,
+        "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+        "EXTREME_ZONE_THRESHOLD": 0.15,
+        "MAX_MID_RANGE_POSITION": 0.45,
+        "MIN_GAP_BARS": 3,
+        "MIN_OBS": 20,
+        "MIN_VOL": 1e-08,
+        "RANGE_LOOKBACK": 100,
+        "STRUCTURE_BIAS_LOOKBACK": 50,
+        "STRUCTURE_BIAS_TSTAT_THRESHOLD": 0.5
+      }
+    },
+    {
+      "bootstrap": {
+        "authority": "current_c4_canonical_ring",
+        "rows": 6000,
+        "startup_or_dedicated_recovery_only": true
+      },
+      "candidate_logic_signature": "a19c7b9f9ef53f2a247be6049c8ff6cb4d88bce43ca1b00e18ec61354b8bda39",
+      "candidate_required_columns_by_edge": {
+        "XAUUSD/volatilitycarry_long": [
+          "Bar_Start",
+          "Bar_Volatility_Bps",
+          "Body_Share",
+          "Close",
+          "Datetime",
+          "High",
+          "Low",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State",
+          "Ticks"
+        ]
+      },
+      "candidate_required_columns_union": [
+        "Bar_Start",
+        "Bar_Volatility_Bps",
+        "Body_Share",
+        "Close",
+        "Datetime",
+        "High",
+        "Low",
+        "Open",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3",
+        "Regime_Duration",
+        "Regime_Entropy",
+        "Regime_State",
+        "Ticks"
+      ],
+      "candidate_source_paths": [
+        "assets/XAUUSD/edges/volatilitycarry_long/candidate_events.py"
+      ],
+      "edge_count": 1,
+      "edge_ids": [
+        "XAUUSD/volatilitycarry_long"
+      ],
+      "history_profile": {
+        "declared_lookback_hints": {
+          "DRIFT_LOOKBACK": 50,
+          "EVENT_VOL_EWM_SPAN": 100,
+          "EVENT_VOL_LOOKBACK_HOURS": 6.0,
+          "MIN_GAP_BARS": 3,
+          "MIN_OBS": 20,
+          "VOL_LOOKBACK": 200
+        },
+        "has_array_iteration_hint": true,
+        "has_ewm_state": false,
+        "has_python_for_loop": true,
+        "has_python_while_loop": false,
+        "has_rolling_state": true,
+        "has_shift_or_difference_state": true,
+        "has_spacing_or_sequence_state": true,
+        "history_methods": [
+          "rolling",
+          "shift"
+        ],
+        "max_declared_integer_lookback_hint": 200,
+        "requires_historical_context": true
+      },
+      "normal_path": {
+        "candidate_history_disk_reads_allowed": false,
+        "full_candidate_fallback_allowed": false,
+        "full_candidate_generator_allowed": false,
+        "full_canonical_ring_copy_allowed": false,
+        "input": "one_new_closed_c4_canonical_row",
+        "model_predict_allowed_when_candidate_false": false,
+        "model_row_build_allowed_when_candidate_false": false
+      },
+      "primary_logic_signatures": [
+        "685b447d3ab6332d3013b53b6fa0b333bc99d02f6d8b2f2240f15cd783d52af8"
+      ],
+      "provider_binding_key": "a19c7b9f9ef53f2a247be6049c8ff6cb4d88bce43ca1b00e18ec61354b8bda39",
+      "provider_binding_mode": "d1_candidate_logic_signature",
+      "provider_certification_status": "NOT_RUN",
+      "provider_module": null,
+      "provider_status": "UNBOUND",
+      "runtime_entry_functions": [
+        "generate_v1_volatilitycarry_long_candidate_events"
+      ],
+      "semantic_constants": {
+        "DRIFT_LOOKBACK": 50,
+        "DRIFT_TSTAT_THRESHOLD": 0.5,
+        "EPS": 1e-12,
+        "EVENT_CONTEXT_COLUMNS": [
+          "Event_Vol",
+          "Bar_Return",
+          "Bar_Volatility_Bps",
+          "Low_Vol_Threshold",
+          "Vol_Median",
+          "Volatility_Ratio",
+          "Is_Calm_Vol",
+          "Drift_Mean",
+          "Drift_Std",
+          "Drift_TStat",
+          "Volatility_Carry_Event_Type",
+          "Body_Direction",
+          "Body_Share",
+          "Close_Location",
+          "Regime_State",
+          "Regime_Entropy",
+          "Regime_Duration",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3"
+        ],
+        "EVENT_VOL_EWM_SPAN": 100,
+        "EVENT_VOL_LOOKBACK_HOURS": 6.0,
+        "LOW_VOL_QUANTILE": 0.4,
+        "MAX_ACTIVITY_RATIO": 1.25,
+        "MIN_GAP_BARS": 3,
+        "MIN_OBS": 20,
+        "MIN_VOL": 1e-08,
+        "VOL_LOOKBACK": 200
+      }
+    },
+    {
+      "bootstrap": {
+        "authority": "current_c4_canonical_ring",
+        "rows": 6000,
+        "startup_or_dedicated_recovery_only": true
+      },
+      "candidate_logic_signature": "ce9242f633ccf9847950771b508734250ed1de1616f5115e86aeb1486e0284dc",
+      "candidate_required_columns_by_edge": {
+        "GBPJPY/dailyrangecompletionfade_long": [
+          "ATR_14",
+          "Bar_Start",
+          "Close",
+          "Datetime",
+          "High",
+          "Low",
+          "NATR",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Range_Bps",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State",
+          "Ticks"
+        ]
+      },
+      "candidate_required_columns_union": [
+        "ATR_14",
+        "Bar_Start",
+        "Close",
+        "Datetime",
+        "High",
+        "Low",
+        "NATR",
+        "Open",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3",
+        "Range_Bps",
+        "Regime_Duration",
+        "Regime_Entropy",
+        "Regime_State",
+        "Ticks"
+      ],
+      "candidate_source_paths": [
+        "assets/GBPJPY/edges/dailyrangecompletionfade_long/candidate_events.py"
+      ],
+      "edge_count": 1,
+      "edge_ids": [
+        "GBPJPY/dailyrangecompletionfade_long"
+      ],
+      "history_profile": {
+        "declared_lookback_hints": {
+          "EVENT_VOL_EWM_SPAN": 100,
+          "EVENT_VOL_LOOKBACK_HOURS": 6.0,
+          "EXPECTED_DAILY_RANGE_LOOKBACK": 20,
+          "FADE_FORWARD_HORIZON": 50,
+          "FADE_LOOKBACK": 500,
+          "MIN_GAP_BARS": 3
+        },
+        "has_array_iteration_hint": true,
+        "has_ewm_state": false,
+        "has_python_for_loop": true,
+        "has_python_while_loop": false,
+        "has_rolling_state": true,
+        "has_shift_or_difference_state": true,
+        "has_spacing_or_sequence_state": true,
+        "history_methods": [
+          "cummax",
+          "cummin",
+          "groupby",
+          "rolling",
+          "shift"
+        ],
+        "max_declared_integer_lookback_hint": 500,
+        "requires_historical_context": true
+      },
+      "normal_path": {
+        "candidate_history_disk_reads_allowed": false,
+        "full_candidate_fallback_allowed": false,
+        "full_candidate_generator_allowed": false,
+        "full_canonical_ring_copy_allowed": false,
+        "input": "one_new_closed_c4_canonical_row",
+        "model_predict_allowed_when_candidate_false": false,
+        "model_row_build_allowed_when_candidate_false": false
+      },
+      "primary_logic_signatures": [
+        "d7cc2f95c030577f9c7850b2f4b0d1af9a550a6540ac0f538d171e9080737b02"
+      ],
+      "provider_binding_key": "ce9242f633ccf9847950771b508734250ed1de1616f5115e86aeb1486e0284dc",
+      "provider_binding_mode": "d1_candidate_logic_signature",
+      "provider_certification_status": "NOT_RUN",
+      "provider_module": null,
+      "provider_status": "UNBOUND",
+      "runtime_entry_functions": [
+        "generate_v1_dailyrangecompletionfade_long_candidate_events"
+      ],
+      "semantic_constants": {
+        "EPS": 1e-12,
+        "EVENT_CONTEXT_COLUMNS": [
+          "Event_Vol",
+          "Daily_Date",
+          "Day_Open",
+          "Day_High_So_Far",
+          "Day_Low_So_Far",
+          "Day_Range_So_Far",
+          "Expected_Daily_Range",
+          "Daily_Range_Completion",
+          "Downside_Extension_From_Open",
+          "Downside_Extension_ATR",
+          "Downside_Extension_Expected_Range",
+          "Day_Position",
+          "Bars_Into_Day",
+          "Day_Progress_Bucket",
+          "Range_Completion_Bucket",
+          "Downside_Extension_Bucket",
+          "Day_Position_Bucket",
+          "Daily_Fade_State_Key",
+          "Daily_Fade_Sample_Count",
+          "Daily_Fade_Bias_Mean",
+          "Daily_Fade_Bias_Std",
+          "Daily_Fade_Bias_TStat",
+          "Daily_Fade_Bias_Forward_Horizon",
+          "Daily_Fade_Lookback",
+          "Daily_Fade_Bias_Available",
+          "Daily_Range_Fade_Event",
+          "Regime_State",
+          "Regime_Entropy",
+          "Regime_Duration",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3"
+        ],
+        "EVENT_VOL_EWM_SPAN": 100,
+        "EVENT_VOL_LOOKBACK_HOURS": 6.0,
+        "EXPECTED_DAILY_RANGE_LOOKBACK": 20,
+        "FADE_FORWARD_HORIZON": 50,
+        "FADE_LOOKBACK": 500,
+        "MAX_DAY_POSITION": 0.35,
+        "MIN_DAILY_RANGE_COMPLETION": 0.7,
+        "MIN_DAY_PROGRESS_BARS": 20,
+        "MIN_DOWNSIDE_EXTENSION_ATR": 0.5,
+        "MIN_EXPECTED_RANGE_DAYS": 10,
+        "MIN_FADE_OBS": 30,
+        "MIN_GAP_BARS": 3,
+        "MIN_VOL": 1e-08
+      }
+    },
+    {
+      "bootstrap": {
+        "authority": "current_c4_canonical_ring",
+        "rows": 6000,
+        "startup_or_dedicated_recovery_only": true
+      },
+      "candidate_logic_signature": "f0a04a7e00e55e4b2d83546f09e585776c8bbec91f95ab84e11f320ba22d261b",
+      "candidate_required_columns_by_edge": {
+        "HK/drawdownhazardcontinuation_short": [
+          "ATR_14",
+          "Bar_Start",
+          "Body_Share",
+          "Close",
+          "Datetime",
+          "High",
+          "Log_Return_1",
+          "Low",
+          "Open",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3",
+          "Regime_Duration",
+          "Regime_Entropy",
+          "Regime_State",
+          "Ticks"
+        ]
+      },
+      "candidate_required_columns_union": [
+        "ATR_14",
+        "Bar_Start",
+        "Body_Share",
+        "Close",
+        "Datetime",
+        "High",
+        "Log_Return_1",
+        "Low",
+        "Open",
+        "Prob_State_0",
+        "Prob_State_1",
+        "Prob_State_2",
+        "Prob_State_3",
+        "Regime_Duration",
+        "Regime_Entropy",
+        "Regime_State",
+        "Ticks"
+      ],
+      "candidate_source_paths": [
+        "assets/HK/edges/drawdownhazardcontinuation_short/candidate_events.py"
+      ],
+      "edge_count": 1,
+      "edge_ids": [
+        "HK/drawdownhazardcontinuation_short"
+      ],
+      "history_profile": {
+        "declared_lookback_hints": {
+          "EVENT_VOL_EWM_SPAN": 100,
+          "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+          "HAZARD_OBSERVATION_GAP_BARS": 3,
+          "MIN_EVENT_GAP_BARS": 3,
+          "PRIMARY_PEAK_WINDOW": 100,
+          "SEVERITY_BASELINE_WINDOW": 1000
+        },
+        "has_array_iteration_hint": true,
+        "has_ewm_state": false,
+        "has_python_for_loop": true,
+        "has_python_while_loop": true,
+        "has_rolling_state": true,
+        "has_shift_or_difference_state": true,
+        "has_spacing_or_sequence_state": true,
+        "history_methods": [
+          "rolling",
+          "shift"
+        ],
+        "max_declared_integer_lookback_hint": 1000,
+        "requires_historical_context": true
+      },
+      "normal_path": {
+        "candidate_history_disk_reads_allowed": false,
+        "full_candidate_fallback_allowed": false,
+        "full_candidate_generator_allowed": false,
+        "full_canonical_ring_copy_allowed": false,
+        "input": "one_new_closed_c4_canonical_row",
+        "model_predict_allowed_when_candidate_false": false,
+        "model_row_build_allowed_when_candidate_false": false
+      },
+      "primary_logic_signatures": [
+        "77dc158e8152de60c1baa7f918a6cfb6941c8a0a91c80799aca6cc4012fc351e"
+      ],
+      "provider_binding_key": "f0a04a7e00e55e4b2d83546f09e585776c8bbec91f95ab84e11f320ba22d261b",
+      "provider_binding_mode": "d1_candidate_logic_signature",
+      "provider_certification_status": "NOT_RUN",
+      "provider_module": null,
+      "provider_status": "UNBOUND",
+      "runtime_entry_functions": [
+        "generate_v2_drawdownhazardcontinuation_short_candidate_events"
+      ],
+      "semantic_constants": {
+        "EPS": 1e-12,
+        "EVENT_CONTEXT_COLUMNS": [
+          "Event_Vol",
+          "Drawdown_Hazard_Event",
+          "Drawdown_Hazard_Active_State",
+          "Drawdown_Hazard_State_Entry",
+          "Drawdown_Hazard_Renewed_Impulse",
+          "Negative_Event_Bar",
+          "Log_Return_1",
+          "Drawdown_Active",
+          "Drawdown_Peak_50",
+          "Drawdown_Peak_100",
+          "Drawdown_Peak_250",
+          "Drawdown_Depth_50",
+          "Drawdown_Depth_100",
+          "Drawdown_Depth_250",
+          "Drawdown_Severity_100",
+          "Drawdown_Severity_Percentile_100_Over_1000",
+          "Bars_Since_Peak_100",
+          "Time_Under_Water_100",
+          "Drawdown_Trough",
+          "Bars_Since_Trough",
+          "Distance_From_Trough_ATR",
+          "Recovery_Fraction",
+          "Maximum_Recovery_Fraction",
+          "Drawdown_Velocity_3",
+          "Drawdown_Velocity_5",
+          "Drawdown_Velocity_10",
+          "Drawdown_Acceleration_3_10",
+          "New_Trough_Bar",
+          "New_Trough_Count_20",
+          "New_Trough_Count_Since_Peak",
+          "Trough_Renewal_Rate",
+          "Failed_Recovery_Count",
+          "Bars_Since_Last_Failed_Recovery",
+          "Negative_Return_Fraction_20",
+          "Negative_Return_Fraction_Since_Peak",
+          "Cumulative_Return_Since_Peak",
+          "Cumulative_Negative_Return_20",
+          "Downside_Semivariance_20",
+          "Downside_Upmove_Ratio_20",
+          "Drawdown_Hazard_Probability",
+          "Drawdown_Hazard_Cell_Count",
+          "Drawdown_Hazard_Backoff_Level",
+          "Drawdown_Hazard_Resolution_Lag",
+          "Drawdown_Hazard_Global_Count",
+          "Body_Direction",
+          "Body_Share",
+          "Close_Location",
+          "Regime_State",
+          "Regime_Entropy",
+          "Regime_Duration",
+          "Prob_State_0",
+          "Prob_State_1",
+          "Prob_State_2",
+          "Prob_State_3"
+        ],
+        "EVENT_VOL_EWM_SPAN": 100,
+        "EVENT_VOL_LOOKBACK_HOURS": 8.0,
+        "HAZARD_OBSERVATION_GAP_BARS": 3,
+        "HAZARD_PRIOR_ALPHA": 1.0,
+        "HAZARD_PRIOR_BETA": 1.0,
+        "HAZARD_RESOLUTION_MAX_BARS": 250,
+        "MAX_RECOVERY_FRACTION": 0.4,
+        "MIN_DRAWDOWN_SEVERITY_PERCENTILE": 0.5,
+        "MIN_EVENT_GAP_BARS": 3,
+        "MIN_EVENT_VOL": 1e-08,
+        "MIN_HAZARD_CELL_OBSERVATIONS": 30,
+        "MIN_HAZARD_PROBABILITY": 0.52,
+        "NEW_TROUGH_BUFFER_VOL": 0.25,
+        "PRIMARY_PEAK_WINDOW": 100,
+        "RAW_SIDE_VALUE": 0,
+        "RECOVERY_ATTEMPT_FRACTION": 0.15,
+        "RECOVERY_FAILURE_FRACTION": 0.05,
+        "RECOVERY_SUCCESS_FRACTION": 0.35,
+        "SEVERITY_BASELINE_WINDOW": 1000,
+        "_LAST_EVENT_DIAGNOSTICS": {}
+      }
+    }
+  ],
+  "certification_required_before_activation": {
+    "candidate_restart_matches_uninterrupted_sequence": true,
+    "candidate_sequence_matches_full_authority": true,
+    "current_decision_parity_all_selected_edges": true,
+    "current_model_row_parity_all_firing_edges": true,
+    "latest_candidate_matches_full_authoritative_generator": true,
+    "no_normal_path_full_candidate_fallback": true,
+    "nonfiring_edge_never_builds_model_rows": true,
+    "nonfiring_edge_never_invokes_model_predict": true,
+    "signal_id_parity_all_firing_edges": true
+  },
+  "compiled_at": "2026-10-17T23:34:08.301+00:00",
+  "compiled_edge_count": 6,
+  "compiler_version": "phase_d4_d1_logic_signature_provider_requirements_v2",
+  "contract_sha256": "b24ed6c6365b1be998f48d3487b47f0d9294497761004542bd43a71e87e76425",
+  "edges": [
+    {
+      "asset": "XAUUSD",
+      "candidate_logic_signature": "a19c7b9f9ef53f2a247be6049c8ff6cb4d88bce43ca1b00e18ec61354b8bda39",
+      "edge_id": "XAUUSD/volatilitycarry_long",
+      "provider_binding_key": "a19c7b9f9ef53f2a247be6049c8ff6cb4d88bce43ca1b00e18ec61354b8bda39",
+      "side_value": 1
+    },
+    {
+      "asset": "JPN",
+      "candidate_logic_signature": "2b94a51f62efa9ab8f5e702a33f6ccc25230779acb97eafeb363e57a45ec0386",
+      "edge_id": "JPN/volatilitycarry_long",
+      "provider_binding_key": "2b94a51f62efa9ab8f5e702a33f6ccc25230779acb97eafeb363e57a45ec0386",
+      "side_value": 1
+    },
+    {
+      "asset": "XAUUSD",
+      "candidate_logic_signature": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "edge_id": "XAUUSD/rangestructure_long",
+      "provider_binding_key": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "side_value": 1
+    },
+    {
+      "asset": "HK",
+      "candidate_logic_signature": "f0a04a7e00e55e4b2d83546f09e585776c8bbec91f95ab84e11f320ba22d261b",
+      "edge_id": "HK/drawdownhazardcontinuation_short",
+      "provider_binding_key": "f0a04a7e00e55e4b2d83546f09e585776c8bbec91f95ab84e11f320ba22d261b",
+      "side_value": -1
+    },
+    {
+      "asset": "GBPJPY",
+      "candidate_logic_signature": "ce9242f633ccf9847950771b508734250ed1de1616f5115e86aeb1486e0284dc",
+      "edge_id": "GBPJPY/dailyrangecompletionfade_long",
+      "provider_binding_key": "ce9242f633ccf9847950771b508734250ed1de1616f5115e86aeb1486e0284dc",
+      "side_value": 1
+    },
+    {
+      "asset": "JPN",
+      "candidate_logic_signature": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "edge_id": "JPN/rangestructure_long",
+      "provider_binding_key": "7c138a5bc783ce176da23683fde23d2f00c5c7d06741562d40ce29ca5e80debc",
+      "side_value": 1
+    }
+  ],
+  "failures": [],
+  "normal_path_contract": {
+    "candidate_history_disk_reads_allowed": false,
+    "dedicated_recovery_rebuild_from_c4_ring_allowed": true,
+    "full_candidate_fallback_allowed": false,
+    "full_candidate_generator_allowed": false,
+    "full_canonical_ring_copy_allowed": false,
+    "one_closed_canonical_row_per_asset_generation": true,
+    "provider_binding_must_be_source_derived": true,
+    "startup_rebuild_from_c4_ring_allowed": true
+  },
+  "production_activation_allowed": false,
+  "provider_binding_mode": "d1_candidate_logic_signature",
+  "provider_directory": "shared/edges/candidate_continuations/providers",
+  "runtime_routing_enabled": false,
+  "schema_version": "phase_d4_incremental_candidate_contract_v2",
+  "selected_asset_count": 4,
+  "selected_edge_count": 6,
+  "status": "PASS",
+  "unbound_logic_group_count": 5
+}

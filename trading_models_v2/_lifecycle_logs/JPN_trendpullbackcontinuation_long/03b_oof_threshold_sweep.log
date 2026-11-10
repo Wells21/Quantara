@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — JPN/trendpullbackcontinuation_long
+================================================================================
+Edge: JPN/trendpullbackcontinuation_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trendpullbackcontinuation_long\artifacts\oof\jpn_trendpullbackcontinuation_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trendpullbackcontinuation_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 5,142
+Date range: 2022-06-14 08:34:39.119000+00:00 -> 2026-06-12 05:47:43.910000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    JPN/trendpullbackcontinuation_long
+segment                        trendpullbackcontinuation_long
+threshold                                                0.76
+candidate_count                                          5142
+take_rate                                            0.532283
+trade_count                                              2737
+win_rate                                             0.363537
+avg_win_r                                            1.974181
+avg_loss_r                                          -1.023701
+expectancy_r                                         0.066139
+payoff_ratio                                         1.928474
+profit_factor                                        1.101511
+gross_profit_r                                    1964.310049
+gross_loss_r                                      1783.287386
+cumulative_r                                       181.022663
+max_drawdown_r                                    -124.713168
+sharpe_r                                             0.045633
+sortino_r                                            0.762353
+calmar_r                                             1.451512
+selected_precision                                   0.363537
+selected_recall                                           1.0
+selected_f1                                          0.533226
+clf_precision                                        0.363537
+clf_recall                                           0.544013
+clf_f1                                                0.43583
+clf_accuracy                                         0.499028
+clf_balanced_accuracy                                0.509103
+predicted_positive_rate                              0.532283
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trendpullbackcontinuation_long\artifacts\oof\jpn_trendpullbackcontinuation_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trendpullbackcontinuation_long\artifacts\oof\jpn_trendpullbackcontinuation_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\trendpullbackcontinuation_long\artifacts\oof\jpn_trendpullbackcontinuation_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

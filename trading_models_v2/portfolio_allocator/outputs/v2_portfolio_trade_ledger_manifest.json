@@ -1,0 +1,42 @@
+{
+  "calibrated_afml_logic": {
+    "calibrated_oof_path_source": "edge_manifest.artifacts.calibrated_oof_predictions via active_edge_universe/candidate_bank",
+    "executed_r_mapping": "V2 realized_r is normalized to executed_r for V1-compatible portfolio math.",
+    "risk_sizing_applied_here": false,
+    "trade_selection_rule": "calibrated_probability >= candidate threshold"
+  },
+  "counts": {
+    "input_all_candidate_rows": 135,
+    "input_core_candidate_rows": 115,
+    "input_core_plus_watchlist_candidate_rows": 135,
+    "input_watchlist_candidate_rows": 20,
+    "ledger_all_rows": 453043,
+    "ledger_core_plus_watchlist_rows": 453043,
+    "ledger_core_rows": 387598,
+    "ledger_watchlist_rows": 65445,
+    "summary_rows": 405,
+    "validation_rows": 405
+  },
+  "created_at": "2026-05-30T10:43:43+00:00",
+  "ledger_status": "PASS",
+  "notes": [
+    "Port of V1 Step 04 ledger logic using V2 manifest-driven candidate bank and manifest-declared calibrated OOF artifacts.",
+    "This step does not apply final risk sizing. Position sizing belongs to downstream HRP/rolling simulation/live manifest."
+  ],
+  "outputs": {
+    "all_candidates": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_all_candidates.csv",
+    "core": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_core.csv",
+    "core_plus_watchlist": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_core_plus_watchlist.csv",
+    "manifest": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_manifest.json",
+    "summary": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_summary.csv",
+    "validation": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_validation_report.csv",
+    "watchlist": "portfolio_allocator/outputs/v2_portfolio_trade_ledger_watchlist.csv"
+  },
+  "pipeline_mode": "v2_manifest_driven_calibrated_afml",
+  "schema_version": "v2.1",
+  "validation": {
+    "empty_selection_count": 0,
+    "mismatch_count": 0,
+    "strict_trade_count_validation": true
+  }
+}

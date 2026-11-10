@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — HK/trendpullbackcontinuation_short
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\research_dataset\hk_trendpullbackcontinuation_short_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\feature_surgery\hk_trendpullbackcontinuation_short_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\model\hk_trendpullbackcontinuation_short_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\oof
+AFML Ch.4 weights | source=assets/HK/bars/standard_quote_tick/hk_standard_quote_tick_bars.csv | events=3,339 | mean_uniqueness=0.466749 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 3,282/3,339 rows retained (mldp_target_eligible==True); 57 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 3,339
+Rows after selected-feature NaN filter : 3,339
+Date range: 2022-08-02 07:27:51.123000+00:00 -> 2026-06-09 03:25:46.008000+00:00
+Rows used: 3,282
+Selected feature count: 156
+Target mean: 0.309263
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=1,870 test=1,312 thr=0.78 train_f1=0.4807 test_f1=0.4816 precision=0.3420 recall=0.8138 logloss=1.20448
+Fold 02: train=1,766 test=1,312 thr=0.74 train_f1=0.4880 test_f1=0.4596 precision=0.3038 recall=0.9439 logloss=1.23398
+Fold 03: train=1,769 test=1,312 thr=0.76 train_f1=0.5076 test_f1=0.4673 precision=0.3115 recall=0.9352 logloss=1.23075
+Fold 04: train=1,864 test=1,314 thr=0.73 train_f1=0.4974 test_f1=0.4410 precision=0.2884 recall=0.9367 logloss=1.26928
+Fold 05: train=1,870 test=1,312 thr=0.76 train_f1=0.4576 test_f1=0.4939 precision=0.3318 recall=0.9657 logloss=1.24071
+Fold 06: train=1,769 test=1,312 thr=0.75 train_f1=0.4761 test_f1=0.4875 precision=0.3336 recall=0.9049 logloss=1.23881
+Fold 07: train=1,864 test=1,314 thr=0.77 train_f1=0.4758 test_f1=0.4757 precision=0.3234 recall=0.8986 logloss=1.26266
+Fold 08: train=1,866 test=1,312 thr=0.79 train_f1=0.5102 test_f1=0.4093 precision=0.2941 recall=0.6733 logloss=1.23379
+Fold 09: train=1,860 test=1,314 thr=0.72 train_f1=0.4845 test_f1=0.4620 precision=0.3023 recall=0.9798 logloss=1.26912
+Fold 10: train=1,967 test=1,314 thr=0.78 train_f1=0.5057 test_f1=0.4347 precision=0.2924 recall=0.8465 logloss=1.30408
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 3,282 / 3,282
+Coverage rate: 1.0000
+Raw log loss: 1.243967
+Raw Brier: 0.470722
+Raw ROC AUC: 0.494636
+Raw PR AUC: 0.302583
+Diagnostic global F1 threshold: 0.69
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\oof\hk_trendpullbackcontinuation_short_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\trendpullbackcontinuation_short\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

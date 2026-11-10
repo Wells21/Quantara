@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — JPN/volatilitycarry_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\research_dataset\jpn_volatilitycarry_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\feature_surgery\jpn_volatilitycarry_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\model\jpn_volatilitycarry_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\oof
+AFML Ch.4 weights | source=assets/JPN/bars/standard_quote_tick/jpn_standard_quote_tick_bars.csv | events=4,896 | mean_uniqueness=0.204802 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 4,891/4,896 rows retained (mldp_target_eligible==True); 5 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 4,896
+Rows after selected-feature NaN filter : 4,896
+Date range: 2022-06-15 19:06:58.953000+00:00 -> 2026-06-25 12:46:50.292000+00:00
+Rows used: 4,891
+Selected feature count: 38
+Target mean: 0.374361
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,835 test=1,956 thr=0.61 train_f1=0.5407 test_f1=0.5808 precision=0.4232 recall=0.9254 logloss=0.80346
+Fold 02: train=2,732 test=1,956 thr=0.57 train_f1=0.5694 test_f1=0.5312 precision=0.3773 recall=0.8968 logloss=0.80496
+Fold 03: train=2,735 test=1,956 thr=0.57 train_f1=0.5740 test_f1=0.5340 precision=0.3774 recall=0.9130 logloss=0.80690
+Fold 04: train=2,825 test=1,957 thr=0.56 train_f1=0.5799 test_f1=0.4812 precision=0.3515 recall=0.7626 logloss=0.79547
+Fold 05: train=2,827 test=1,956 thr=0.59 train_f1=0.5457 test_f1=0.5785 precision=0.4292 recall=0.8872 logloss=0.78013
+Fold 06: train=2,727 test=1,956 thr=0.61 train_f1=0.5410 test_f1=0.5569 precision=0.4344 recall=0.7758 logloss=0.77461
+Fold 07: train=2,817 test=1,957 thr=0.59 train_f1=0.5614 test_f1=0.5377 precision=0.4287 recall=0.7210 logloss=0.76610
+Fold 08: train=2,832 test=1,956 thr=0.57 train_f1=0.5817 test_f1=0.5204 precision=0.3848 recall=0.8037 logloss=0.77766
+Fold 09: train=2,822 test=1,957 thr=0.57 train_f1=0.5901 test_f1=0.4360 precision=0.3618 recall=0.5485 logloss=0.75127
+Fold 10: train=2,934 test=1,957 thr=0.53 train_f1=0.5854 test_f1=0.4936 precision=0.3643 recall=0.7648 logloss=0.75541
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 4,891 / 4,891
+Coverage rate: 1.0000
+Raw log loss: 0.780181
+Raw Brier: 0.291651
+Raw ROC AUC: 0.552629
+Raw PR AUC: 0.406133
+Diagnostic global F1 threshold: 0.5
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\oof\jpn_volatilitycarry_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\JPN\edges\volatilitycarry_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

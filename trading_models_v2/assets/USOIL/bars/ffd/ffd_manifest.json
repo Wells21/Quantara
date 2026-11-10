@@ -1,0 +1,94 @@
+{
+  "applied_columns": [
+    "Open",
+    "High",
+    "Low",
+    "Close"
+  ],
+  "artifact_hashes": {
+    "ffd_features": {
+      "path": "assets/USOIL/bars/ffd/usoil_ffd_features.csv",
+      "sha256": "ca4c597a66c8a67780a5b429d69b69e3c27f6200204b660117ecbf53fe5cec3b",
+      "size_bytes": 27464202
+    },
+    "state_bundle": {
+      "path": "assets/USOIL/bars/ffd/usoil_ffd_state_bundle.pkl",
+      "sha256": "75726a9cc4eb5989fe6ccbf40c0dd76d5c07fdfc279b02d6a41ab33d795d0d23",
+      "size_bytes": 42805
+    }
+  },
+  "asset": "USOIL",
+  "bar_verification": {
+    "source_bar_contract_passed": true,
+    "source_bar_hashes_passed": true,
+    "source_bars_forged": 98730,
+    "source_engine": "single_pass_causal_streaming"
+  },
+  "d_estimation_bars": null,
+  "d_estimation_policy": "full_research_history_then_freeze",
+  "d_estimation_rows": 98730,
+  "d_reestimated_live": false,
+  "d_selection_rule": "min d on [0,1] (precision 0.01) with ADF p < 0.05 on FFD(log Close), fixed window (AFML Snippet 5.4)",
+  "d_selection_scope": "full research history; sealed holdout and live never used; frozen after selection",
+  "elapsed_seconds": 31.74,
+  "end_output": "2026-07-03 16:18:42.591000+00:00",
+  "ffd_window": 1000,
+  "frozen_d": 0.0,
+  "live_buffer_bars": 1010,
+  "memory_retention": {
+    "Close_orig_vs_ffd_corr": 0.9999999999999999,
+    "High_orig_vs_ffd_corr": 0.9999999999999999,
+    "Low_orig_vs_ffd_corr": 1.0,
+    "Open_orig_vs_ffd_corr": 1.0
+  },
+  "memory_retention_passed": true,
+  "min_corr_threshold": 0.8,
+  "min_memory_retention_corr": 0.9999999999999999,
+  "notes": [
+    "d estimated on the full research history (AFML Snippet 5.4), then frozen; holdout/live receive it.",
+    "Frozen d is reused for Open/High/Low/Close to preserve structural consistency.",
+    "FFD is applied to log OHLC.",
+    "Live runtime must use frozen d and buffer continuation; it must not re-estimate d live."
+  ],
+  "output_columns": [
+    "Open_FFD",
+    "High_FFD",
+    "Low_FFD",
+    "Close_FFD"
+  ],
+  "outputs": {
+    "ffd_features": "assets/USOIL/bars/ffd/usoil_ffd_features.csv",
+    "manifest": "assets/USOIL/bars/ffd/ffd_manifest.json",
+    "state_bundle": "assets/USOIL/bars/ffd/usoil_ffd_state_bundle.pkl"
+  },
+  "rows_input": 98730,
+  "rows_output": 98730,
+  "runtime_module": "shared.ffd.fractional_differentiation",
+  "schema_version": "v2.1",
+  "source_bars_path": "assets/USOIL/bars/standard_quote_tick/usoil_standard_quote_tick_bars.csv",
+  "start_output": "2020-03-27 01:23:59.475000+00:00",
+  "stationarity": {
+    "first_half": {
+      "adf_stat": -2.6393693598240358,
+      "lags": 56,
+      "nobs": 49308,
+      "p_value": 0.08513030345723321
+    },
+    "full": {
+      "adf_stat": -3.7532771347337013,
+      "lags": 68,
+      "nobs": 98661,
+      "p_value": 0.003423204023476604
+    },
+    "full_passed": true,
+    "p_value_threshold": 0.05,
+    "second_half": {
+      "adf_stat": -2.4450419640757186,
+      "lags": 55,
+      "nobs": 49309,
+      "p_value": 0.12942496021734273
+    },
+    "test": "statsmodels.adfuller defaults (regression='c', autolag='AIC')"
+  },
+  "uses_future_data": false
+}

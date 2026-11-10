@@ -1,0 +1,40 @@
+asset=DAX edge=volatilityregime_long gate_c_exit=0 elapsed_seconds=224
+QUANTARA V3 — EXACT BID/ASK EXECUTION + CAPITAL VELOCITY
+edge: DAX/volatilityregime_long
+entry_delay_ms: 0
+extra_cost_bps: 0.0 (raw Bid/Ask spread already embedded)
+ - V2_CONTROL_H5_E100_V20_PT1_SL1 [CONTROL]
+ - H20_E100_V1000_PT2_SL1 
+ - H20_E50_V1000_PT2_SL1 
+ - H15_E100_V1000_PT2_SL1 
+Eligibility generic path: persisted feature_matrix (no feature rebuild).
+Exact quote replay events: 2614
+  250/2614 elapsed=43.6s
+  500/2614 elapsed=75.7s
+  750/2614 elapsed=95.7s
+  1000/2614 elapsed=116.6s
+  1250/2614 elapsed=126.4s
+  1500/2614 elapsed=139.2s
+  1750/2614 elapsed=151.6s
+  2000/2614 elapsed=167.7s
+  2250/2614 elapsed=180.4s
+  2500/2614 elapsed=199.6s
+  2614/2614 elapsed=214.0s
+
+EXECUTABLE SUMMARY
+label | meanR | 95%CI | PF | mean_hold_h | p95_hold_h | R/occupied_day | R/week | velocity_xV2 | hold_speedup_xV2 | coverage
+V2_CONTROL_H5_E100_V20_PT1_SL1 | -0.041085 | [-0.082787,+0.005061] | 0.9211 | 3.959 | 11.487 | -0.249061 | -0.507670 | 1.000 | 1.000 | 1.0000
+H20_E100_V1000_PT2_SL1 | +0.076154 | [-0.011943,+0.169827] | 1.1165 | 23.306 | 86.735 | +0.078421 | +0.926596 | -0.315 | 0.170 | 1.0000
+H20_E50_V1000_PT2_SL1 | +0.054839 | [-0.028640,+0.145598] | 1.0828 | 19.587 | 77.837 | +0.067194 | +0.667248 | -0.270 | 0.202 | 1.0000
+H15_E100_V1000_PT2_SL1 | +0.067101 | [-0.020609,+0.153483] | 1.1020 | 18.975 | 74.581 | +0.084869 | +0.816446 | -0.341 | 0.209 | 1.0000
+
+PROVISIONAL CAPITAL-VELOCITY RANKING (geometry only; full 00->09 still required)
+ 1. H15_E100_V1000_PT2_SL1 | meanR=+0.067101 | R/occupied_day=+0.084869 | R/week=+0.816446 | mean_hold_h=18.975
+ 2. H20_E100_V1000_PT2_SL1 | meanR=+0.076154 | R/occupied_day=+0.078421 | R/week=+0.926596 | mean_hold_h=23.306
+ 3. H20_E50_V1000_PT2_SL1 | meanR=+0.054839 | R/occupied_day=+0.067194 | R/week=+0.667248 | mean_hold_h=19.587
+
+Saved: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_summary_20260917T100351Z.csv 
+ C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\v3_horizon_lab\v3_execution_velocity_audit_20260917T100351Z.json 
+ per-config trade CSVs under C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilityregime_long\artifacts\v3_horizon_lab
+
+No edge/model/live artifact was modified.

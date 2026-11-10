@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — XAUUSD/trend_long
+================================================================================
+Edge: XAUUSD/trend_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\trend_long\artifacts\oof\xauusd_trend_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\trend_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 6,944
+Date range: 2022-06-14 01:05:55.100000+00:00 -> 2026-04-02 19:12:27.249000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    XAUUSD/trend_long
+segment                           trend_long
+threshold                               0.79
+candidate_count                         6944
+take_rate                           0.115639
+trade_count                              803
+win_rate                            0.412204
+avg_win_r                           1.787526
+avg_loss_r                          -0.97326
+expectancy_r                        0.164748
+payoff_ratio                        1.836638
+profit_factor                       1.287981
+gross_profit_r                    591.671015
+gross_loss_r                      459.378511
+cumulative_r                      132.292504
+max_drawdown_r                    -18.538795
+sharpe_r                            0.117019
+sortino_r                           0.918986
+calmar_r                            7.135982
+selected_precision                  0.412204
+selected_recall                          1.0
+selected_f1                         0.583774
+clf_precision                       0.412204
+clf_recall                          0.117752
+clf_f1                              0.183177
+clf_accuracy                        0.574885
+clf_balanced_accuracy               0.501774
+predicted_positive_rate             0.115639
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\trend_long\artifacts\oof\xauusd_trend_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\trend_long\artifacts\oof\xauusd_trend_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\XAUUSD\edges\trend_long\artifacts\oof\xauusd_trend_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

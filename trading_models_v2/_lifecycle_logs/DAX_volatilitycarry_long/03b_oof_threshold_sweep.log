@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — DAX/volatilitycarry_long
+================================================================================
+Edge: DAX/volatilitycarry_long
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\oof\dax_volatilitycarry_long_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 5,055
+Date range: 2022-06-14 07:20:01.955000+00:00 -> 2026-06-12 11:59:02.659000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    DAX/volatilitycarry_long
+segment                        volatilitycarry_long
+threshold                                       0.7
+candidate_count                                5055
+take_rate                                  0.272799
+trade_count                                    1379
+win_rate                                   0.351704
+avg_win_r                                       2.0
+avg_loss_r                                -1.025489
+expectancy_r                               0.038588
+payoff_ratio                               1.950289
+profit_factor                              1.058043
+gross_profit_r                                970.0
+gross_loss_r                             916.787256
+cumulative_r                              53.212744
+max_drawdown_r                           -71.544957
+sharpe_r                                   0.026677
+sortino_r                                   0.51374
+calmar_r                                   0.743767
+selected_precision                         0.351704
+selected_recall                                 1.0
+selected_f1                                0.520386
+clf_precision                              0.351704
+clf_recall                                  0.28346
+clf_f1                                     0.313916
+clf_accuracy                               0.580613
+clf_balanced_accuracy                      0.508058
+predicted_positive_rate                    0.272799
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\oof\dax_volatilitycarry_long_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\oof\dax_volatilitycarry_long_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\DAX\edges\volatilitycarry_long\artifacts\oof\dax_volatilitycarry_long_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

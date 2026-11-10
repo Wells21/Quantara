@@ -1,0 +1,101 @@
+schema_version: v2.1
+edge_id: XAUUSD/roundlevelcascade_long
+asset: XAUUSD
+family: roundlevelcascade
+side_name: long
+side_value: 1
+edge_stem: xauusd_roundlevelcascade_long
+status: deployability_pass
+runtime_py: runtime.py
+
+bar_contract:
+ bar_type: standard_quote_tick
+ threshold_unit: ticks
+ proxy_value_policy: backward_compatible_tick_count_only
+
+alpha_contract:
+ candidate_event_generator: roundlevelcascade_long_v1_first_close_beyond_untouched_round_level
+ primary_side_rule: "Round_Break_Type == +1 (first close above an untouched round level) -> side=+1 long"
+ edge_specific_features_allowed: false
+ requires_ffd: true
+ requires_regime: true
+
+labeling:
+ row_builder: roundlevelcascade_long_v1_1r_triple_barrier_model_rows
+ vertical_horizon: 1000  # legacy bar-count field required by the edge.yaml contract; labels use vertical_horizon_hours
+ vertical_horizon_hours: 4.0  # LOCKED 2026-11-09 Gate C winner H8_E150_V4_PT1_SL1 (full history, era-scaled broker cost; PBO 0.14, DSR 0.992; 2022+ +0.094 R)
+ pt_multiplier: 1.0
+ sl_multiplier: 1.0
+ tie_policy: sl_first
+ tick_resolution_price: mid
+ long_barrier_contract: pt_price_above_entry_sl_price_below_entry
+ live_scoring_must_not_use_label_columns: true
+
+research:
+ cv: combinatorial_purged_cv
+ n_folds: 5
+ n_test_folds: 2
+ manual_embargo_size: 100
+ weights: class_weight_mode_x_event_vol_x_average_uniqueness
+
+probability:
+ flow: raw_probability -> sigmoid calibrated_probability -> AFML bet size -> calibrated-threshold decision
+ final_edge_threshold_space: calibrated_probability
+ final_live_threshold_source: allocator_live_manifest
+
+runtime_contract:
+ required_functions:
+   - load_contract
+   - validate_environment
+   - build_features
+   - generate_candidate_events
+   - build_model_rows
+   - load_model
+   - load_calibrator
+   - score
+   - explain_missing_features
+ dashboard_may_call:
+   - validate_environment
+   - build_features
+   - generate_candidate_events
+   - build_model_rows
+   - score
+ dashboard_must_not_compute_features: true
+
+notes:
+ - XAUUSD/roundlevelcascade_long is the T13 round-level stop-cascade long (Gate 0 test 26 PASS 2026-11-07; owner 2026-11-09 -> Gate A).
+ - Trigger: first close above a round level (spacing per the T13 card) not traded in the prior 24 h; the bar follows its predecessor within 2 h. Long only.
+ - Round_* fields and Event_Vol are event/control/context fields, not model-input schema features; the generic feature_schema.json is copied verbatim.
+ - Geometry LOCKED 2026-11-09: H8_E150_V4_PT1_SL1 (Gate C full history with era-scaled broker cost decides; PBO 0.140, Prob[OOS<=0] 0.022, DSR 0.992; 2022+ locked cell +0.094 R).
+ - The edge is not deployable until export, Steps 01-09, Gate D v4.1 and the edge-level gates pass.
+
+# Thesis card -- AFML Ch.1 s.1.3.1.3 (p.7) strategist station; QUANTARA_MLDP_DOCTRINE principle 1.
+thesis:
+  schema_version: "thesis_card_v1"
+  written_utc: "2026-11-07"
+  provenance: "pre_registered"
+  review_status: "owner_approved_2026-11-09"
+  card: "docs/mldp/campaign/NASDAQ_2026-11/T13_round_level_stop_cascade/PREREGISTRATION.md"
+  trigger_summary: "First close above an untouched (24 h) round level; long only; locked H8_E150_V4 1:1 (8 h Event_Vol EWM 150, 4 h vertical)."
+  mechanism: "Buy-stop orders cluster just above round price levels (Osler 2003 JF 58(5); Osler 2005 JIMF 24). The longer the level stays untouched, the more stops accumulate. The first close above it triggers them and the stop cascade continues the break."
+  who_loses_and_why: "Short-term shorts and range-faders whose buy stops sit above the round level: their stops are filled into the cascade at worse prices."
+  regimes:
+    should_work:
+      - "markets with visible round-number attention and stop clustering (gold, cash index futures)"
+    should_fail:
+      - "breaks driven by scheduled releases (one-tick jumps through several levels)"
+      - "thin, closed markets (gap opens)"
+  counterfactuals:
+    C1:
+      statement: "The same 24 h breakout through a shifted non-round grid (offset 0.37 x spacing) should continue less."
+      test: "gate0_tool T13 C1; Gate 0 2026-11-07 XAUUSD C1 diff +0.074 (se 0.023)."
+    C2:
+      statement: "A fresh near-miss of the round level (no break) should do worse than the break."
+      test: "gate0_tool T13 C2."
+  falsifiers:
+    F1:
+      statement: "Post-Gate C drift re-check (D075) fails at the locked cell."
+      test: "Rev 47 drift re-check, one-sided 90 %."
+    F2:
+      statement: "Live per-bet results fail the decommission rule for a sustained period."
+      test: "decommission rule on live realized bets."

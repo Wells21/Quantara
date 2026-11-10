@@ -1,0 +1,85 @@
+========================================================================================
+V3 STEP 04: EXECUTABLE-OUTCOME SIGMOID CALIBRATION + EMPIRICAL PAYOFF AFML — HK/trendpullbackcontinuation_short
+========================================================================================
+Geometry diagnostic only: R:R=2 static_pBE=0.333333
+Rows loaded: 3,282
+Executable positive rate: 0.309263
+Gross positive rate: 0.422303
+Calibration purge horizon: exact gross_t1
+Generating V1-style CPCV second-level sigmoid calibrated probabilities...
+Fold 01: train=1,870 test=1,312 status=sigmoid_platt_logit pred_count=1312
+Fold 02: train=1,766 test=1,312 status=sigmoid_platt_logit pred_count=1968
+Fold 03: train=1,769 test=1,312 status=sigmoid_platt_logit pred_count=2624
+Fold 04: train=1,864 test=1,314 status=sigmoid_platt_logit pred_count=3282
+Fold 05: train=1,870 test=1,312 status=sigmoid_platt_logit pred_count=2624
+Fold 06: train=1,769 test=1,312 status=sigmoid_platt_logit pred_count=3280
+Fold 07: train=1,864 test=1,314 status=sigmoid_platt_logit pred_count=3940
+Fold 08: train=1,866 test=1,312 status=sigmoid_platt_logit pred_count=3936
+Fold 09: train=1,860 test=1,314 status=sigmoid_platt_logit pred_count=4598
+Fold 10: train=1,967 test=1,314 status=sigmoid_platt_logit pred_count=5256
+
+PASS: V3 executable-outcome sigmoid calibration + empirical payoff AFML completed.
+Raw Brier: 0.470722 | Sigmoid CPCV Brier: 0.214298
+Selected calibrated threshold payload:
+{
+  "edge_id": "HK/trendpullbackcontinuation_short",
+  "calibration_method": "sigmoid",
+  "calibration_target_column": "quote_executable_meta_label",
+  "calibration_target_contract_version": "quantara_v3_executed_positive_meta_label_v1",
+  "threshold_probability_column": "calibrated_probability",
+  "threshold_sweep_policy": {
+    "threshold_sweep_policy": "dynamic_observed_calibrated_probability_range",
+    "probability_column": "calibrated_probability",
+    "threshold_step": 0.01,
+    "threshold_min_bound": 0.01,
+    "threshold_max_bound": 0.99,
+    "threshold_decimals": 2,
+    "valid_probability_rows": 3282,
+    "calibrated_probability_min": 0.28773560247304786,
+    "calibrated_probability_max": 0.34480916994613797,
+    "threshold_start": 0.28,
+    "threshold_end": 0.35,
+    "threshold_count": 8
+  },
+  "afml_sizing": {
+    "method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+    "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+    "static_geometry_break_even_used_for_sizing": false,
+    "geometry_hash": "c20e95a849ed544e31d44289ad4cad0da0989650514b44d71ab50b0451bb241e"
+  },
+  "payoff_profile": null,
+  "payoff_profile_provenance": {
+    "oof_predictions_sha256": "e8e39828f95424354f7aae19d3042f1c7a45625a4441a9d1f28df67636542377",
+    "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+    "geometry_hash": "c20e95a849ed544e31d44289ad4cad0da0989650514b44d71ab50b0451bb241e",
+    "threshold": null,
+    "probability_column": "calibrated_probability"
+  },
+  "selected": {
+    "selection_status": "no_positive_executable_threshold_region",
+    "reason": "The best calibrated threshold is not positive under exact Step 03A Bid/Ask executed_r economics.",
+    "selected_threshold": null,
+    "best_executable_expectancy_r": -0.12134887093011558,
+    "best_executable_profit_factor": 0.8361321035739018,
+    "best_executable_cumulative_r": -393.53438842636484
+  },
+  "deployable": false,
+  "note": "Edge-default threshold/profile only. Allocator 04C owns final representative threshold; allocator 04B recomputes threshold-specific AFML from each sweep row payoff profile.",
+  "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+  "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+  "payoff_context_version": null,
+  "payoff_context_id": null,
+  "payoff_context": null,
+  "upstream_generation": {
+    "step01_feature_surgery_manifest_sha256": "a900613468783ca92a9791de3499782a2685188c0e75a8fff36a082816e48abe",
+    "step01_selected_features_sha256": "0ec7681e786cd401b5ebe90a12f23ae61116b310eaa5117da953042b4fa7fb0e",
+    "step01_model_rows_sha256": "c656d42b3f5a5a91895868ca1a4a0ca0c2c37e985d7b86527d4cd2deadf1c860",
+    "gross_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+    "step02_training_manifest_sha256": "f9d6c603ea3675c0395ef3983a15ac73df6e6030fabed1b094441450524ca410",
+    "step02_model_rows_sha256": "c656d42b3f5a5a91895868ca1a4a0ca0c2c37e985d7b86527d4cd2deadf1c860",
+    "step02_best_params_sha256": "f5b8fe098b07eae33f908b1abc99118cbae296270e4aa015691001c61d3f797c",
+    "step03_oof_manifest_sha256": "dc2bb04b139a5fc1360f3ac47165270bbcc6f73d45d9dec58170849fad6be33c",
+    "step03_oof_predictions_sha256": "e8e39828f95424354f7aae19d3042f1c7a45625a4441a9d1f28df67636542377"
+  }
+}
+Next ordered step: 05_training_artifact_verifier.py

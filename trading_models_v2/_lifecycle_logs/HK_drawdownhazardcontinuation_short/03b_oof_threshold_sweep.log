@@ -1,0 +1,48 @@
+================================================================================
+V2 STEP 03B: EDGE RAW-OOF THRESHOLD SWEEP DIAGNOSTICS — HK/drawdownhazardcontinuation_short
+================================================================================
+Edge: HK/drawdownhazardcontinuation_short
+Run mode: repo_local
+OOF input: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\oof\hk_drawdownhazardcontinuation_short_oof_predictions.csv
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\oof
+Preflight: PASS
+Valid edge OOF rows: 4,205
+Date range: 2022-08-01 15:10:15.710000+00:00 -> 2026-06-30 05:02:54.172000+00:00
+Threshold grid: 0.10 -> 0.95 step 0.01
+Using raw_probability only for diagnostics. Deployable threshold waits for Step 04 calibrated_probability.
+
+Best raw diagnostic threshold for this edge:
+edge_id                    HK/drawdownhazardcontinuation_short
+segment                       drawdownhazardcontinuation_short
+threshold                                                  0.7
+candidate_count                                           4205
+take_rate                                             0.044471
+trade_count                                                187
+win_rate                                               0.42246
+avg_win_r                                             1.968931
+avg_loss_r                                           -1.089022
+expectancy_r                                          0.202841
+payoff_ratio                                          1.807981
+profit_factor                                         1.322505
+gross_profit_r                                      155.545563
+gross_loss_r                                         117.61437
+cumulative_r                                         37.931193
+max_drawdown_r                                      -13.389005
+sharpe_r                                              0.130956
+sortino_r                                             0.530169
+calmar_r                                              2.833011
+selected_precision                                    0.433155
+selected_recall                                            1.0
+selected_f1                                           0.604478
+clf_precision                                         0.433155
+clf_recall                                            0.049785
+clf_f1                                                0.089305
+clf_accuracy                                          0.607134
+clf_balanced_accuracy                                 0.504334
+predicted_positive_rate                               0.044471
+
+Saved outputs:
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\oof\hk_drawdownhazardcontinuation_short_oof_raw_threshold_sweep.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\oof\hk_drawdownhazardcontinuation_short_oof_raw_best_summary.csv
+  - C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\HK\edges\drawdownhazardcontinuation_short\artifacts\oof\hk_drawdownhazardcontinuation_short_oof_raw_threshold_sweep_manifest.json
+Next ordered step: 04_fit_sigmoid_calibrator_and_thresholds.py

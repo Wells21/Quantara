@@ -1,0 +1,44 @@
+================================================================================
+V2 STEP 03: OOF RAW-PROBABILITY GENERATION — NASDAQ/absorption_long
+================================================================================
+Run mode: repo_local
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\research_dataset\nasdaq_absorption_long_mldp_execution_resolution.csv
+Selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\feature_surgery\nasdaq_absorption_long_selected_features.json
+Best params: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\model\nasdaq_absorption_long_meta_model_best_params.json
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\oof
+AFML Ch.4 weights | source=assets/NASDAQ/bars/standard_quote_tick/nasdaq_standard_quote_tick_bars.csv | events=5,067 | mean_uniqueness=0.550271 | mean_return_weight=1.000000
+Preflight + Step-02 semantic provenance: PASS
+Task 2B eligibility filter: 5,067/5,067 rows retained (mldp_target_eligible==True); 0 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before selected-feature NaN filter: 5,067
+Rows after selected-feature NaN filter : 5,067
+Date range: 2022-06-10 18:50:54.775000+00:00 -> 2026-04-20 11:28:33.470000+00:00
+Rows used: 5,067
+Selected feature count: 23
+Target mean: 0.470693
+CPCV combinations expected: C(5, 2) = 10 folds
+Raw_probability is diagnostic/intermediate only. Step 04 handles sigmoid calibration and threshold sweep.
+Generating CPCV OOF raw probabilities...
+Fold 01: train=2,941 test=2,026 thr=0.47 train_f1=0.6503 test_f1=0.6204 precision=0.4615 recall=0.9466 logloss=0.70881
+Fold 02: train=2,839 test=2,026 thr=0.47 train_f1=0.6508 test_f1=0.6273 precision=0.4652 recall=0.9629 logloss=0.70870
+Fold 03: train=2,840 test=2,026 thr=0.48 train_f1=0.6411 test_f1=0.6465 precision=0.4842 recall=0.9724 logloss=0.71872
+Fold 04: train=2,938 test=2,028 thr=0.49 train_f1=0.6424 test_f1=0.6128 precision=0.4668 recall=0.8916 logloss=0.71481
+Fold 05: train=2,939 test=2,026 thr=0.30 train_f1=0.6521 test_f1=0.6232 precision=0.4526 recall=1.0000 logloss=0.70405
+Fold 06: train=2,838 test=2,026 thr=0.48 train_f1=0.6416 test_f1=0.6359 precision=0.4716 recall=0.9759 logloss=0.71258
+Fold 07: train=2,936 test=2,028 thr=0.38 train_f1=0.6437 test_f1=0.6348 precision=0.4650 recall=1.0000 logloss=0.71117
+Fold 08: train=2,939 test=2,026 thr=0.48 train_f1=0.6410 test_f1=0.6387 precision=0.4747 recall=0.9761 logloss=0.71642
+Fold 09: train=2,936 test=2,028 thr=0.51 train_f1=0.6431 test_f1=0.6077 precision=0.4665 recall=0.8716 logloss=0.71754
+Fold 10: train=3,038 test=2,028 thr=0.46 train_f1=0.6322 test_f1=0.6512 precision=0.4869 recall=0.9828 logloss=0.72101
+
+✅ V2 OOF raw-probability generation completed.
+Rows with OOF prediction: 5,067 / 5,067
+Coverage rate: 1.0000
+Raw log loss: 0.711443
+Raw Brier: 0.258985
+Raw ROC AUC: 0.501524
+Raw PR AUC: 0.471848
+Diagnostic global F1 threshold: 0.3
+Saved OOF predictions: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\oof\nasdaq_absorption_long_oof_predictions.csv
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\NASDAQ\edges\absorption_long\artifacts\oof\oof_predictions_manifest.json
+Next ordered step: 03b_oof_threshold_sweep.py

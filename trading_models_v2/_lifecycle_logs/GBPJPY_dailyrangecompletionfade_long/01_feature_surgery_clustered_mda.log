@@ -1,0 +1,26 @@
+================================================================================
+V2 STEP 01: ITERATIVE CLUSTERED MDA FEATURE SURGERY — GBPJPY/dailyrangecompletionfade_long
+================================================================================
+Run mode: repo
+Working directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2
+Model rows: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\research_dataset\gbpjpy_dailyrangecompletionfade_long_mldp_execution_resolution.csv
+Feature schema: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\contracts\feature_schema.json
+Output directory: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\feature_surgery
+Task 2B eligibility filter: 3,987/3,988 rows retained (mldp_target_eligible==True); 1 excluded (TRUE_NO_FILL / RIGHT_CENSORED_END_OF_HISTORY per docs/mldp/TASK2B_POPULATION_RULE_DECISION.md).
+Rows before feature NaN filter: 3,987
+Rows after feature NaN filter : 3,987
+Date range: 2022-06-09 07:19:43.408000+00:00 -> 2026-06-24 15:02:44.274000+00:00
+Schema allowed features: 187
+Fixed features: []
+Candidate features for clustering: 176
+AFML Ch.4 weights | source=assets/GBPJPY/bars/standard_quote_tick/gbpjpy_standard_quote_tick_bars.csv | events=3,988 | mean_uniqueness=0.211097 | mean_return_weight=1.000000
+ cluster_id  n_features  avg_mda  std_mda    mda_t  mdi_mean  kept_rule_B
+          1          38 0.024564 0.002652 9.263536   0.27297         True
+          0         138 0.018754 0.002973 6.308528   0.72703         True
+OOS weighted neg log loss -0.68191 | OOS AUC 0.5134 | kept 176/176 candidate features
+
+✅ V2 clustered MDA feature surgery completed.
+Selected features: 176
+Saved selected features: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\feature_surgery\gbpjpy_dailyrangecompletionfade_long_selected_features.json
+Saved manifest: C:\Users\Administrator\Desktop\Trading Models\trading_models_v2\assets\GBPJPY\edges\dailyrangecompletionfade_long\artifacts\feature_surgery\feature_surgery_manifest.json
+Next ordered step: 02_train_meta_model_optuna.py
