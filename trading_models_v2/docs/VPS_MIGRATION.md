@@ -43,4 +43,6 @@ scripts -> run `portfolio_live/` scripts -> trade, **without redoing any edge re
 ## Status 2026-11-10
 - Fresh-clone test: LFS 34/34 files downloaded, `git lfs fsck` OK; allocator 01-06 PASS (with the 00d file
   copied in); 07 stops by design with one edge.
-- Pending: .gitignore line 203 change so the 00d CSVs can be committed (owner approval asked).
+- 00d CSV for XAUUSD/roundlevelcascade_long committed (ad4cae78). Git still treats the broker_repricing/<firm>/
+  folders as ignored, so add each newly promoted edge's 00d CSV with `git add -f <file>` (once tracked, it stays
+  tracked). Only edges in config/edge_universe.json; the old CSVs in that folder stay out.
