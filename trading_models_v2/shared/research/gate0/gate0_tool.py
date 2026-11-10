@@ -1438,6 +1438,64 @@ def t25_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T30: 10-day trading-range breakout
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T30_trading_range_breakout/PREREGISTRATION.md (all 10 assets).
+# Every hourly UTC check t (on the hour): c = last close at or before t; H / L = max / min hourly close over the 10 days
+# BEFORE the last full hour ending at or before t (that hour excluded). LONG edge: c > H (new 10-day closing high); C1: c <= H20
+# and c > (H20 + L20) / 2 (upper half of the range, no break). SHORT mirrors (c < L20; C1 c >= L20 and c < mid).
+
+T30_DAYS = "10D"
+T30_HOURS = tuple(range(24))   # hourly checks: chosen with 10D from event COUNTS only (>= 2/week, D092), before any returns
+
+
+def t30_events(ts: np.ndarray, close: np.ndarray) -> pd.DataFrame:
+    stale = MAX_STALE.value
+    one_d, one_h = pd.Timedelta(days=1).value, pd.Timedelta(hours=1).value
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    hi = hc.rolling(T30_DAYS, closed="left").max()
+    lo = hc.rolling(T30_DAYS, closed="left").min()
+    warm = hc.index[0] + pd.Timedelta(T30_DAYS)
+    day0 = (ts[0] // one_d + 1) * one_d
+    t = np.array([day0 + h * one_h + k * one_d for k in range(int((ts[-1] - day0) // one_d)) for h in T30_HOURS],
+                 dtype="int64")
+    pb = np.searchsorted(ts, t, side="right") - 1
+    pe = np.searchsorted(ts, t, side="left")
+    ok = (pb >= 0) & (pe < len(ts))
+    pb_c, pe_c = np.clip(pb, 0, None), np.clip(pe, 0, len(ts) - 1)
+    ok &= (t - ts[pb_c] <= stale) & (ts[pe_c] - t <= stale) & (t >= warm.value)
+    t, pb_c, pe_c = t[ok], pb_c[ok], pe_c[ok]
+    hix = hc.index.asi8 if hasattr(hc.index, "asi8") else hc.index.view("int64")
+    ph = np.searchsorted(hix, t, side="right") - 1
+    phc = np.clip(ph, 0, None)
+    h20 = np.where(ph >= 0, hi.to_numpy()[phc], np.nan)
+    l20 = np.where(ph >= 0, lo.to_numpy()[phc], np.nan)
+    c = close[pb_c]
+    f = pd.DataFrame({"pos": pe_c, "Datetime": pd.to_datetime(ts[pe_c], utc=True), "c": c, "h20": h20, "l20": l20,
+                      "ref_ns": t})
+    f = f[np.isfinite(f.h20) & np.isfinite(f.l20) & (f.h20 > f.l20)].drop_duplicates("pos").sort_values("pos")
+    f["mid"] = 0.5 * (f.h20 + f.l20)
+    f["r"] = 0.0
+    f["day"] = f.Datetime.dt.normalize().dt.tz_localize(None)
+    return f.reset_index(drop=True)
+
+
+def t30_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    ev = t30_events(lab.ts, lab.cl)
+    up, upc = ev[ev.c > ev.h20], ev[(ev.c <= ev.h20) & (ev.c > ev.mid)]
+    dn, dnc = ev[ev.c < ev.l20], ev[(ev.c >= ev.l20) & (ev.c < ev.mid)]
+    sets = {}
+    for side, name, e, c1 in ((1, "LONG", up, upc), (-1, "SHORT", dn, dnc)):
+        out = []
+        for f in (e, c1):
+            f = f.copy()
+            f["realized_r"] = lab.label(f.pos.to_numpy(dtype=int), np.full(len(f), side))
+            out.append(f)
+        sets[name] = {"edge": out[0], "C1": out[1]}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T26: realized skewness / lottery demand
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T26_realized_skewness_lottery/PREREGISTRATION.md (all 10 assets).
 
@@ -1647,6 +1705,8 @@ def t29_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
 THESES: dict[str, dict] = {
     # D093 (owner 2026-11-10): cards from T30 on pre-register their Gate 0 cell with EWM 150 (the only span left in the
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
+    "T30": {"build": t30_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T30_trading_range_breakout/PREREGISTRATION.md"},
     "T29": {"build": t29_sets, "cell": Cell(4.0, 100, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T29_12month_time_series_momentum/PREREGISTRATION.md"},
     "T28": {"build": t28_sets, "cell": Cell(4.0, 100, 24.0), "counterfactuals": ["C1"], "universe": EQUITY_INDICES,
