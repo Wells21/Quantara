@@ -1496,6 +1496,66 @@ def t30_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T31: failed range breakout (trapped breakout traders)
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T31_failed_range_breakout/PREREGISTRATION.md (all 10 assets).
+# Hourly UTC checks, 5-day range (T30 machinery with a 5D window). A break = c > H (up) / c < L (down). SHORT edge: the
+# first check within 24 h after an up-break at which c < H_break (the level that was broken) -- back inside the range;
+# then disarmed until the next break. LONG mirrors (failed down-break: c > L_break). C1 SHORT: the first check of each
+# UTC day with H - 0.1 (H - L) <= c < H and no up-break in the previous 24 h (near the top, no failed break). C1 LONG
+# mirrors.
+
+T31_DAYS, T31_WIN_NS, T31_BAND = "5D", pd.Timedelta(hours=24).value, 0.10
+
+
+def t31_events(ts: np.ndarray, close: np.ndarray) -> dict[str, pd.DataFrame]:
+    keep_days = globals()["T30_DAYS"]
+    globals()["T30_DAYS"] = T31_DAYS
+    try:
+        ev = t30_events(ts, close)
+    finally:
+        globals()["T30_DAYS"] = keep_days
+    c, H, L, t = ev.c.to_numpy(), ev.h20.to_numpy(), ev.l20.to_numpy(), ev.ref_ns.to_numpy()
+    out = {}
+    for name, side in (("S", -1), ("L", 1)):
+        brk = (c > H) if side == -1 else (c < L)
+        fail, last_t, level, armed = [], None, None, False
+        last_brk = np.full(len(c), np.iinfo("int64").min, dtype="int64")
+        lb = np.iinfo("int64").min
+        for i in range(len(c)):
+            last_brk[i] = lb                                  # most recent break strictly before check i
+            if brk[i]:
+                lb, last_t, level, armed = t[i], t[i], (H[i] if side == -1 else L[i]), True
+                continue
+            if armed and t[i] - last_t <= T31_WIN_NS:
+                if (side == -1 and c[i] < level) or (side == 1 and c[i] > level):
+                    fail.append(i)
+                    armed = False
+            elif armed:
+                armed = False
+        rng = H - L
+        near = ((c >= H - T31_BAND * rng) & (c < H)) if side == -1 else ((c <= L + T31_BAND * rng) & (c > L))
+        quiet = (t - last_brk) > T31_WIN_NS
+        c1 = ev[near & quiet & ~brk].copy()
+        c1 = c1.groupby("day", sort=True).head(1)
+        out[f"edge_{name}"] = ev.iloc[fail].copy()
+        out[f"c1_{name}"] = c1
+    return out
+
+
+def t31_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    ev = t31_events(lab.ts, lab.cl)
+    sets = {}
+    for side, name, k in ((1, "LONG", "L"), (-1, "SHORT", "S")):
+        out = []
+        for f in (ev[f"edge_{k}"], ev[f"c1_{k}"]):
+            f = f.copy()
+            f["realized_r"] = lab.label(f.pos.to_numpy(dtype=int), np.full(len(f), side))
+            out.append(f)
+        sets[name] = {"edge": out[0], "C1": out[1]}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T26: realized skewness / lottery demand
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T26_realized_skewness_lottery/PREREGISTRATION.md (all 10 assets).
 
@@ -1705,6 +1765,8 @@ def t29_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
 THESES: dict[str, dict] = {
     # D093 (owner 2026-11-10): cards from T30 on pre-register their Gate 0 cell with EWM 150 (the only span left in the
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
+    "T31": {"build": t31_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T31_failed_range_breakout/PREREGISTRATION.md"},
     "T30": {"build": t30_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T30_trading_range_breakout/PREREGISTRATION.md"},
     "T29": {"build": t29_sets, "cell": Cell(4.0, 100, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
