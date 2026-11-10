@@ -150,3 +150,9 @@ D092 PBO: DAX/closehedgingflow_long PBO 0.462, Prob[OOS<=0] 0.198 -> PASS (PBO n
 DAX/closehedgingflow_long post-PBO: DSR 0.977 (PSR 0.993, E[K] 2, SR* 0.136/yr, 121 trials) PASS; stress x1.166 +0.045 R PASS (break-even ~4.4x spread); D090 re-check at the lock PASS (C1 z 2.69). LOCKED H8_E150_V16_PT2_SL1 in code -> export, Task 2A, Steps 01-09, Gate D (report), CV leakage, label audit (logs/dax_closehedgingflow_long_lifecycle_20261110.sh). Caution: card T1c is an owner-ordered post-hoc re-test.
 D092 post-PBO: HK/weeklymomentum_short DSR 0.0005 (PSR 0.971, E[K] 5, SR* 1.47/yr) -> KILLED_DSR; XAUUSD/weeklymomentum_short DSR 0.897 (PSR 0.993, E[K] 2, SR* 0.26/yr) -> KILLED_DSR (stress PASS, D090 re-check PASS for both). Archived.
 T30 Gate A (120 cells): NASDAQ L +0.194 120/120 net>0; DAX L +0.251 120/120; BTCUSD L +0.247 120/120; HK L +0.156 104; US500 S +0.079 63 -> Gate C (logs/gate_c_queue.sh). USDMXN L 0 net>0 -> KILLED_B; NASDAQ S +0.043 -> KILLED_A; archived. JPN L / GBPJPY S rerun (cost table fix).
+T30 Gate A rerun: JPN/rangebreakout_long +0.132, 102/120 net>0 (max +0.096) -> Gate C; GBPJPY/rangebreakout_short +0.047 -> KILLED_A, archived.
+D092 Gate C (full, era-scaled; 120 cells): XAUUSD/roundlevelcascade_short 86/120 > 0 (best +0.049 R, H4_E150_V96_PT2_SL1); 2022+ 68/120 (best +0.043) -> PBO.
+D092 PBO: XAUUSD/roundlevelcascade_short PBO 0.351, Prob 0.379 -> PASS; lock H4_E150_V1_PT2_SL1 (+0.030 R full; 2022+ +0.017 R, 2.35/wk) -> DSR, stress, D090 re-check.
+T30 Gate C (full, era-scaled): JPN/rangebreakout_long 3/120 > 0 (best +0.017 R); 2022+ 75/120 (best +0.100) -> PBO.
+T30 PBO: JPN/rangebreakout_long PBO 0.031, Prob[OOS<=0] 0.633 -> KILLED_PBO, archived.
+D092 post-PBO: XAUUSD/roundlevelcascade_short DSR 0.559 (PSR 0.915, E[K] 8) -> KILLED_DSR, archived. D092 re-read batch closed: 1 survivor (DAX/closehedgingflow_long, lifecycle running).
