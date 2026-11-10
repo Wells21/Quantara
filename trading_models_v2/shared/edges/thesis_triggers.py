@@ -278,6 +278,33 @@ def t29(ts, close, side):
     return f[["pos", "ref_ns", "signal"]].reset_index(drop=True)
 
 
+T33_OPEN = {"NASDAQ": (NY, 9, 30), "US500": (NY, 9, 30), "DAX": ("Europe/Berlin", 9, 0),
+            "JPN": ("Asia/Tokyo", 9, 0), "HK": ("Asia/Hong_Kong", 9, 30)}
+T33_FIRST_NS = pd.Timedelta(minutes=30).value
+T33_LAST_NS = pd.Timedelta(minutes=30).value
+
+
+def t33(ts, close, asset, side):
+    """T33 market intraday momentum (gate0_tool.t33_days): r1 = log(close at open + 30 min / close at the previous
+    weekday's session close); trade sign(r1) == side at the first bar at or after the session close - 30 min."""
+    tz, oh, om = T33_OPEN[asset]
+    ctz, sched = T1C_REF[asset]
+    days = _days(ts, tz)
+    op = np.array([_local(d, tz, oh, om) for d in days], dtype="int64")
+    ref = np.array([_local(d, ctz, *map(int, [s for since, s in sched if d >= pd.Timestamp(since)][-1].split(":")))
+                    for d in days], dtype="int64")
+    ps = _at_or_before(ts, op[1:] + T33_FIRST_NS)
+    pp = _at_or_before(ts, ref[:-1])
+    pe = _at_or_after(ts, ref[1:] - T33_LAST_NS)
+    ok = (ps >= 0) & (pp >= 0) & (pe >= 0) & (pp < ps) & (ps < pe)
+    ps_c, pp_c = np.clip(ps, 0, None), np.clip(pp, 0, None)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        r = np.where(ok, np.log(close[ps_c] / close[pp_c]), np.nan)
+    keep = ok & np.isfinite(r) & (r != 0) & (np.sign(r) == side)
+    f = pd.DataFrame({"pos": pe[keep], "ref_ns": (ref[1:] - T33_LAST_NS)[keep], "signal": r[keep]})
+    return f.sort_values("pos").reset_index(drop=True)
+
+
 T32_DAYS, T32_Z = "5D", 1.5
 
 
@@ -384,6 +411,8 @@ def entries(thesis: str, asset: str, side: int, ts: np.ndarray, close: np.ndarra
         return t28(ts, close, side)
     if thesis == "T29":
         return t29(ts, close, side)
+    if thesis == "T33":
+        return t33(ts, close, asset, side)
     if thesis == "T32":
         return t32(ts, close, side)
     if thesis == "T30":

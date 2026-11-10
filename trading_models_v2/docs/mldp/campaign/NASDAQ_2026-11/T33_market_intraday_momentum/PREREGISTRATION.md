@@ -42,3 +42,4 @@ correlated; T33 is recorded as a separate test (trials paid).
 
 ## Trial accounting
 Test 46. Gate A-C on the D093 120-cell grid; all cells paid.
+- 2026-11-10 (before any result was read): PLACEBO-only opening times added for the 5 non-index assets (XAUUSD / GBPJPY / BTCUSD 08:00 London, USDMXN 08:00 NY, USOIL 09:00 NY) because gate0_tool computes every asset; they get no verdict.

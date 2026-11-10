@@ -166,3 +166,4 @@ T30 post-PBO: DAX/rangebreakout_long DSR 1.000 (PSR 1.000, E[K] 4) PASS, stress 
 T32 Gate C (full, era-scaled): USOIL/overextension_long 76/120 > 0 (best +0.079 R); 2022+ 36/120 (best +0.047) -> PBO.
 T32 PBO: USOIL/overextension_long PBO 0.454, Prob 0.448 -> PASS (both near 0.5); lock H8_E150_V48_PT2_SL1 (+0.078 R full; 2022+ +0.047 R, 2.23/wk) -> DSR, stress, D090 re-check.
 T32 post-PBO: USOIL/overextension_long DSR 0.789 (PSR 0.904, E[K] 3) -> KILLED_DSR; D090 re-check at the lock also FAIL (C1 z 0.94); stress PASS. Archived. T32 has no surviving edge.
+| T33 | market intraday momentum (Gao, Han, Li, Zhou 2018), 5 indices | long + short | H1_E150_V1 | Gate 0 2026-11-10 (test 46): NASDAQ SHORT PASS (z 1.291, 2.05/wk) only; US500 both sides z ~ -1.1; others 0.76-1.27. NASDAQ/intradaymomentum_short built, parity IDENTICAL -> Gate A |

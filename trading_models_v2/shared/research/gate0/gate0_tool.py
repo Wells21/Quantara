@@ -1613,7 +1613,11 @@ def t32_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
 # (<= 30 min after). Edge on side s: sign(r1) == s. C1: sign(r1) == -s, same side, same entry time (cause removed).
 
 T33_OPEN = {"NASDAQ": ("America/New_York", "09:30"), "US500": ("America/New_York", "09:30"),
-            "DAX": ("Europe/Berlin", "09:00"), "JPN": ("Asia/Tokyo", "09:00"), "HK": ("Asia/Hong_Kong", "09:30")}
+            "DAX": ("Europe/Berlin", "09:00"), "JPN": ("Asia/Tokyo", "09:00"), "HK": ("Asia/Hong_Kong", "09:30"),
+            # PLACEBO only (outside the card universe, no verdict): London / New York day starts
+            "XAUUSD": ("Europe/London", "08:00"), "GBPJPY": ("Europe/London", "08:00"),
+            "USDMXN": ("America/New_York", "08:00"), "USOIL": ("America/New_York", "09:00"),
+            "BTCUSD": ("Europe/London", "08:00")}
 T33_FIRST, T33_LAST = pd.Timedelta(minutes=30), pd.Timedelta(minutes=30)
 
 
