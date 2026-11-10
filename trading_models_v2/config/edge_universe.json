@@ -25,6 +25,18 @@
       "threshold_unit": "ticks",
       "candidate_event_generator": "closehedgingflow_long_v1_t1c_clock_trigger",
       "notes": "Promoted 2026-11-10 under D091/D092/D093. Card T1c (owner-ordered POST-HOC re-test of T1, causal entry; Gate 0 re-read under D092 firing rate 2.56/wk) -- read with that status. Edge level: Gate A 120/120 net>0; Gate C full history era-scaled lock H8_E150_V16_PT2_SL1 +0.048R, 2022+ +0.042R; PBO 0.462 / Prob 0.198; DSR 0.977 (PSR 0.993, 121 trials, E[K] 2); stress x1.166 +0.045R PASS; D090 re-check at the lock PASS (C1 z 2.69); Task 2A 1573/1573 +0.051R; Steps 01-09 complete (edge_manifest deployment_status PASS); CV leakage OK. Gate D v4.1 diagnostic: D1 FAIL (F1 0.580 vs 0.701), D2 FAIL, AUC 0.50 -- the allocator threshold decides use. Strategy risk (<= .10) and Gate E are deployment-stage gates after the allocator."
+    },
+    {
+      "asset": "DAX",
+      "family": "rangebreakout",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "rangebreakout_long_v1_t30_clock_trigger",
+      "notes": "Promoted 2026-11-10 under D091/D092/D093. Card T30 (10-day trading-range breakout, pre-registered; Gate 0 z 3.26). Edge level: Gate A 120/120 net>0; Gate C full history era-scaled 119/120 > 0, lock H8_E150_V24_PT2_SL1 +0.161R, 2022+ +0.149R (4.14 events/week); PBO 0.044 / Prob 0.010; DSR 1.000 (PSR 1.000, 121 trials, E[K] 4); stress x1.166 +0.156R PASS (break-even ~10.3x spread); D090 re-check at the lock PASS (C1 z 3.94); Task 2A 2332/2332 +0.166R; Steps 01-09 complete (edge_manifest deployment_status PASS); CV leakage OK; label audit effN 935. Gate D v4.1 diagnostic: D1 FAIL (F1 0.536 vs 0.677), D2 PASS, AUC 0.49 -- the allocator threshold decides use. Strategy risk (<= .10) and Gate E are deployment-stage gates after the allocator."
     }
   ],
   "recert_2026_11_04_removed": {

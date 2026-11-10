@@ -1,0 +1,28 @@
+{
+  "continuous_economic_outcome": {
+    "column": "realized_r",
+    "live_model_input_allowed": false,
+    "purpose": "gross continuous R outcome including vertical exits",
+    "uses_future_information": true
+  },
+  "contract_name": "label_schema",
+  "economic_meta_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+  "edge_id": "DAX/rangebreakout_long",
+  "meta_label": {
+    "dtype": "binary_int",
+    "live_model_input_allowed": false,
+    "semantics": "1 iff realized_r > 0.0; else 0",
+    "source": "realized_r",
+    "uses_future_information": true
+  },
+  "pt_hit_label": {
+    "diagnostic_only": true,
+    "dtype": "binary_int",
+    "live_model_input_allowed": false,
+    "semantics": "1 iff barrier_hit == 'pt'; else 0",
+    "source": "barrier_hit",
+    "uses_future_information": true
+  },
+  "schema_version": "v2.1",
+  "status": "scaffold_not_deployable"
+}

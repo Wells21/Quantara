@@ -1,0 +1,4007 @@
+{
+  "asset": "DAX",
+  "coverage_rate": 1.0,
+  "created_at_utc": "2026-11-10T16:45:35.039076+00:00",
+  "economics_source": {
+    "cost_model": "portfolio_allocator/config/broker_profiles/moneta_cost_models/DAX.json",
+    "cost_model_sha256": "199cf080cdeeeddeead986c4afec50953b82fd69920b8d68e4275dc6ada9014d",
+    "definition": "quote_executable_r = executed_r = net R at the research firm's broker cost model (spread + swap per rollover + commission) with the live entry delay",
+    "entry_delay_ms": 5700,
+    "firm": "moneta"
+  },
+  "edge_id": "DAX/rangebreakout_long",
+  "edge_yaml_sha256": "9c9334c29beac1ef33c3d27e2a625d4dbd6aeafbae444c658c2ab19e451e27c6",
+  "event_count": 2332,
+  "exact_execution_resolver": "shared/execution/oof_exact_execution.py",
+  "exact_execution_resolver_sha256": "e64d1dcb4e30849ccc84b95fb02218e5bdce3771d74b7986ddfb15820d7a1daa",
+  "execution_contract_version": "v3_oof_exact_bidask_economic_label_v2",
+  "execution_semantics": {
+    "entry": "first valid quote strictly after event; LONG Ask / SHORT Bid",
+    "exit": "LONG Bid / SHORT Ask; first PT/SL touch before vertical deadline; vertical uses first valid quote strictly after deadline",
+    "horizontal_distance": "signal_mid * Event_Vol * multiplier frozen at event, then PT/SL levels re-anchored around executable entry",
+    "label_vs_economics": "label on the Dukascopy mid; economics at the research firm's modelled bid/ask + carry",
+    "spread_embedded": true
+  },
+  "execution_status_counts": {
+    "resolved": 2332
+  },
+  "family": "rangebreakout",
+  "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+  "gross_r_summary": {
+    "count": 2332,
+    "mean": 0.2197820820617036,
+    "median": 0.04704142440670925,
+    "positive_rate": 0.5120068610634648
+  },
+  "gross_to_quote_label_flip_count_resolved_only": 7,
+  "gross_to_quote_label_flip_rate_resolved_only": 0.003001715265866209,
+  "label_definition": "quote_executable_meta_label = int(label_r > 0); label_r = exact replay on the Dukascopy mid (zero spread, no carry, 0 ms entry delay)",
+  "label_r_summary_resolved_only": {
+    "count": 2332,
+    "mean": 0.20997966507981508,
+    "median": 0.044027442847699674,
+    "positive_rate": 0.5115780445969125
+  },
+  "label_source": "dukascopy_mid_zero_spread_no_carry_0ms",
+  "live_settings_sha256": "5b25642b41e561188d46da494a8e621da199ecbb9644dba61279e03934af5a8f",
+  "live_signal_age_max_seconds": 120,
+  "outcome_ontology_sha256": "5a1daac1623b16b25108e371f56984556a0037727759392df78b867ac60fd8ee",
+  "outcome_ontology_version": "quantara_mldp_event_outcome_v1",
+  "outputs": {
+    "manifest_json": "assets/DAX/edges/rangebreakout_long/artifacts/research_dataset/dax_rangebreakout_long_mldp_executable_target_manifest.json",
+    "resolution_csv": "assets/DAX/edges/rangebreakout_long/artifacts/research_dataset/dax_rangebreakout_long_mldp_execution_resolution.csv"
+  },
+  "quote_executable_r_summary_resolved_only": {
+    "count": 2332,
+    "mean": 0.16620100639753094,
+    "median": -0.029402808943240058,
+    "positive_rate": 0.49099485420240135
+  },
+  "resolution_csv_sha256": "9f610f04fb5d333362ebfd302e00cd3e3b4cebcfab6f5d8d20dffcba142629e2",
+  "resolved_count": 2332,
+  "schema_version": "quantara_mldp_task2a_executable_target_engine_v1",
+  "side_name": "long",
+  "side_value": 1,
+  "source_model_rows": "assets/DAX/edges/rangebreakout_long/artifacts/research_dataset/dax_rangebreakout_long_model_rows.csv",
+  "source_model_rows_manifest": "assets/DAX/edges/rangebreakout_long/artifacts/research_dataset/model_row_manifest.json",
+  "source_model_rows_manifest_sha256": "07314c1d98fdb52a5c2b165d07a2a814cb2bfb3f0bad4ed013b8922ec2864c9f",
+  "source_model_rows_sha256": "f03ba8b09cb13da5ed0692dc6196e0b4c38fc91b019d960dc9759271f58477b5",
+  "target_layer_candidate": "quote_executable",
+  "task": "TASK2A_PRE_MODEL_EXECUTABLE_TARGET_AUDIT",
+  "task2b_may_consume_for_training": false,
+  "tick_catalog": [
+    {
+      "end_date": "2014-01-14 00:00:00+00:00",
+      "mtime_ns": 1793991306026949900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-01-07_to_2014-01-14.csv",
+      "size_bytes": 8326544
+    },
+    {
+      "end_date": "2014-01-21 00:00:00+00:00",
+      "mtime_ns": 1793991315711760600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-01-14_to_2014-01-21.csv",
+      "size_bytes": 7739834
+    },
+    {
+      "end_date": "2014-01-28 00:00:00+00:00",
+      "mtime_ns": 1793991364964213600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-01-21_to_2014-01-28.csv",
+      "size_bytes": 8672109
+    },
+    {
+      "end_date": "2014-02-04 00:00:00+00:00",
+      "mtime_ns": 1793991367498931000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-01-28_to_2014-02-04.csv",
+      "size_bytes": 4496299
+    },
+    {
+      "end_date": "2014-02-11 00:00:00+00:00",
+      "mtime_ns": 1793991370195272400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-02-04_to_2014-02-11.csv",
+      "size_bytes": 5445864
+    },
+    {
+      "end_date": "2014-02-18 00:00:00+00:00",
+      "mtime_ns": 1793991376274087600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-02-11_to_2014-02-18.csv",
+      "size_bytes": 8732556
+    },
+    {
+      "end_date": "2014-02-25 00:00:00+00:00",
+      "mtime_ns": 1793991381534706300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-02-18_to_2014-02-25.csv",
+      "size_bytes": 9199274
+    },
+    {
+      "end_date": "2014-03-04 00:00:00+00:00",
+      "mtime_ns": 1793991386278883200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-02-25_to_2014-03-04.csv",
+      "size_bytes": 10935821
+    },
+    {
+      "end_date": "2014-03-11 00:00:00+00:00",
+      "mtime_ns": 1793991392167861000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-03-04_to_2014-03-11.csv",
+      "size_bytes": 10171680
+    },
+    {
+      "end_date": "2014-03-18 00:00:00+00:00",
+      "mtime_ns": 1793991396411338400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-03-11_to_2014-03-18.csv",
+      "size_bytes": 11251224
+    },
+    {
+      "end_date": "2014-03-25 00:00:00+00:00",
+      "mtime_ns": 1793991401017257800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-03-18_to_2014-03-25.csv",
+      "size_bytes": 10568600
+    },
+    {
+      "end_date": "2014-04-01 00:00:00+00:00",
+      "mtime_ns": 1793991404999143800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-03-25_to_2014-04-01.csv",
+      "size_bytes": 10708179
+    },
+    {
+      "end_date": "2014-04-08 00:00:00+00:00",
+      "mtime_ns": 1793991408287091800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-04-01_to_2014-04-08.csv",
+      "size_bytes": 8863860
+    },
+    {
+      "end_date": "2014-04-15 00:00:00+00:00",
+      "mtime_ns": 1793991413972359900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-04-08_to_2014-04-15.csv",
+      "size_bytes": 12323833
+    },
+    {
+      "end_date": "2014-04-22 00:00:00+00:00",
+      "mtime_ns": 1793991417573799900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-04-15_to_2014-04-22.csv",
+      "size_bytes": 7800039
+    },
+    {
+      "end_date": "2014-04-29 00:00:00+00:00",
+      "mtime_ns": 1793991421772944000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-04-22_to_2014-04-29.csv",
+      "size_bytes": 10276665
+    },
+    {
+      "end_date": "2014-05-06 00:00:00+00:00",
+      "mtime_ns": 1793991425783896000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-04-29_to_2014-05-06.csv",
+      "size_bytes": 8309647
+    },
+    {
+      "end_date": "2014-05-13 00:00:00+00:00",
+      "mtime_ns": 1793991430076516800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-05-06_to_2014-05-13.csv",
+      "size_bytes": 10955024
+    },
+    {
+      "end_date": "2014-05-20 00:00:00+00:00",
+      "mtime_ns": 1793991437487164400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-05-13_to_2014-05-20.csv",
+      "size_bytes": 9903776
+    },
+    {
+      "end_date": "2014-05-27 00:00:00+00:00",
+      "mtime_ns": 1793991440770486300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-05-20_to_2014-05-27.csv",
+      "size_bytes": 7741487
+    },
+    {
+      "end_date": "2014-06-03 00:00:00+00:00",
+      "mtime_ns": 1793991443332537500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-05-27_to_2014-06-03.csv",
+      "size_bytes": 6901921
+    },
+    {
+      "end_date": "2014-06-10 00:00:00+00:00",
+      "mtime_ns": 1793991445902039200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-06-03_to_2014-06-10.csv",
+      "size_bytes": 7093505
+    },
+    {
+      "end_date": "2014-06-17 00:00:00+00:00",
+      "mtime_ns": 1793991448815833700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-06-10_to_2014-06-17.csv",
+      "size_bytes": 7038386
+    },
+    {
+      "end_date": "2014-06-24 00:00:00+00:00",
+      "mtime_ns": 1793991451399381100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-06-17_to_2014-06-24.csv",
+      "size_bytes": 7412817
+    },
+    {
+      "end_date": "2014-07-01 00:00:00+00:00",
+      "mtime_ns": 1793991454610493800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-06-24_to_2014-07-01.csv",
+      "size_bytes": 7655072
+    },
+    {
+      "end_date": "2014-07-08 00:00:00+00:00",
+      "mtime_ns": 1793991457539491800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-07-01_to_2014-07-08.csv",
+      "size_bytes": 6328458
+    },
+    {
+      "end_date": "2014-07-15 00:00:00+00:00",
+      "mtime_ns": 1793991461314605700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-07-08_to_2014-07-15.csv",
+      "size_bytes": 8503195
+    },
+    {
+      "end_date": "2014-07-22 00:00:00+00:00",
+      "mtime_ns": 1793991466248307600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-07-15_to_2014-07-22.csv",
+      "size_bytes": 9270846
+    },
+    {
+      "end_date": "2014-07-29 00:00:00+00:00",
+      "mtime_ns": 1793991469805136700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-07-22_to_2014-07-29.csv",
+      "size_bytes": 8262056
+    },
+    {
+      "end_date": "2014-08-05 00:00:00+00:00",
+      "mtime_ns": 1793991473362463700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-07-29_to_2014-08-05.csv",
+      "size_bytes": 6960336
+    },
+    {
+      "end_date": "2014-08-12 00:00:00+00:00",
+      "mtime_ns": 1793991477734248700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-08-05_to_2014-08-12.csv",
+      "size_bytes": 10795259
+    },
+    {
+      "end_date": "2014-08-19 00:00:00+00:00",
+      "mtime_ns": 1793991481148155200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-08-12_to_2014-08-19.csv",
+      "size_bytes": 7639885
+    },
+    {
+      "end_date": "2014-08-26 00:00:00+00:00",
+      "mtime_ns": 1793991485111891300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-08-19_to_2014-08-26.csv",
+      "size_bytes": 7278951
+    },
+    {
+      "end_date": "2014-09-02 00:00:00+00:00",
+      "mtime_ns": 1793991489233789600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-08-26_to_2014-09-02.csv",
+      "size_bytes": 9460087
+    },
+    {
+      "end_date": "2014-09-09 00:00:00+00:00",
+      "mtime_ns": 1793991495891313400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-09-02_to_2014-09-09.csv",
+      "size_bytes": 11178963
+    },
+    {
+      "end_date": "2014-09-16 00:00:00+00:00",
+      "mtime_ns": 1793991499401173600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-09-09_to_2014-09-16.csv",
+      "size_bytes": 7772466
+    },
+    {
+      "end_date": "2014-09-23 00:00:00+00:00",
+      "mtime_ns": 1793991548124074600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-09-16_to_2014-09-23.csv",
+      "size_bytes": 8909574
+    },
+    {
+      "end_date": "2014-09-30 00:00:00+00:00",
+      "mtime_ns": 1793991553017914600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-09-23_to_2014-09-30.csv",
+      "size_bytes": 9925549
+    },
+    {
+      "end_date": "2014-10-07 00:00:00+00:00",
+      "mtime_ns": 1793991558751725900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-09-30_to_2014-10-07.csv",
+      "size_bytes": 11011317
+    },
+    {
+      "end_date": "2014-10-14 00:00:00+00:00",
+      "mtime_ns": 1793991565552556200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-10-07_to_2014-10-14.csv",
+      "size_bytes": 16503623
+    },
+    {
+      "end_date": "2014-10-21 00:00:00+00:00",
+      "mtime_ns": 1793991574716532500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-10-14_to_2014-10-21.csv",
+      "size_bytes": 19611427
+    },
+    {
+      "end_date": "2014-10-28 00:00:00+00:00",
+      "mtime_ns": 1793991580656167800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-10-21_to_2014-10-28.csv",
+      "size_bytes": 13920327
+    },
+    {
+      "end_date": "2014-11-04 00:00:00+00:00",
+      "mtime_ns": 1793991586218108700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-10-28_to_2014-11-04.csv",
+      "size_bytes": 13375593
+    },
+    {
+      "end_date": "2014-11-11 00:00:00+00:00",
+      "mtime_ns": 1793991637708690700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-11-04_to_2014-11-11.csv",
+      "size_bytes": 13422159
+    },
+    {
+      "end_date": "2014-11-18 00:00:00+00:00",
+      "mtime_ns": 1793991690131533900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-11-11_to_2014-11-18.csv",
+      "size_bytes": 11409228
+    },
+    {
+      "end_date": "2014-11-25 00:00:00+00:00",
+      "mtime_ns": 1793991695300898300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-11-18_to_2014-11-25.csv",
+      "size_bytes": 9991438
+    },
+    {
+      "end_date": "2014-12-02 00:00:00+00:00",
+      "mtime_ns": 1793991699937986800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-11-25_to_2014-12-02.csv",
+      "size_bytes": 8888462
+    },
+    {
+      "end_date": "2014-12-09 00:00:00+00:00",
+      "mtime_ns": 1793991704937233800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-12-02_to_2014-12-09.csv",
+      "size_bytes": 11475391
+    },
+    {
+      "end_date": "2014-12-16 00:00:00+00:00",
+      "mtime_ns": 1793991711159410900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-12-09_to_2014-12-16.csv",
+      "size_bytes": 15682101
+    },
+    {
+      "end_date": "2014-12-23 00:00:00+00:00",
+      "mtime_ns": 1793991766932276000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-12-16_to_2014-12-23.csv",
+      "size_bytes": 16922451
+    },
+    {
+      "end_date": "2014-12-30 00:00:00+00:00",
+      "mtime_ns": 1793991768592104600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-12-23_to_2014-12-30.csv",
+      "size_bytes": 3982079
+    },
+    {
+      "end_date": "2015-01-06 00:00:00+00:00",
+      "mtime_ns": 1793991770801449700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2014-12-30_to_2015-01-06.csv",
+      "size_bytes": 6775649
+    },
+    {
+      "end_date": "2015-01-13 00:00:00+00:00",
+      "mtime_ns": 1793991777883404100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-01-06_to_2015-01-13.csv",
+      "size_bytes": 16890487
+    },
+    {
+      "end_date": "2015-01-20 00:00:00+00:00",
+      "mtime_ns": 1793991785312092200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-01-13_to_2015-01-20.csv",
+      "size_bytes": 19759798
+    },
+    {
+      "end_date": "2015-01-27 00:00:00+00:00",
+      "mtime_ns": 1793991791532149600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-01-20_to_2015-01-27.csv",
+      "size_bytes": 16859644
+    },
+    {
+      "end_date": "2015-02-03 00:00:00+00:00",
+      "mtime_ns": 1793991797597753200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-01-27_to_2015-02-03.csv",
+      "size_bytes": 13627814
+    },
+    {
+      "end_date": "2015-02-10 00:00:00+00:00",
+      "mtime_ns": 1793991803675039900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-02-03_to_2015-02-10.csv",
+      "size_bytes": 15964948
+    },
+    {
+      "end_date": "2015-02-17 00:00:00+00:00",
+      "mtime_ns": 1793991810273738300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-02-10_to_2015-02-17.csv",
+      "size_bytes": 15992824
+    },
+    {
+      "end_date": "2015-02-24 00:00:00+00:00",
+      "mtime_ns": 1793991815023004600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-02-17_to_2015-02-24.csv",
+      "size_bytes": 13531833
+    },
+    {
+      "end_date": "2015-03-03 00:00:00+00:00",
+      "mtime_ns": 1793991820303165600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-02-24_to_2015-03-03.csv",
+      "size_bytes": 12285040
+    },
+    {
+      "end_date": "2015-03-10 00:00:00+00:00",
+      "mtime_ns": 1793991825035246800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-03-03_to_2015-03-10.csv",
+      "size_bytes": 12899727
+    },
+    {
+      "end_date": "2015-03-17 00:00:00+00:00",
+      "mtime_ns": 1793991830973785300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-03-10_to_2015-03-17.csv",
+      "size_bytes": 14767160
+    },
+    {
+      "end_date": "2015-03-24 00:00:00+00:00",
+      "mtime_ns": 1793991837145332600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-03-17_to_2015-03-24.csv",
+      "size_bytes": 18237416
+    },
+    {
+      "end_date": "2015-03-31 00:00:00+00:00",
+      "mtime_ns": 1793991847220646400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-03-24_to_2015-03-31.csv",
+      "size_bytes": 23622798
+    },
+    {
+      "end_date": "2015-04-07 00:00:00+00:00",
+      "mtime_ns": 1793991852471265800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-03-31_to_2015-04-07.csv",
+      "size_bytes": 12307950
+    },
+    {
+      "end_date": "2015-04-14 00:00:00+00:00",
+      "mtime_ns": 1793991857020183600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-04-07_to_2015-04-14.csv",
+      "size_bytes": 12721682
+    },
+    {
+      "end_date": "2015-04-21 00:00:00+00:00",
+      "mtime_ns": 1793991864407992700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-04-14_to_2015-04-21.csv",
+      "size_bytes": 18577207
+    },
+    {
+      "end_date": "2015-04-28 00:00:00+00:00",
+      "mtime_ns": 1793991876233859800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-04-21_to_2015-04-28.csv",
+      "size_bytes": 24127306
+    },
+    {
+      "end_date": "2015-05-05 00:00:00+00:00",
+      "mtime_ns": 1793991884167662400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-04-28_to_2015-05-05.csv",
+      "size_bytes": 21042222
+    },
+    {
+      "end_date": "2015-05-12 00:00:00+00:00",
+      "mtime_ns": 1793991892705780600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-05-05_to_2015-05-12.csv",
+      "size_bytes": 23871679
+    },
+    {
+      "end_date": "2015-05-19 00:00:00+00:00",
+      "mtime_ns": 1793991902874950700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-05-12_to_2015-05-19.csv",
+      "size_bytes": 27021355
+    },
+    {
+      "end_date": "2015-05-26 00:00:00+00:00",
+      "mtime_ns": 1793991909360669600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-05-19_to_2015-05-26.csv",
+      "size_bytes": 15248630
+    },
+    {
+      "end_date": "2015-06-02 00:00:00+00:00",
+      "mtime_ns": 1793991924270054900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-05-26_to_2015-06-02.csv",
+      "size_bytes": 19760033
+    },
+    {
+      "end_date": "2015-06-09 00:00:00+00:00",
+      "mtime_ns": 1793991945104810700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-06-02_to_2015-06-09.csv",
+      "size_bytes": 27028765
+    },
+    {
+      "end_date": "2015-06-16 00:00:00+00:00",
+      "mtime_ns": 1793991956340669600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-06-09_to_2015-06-16.csv",
+      "size_bytes": 28205822
+    },
+    {
+      "end_date": "2015-06-23 00:00:00+00:00",
+      "mtime_ns": 1793991971744353100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-06-16_to_2015-06-23.csv",
+      "size_bytes": 27365923
+    },
+    {
+      "end_date": "2015-06-30 00:00:00+00:00",
+      "mtime_ns": 1793991981913879800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-06-23_to_2015-06-30.csv",
+      "size_bytes": 25586647
+    },
+    {
+      "end_date": "2015-07-07 00:00:00+00:00",
+      "mtime_ns": 1793991994718802700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-06-30_to_2015-07-07.csv",
+      "size_bytes": 31569028
+    },
+    {
+      "end_date": "2015-07-14 00:00:00+00:00",
+      "mtime_ns": 1793992011665448300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-07-07_to_2015-07-14.csv",
+      "size_bytes": 36717689
+    },
+    {
+      "end_date": "2015-07-21 00:00:00+00:00",
+      "mtime_ns": 1793992021613168300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-07-14_to_2015-07-21.csv",
+      "size_bytes": 24658304
+    },
+    {
+      "end_date": "2015-07-28 00:00:00+00:00",
+      "mtime_ns": 1793992032709511000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-07-21_to_2015-07-28.csv",
+      "size_bytes": 28662219
+    },
+    {
+      "end_date": "2015-08-04 00:00:00+00:00",
+      "mtime_ns": 1793992053961955000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-07-28_to_2015-08-04.csv",
+      "size_bytes": 31596828
+    },
+    {
+      "end_date": "2015-08-11 00:00:00+00:00",
+      "mtime_ns": 1793992067015998900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-08-04_to_2015-08-11.csv",
+      "size_bytes": 27853404
+    },
+    {
+      "end_date": "2015-08-18 00:00:00+00:00",
+      "mtime_ns": 1793992079751998100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-08-11_to_2015-08-18.csv",
+      "size_bytes": 28481443
+    },
+    {
+      "end_date": "2015-08-25 00:00:00+00:00",
+      "mtime_ns": 1793992106169122100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-08-18_to_2015-08-25.csv",
+      "size_bytes": 35966647
+    },
+    {
+      "end_date": "2015-09-01 00:00:00+00:00",
+      "mtime_ns": 1793992125838813600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-08-25_to_2015-09-01.csv",
+      "size_bytes": 36307567
+    },
+    {
+      "end_date": "2015-09-08 00:00:00+00:00",
+      "mtime_ns": 1793992143240114300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-09-01_to_2015-09-08.csv",
+      "size_bytes": 34968597
+    },
+    {
+      "end_date": "2015-09-15 00:00:00+00:00",
+      "mtime_ns": 1793992157983119100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-09-08_to_2015-09-15.csv",
+      "size_bytes": 36135322
+    },
+    {
+      "end_date": "2015-09-22 00:00:00+00:00",
+      "mtime_ns": 1793992190604431800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-09-15_to_2015-09-22.csv",
+      "size_bytes": 33511186
+    },
+    {
+      "end_date": "2015-09-29 00:00:00+00:00",
+      "mtime_ns": 1793992208269397000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-09-22_to_2015-09-29.csv",
+      "size_bytes": 33784586
+    },
+    {
+      "end_date": "2015-10-06 00:00:00+00:00",
+      "mtime_ns": 1793992282882749400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-09-29_to_2015-10-06.csv",
+      "size_bytes": 34663277
+    },
+    {
+      "end_date": "2015-10-13 00:00:00+00:00",
+      "mtime_ns": 1793992362576419100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-10-06_to_2015-10-13.csv",
+      "size_bytes": 32956337
+    },
+    {
+      "end_date": "2015-10-20 00:00:00+00:00",
+      "mtime_ns": 1793992439116726000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-10-13_to_2015-10-20.csv",
+      "size_bytes": 31706499
+    },
+    {
+      "end_date": "2015-10-27 00:00:00+00:00",
+      "mtime_ns": 1793992506076406800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-10-20_to_2015-10-27.csv",
+      "size_bytes": 29598896
+    },
+    {
+      "end_date": "2015-11-03 00:00:00+00:00",
+      "mtime_ns": 1793992562510642100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-10-27_to_2015-11-03.csv",
+      "size_bytes": 24408022
+    },
+    {
+      "end_date": "2015-11-10 00:00:00+00:00",
+      "mtime_ns": 1793992631292957200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-11-03_to_2015-11-10.csv",
+      "size_bytes": 30223435
+    },
+    {
+      "end_date": "2015-11-17 00:00:00+00:00",
+      "mtime_ns": 1793992700169337200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-11-10_to_2015-11-17.csv",
+      "size_bytes": 32606324
+    },
+    {
+      "end_date": "2015-11-24 00:00:00+00:00",
+      "mtime_ns": 1793992714032409800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-11-17_to_2015-11-24.csv",
+      "size_bytes": 25919825
+    },
+    {
+      "end_date": "2015-12-01 00:00:00+00:00",
+      "mtime_ns": 1793992772962410500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-11-24_to_2015-12-01.csv",
+      "size_bytes": 23245210
+    },
+    {
+      "end_date": "2015-12-08 00:00:00+00:00",
+      "mtime_ns": 1793992791779792700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-12-01_to_2015-12-08.csv",
+      "size_bytes": 29676202
+    },
+    {
+      "end_date": "2015-12-15 00:00:00+00:00",
+      "mtime_ns": 1793993095336408800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-12-08_to_2015-12-15.csv",
+      "size_bytes": 39141071
+    },
+    {
+      "end_date": "2015-12-22 00:00:00+00:00",
+      "mtime_ns": 1793993109263564100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-12-15_to_2015-12-22.csv",
+      "size_bytes": 34423389
+    },
+    {
+      "end_date": "2015-12-29 00:00:00+00:00",
+      "mtime_ns": 1793993113370300500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-12-22_to_2015-12-29.csv",
+      "size_bytes": 11485915
+    },
+    {
+      "end_date": "2016-01-05 00:00:00+00:00",
+      "mtime_ns": 1793993118001590000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2015-12-29_to_2016-01-05.csv",
+      "size_bytes": 13129626
+    },
+    {
+      "end_date": "2016-01-12 00:00:00+00:00",
+      "mtime_ns": 1793993131928624200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-01-05_to_2016-01-12.csv",
+      "size_bytes": 32492972
+    },
+    {
+      "end_date": "2016-01-19 00:00:00+00:00",
+      "mtime_ns": 1793993146467803300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-01-12_to_2016-01-19.csv",
+      "size_bytes": 34202425
+    },
+    {
+      "end_date": "2016-01-26 00:00:00+00:00",
+      "mtime_ns": 1793993165031296900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-01-19_to_2016-01-26.csv",
+      "size_bytes": 33897062
+    },
+    {
+      "end_date": "2016-02-02 00:00:00+00:00",
+      "mtime_ns": 1793993177235526500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-01-26_to_2016-02-02.csv",
+      "size_bytes": 22838914
+    },
+    {
+      "end_date": "2016-02-09 00:00:00+00:00",
+      "mtime_ns": 1793993262192833600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-02-02_to_2016-02-09.csv",
+      "size_bytes": 33360433
+    },
+    {
+      "end_date": "2016-02-16 00:00:00+00:00",
+      "mtime_ns": 1793993331699510800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-02-09_to_2016-02-16.csv",
+      "size_bytes": 39196301
+    },
+    {
+      "end_date": "2016-02-23 00:00:00+00:00",
+      "mtime_ns": 1793993346128129700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-02-16_to_2016-02-23.csv",
+      "size_bytes": 25269516
+    },
+    {
+      "end_date": "2016-03-01 00:00:00+00:00",
+      "mtime_ns": 1793993362190675700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-02-23_to_2016-03-01.csv",
+      "size_bytes": 30675718
+    },
+    {
+      "end_date": "2016-03-08 00:00:00+00:00",
+      "mtime_ns": 1793993425670097900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-03-01_to_2016-03-08.csv",
+      "size_bytes": 30285854
+    },
+    {
+      "end_date": "2016-03-15 00:00:00+00:00",
+      "mtime_ns": 1793993448296090900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-03-08_to_2016-03-15.csv",
+      "size_bytes": 36602974
+    },
+    {
+      "end_date": "2016-03-22 00:00:00+00:00",
+      "mtime_ns": 1793993463151973200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-03-15_to_2016-03-22.csv",
+      "size_bytes": 35645098
+    },
+    {
+      "end_date": "2016-03-29 00:00:00+00:00",
+      "mtime_ns": 1793993470863544800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-03-22_to_2016-03-29.csv",
+      "size_bytes": 17542548
+    },
+    {
+      "end_date": "2016-04-05 00:00:00+00:00",
+      "mtime_ns": 1793993485563016900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-03-29_to_2016-04-05.csv",
+      "size_bytes": 28879458
+    },
+    {
+      "end_date": "2016-04-12 00:00:00+00:00",
+      "mtime_ns": 1793993496421756800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-04-05_to_2016-04-12.csv",
+      "size_bytes": 23342360
+    },
+    {
+      "end_date": "2016-04-19 00:00:00+00:00",
+      "mtime_ns": 1793993507965553400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-04-12_to_2016-04-19.csv",
+      "size_bytes": 24046608
+    },
+    {
+      "end_date": "2016-04-26 00:00:00+00:00",
+      "mtime_ns": 1793993520812222500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-04-19_to_2016-04-26.csv",
+      "size_bytes": 19586920
+    },
+    {
+      "end_date": "2016-05-03 00:00:00+00:00",
+      "mtime_ns": 1793993529148493100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-04-26_to_2016-05-03.csv",
+      "size_bytes": 19973653
+    },
+    {
+      "end_date": "2016-05-10 00:00:00+00:00",
+      "mtime_ns": 1793993536279418300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-05-03_to_2016-05-10.csv",
+      "size_bytes": 21275130
+    },
+    {
+      "end_date": "2016-05-17 00:00:00+00:00",
+      "mtime_ns": 1793993542745525900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-05-10_to_2016-05-17.csv",
+      "size_bytes": 17571417
+    },
+    {
+      "end_date": "2016-05-24 00:00:00+00:00",
+      "mtime_ns": 1793993553256157000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-05-17_to_2016-05-24.csv",
+      "size_bytes": 22132385
+    },
+    {
+      "end_date": "2016-05-31 00:00:00+00:00",
+      "mtime_ns": 1793993560843594300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-05-24_to_2016-05-31.csv",
+      "size_bytes": 16724820
+    },
+    {
+      "end_date": "2016-06-07 00:00:00+00:00",
+      "mtime_ns": 1793993580065470500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-05-31_to_2016-06-07.csv",
+      "size_bytes": 26896151
+    },
+    {
+      "end_date": "2016-06-14 00:00:00+00:00",
+      "mtime_ns": 1793993589984499400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-06-07_to_2016-06-14.csv",
+      "size_bytes": 19992386
+    },
+    {
+      "end_date": "2016-06-21 00:00:00+00:00",
+      "mtime_ns": 1793993675481269600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-06-14_to_2016-06-21.csv",
+      "size_bytes": 32212551
+    },
+    {
+      "end_date": "2016-06-28 00:00:00+00:00",
+      "mtime_ns": 1793993689358697000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-06-21_to_2016-06-28.csv",
+      "size_bytes": 26310978
+    },
+    {
+      "end_date": "2016-07-05 00:00:00+00:00",
+      "mtime_ns": 1793993752631728200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-06-28_to_2016-07-05.csv",
+      "size_bytes": 22482357
+    },
+    {
+      "end_date": "2016-07-12 00:00:00+00:00",
+      "mtime_ns": 1793993765524543600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-07-05_to_2016-07-12.csv",
+      "size_bytes": 23545778
+    },
+    {
+      "end_date": "2016-07-19 00:00:00+00:00",
+      "mtime_ns": 1793993833323190300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-07-12_to_2016-07-19.csv",
+      "size_bytes": 27211411
+    },
+    {
+      "end_date": "2016-07-26 00:00:00+00:00",
+      "mtime_ns": 1793993900272940600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-07-19_to_2016-07-26.csv",
+      "size_bytes": 32559216
+    },
+    {
+      "end_date": "2016-08-02 00:00:00+00:00",
+      "mtime_ns": 1793993968797634500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-07-26_to_2016-08-02.csv",
+      "size_bytes": 29890586
+    },
+    {
+      "end_date": "2016-08-09 00:00:00+00:00",
+      "mtime_ns": 1793993982960437000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-08-02_to_2016-08-09.csv",
+      "size_bytes": 24708428
+    },
+    {
+      "end_date": "2016-08-16 00:00:00+00:00",
+      "mtime_ns": 1793994040566086400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-08-09_to_2016-08-16.csv",
+      "size_bytes": 17628928
+    },
+    {
+      "end_date": "2016-08-23 00:00:00+00:00",
+      "mtime_ns": 1793994049306155800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-08-16_to_2016-08-23.csv",
+      "size_bytes": 18555660
+    },
+    {
+      "end_date": "2016-08-30 00:00:00+00:00",
+      "mtime_ns": 1793994108027110900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-08-23_to_2016-08-30.csv",
+      "size_bytes": 22206294
+    },
+    {
+      "end_date": "2016-09-06 00:00:00+00:00",
+      "mtime_ns": 1793994168304780600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-08-30_to_2016-09-06.csv",
+      "size_bytes": 32434049
+    },
+    {
+      "end_date": "2016-09-13 00:00:00+00:00",
+      "mtime_ns": 1793994230858658900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-09-06_to_2016-09-13.csv",
+      "size_bytes": 31030308
+    },
+    {
+      "end_date": "2016-09-20 00:00:00+00:00",
+      "mtime_ns": 1793994285532996300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-09-13_to_2016-09-20.csv",
+      "size_bytes": 17610518
+    },
+    {
+      "end_date": "2016-09-27 00:00:00+00:00",
+      "mtime_ns": 1793994296437635000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-09-20_to_2016-09-27.csv",
+      "size_bytes": 16289422
+    },
+    {
+      "end_date": "2016-10-04 00:00:00+00:00",
+      "mtime_ns": 1793994348639397300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-09-27_to_2016-10-04.csv",
+      "size_bytes": 14440350
+    },
+    {
+      "end_date": "2016-10-11 00:00:00+00:00",
+      "mtime_ns": 1793994357758302000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-10-04_to_2016-10-11.csv",
+      "size_bytes": 16621003
+    },
+    {
+      "end_date": "2016-10-18 00:00:00+00:00",
+      "mtime_ns": 1793994409912210300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-10-11_to_2016-10-18.csv",
+      "size_bytes": 15501136
+    },
+    {
+      "end_date": "2016-10-25 00:00:00+00:00",
+      "mtime_ns": 1793994466742756400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-10-18_to_2016-10-25.csv",
+      "size_bytes": 15706211
+    },
+    {
+      "end_date": "2016-11-01 00:00:00+00:00",
+      "mtime_ns": 1793994472243636500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-10-25_to_2016-11-01.csv",
+      "size_bytes": 14420925
+    },
+    {
+      "end_date": "2016-11-08 00:00:00+00:00",
+      "mtime_ns": 1793994477433438000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-11-01_to_2016-11-08.csv",
+      "size_bytes": 14714291
+    },
+    {
+      "end_date": "2016-11-15 00:00:00+00:00",
+      "mtime_ns": 1793994485525669500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-11-08_to_2016-11-15.csv",
+      "size_bytes": 18003525
+    },
+    {
+      "end_date": "2016-11-22 00:00:00+00:00",
+      "mtime_ns": 1793994490475867200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-11-15_to_2016-11-22.csv",
+      "size_bytes": 13855660
+    },
+    {
+      "end_date": "2016-11-29 00:00:00+00:00",
+      "mtime_ns": 1793994494924762800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-11-22_to_2016-11-29.csv",
+      "size_bytes": 12723577
+    },
+    {
+      "end_date": "2016-12-06 00:00:00+00:00",
+      "mtime_ns": 1793994502679957900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-11-29_to_2016-12-06.csv",
+      "size_bytes": 19967940
+    },
+    {
+      "end_date": "2016-12-13 00:00:00+00:00",
+      "mtime_ns": 1793994508963168800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-12-06_to_2016-12-13.csv",
+      "size_bytes": 16718374
+    },
+    {
+      "end_date": "2016-12-20 00:00:00+00:00",
+      "mtime_ns": 1793994513663766800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-12-13_to_2016-12-20.csv",
+      "size_bytes": 15193974
+    },
+    {
+      "end_date": "2016-12-27 00:00:00+00:00",
+      "mtime_ns": 1793994517411220200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-12-20_to_2016-12-27.csv",
+      "size_bytes": 9559989
+    },
+    {
+      "end_date": "2017-01-03 00:00:00+00:00",
+      "mtime_ns": 1793994527410253800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2016-12-27_to_2017-01-03.csv",
+      "size_bytes": 10009440
+    },
+    {
+      "end_date": "2017-01-10 00:00:00+00:00",
+      "mtime_ns": 1793994534428803100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-01-03_to_2017-01-10.csv",
+      "size_bytes": 14939645
+    },
+    {
+      "end_date": "2017-01-17 00:00:00+00:00",
+      "mtime_ns": 1793994548339933300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-01-10_to_2017-01-17.csv",
+      "size_bytes": 26743966
+    },
+    {
+      "end_date": "2017-01-24 00:00:00+00:00",
+      "mtime_ns": 1793994561341747600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-01-17_to_2017-01-24.csv",
+      "size_bytes": 27337392
+    },
+    {
+      "end_date": "2017-01-31 00:00:00+00:00",
+      "mtime_ns": 1793994618460629900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-01-24_to_2017-01-31.csv",
+      "size_bytes": 25237335
+    },
+    {
+      "end_date": "2017-02-07 00:00:00+00:00",
+      "mtime_ns": 1793994649355897200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-01-31_to_2017-02-07.csv",
+      "size_bytes": 32026418
+    },
+    {
+      "end_date": "2017-02-14 00:00:00+00:00",
+      "mtime_ns": 1793994672721846400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-02-07_to_2017-02-14.csv",
+      "size_bytes": 27164503
+    },
+    {
+      "end_date": "2017-02-21 00:00:00+00:00",
+      "mtime_ns": 1793994728490006500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-02-14_to_2017-02-21.csv",
+      "size_bytes": 24735614
+    },
+    {
+      "end_date": "2017-02-28 00:00:00+00:00",
+      "mtime_ns": 1793994739316667900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-02-21_to_2017-02-28.csv",
+      "size_bytes": 25453462
+    },
+    {
+      "end_date": "2017-03-07 00:00:00+00:00",
+      "mtime_ns": 1793994749190051100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-02-28_to_2017-03-07.csv",
+      "size_bytes": 24511395
+    },
+    {
+      "end_date": "2017-03-14 00:00:00+00:00",
+      "mtime_ns": 1793994809854645700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-03-07_to_2017-03-14.csv",
+      "size_bytes": 28762449
+    },
+    {
+      "end_date": "2017-03-21 00:00:00+00:00",
+      "mtime_ns": 1793994820319652100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-03-14_to_2017-03-21.csv",
+      "size_bytes": 22926281
+    },
+    {
+      "end_date": "2017-03-28 00:00:00+00:00",
+      "mtime_ns": 1793994833168010800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-03-21_to_2017-03-28.csv",
+      "size_bytes": 31145391
+    },
+    {
+      "end_date": "2017-04-04 00:00:00+00:00",
+      "mtime_ns": 1793994840063427900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-03-28_to_2017-04-04.csv",
+      "size_bytes": 21670465
+    },
+    {
+      "end_date": "2017-04-11 00:00:00+00:00",
+      "mtime_ns": 1793994845688212900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-04-04_to_2017-04-11.csv",
+      "size_bytes": 17115091
+    },
+    {
+      "end_date": "2017-04-18 00:00:00+00:00",
+      "mtime_ns": 1793994850934781200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-04-11_to_2017-04-18.csv",
+      "size_bytes": 14521884
+    },
+    {
+      "end_date": "2017-04-25 00:00:00+00:00",
+      "mtime_ns": 1793994859349488800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-04-18_to_2017-04-25.csv",
+      "size_bytes": 20634934
+    },
+    {
+      "end_date": "2017-05-02 00:00:00+00:00",
+      "mtime_ns": 1793994862575518100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-04-25_to_2017-05-02.csv",
+      "size_bytes": 9245328
+    },
+    {
+      "end_date": "2017-05-09 00:00:00+00:00",
+      "mtime_ns": 1793994870627417500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-05-02_to_2017-05-09.csv",
+      "size_bytes": 20810171
+    },
+    {
+      "end_date": "2017-05-16 00:00:00+00:00",
+      "mtime_ns": 1793994874860408400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-05-09_to_2017-05-16.csv",
+      "size_bytes": 10678618
+    },
+    {
+      "end_date": "2017-05-23 00:00:00+00:00",
+      "mtime_ns": 1793994883569724600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-05-16_to_2017-05-23.csv",
+      "size_bytes": 24549346
+    },
+    {
+      "end_date": "2017-05-30 00:00:00+00:00",
+      "mtime_ns": 1793994888646149700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-05-23_to_2017-05-30.csv",
+      "size_bytes": 15605413
+    },
+    {
+      "end_date": "2017-06-06 00:00:00+00:00",
+      "mtime_ns": 1793994894192129300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-05-30_to_2017-06-06.csv",
+      "size_bytes": 14122934
+    },
+    {
+      "end_date": "2017-06-13 00:00:00+00:00",
+      "mtime_ns": 1793994899942221400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-06-06_to_2017-06-13.csv",
+      "size_bytes": 15919762
+    },
+    {
+      "end_date": "2017-06-20 00:00:00+00:00",
+      "mtime_ns": 1793994905691289900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-06-13_to_2017-06-20.csv",
+      "size_bytes": 12806726
+    },
+    {
+      "end_date": "2017-06-27 00:00:00+00:00",
+      "mtime_ns": 1793994909533121300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-06-20_to_2017-06-27.csv",
+      "size_bytes": 9589363
+    },
+    {
+      "end_date": "2017-07-04 00:00:00+00:00",
+      "mtime_ns": 1793994917414031500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-06-27_to_2017-07-04.csv",
+      "size_bytes": 20552575
+    },
+    {
+      "end_date": "2017-07-11 00:00:00+00:00",
+      "mtime_ns": 1793994923886768300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-07-04_to_2017-07-11.csv",
+      "size_bytes": 15564877
+    },
+    {
+      "end_date": "2017-07-18 00:00:00+00:00",
+      "mtime_ns": 1793994928463743400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-07-11_to_2017-07-18.csv",
+      "size_bytes": 13866859
+    },
+    {
+      "end_date": "2017-07-25 00:00:00+00:00",
+      "mtime_ns": 1793994944262267000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-07-18_to_2017-07-25.csv",
+      "size_bytes": 15005295
+    },
+    {
+      "end_date": "2017-08-01 00:00:00+00:00",
+      "mtime_ns": 1793994955813427600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-07-25_to_2017-08-01.csv",
+      "size_bytes": 18142436
+    },
+    {
+      "end_date": "2017-08-08 00:00:00+00:00",
+      "mtime_ns": 1793994961248788000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-08-01_to_2017-08-08.csv",
+      "size_bytes": 14373931
+    },
+    {
+      "end_date": "2017-08-15 00:00:00+00:00",
+      "mtime_ns": 1793994970146741900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-08-08_to_2017-08-15.csv",
+      "size_bytes": 22144098
+    },
+    {
+      "end_date": "2017-08-22 00:00:00+00:00",
+      "mtime_ns": 1793994977509156100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-08-15_to_2017-08-22.csv",
+      "size_bytes": 20852012
+    },
+    {
+      "end_date": "2017-08-29 00:00:00+00:00",
+      "mtime_ns": 1793994985991243800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-08-22_to_2017-08-29.csv",
+      "size_bytes": 13261187
+    },
+    {
+      "end_date": "2017-09-05 00:00:00+00:00",
+      "mtime_ns": 1793994990283115800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-08-29_to_2017-09-05.csv",
+      "size_bytes": 11660622
+    },
+    {
+      "end_date": "2017-09-12 00:00:00+00:00",
+      "mtime_ns": 1793994996486475600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-09-05_to_2017-09-12.csv",
+      "size_bytes": 14852011
+    },
+    {
+      "end_date": "2017-09-19 00:00:00+00:00",
+      "mtime_ns": 1793995005824201700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-09-12_to_2017-09-19.csv",
+      "size_bytes": 10197319
+    },
+    {
+      "end_date": "2017-09-26 00:00:00+00:00",
+      "mtime_ns": 1793995014790509000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-09-19_to_2017-09-26.csv",
+      "size_bytes": 12664076
+    },
+    {
+      "end_date": "2017-10-03 00:00:00+00:00",
+      "mtime_ns": 1793995019113771500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-09-26_to_2017-10-03.csv",
+      "size_bytes": 12319372
+    },
+    {
+      "end_date": "2017-10-10 00:00:00+00:00",
+      "mtime_ns": 1793995023516558900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-10-03_to_2017-10-10.csv",
+      "size_bytes": 9778321
+    },
+    {
+      "end_date": "2017-10-17 00:00:00+00:00",
+      "mtime_ns": 1793995027776879800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-10-10_to_2017-10-17.csv",
+      "size_bytes": 11541988
+    },
+    {
+      "end_date": "2017-10-24 00:00:00+00:00",
+      "mtime_ns": 1793995032329134500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-10-17_to_2017-10-24.csv",
+      "size_bytes": 10549267
+    },
+    {
+      "end_date": "2017-10-31 00:00:00+00:00",
+      "mtime_ns": 1793995038807763300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-10-24_to_2017-10-31.csv",
+      "size_bytes": 13289866
+    },
+    {
+      "end_date": "2017-11-07 00:00:00+00:00",
+      "mtime_ns": 1793995043825513800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-10-31_to_2017-11-07.csv",
+      "size_bytes": 9701145
+    },
+    {
+      "end_date": "2017-11-14 00:00:00+00:00",
+      "mtime_ns": 1793995051679921400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-11-07_to_2017-11-14.csv",
+      "size_bytes": 15742956
+    },
+    {
+      "end_date": "2017-11-21 00:00:00+00:00",
+      "mtime_ns": 1793995059343758900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-11-14_to_2017-11-21.csv",
+      "size_bytes": 16200474
+    },
+    {
+      "end_date": "2017-11-28 00:00:00+00:00",
+      "mtime_ns": 1793995064968016500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-11-21_to_2017-11-28.csv",
+      "size_bytes": 14659218
+    },
+    {
+      "end_date": "2017-12-05 00:00:00+00:00",
+      "mtime_ns": 1793995070339966800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-11-28_to_2017-12-05.csv",
+      "size_bytes": 17179883
+    },
+    {
+      "end_date": "2017-12-12 00:00:00+00:00",
+      "mtime_ns": 1793995075525153900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-12-05_to_2017-12-12.csv",
+      "size_bytes": 14748935
+    },
+    {
+      "end_date": "2017-12-19 00:00:00+00:00",
+      "mtime_ns": 1793995085511282000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-12-12_to_2017-12-19.csv",
+      "size_bytes": 11335699
+    },
+    {
+      "end_date": "2017-12-26 00:00:00+00:00",
+      "mtime_ns": 1793995089553840600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-12-19_to_2017-12-26.csv",
+      "size_bytes": 8615015
+    },
+    {
+      "end_date": "2018-01-02 00:00:00+00:00",
+      "mtime_ns": 1793995091199125900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2017-12-26_to_2018-01-02.csv",
+      "size_bytes": 6100525
+    },
+    {
+      "end_date": "2018-01-09 00:00:00+00:00",
+      "mtime_ns": 1793995097011165000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-01-02_to_2018-01-09.csv",
+      "size_bytes": 12470928
+    },
+    {
+      "end_date": "2018-01-16 00:00:00+00:00",
+      "mtime_ns": 1793995105397773400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-01-09_to_2018-01-16.csv",
+      "size_bytes": 12176878
+    },
+    {
+      "end_date": "2018-01-23 00:00:00+00:00",
+      "mtime_ns": 1793995115927365100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-01-16_to_2018-01-23.csv",
+      "size_bytes": 13896007
+    },
+    {
+      "end_date": "2018-01-30 00:00:00+00:00",
+      "mtime_ns": 1793995124910654500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-01-23_to_2018-01-30.csv",
+      "size_bytes": 18268192
+    },
+    {
+      "end_date": "2018-02-06 00:00:00+00:00",
+      "mtime_ns": 1793995147459620200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-01-30_to_2018-02-06.csv",
+      "size_bytes": 28610514
+    },
+    {
+      "end_date": "2018-02-13 00:00:00+00:00",
+      "mtime_ns": 1793995159211382700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-02-06_to_2018-02-13.csv",
+      "size_bytes": 28100902
+    },
+    {
+      "end_date": "2018-02-20 00:00:00+00:00",
+      "mtime_ns": 1793995169722048600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-02-13_to_2018-02-20.csv",
+      "size_bytes": 26898937
+    },
+    {
+      "end_date": "2018-02-27 00:00:00+00:00",
+      "mtime_ns": 1793995181272970800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-02-20_to_2018-02-27.csv",
+      "size_bytes": 29248157
+    },
+    {
+      "end_date": "2018-03-06 00:00:00+00:00",
+      "mtime_ns": 1793995198188907300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-02-27_to_2018-03-06.csv",
+      "size_bytes": 36371615
+    },
+    {
+      "end_date": "2018-03-13 00:00:00+00:00",
+      "mtime_ns": 1793995214228513300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-03-06_to_2018-03-13.csv",
+      "size_bytes": 23615930
+    },
+    {
+      "end_date": "2018-03-20 00:00:00+00:00",
+      "mtime_ns": 1793995226677491500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-03-13_to_2018-03-20.csv",
+      "size_bytes": 25809946
+    },
+    {
+      "end_date": "2018-03-27 00:00:00+00:00",
+      "mtime_ns": 1793995243613414600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-03-20_to_2018-03-27.csv",
+      "size_bytes": 34100110
+    },
+    {
+      "end_date": "2018-04-03 00:00:00+00:00",
+      "mtime_ns": 1793995252021124100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-03-27_to_2018-04-03.csv",
+      "size_bytes": 20327148
+    },
+    {
+      "end_date": "2018-04-10 00:00:00+00:00",
+      "mtime_ns": 1793995259686277600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-04-03_to_2018-04-10.csv",
+      "size_bytes": 20327313
+    },
+    {
+      "end_date": "2018-04-17 00:00:00+00:00",
+      "mtime_ns": 1793995265356862900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-04-10_to_2018-04-17.csv",
+      "size_bytes": 16500175
+    },
+    {
+      "end_date": "2018-04-24 00:00:00+00:00",
+      "mtime_ns": 1793995274868306200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-04-17_to_2018-04-24.csv",
+      "size_bytes": 14914238
+    },
+    {
+      "end_date": "2018-05-01 00:00:00+00:00",
+      "mtime_ns": 1793995282890351400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-04-24_to_2018-05-01.csv",
+      "size_bytes": 17767311
+    },
+    {
+      "end_date": "2018-05-08 00:00:00+00:00",
+      "mtime_ns": 1793995288294238100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-05-01_to_2018-05-08.csv",
+      "size_bytes": 13777677
+    },
+    {
+      "end_date": "2018-05-15 00:00:00+00:00",
+      "mtime_ns": 1793995293383902500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-05-08_to_2018-05-15.csv",
+      "size_bytes": 12548042
+    },
+    {
+      "end_date": "2018-05-22 00:00:00+00:00",
+      "mtime_ns": 1793995297897438700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-05-15_to_2018-05-22.csv",
+      "size_bytes": 10656888
+    },
+    {
+      "end_date": "2018-05-29 00:00:00+00:00",
+      "mtime_ns": 1793995305030474600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-05-22_to_2018-05-29.csv",
+      "size_bytes": 15255578
+    },
+    {
+      "end_date": "2018-06-05 00:00:00+00:00",
+      "mtime_ns": 1793995312253372400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-05-29_to_2018-06-05.csv",
+      "size_bytes": 18877897
+    },
+    {
+      "end_date": "2018-06-12 00:00:00+00:00",
+      "mtime_ns": 1793995323129486300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-06-05_to_2018-06-12.csv",
+      "size_bytes": 17224769
+    },
+    {
+      "end_date": "2018-06-19 00:00:00+00:00",
+      "mtime_ns": 1793995341949968100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-06-12_to_2018-06-19.csv",
+      "size_bytes": 29146613
+    },
+    {
+      "end_date": "2018-06-26 00:00:00+00:00",
+      "mtime_ns": 1793995356253079800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-06-19_to_2018-06-26.csv",
+      "size_bytes": 35206124
+    },
+    {
+      "end_date": "2018-07-03 00:00:00+00:00",
+      "mtime_ns": 1793995374136822800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-06-26_to_2018-07-03.csv",
+      "size_bytes": 39065072
+    },
+    {
+      "end_date": "2018-07-10 00:00:00+00:00",
+      "mtime_ns": 1793995385900242300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-07-03_to_2018-07-10.csv",
+      "size_bytes": 28013096
+    },
+    {
+      "end_date": "2018-07-17 00:00:00+00:00",
+      "mtime_ns": 1793995391918333900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-07-10_to_2018-07-17.csv",
+      "size_bytes": 12854661
+    },
+    {
+      "end_date": "2018-07-24 00:00:00+00:00",
+      "mtime_ns": 1793995397306729700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-07-17_to_2018-07-24.csv",
+      "size_bytes": 12582886
+    },
+    {
+      "end_date": "2018-07-31 00:00:00+00:00",
+      "mtime_ns": 1793995483071892200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-07-24_to_2018-07-31.csv",
+      "size_bytes": 29941371
+    },
+    {
+      "end_date": "2018-08-07 00:00:00+00:00",
+      "mtime_ns": 1793995497456440000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-07-31_to_2018-08-07.csv",
+      "size_bytes": 32879079
+    },
+    {
+      "end_date": "2018-08-14 00:00:00+00:00",
+      "mtime_ns": 1793995509566497700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-08-07_to_2018-08-14.csv",
+      "size_bytes": 28797509
+    },
+    {
+      "end_date": "2018-08-21 00:00:00+00:00",
+      "mtime_ns": 1793995521458035600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-08-14_to_2018-08-21.csv",
+      "size_bytes": 28737079
+    },
+    {
+      "end_date": "2018-08-28 00:00:00+00:00",
+      "mtime_ns": 1793995531423049700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-08-21_to_2018-08-28.csv",
+      "size_bytes": 22475559
+    },
+    {
+      "end_date": "2018-09-04 00:00:00+00:00",
+      "mtime_ns": 1793995592354802000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-08-28_to_2018-09-04.csv",
+      "size_bytes": 22723611
+    },
+    {
+      "end_date": "2018-09-11 00:00:00+00:00",
+      "mtime_ns": 1793995605215467300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-09-04_to_2018-09-11.csv",
+      "size_bytes": 33090636
+    },
+    {
+      "end_date": "2018-09-18 00:00:00+00:00",
+      "mtime_ns": 1793995616277682400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-09-11_to_2018-09-18.csv",
+      "size_bytes": 28019448
+    },
+    {
+      "end_date": "2018-09-25 00:00:00+00:00",
+      "mtime_ns": 1793995626352226700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-09-18_to_2018-09-25.csv",
+      "size_bytes": 22805856
+    },
+    {
+      "end_date": "2018-10-02 00:00:00+00:00",
+      "mtime_ns": 1793995637411941200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-09-25_to_2018-10-02.csv",
+      "size_bytes": 24880812
+    },
+    {
+      "end_date": "2018-10-09 00:00:00+00:00",
+      "mtime_ns": 1793995705517150100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-10-02_to_2018-10-09.csv",
+      "size_bytes": 26803209
+    },
+    {
+      "end_date": "2018-10-16 00:00:00+00:00",
+      "mtime_ns": 1793995728690980200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-10-09_to_2018-10-16.csv",
+      "size_bytes": 45611859
+    },
+    {
+      "end_date": "2018-10-23 00:00:00+00:00",
+      "mtime_ns": 1793995748400155800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-10-16_to_2018-10-23.csv",
+      "size_bytes": 46740081
+    },
+    {
+      "end_date": "2018-10-30 00:00:00+00:00",
+      "mtime_ns": 1793995770865521800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-10-23_to_2018-10-30.csv",
+      "size_bytes": 54916884
+    },
+    {
+      "end_date": "2018-11-06 00:00:00+00:00",
+      "mtime_ns": 1793995788242250000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-10-30_to_2018-11-06.csv",
+      "size_bytes": 45289481
+    },
+    {
+      "end_date": "2018-11-13 00:00:00+00:00",
+      "mtime_ns": 1793995804252316500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-11-06_to_2018-11-13.csv",
+      "size_bytes": 38166800
+    },
+    {
+      "end_date": "2018-11-20 00:00:00+00:00",
+      "mtime_ns": 1793995822127267100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-11-13_to_2018-11-20.csv",
+      "size_bytes": 41579587
+    },
+    {
+      "end_date": "2018-11-27 00:00:00+00:00",
+      "mtime_ns": 1793995904586865600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-11-20_to_2018-11-27.csv",
+      "size_bytes": 30048558
+    },
+    {
+      "end_date": "2018-12-04 00:00:00+00:00",
+      "mtime_ns": 1793995967725541600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-11-27_to_2018-12-04.csv",
+      "size_bytes": 31693385
+    },
+    {
+      "end_date": "2018-12-11 00:00:00+00:00",
+      "mtime_ns": 1793995987106496300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-12-04_to_2018-12-11.csv",
+      "size_bytes": 37979119
+    },
+    {
+      "end_date": "2018-12-18 00:00:00+00:00",
+      "mtime_ns": 1793997018135682100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-12-11_to_2018-12-18.csv",
+      "size_bytes": 39216593
+    },
+    {
+      "end_date": "2018-12-25 00:00:00+00:00",
+      "mtime_ns": 1793997031984403300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-12-18_to_2018-12-25.csv",
+      "size_bytes": 39358302
+    },
+    {
+      "end_date": "2019-01-01 00:00:00+00:00",
+      "mtime_ns": 1793997041351490400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2018-12-25_to_2019-01-01.csv",
+      "size_bytes": 21911435
+    },
+    {
+      "end_date": "2019-01-08 00:00:00+00:00",
+      "mtime_ns": 1793997055636011600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-01-01_to_2019-01-08.csv",
+      "size_bytes": 39190514
+    },
+    {
+      "end_date": "2019-01-15 00:00:00+00:00",
+      "mtime_ns": 1793997072163878000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-01-08_to_2019-01-15.csv",
+      "size_bytes": 38859316
+    },
+    {
+      "end_date": "2019-01-22 00:00:00+00:00",
+      "mtime_ns": 1793997087282297300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-01-15_to_2019-01-22.csv",
+      "size_bytes": 37017736
+    },
+    {
+      "end_date": "2019-01-29 00:00:00+00:00",
+      "mtime_ns": 1793997102993089300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-01-22_to_2019-01-29.csv",
+      "size_bytes": 40167370
+    },
+    {
+      "end_date": "2019-02-05 00:00:00+00:00",
+      "mtime_ns": 1793997168842979000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-01-29_to_2019-02-05.csv",
+      "size_bytes": 33951795
+    },
+    {
+      "end_date": "2019-02-12 00:00:00+00:00",
+      "mtime_ns": 1793997454536755300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-02-05_to_2019-02-12.csv",
+      "size_bytes": 36131146
+    },
+    {
+      "end_date": "2019-02-19 00:00:00+00:00",
+      "mtime_ns": 1793997471406675800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-02-12_to_2019-02-19.csv",
+      "size_bytes": 31434373
+    },
+    {
+      "end_date": "2019-02-26 00:00:00+00:00",
+      "mtime_ns": 1793997535414407700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-02-19_to_2019-02-26.csv",
+      "size_bytes": 34089726
+    },
+    {
+      "end_date": "2019-03-05 00:00:00+00:00",
+      "mtime_ns": 1793997549989066400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-02-26_to_2019-03-05.csv",
+      "size_bytes": 33408551
+    },
+    {
+      "end_date": "2019-03-12 00:00:00+00:00",
+      "mtime_ns": 1793997613210337400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-03-05_to_2019-03-12.csv",
+      "size_bytes": 36711211
+    },
+    {
+      "end_date": "2019-03-19 00:00:00+00:00",
+      "mtime_ns": 1793997676000178500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-03-12_to_2019-03-19.csv",
+      "size_bytes": 30237566
+    },
+    {
+      "end_date": "2019-03-26 00:00:00+00:00",
+      "mtime_ns": 1793997742616020400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-03-19_to_2019-03-26.csv",
+      "size_bytes": 36977770
+    },
+    {
+      "end_date": "2019-04-02 00:00:00+00:00",
+      "mtime_ns": 1793997803714154400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-03-26_to_2019-04-02.csv",
+      "size_bytes": 37273890
+    },
+    {
+      "end_date": "2019-04-09 00:00:00+00:00",
+      "mtime_ns": 1793997859733909200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-04-02_to_2019-04-09.csv",
+      "size_bytes": 25349206
+    },
+    {
+      "end_date": "2019-04-16 00:00:00+00:00",
+      "mtime_ns": 1793997922195012000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-04-09_to_2019-04-16.csv",
+      "size_bytes": 23811383
+    },
+    {
+      "end_date": "2019-04-23 00:00:00+00:00",
+      "mtime_ns": 1793997977231655300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-04-16_to_2019-04-23.csv",
+      "size_bytes": 15152092
+    },
+    {
+      "end_date": "2019-04-30 00:00:00+00:00",
+      "mtime_ns": 1793997986278514400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-04-23_to_2019-04-30.csv",
+      "size_bytes": 24008906
+    },
+    {
+      "end_date": "2019-05-07 00:00:00+00:00",
+      "mtime_ns": 1793997994246982200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-04-30_to_2019-05-07.csv",
+      "size_bytes": 22092106
+    },
+    {
+      "end_date": "2019-05-14 00:00:00+00:00",
+      "mtime_ns": 1793998013321854500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-05-07_to_2019-05-14.csv",
+      "size_bytes": 43816506
+    },
+    {
+      "end_date": "2019-05-21 00:00:00+00:00",
+      "mtime_ns": 1793998026746754000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-05-14_to_2019-05-21.csv",
+      "size_bytes": 34764655
+    },
+    {
+      "end_date": "2019-05-28 00:00:00+00:00",
+      "mtime_ns": 1793998046284589400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-05-21_to_2019-05-28.csv",
+      "size_bytes": 29986556
+    },
+    {
+      "end_date": "2019-06-04 00:00:00+00:00",
+      "mtime_ns": 1793998073293817300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-05-28_to_2019-06-04.csv",
+      "size_bytes": 39148736
+    },
+    {
+      "end_date": "2019-06-11 00:00:00+00:00",
+      "mtime_ns": 1793998088740958300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-06-04_to_2019-06-11.csv",
+      "size_bytes": 35559838
+    },
+    {
+      "end_date": "2019-06-18 00:00:00+00:00",
+      "mtime_ns": 1793998099498489700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-06-11_to_2019-06-18.csv",
+      "size_bytes": 31216626
+    },
+    {
+      "end_date": "2019-06-25 00:00:00+00:00",
+      "mtime_ns": 1793998108641610900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-06-18_to_2019-06-25.csv",
+      "size_bytes": 25759086
+    },
+    {
+      "end_date": "2019-07-02 00:00:00+00:00",
+      "mtime_ns": 1793998123674523100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-06-25_to_2019-07-02.csv",
+      "size_bytes": 24497578
+    },
+    {
+      "end_date": "2019-07-09 00:00:00+00:00",
+      "mtime_ns": 1793998142686512800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-07-02_to_2019-07-09.csv",
+      "size_bytes": 18146362
+    },
+    {
+      "end_date": "2019-07-16 00:00:00+00:00",
+      "mtime_ns": 1793998158056297700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-07-09_to_2019-07-16.csv",
+      "size_bytes": 25051423
+    },
+    {
+      "end_date": "2019-07-23 00:00:00+00:00",
+      "mtime_ns": 1793998171114892000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-07-16_to_2019-07-23.csv",
+      "size_bytes": 29581078
+    },
+    {
+      "end_date": "2019-07-30 00:00:00+00:00",
+      "mtime_ns": 1793998184325326400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-07-23_to_2019-07-30.csv",
+      "size_bytes": 30887634
+    },
+    {
+      "end_date": "2019-08-06 00:00:00+00:00",
+      "mtime_ns": 1793998298802394800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-07-30_to_2019-08-06.csv",
+      "size_bytes": 52694479
+    },
+    {
+      "end_date": "2019-08-13 00:00:00+00:00",
+      "mtime_ns": 1793998375246975600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-08-06_to_2019-08-13.csv",
+      "size_bytes": 51893807
+    },
+    {
+      "end_date": "2019-08-20 00:00:00+00:00",
+      "mtime_ns": 1793998395582438200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-08-13_to_2019-08-20.csv",
+      "size_bytes": 48091472
+    },
+    {
+      "end_date": "2019-08-27 00:00:00+00:00",
+      "mtime_ns": 1793998461498106300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-08-20_to_2019-08-27.csv",
+      "size_bytes": 43952290
+    },
+    {
+      "end_date": "2019-09-03 00:00:00+00:00",
+      "mtime_ns": 1793998524751748200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-08-27_to_2019-09-03.csv",
+      "size_bytes": 40000215
+    },
+    {
+      "end_date": "2019-09-10 00:00:00+00:00",
+      "mtime_ns": 1793998586235872300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-09-03_to_2019-09-10.csv",
+      "size_bytes": 35773047
+    },
+    {
+      "end_date": "2019-09-17 00:00:00+00:00",
+      "mtime_ns": 1793998600373892400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-09-10_to_2019-09-17.csv",
+      "size_bytes": 31502849
+    },
+    {
+      "end_date": "2019-09-24 00:00:00+00:00",
+      "mtime_ns": 1793998653921270800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-09-17_to_2019-09-24.csv",
+      "size_bytes": 26117782
+    },
+    {
+      "end_date": "2019-10-01 00:00:00+00:00",
+      "mtime_ns": 1793998666867727800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-09-24_to_2019-10-01.csv",
+      "size_bytes": 31215919
+    },
+    {
+      "end_date": "2019-10-08 00:00:00+00:00",
+      "mtime_ns": 1793998682807526800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-10-01_to_2019-10-08.csv",
+      "size_bytes": 38024841
+    },
+    {
+      "end_date": "2019-10-15 00:00:00+00:00",
+      "mtime_ns": 1793998716641614100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-10-08_to_2019-10-15.csv",
+      "size_bytes": 39724818
+    },
+    {
+      "end_date": "2019-10-22 00:00:00+00:00",
+      "mtime_ns": 1793998734293957800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-10-15_to_2019-10-22.csv",
+      "size_bytes": 34942856
+    },
+    {
+      "end_date": "2019-10-29 00:00:00+00:00",
+      "mtime_ns": 1793998791647856200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-10-22_to_2019-10-29.csv",
+      "size_bytes": 26957217
+    },
+    {
+      "end_date": "2019-11-05 00:00:00+00:00",
+      "mtime_ns": 1793998803959447700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-10-29_to_2019-11-05.csv",
+      "size_bytes": 25128218
+    },
+    {
+      "end_date": "2019-11-12 00:00:00+00:00",
+      "mtime_ns": 1793998814293630200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-11-05_to_2019-11-12.csv",
+      "size_bytes": 25681018
+    },
+    {
+      "end_date": "2019-11-19 00:00:00+00:00",
+      "mtime_ns": 1793998825062878400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-11-12_to_2019-11-19.csv",
+      "size_bytes": 26433899
+    },
+    {
+      "end_date": "2019-11-26 00:00:00+00:00",
+      "mtime_ns": 1793998837053976100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-11-19_to_2019-11-26.csv",
+      "size_bytes": 30104348
+    },
+    {
+      "end_date": "2019-12-03 00:00:00+00:00",
+      "mtime_ns": 1793998847012376600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-11-26_to_2019-12-03.csv",
+      "size_bytes": 23924166
+    },
+    {
+      "end_date": "2019-12-10 00:00:00+00:00",
+      "mtime_ns": 1793998860918670700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-12-03_to_2019-12-10.csv",
+      "size_bytes": 31065993
+    },
+    {
+      "end_date": "2019-12-17 00:00:00+00:00",
+      "mtime_ns": 1793998923829098700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-12-10_to_2019-12-17.csv",
+      "size_bytes": 36756252
+    },
+    {
+      "end_date": "2019-12-24 00:00:00+00:00",
+      "mtime_ns": 1793998933512825800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-12-17_to_2019-12-24.csv",
+      "size_bytes": 24914750
+    },
+    {
+      "end_date": "2019-12-31 00:00:00+00:00",
+      "mtime_ns": 1793998938262596100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-12-24_to_2019-12-31.csv",
+      "size_bytes": 11275194
+    },
+    {
+      "end_date": "2020-01-07 00:00:00+00:00",
+      "mtime_ns": 1793998948331680200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2019-12-31_to_2020-01-07.csv",
+      "size_bytes": 24102461
+    },
+    {
+      "end_date": "2020-01-14 00:00:00+00:00",
+      "mtime_ns": 1793998964483249200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-01-07_to_2020-01-14.csv",
+      "size_bytes": 34953975
+    },
+    {
+      "end_date": "2020-01-21 00:00:00+00:00",
+      "mtime_ns": 1794000137001341500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-01-14_to_2020-01-21.csv",
+      "size_bytes": 26821497
+    },
+    {
+      "end_date": "2020-01-28 00:00:00+00:00",
+      "mtime_ns": 1794000162668554100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-01-21_to_2020-01-28.csv",
+      "size_bytes": 37602047
+    },
+    {
+      "end_date": "2020-02-04 00:00:00+00:00",
+      "mtime_ns": 1794000181406307800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-01-28_to_2020-02-04.csv",
+      "size_bytes": 47722355
+    },
+    {
+      "end_date": "2020-02-11 00:00:00+00:00",
+      "mtime_ns": 1794000195615412700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-02-04_to_2020-02-11.csv",
+      "size_bytes": 38895723
+    },
+    {
+      "end_date": "2020-02-18 00:00:00+00:00",
+      "mtime_ns": 1794000210245008400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-02-11_to_2020-02-18.csv",
+      "size_bytes": 31819777
+    },
+    {
+      "end_date": "2020-02-25 00:00:00+00:00",
+      "mtime_ns": 1794000231669169200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-02-18_to_2020-02-25.csv",
+      "size_bytes": 46234591
+    },
+    {
+      "end_date": "2020-03-03 00:00:00+00:00",
+      "mtime_ns": 1794000550827764400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-02-25_to_2020-03-03.csv",
+      "size_bytes": 84408656
+    },
+    {
+      "end_date": "2020-03-10 00:00:00+00:00",
+      "mtime_ns": 1794000578274748100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-03-03_to_2020-03-10.csv",
+      "size_bytes": 78260837
+    },
+    {
+      "end_date": "2020-03-17 00:00:00+00:00",
+      "mtime_ns": 1794000605911885000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-03-10_to_2020-03-17.csv",
+      "size_bytes": 66107594
+    },
+    {
+      "end_date": "2020-03-24 00:00:00+00:00",
+      "mtime_ns": 1794000900029407900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-03-17_to_2020-03-24.csv",
+      "size_bytes": 70029627
+    },
+    {
+      "end_date": "2020-03-31 00:00:00+00:00",
+      "mtime_ns": 1794000925605835800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-03-24_to_2020-03-31.csv",
+      "size_bytes": 65587951
+    },
+    {
+      "end_date": "2020-04-07 00:00:00+00:00",
+      "mtime_ns": 1794000949980773500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-03-31_to_2020-04-07.csv",
+      "size_bytes": 57629991
+    },
+    {
+      "end_date": "2020-04-14 00:00:00+00:00",
+      "mtime_ns": 1794000969775360900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-04-07_to_2020-04-14.csv",
+      "size_bytes": 46061822
+    },
+    {
+      "end_date": "2020-04-21 00:00:00+00:00",
+      "mtime_ns": 1794001070233254700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-04-14_to_2020-04-21.csv",
+      "size_bytes": 59260670
+    },
+    {
+      "end_date": "2020-04-28 00:00:00+00:00",
+      "mtime_ns": 1794001138512582000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-04-21_to_2020-04-28.csv",
+      "size_bytes": 58052533
+    },
+    {
+      "end_date": "2020-05-05 00:00:00+00:00",
+      "mtime_ns": 1794001216402226600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-04-28_to_2020-05-05.csv",
+      "size_bytes": 56817610
+    },
+    {
+      "end_date": "2020-05-12 00:00:00+00:00",
+      "mtime_ns": 1794001232802185000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-05-05_to_2020-05-12.csv",
+      "size_bytes": 40375989
+    },
+    {
+      "end_date": "2020-05-19 00:00:00+00:00",
+      "mtime_ns": 1794001253309758500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-05-12_to_2020-05-19.csv",
+      "size_bytes": 55033624
+    },
+    {
+      "end_date": "2020-05-26 00:00:00+00:00",
+      "mtime_ns": 1794001271331565400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-05-19_to_2020-05-26.csv",
+      "size_bytes": 45553609
+    },
+    {
+      "end_date": "2020-06-02 00:00:00+00:00",
+      "mtime_ns": 1794001293636834000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-05-26_to_2020-06-02.csv",
+      "size_bytes": 57705948
+    },
+    {
+      "end_date": "2020-06-09 00:00:00+00:00",
+      "mtime_ns": 1794001319741644700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-06-02_to_2020-06-09.csv",
+      "size_bytes": 60604472
+    },
+    {
+      "end_date": "2020-06-16 00:00:00+00:00",
+      "mtime_ns": 1794001449360847800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-06-09_to_2020-06-16.csv",
+      "size_bytes": 83252500
+    },
+    {
+      "end_date": "2020-06-23 00:00:00+00:00",
+      "mtime_ns": 1794001477961550600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-06-16_to_2020-06-23.csv",
+      "size_bytes": 75265148
+    },
+    {
+      "end_date": "2020-06-30 00:00:00+00:00",
+      "mtime_ns": 1794002602981802500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-06-23_to_2020-06-30.csv",
+      "size_bytes": 70102570
+    },
+    {
+      "end_date": "2020-07-07 00:00:00+00:00",
+      "mtime_ns": 1794002632917206100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-06-30_to_2020-07-07.csv",
+      "size_bytes": 48708417
+    },
+    {
+      "end_date": "2020-07-14 00:00:00+00:00",
+      "mtime_ns": 1794002650917272100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-07-07_to_2020-07-14.csv",
+      "size_bytes": 54540887
+    },
+    {
+      "end_date": "2020-07-21 00:00:00+00:00",
+      "mtime_ns": 1794002668588785200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-07-14_to_2020-07-21.csv",
+      "size_bytes": 52837062
+    },
+    {
+      "end_date": "2020-07-28 00:00:00+00:00",
+      "mtime_ns": 1794002686090363000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-07-21_to_2020-07-28.csv",
+      "size_bytes": 51372783
+    },
+    {
+      "end_date": "2020-08-04 00:00:00+00:00",
+      "mtime_ns": 1794002706759274700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-07-28_to_2020-08-04.csv",
+      "size_bytes": 48020778
+    },
+    {
+      "end_date": "2020-08-11 00:00:00+00:00",
+      "mtime_ns": 1794002887666944400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-08-04_to_2020-08-11.csv",
+      "size_bytes": 42066778
+    },
+    {
+      "end_date": "2020-08-18 00:00:00+00:00",
+      "mtime_ns": 1794003029260872400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-08-11_to_2020-08-18.csv",
+      "size_bytes": 37582739
+    },
+    {
+      "end_date": "2020-08-25 00:00:00+00:00",
+      "mtime_ns": 1794003041948236900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-08-18_to_2020-08-25.csv",
+      "size_bytes": 36751775
+    },
+    {
+      "end_date": "2020-09-01 00:00:00+00:00",
+      "mtime_ns": 1794003058791847300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-08-25_to_2020-09-01.csv",
+      "size_bytes": 39860109
+    },
+    {
+      "end_date": "2020-09-08 00:00:00+00:00",
+      "mtime_ns": 1794004257589556700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-09-01_to_2020-09-08.csv",
+      "size_bytes": 59365002
+    },
+    {
+      "end_date": "2020-09-15 00:00:00+00:00",
+      "mtime_ns": 1794004277978101400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-09-08_to_2020-09-15.csv",
+      "size_bytes": 66579099
+    },
+    {
+      "end_date": "2020-09-22 00:00:00+00:00",
+      "mtime_ns": 1794004296722900000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-09-15_to_2020-09-22.csv",
+      "size_bytes": 51985635
+    },
+    {
+      "end_date": "2020-09-29 00:00:00+00:00",
+      "mtime_ns": 1794004334465056700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-09-22_to_2020-09-29.csv",
+      "size_bytes": 59957410
+    },
+    {
+      "end_date": "2020-10-06 00:00:00+00:00",
+      "mtime_ns": 1794004353624728400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-09-29_to_2020-10-06.csv",
+      "size_bytes": 56237583
+    },
+    {
+      "end_date": "2020-10-13 00:00:00+00:00",
+      "mtime_ns": 1794004367412757300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-10-06_to_2020-10-13.csv",
+      "size_bytes": 40177903
+    },
+    {
+      "end_date": "2020-10-20 00:00:00+00:00",
+      "mtime_ns": 1794004386655055900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-10-13_to_2020-10-20.csv",
+      "size_bytes": 46727835
+    },
+    {
+      "end_date": "2020-10-27 00:00:00+00:00",
+      "mtime_ns": 1794005474987359800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-10-20_to_2020-10-27.csv",
+      "size_bytes": 54498861
+    },
+    {
+      "end_date": "2020-11-03 00:00:00+00:00",
+      "mtime_ns": 1794005562315227400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-10-27_to_2020-11-03.csv",
+      "size_bytes": 67839984
+    },
+    {
+      "end_date": "2020-11-10 00:00:00+00:00",
+      "mtime_ns": 1794005631704415400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-11-03_to_2020-11-10.csv",
+      "size_bytes": 66841549
+    },
+    {
+      "end_date": "2020-11-17 00:00:00+00:00",
+      "mtime_ns": 1794005696802298400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-11-10_to_2020-11-17.csv",
+      "size_bytes": 59079620
+    },
+    {
+      "end_date": "2020-11-24 00:00:00+00:00",
+      "mtime_ns": 1794005712218429700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-11-17_to_2020-11-24.csv",
+      "size_bytes": 43101613
+    },
+    {
+      "end_date": "2020-12-01 00:00:00+00:00",
+      "mtime_ns": 1794005725627103300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-11-24_to_2020-12-01.csv",
+      "size_bytes": 36942362
+    },
+    {
+      "end_date": "2020-12-08 00:00:00+00:00",
+      "mtime_ns": 1794005737582781100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-12-01_to_2020-12-08.csv",
+      "size_bytes": 38988050
+    },
+    {
+      "end_date": "2020-12-15 00:00:00+00:00",
+      "mtime_ns": 1794005760440498500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-12-08_to_2020-12-15.csv",
+      "size_bytes": 42312897
+    },
+    {
+      "end_date": "2020-12-22 00:00:00+00:00",
+      "mtime_ns": 1794005774427597000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-12-15_to_2020-12-22.csv",
+      "size_bytes": 36540372
+    },
+    {
+      "end_date": "2020-12-29 00:00:00+00:00",
+      "mtime_ns": 1794005897893903700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-12-22_to_2020-12-29.csv",
+      "size_bytes": 11559962
+    },
+    {
+      "end_date": "2021-01-05 00:00:00+00:00",
+      "mtime_ns": 1794005904035142500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2020-12-29_to_2021-01-05.csv",
+      "size_bytes": 13800708
+    },
+    {
+      "end_date": "2021-01-12 00:00:00+00:00",
+      "mtime_ns": 1794005914091729700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-01-05_to_2021-01-12.csv",
+      "size_bytes": 27127604
+    },
+    {
+      "end_date": "2021-01-19 00:00:00+00:00",
+      "mtime_ns": 1794005922707906500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-01-12_to_2021-01-19.csv",
+      "size_bytes": 22081084
+    },
+    {
+      "end_date": "2021-01-26 00:00:00+00:00",
+      "mtime_ns": 1794005931965806000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-01-19_to_2021-01-26.csv",
+      "size_bytes": 25418038
+    },
+    {
+      "end_date": "2021-02-02 00:00:00+00:00",
+      "mtime_ns": 1794006007342031100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-01-26_to_2021-02-02.csv",
+      "size_bytes": 45955335
+    },
+    {
+      "end_date": "2021-02-09 00:00:00+00:00",
+      "mtime_ns": 1794006028639138400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-02-02_to_2021-02-09.csv",
+      "size_bytes": 24238671
+    },
+    {
+      "end_date": "2021-02-16 00:00:00+00:00",
+      "mtime_ns": 1794006059690297800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-02-09_to_2021-02-16.csv",
+      "size_bytes": 21218415
+    },
+    {
+      "end_date": "2021-02-23 00:00:00+00:00",
+      "mtime_ns": 1794006097197271600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-02-16_to_2021-02-23.csv",
+      "size_bytes": 31129304
+    },
+    {
+      "end_date": "2021-03-02 00:00:00+00:00",
+      "mtime_ns": 1794006138003349600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-02-23_to_2021-03-02.csv",
+      "size_bytes": 45221133
+    },
+    {
+      "end_date": "2021-03-09 00:00:00+00:00",
+      "mtime_ns": 1794006205235497200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-03-02_to_2021-03-09.csv",
+      "size_bytes": 48943817
+    },
+    {
+      "end_date": "2021-03-16 00:00:00+00:00",
+      "mtime_ns": 1794006228553815400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-03-09_to_2021-03-16.csv",
+      "size_bytes": 31762359
+    },
+    {
+      "end_date": "2021-03-23 00:00:00+00:00",
+      "mtime_ns": 1794006267038667700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-03-16_to_2021-03-23.csv",
+      "size_bytes": 29740386
+    },
+    {
+      "end_date": "2021-03-30 00:00:00+00:00",
+      "mtime_ns": 1794006296740792000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-03-23_to_2021-03-30.csv",
+      "size_bytes": 31082060
+    },
+    {
+      "end_date": "2021-04-06 00:00:00+00:00",
+      "mtime_ns": 1794006307018790800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-03-30_to_2021-04-06.csv",
+      "size_bytes": 14179618
+    },
+    {
+      "end_date": "2021-04-13 00:00:00+00:00",
+      "mtime_ns": 1794006330551780800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-04-06_to_2021-04-13.csv",
+      "size_bytes": 19926637
+    },
+    {
+      "end_date": "2021-04-20 00:00:00+00:00",
+      "mtime_ns": 1794006356492515800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-04-13_to_2021-04-20.csv",
+      "size_bytes": 21125111
+    },
+    {
+      "end_date": "2021-04-27 00:00:00+00:00",
+      "mtime_ns": 1794006387450826100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-04-20_to_2021-04-27.csv",
+      "size_bytes": 27666972
+    },
+    {
+      "end_date": "2021-05-04 00:00:00+00:00",
+      "mtime_ns": 1794006413968159500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-04-27_to_2021-05-04.csv",
+      "size_bytes": 24441525
+    },
+    {
+      "end_date": "2021-05-11 00:00:00+00:00",
+      "mtime_ns": 1794006456495054600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-05-04_to_2021-05-11.csv",
+      "size_bytes": 32195656
+    },
+    {
+      "end_date": "2021-05-18 00:00:00+00:00",
+      "mtime_ns": 1794006510152220700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-05-11_to_2021-05-18.csv",
+      "size_bytes": 43355579
+    },
+    {
+      "end_date": "2021-05-25 00:00:00+00:00",
+      "mtime_ns": 1794006552541042300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-05-18_to_2021-05-25.csv",
+      "size_bytes": 32173827
+    },
+    {
+      "end_date": "2021-06-01 00:00:00+00:00",
+      "mtime_ns": 1794006568807169400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-05-25_to_2021-06-01.csv",
+      "size_bytes": 21387099
+    },
+    {
+      "end_date": "2021-06-08 00:00:00+00:00",
+      "mtime_ns": 1794006607377480700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-06-01_to_2021-06-08.csv",
+      "size_bytes": 25074711
+    },
+    {
+      "end_date": "2021-06-15 00:00:00+00:00",
+      "mtime_ns": 1794006630358174200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-06-08_to_2021-06-15.csv",
+      "size_bytes": 22260303
+    },
+    {
+      "end_date": "2021-06-22 00:00:00+00:00",
+      "mtime_ns": 1794006653162070200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-06-15_to_2021-06-22.csv",
+      "size_bytes": 26769841
+    },
+    {
+      "end_date": "2021-06-29 00:00:00+00:00",
+      "mtime_ns": 1794006660744443600,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-06-22_to_2021-06-29.csv",
+      "size_bytes": 22122192
+    },
+    {
+      "end_date": "2021-07-06 00:00:00+00:00",
+      "mtime_ns": 1794006668877014900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-06-29_to_2021-07-06.csv",
+      "size_bytes": 24467153
+    },
+    {
+      "end_date": "2021-07-13 00:00:00+00:00",
+      "mtime_ns": 1794006680021178500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-07-06_to_2021-07-13.csv",
+      "size_bytes": 36237835
+    },
+    {
+      "end_date": "2021-07-20 00:00:00+00:00",
+      "mtime_ns": 1794006692655034900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-07-13_to_2021-07-20.csv",
+      "size_bytes": 39708685
+    },
+    {
+      "end_date": "2021-07-27 00:00:00+00:00",
+      "mtime_ns": 1794006704855677300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-07-20_to_2021-07-27.csv",
+      "size_bytes": 33936583
+    },
+    {
+      "end_date": "2021-08-03 00:00:00+00:00",
+      "mtime_ns": 1794006716387740300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-07-27_to_2021-08-03.csv",
+      "size_bytes": 35366794
+    },
+    {
+      "end_date": "2021-08-10 00:00:00+00:00",
+      "mtime_ns": 1794006725346041300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-08-03_to_2021-08-10.csv",
+      "size_bytes": 23419144
+    },
+    {
+      "end_date": "2021-08-17 00:00:00+00:00",
+      "mtime_ns": 1794006732017929100,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-08-10_to_2021-08-17.csv",
+      "size_bytes": 17932587
+    },
+    {
+      "end_date": "2021-08-24 00:00:00+00:00",
+      "mtime_ns": 1794006743408613900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-08-17_to_2021-08-24.csv",
+      "size_bytes": 30588602
+    },
+    {
+      "end_date": "2021-08-31 00:00:00+00:00",
+      "mtime_ns": 1794006750769057400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-08-24_to_2021-08-31.csv",
+      "size_bytes": 18490965
+    },
+    {
+      "end_date": "2021-09-07 00:00:00+00:00",
+      "mtime_ns": 1794006803555696300,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-08-31_to_2021-09-07.csv",
+      "size_bytes": 21527925
+    },
+    {
+      "end_date": "2021-09-14 00:00:00+00:00",
+      "mtime_ns": 1794006814849458800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-09-07_to_2021-09-14.csv",
+      "size_bytes": 31058995
+    },
+    {
+      "end_date": "2021-09-21 00:00:00+00:00",
+      "mtime_ns": 1794006828046205000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-09-14_to_2021-09-21.csv",
+      "size_bytes": 35615289
+    },
+    {
+      "end_date": "2021-09-28 00:00:00+00:00",
+      "mtime_ns": 1794006841783402700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-09-21_to_2021-09-28.csv",
+      "size_bytes": 35834668
+    },
+    {
+      "end_date": "2021-10-05 00:00:00+00:00",
+      "mtime_ns": 1794006913579845000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-09-28_to_2021-10-05.csv",
+      "size_bytes": 49036327
+    },
+    {
+      "end_date": "2021-10-12 00:00:00+00:00",
+      "mtime_ns": 1794006982694602800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-10-05_to_2021-10-12.csv",
+      "size_bytes": 39757771
+    },
+    {
+      "end_date": "2021-10-19 00:00:00+00:00",
+      "mtime_ns": 1794006993862882200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-10-12_to_2021-10-19.csv",
+      "size_bytes": 30077879
+    },
+    {
+      "end_date": "2021-10-26 00:00:00+00:00",
+      "mtime_ns": 1794007002138497900,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-10-19_to_2021-10-26.csv",
+      "size_bytes": 23740307
+    },
+    {
+      "end_date": "2021-11-02 00:00:00+00:00",
+      "mtime_ns": 1794007012497162400,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-10-26_to_2021-11-02.csv",
+      "size_bytes": 25906422
+    },
+    {
+      "end_date": "2021-11-09 00:00:00+00:00",
+      "mtime_ns": 1794007053631492800,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-11-02_to_2021-11-09.csv",
+      "size_bytes": 19123377
+    },
+    {
+      "end_date": "2021-11-16 00:00:00+00:00",
+      "mtime_ns": 1794007069919700700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-11-09_to_2021-11-16.csv",
+      "size_bytes": 19676274
+    },
+    {
+      "end_date": "2021-11-23 00:00:00+00:00",
+      "mtime_ns": 1794007100893118200,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-11-16_to_2021-11-23.csv",
+      "size_bytes": 20656511
+    },
+    {
+      "end_date": "2021-11-30 00:00:00+00:00",
+      "mtime_ns": 1794007146392895000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-11-23_to_2021-11-30.csv",
+      "size_bytes": 39009545
+    },
+    {
+      "end_date": "2021-12-07 00:00:00+00:00",
+      "mtime_ns": 1794007212278836500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-11-30_to_2021-12-07.csv",
+      "size_bytes": 49195970
+    },
+    {
+      "end_date": "2021-12-14 00:00:00+00:00",
+      "mtime_ns": 1794007241851318500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-12-07_to_2021-12-14.csv",
+      "size_bytes": 27723226
+    },
+    {
+      "end_date": "2021-12-21 00:00:00+00:00",
+      "mtime_ns": 1794007271914367700,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-12-14_to_2021-12-21.csv",
+      "size_bytes": 38024660
+    },
+    {
+      "end_date": "2021-12-28 00:00:00+00:00",
+      "mtime_ns": 1794007277615673500,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-12-21_to_2021-12-28.csv",
+      "size_bytes": 17908321
+    },
+    {
+      "end_date": "2022-01-01 00:00:00+00:00",
+      "mtime_ns": 1794007282709915000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2021-12-28_to_2022-01-01.csv",
+      "size_bytes": 14760868
+    },
+    {
+      "end_date": "2022-01-08 00:00:00+00:00",
+      "mtime_ns": 1783165706000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-01-01_to_2022-01-08.csv",
+      "size_bytes": 35095504
+    },
+    {
+      "end_date": "2022-01-15 00:00:00+00:00",
+      "mtime_ns": 1783165758000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-01-08_to_2022-01-15.csv",
+      "size_bytes": 42709581
+    },
+    {
+      "end_date": "2022-01-22 00:00:00+00:00",
+      "mtime_ns": 1783165812000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-01-15_to_2022-01-22.csv",
+      "size_bytes": 46220250
+    },
+    {
+      "end_date": "2022-01-29 00:00:00+00:00",
+      "mtime_ns": 1783165894000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-01-22_to_2022-01-29.csv",
+      "size_bytes": 68505507
+    },
+    {
+      "end_date": "2022-02-05 00:00:00+00:00",
+      "mtime_ns": 1783165954000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-01-29_to_2022-02-05.csv",
+      "size_bytes": 49995363
+    },
+    {
+      "end_date": "2022-02-12 00:00:00+00:00",
+      "mtime_ns": 1783166016000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-02-05_to_2022-02-12.csv",
+      "size_bytes": 48562202
+    },
+    {
+      "end_date": "2022-02-19 00:00:00+00:00",
+      "mtime_ns": 1783166072000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-02-12_to_2022-02-19.csv",
+      "size_bytes": 50969988
+    },
+    {
+      "end_date": "2022-02-26 00:00:00+00:00",
+      "mtime_ns": 1783166150000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-02-19_to_2022-02-26.csv",
+      "size_bytes": 64463412
+    },
+    {
+      "end_date": "2022-03-05 00:00:00+00:00",
+      "mtime_ns": 1783166220000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-02-26_to_2022-03-05.csv",
+      "size_bytes": 63509044
+    },
+    {
+      "end_date": "2022-03-12 00:00:00+00:00",
+      "mtime_ns": 1783166298000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-03-05_to_2022-03-12.csv",
+      "size_bytes": 65971616
+    },
+    {
+      "end_date": "2022-03-19 00:00:00+00:00",
+      "mtime_ns": 1783166358000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-03-12_to_2022-03-19.csv",
+      "size_bytes": 51888063
+    },
+    {
+      "end_date": "2022-03-26 00:00:00+00:00",
+      "mtime_ns": 1783166396000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-03-19_to_2022-03-26.csv",
+      "size_bytes": 32340182
+    },
+    {
+      "end_date": "2022-04-02 00:00:00+00:00",
+      "mtime_ns": 1783166442000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-03-26_to_2022-04-02.csv",
+      "size_bytes": 37375523
+    },
+    {
+      "end_date": "2022-04-09 00:00:00+00:00",
+      "mtime_ns": 1783166492000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-04-02_to_2022-04-09.csv",
+      "size_bytes": 37377934
+    },
+    {
+      "end_date": "2022-04-16 00:00:00+00:00",
+      "mtime_ns": 1783166530000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-04-09_to_2022-04-16.csv",
+      "size_bytes": 30990320
+    },
+    {
+      "end_date": "2022-04-23 00:00:00+00:00",
+      "mtime_ns": 1783166572000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-04-16_to_2022-04-23.csv",
+      "size_bytes": 36782526
+    },
+    {
+      "end_date": "2022-04-30 00:00:00+00:00",
+      "mtime_ns": 1783166630000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-04-23_to_2022-04-30.csv",
+      "size_bytes": 53345765
+    },
+    {
+      "end_date": "2022-05-07 00:00:00+00:00",
+      "mtime_ns": 1783166688000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-04-30_to_2022-05-07.csv",
+      "size_bytes": 57960635
+    },
+    {
+      "end_date": "2022-05-14 00:00:00+00:00",
+      "mtime_ns": 1783166772000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-05-07_to_2022-05-14.csv",
+      "size_bytes": 68565880
+    },
+    {
+      "end_date": "2022-05-21 00:00:00+00:00",
+      "mtime_ns": 1783166838000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-05-14_to_2022-05-21.csv",
+      "size_bytes": 51781976
+    },
+    {
+      "end_date": "2022-05-28 00:00:00+00:00",
+      "mtime_ns": 1783166890000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-05-21_to_2022-05-28.csv",
+      "size_bytes": 45280137
+    },
+    {
+      "end_date": "2022-06-04 00:00:00+00:00",
+      "mtime_ns": 1783166934000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-05-28_to_2022-06-04.csv",
+      "size_bytes": 37213214
+    },
+    {
+      "end_date": "2022-06-11 00:00:00+00:00",
+      "mtime_ns": 1783166982000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-06-04_to_2022-06-11.csv",
+      "size_bytes": 40709432
+    },
+    {
+      "end_date": "2022-06-18 00:00:00+00:00",
+      "mtime_ns": 1783167050000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-06-11_to_2022-06-18.csv",
+      "size_bytes": 58384180
+    },
+    {
+      "end_date": "2022-06-25 00:00:00+00:00",
+      "mtime_ns": 1783167098000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-06-18_to_2022-06-25.csv",
+      "size_bytes": 39097543
+    },
+    {
+      "end_date": "2022-07-02 00:00:00+00:00",
+      "mtime_ns": 1783167158000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-06-25_to_2022-07-02.csv",
+      "size_bytes": 48374492
+    },
+    {
+      "end_date": "2022-07-09 00:00:00+00:00",
+      "mtime_ns": 1783167208000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-07-02_to_2022-07-09.csv",
+      "size_bytes": 41130043
+    },
+    {
+      "end_date": "2022-07-16 00:00:00+00:00",
+      "mtime_ns": 1783167264000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-07-09_to_2022-07-16.csv",
+      "size_bytes": 44027336
+    },
+    {
+      "end_date": "2022-07-23 00:00:00+00:00",
+      "mtime_ns": 1783167316000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-07-16_to_2022-07-23.csv",
+      "size_bytes": 44109553
+    },
+    {
+      "end_date": "2022-07-30 00:00:00+00:00",
+      "mtime_ns": 1783167368000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-07-23_to_2022-07-30.csv",
+      "size_bytes": 38670958
+    },
+    {
+      "end_date": "2022-08-06 00:00:00+00:00",
+      "mtime_ns": 1783167418000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-07-30_to_2022-08-06.csv",
+      "size_bytes": 38467710
+    },
+    {
+      "end_date": "2022-08-13 00:00:00+00:00",
+      "mtime_ns": 1783167456000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-08-06_to_2022-08-13.csv",
+      "size_bytes": 32985545
+    },
+    {
+      "end_date": "2022-08-20 00:00:00+00:00",
+      "mtime_ns": 1783167498000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-08-13_to_2022-08-20.csv",
+      "size_bytes": 32451302
+    },
+    {
+      "end_date": "2022-08-27 00:00:00+00:00",
+      "mtime_ns": 1783167542000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-08-20_to_2022-08-27.csv",
+      "size_bytes": 35412265
+    },
+    {
+      "end_date": "2022-09-03 00:00:00+00:00",
+      "mtime_ns": 1783167602000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-08-27_to_2022-09-03.csv",
+      "size_bytes": 47595509
+    },
+    {
+      "end_date": "2022-09-10 00:00:00+00:00",
+      "mtime_ns": 1783167654000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-09-03_to_2022-09-10.csv",
+      "size_bytes": 43608616
+    },
+    {
+      "end_date": "2022-09-17 00:00:00+00:00",
+      "mtime_ns": 1783167710000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-09-10_to_2022-09-17.csv",
+      "size_bytes": 44484536
+    },
+    {
+      "end_date": "2022-09-24 00:00:00+00:00",
+      "mtime_ns": 1783167770000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-09-17_to_2022-09-24.csv",
+      "size_bytes": 47495725
+    },
+    {
+      "end_date": "2022-10-01 00:00:00+00:00",
+      "mtime_ns": 1783167850000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-09-24_to_2022-10-01.csv",
+      "size_bytes": 63156318
+    },
+    {
+      "end_date": "2022-10-08 00:00:00+00:00",
+      "mtime_ns": 1783167926000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-10-01_to_2022-10-08.csv",
+      "size_bytes": 57638730
+    },
+    {
+      "end_date": "2022-10-15 00:00:00+00:00",
+      "mtime_ns": 1783168006000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-10-08_to_2022-10-15.csv",
+      "size_bytes": 67074449
+    },
+    {
+      "end_date": "2022-10-22 00:00:00+00:00",
+      "mtime_ns": 1783168090000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-10-15_to_2022-10-22.csv",
+      "size_bytes": 60405061
+    },
+    {
+      "end_date": "2022-10-29 00:00:00+00:00",
+      "mtime_ns": 1783168164000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-10-22_to_2022-10-29.csv",
+      "size_bytes": 56070368
+    },
+    {
+      "end_date": "2022-11-05 00:00:00+00:00",
+      "mtime_ns": 1783168234000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-10-29_to_2022-11-05.csv",
+      "size_bytes": 47469084
+    },
+    {
+      "end_date": "2022-11-12 00:00:00+00:00",
+      "mtime_ns": 1783168284000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-11-05_to_2022-11-12.csv",
+      "size_bytes": 46074863
+    },
+    {
+      "end_date": "2022-11-19 00:00:00+00:00",
+      "mtime_ns": 1783168332000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-11-12_to_2022-11-19.csv",
+      "size_bytes": 44594137
+    },
+    {
+      "end_date": "2022-11-26 00:00:00+00:00",
+      "mtime_ns": 1783168368000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-11-19_to_2022-11-26.csv",
+      "size_bytes": 29192899
+    },
+    {
+      "end_date": "2022-12-03 00:00:00+00:00",
+      "mtime_ns": 1783168420000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-11-26_to_2022-12-03.csv",
+      "size_bytes": 37486858
+    },
+    {
+      "end_date": "2022-12-10 00:00:00+00:00",
+      "mtime_ns": 1783168470000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-12-03_to_2022-12-10.csv",
+      "size_bytes": 37833731
+    },
+    {
+      "end_date": "2022-12-17 00:00:00+00:00",
+      "mtime_ns": 1783168526000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-12-10_to_2022-12-17.csv",
+      "size_bytes": 45042136
+    },
+    {
+      "end_date": "2022-12-24 00:00:00+00:00",
+      "mtime_ns": 1783168562000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-12-17_to_2022-12-24.csv",
+      "size_bytes": 30943863
+    },
+    {
+      "end_date": "2022-12-31 00:00:00+00:00",
+      "mtime_ns": 1783168584000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-12-24_to_2022-12-31.csv",
+      "size_bytes": 23161858
+    },
+    {
+      "end_date": "2023-01-07 00:00:00+00:00",
+      "mtime_ns": 1783168614000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2022-12-31_to_2023-01-07.csv",
+      "size_bytes": 31430164
+    },
+    {
+      "end_date": "2023-01-14 00:00:00+00:00",
+      "mtime_ns": 1783168664000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-01-07_to_2023-01-14.csv",
+      "size_bytes": 32097946
+    },
+    {
+      "end_date": "2023-01-21 00:00:00+00:00",
+      "mtime_ns": 1783168700000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-01-14_to_2023-01-21.csv",
+      "size_bytes": 27397568
+    },
+    {
+      "end_date": "2023-01-28 00:00:00+00:00",
+      "mtime_ns": 1783169494000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-01-21_to_2023-01-28.csv",
+      "size_bytes": 27894692
+    },
+    {
+      "end_date": "2023-02-04 00:00:00+00:00",
+      "mtime_ns": 1783169538000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-01-28_to_2023-02-04.csv",
+      "size_bytes": 34067038
+    },
+    {
+      "end_date": "2023-02-11 00:00:00+00:00",
+      "mtime_ns": 1783169588000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-02-04_to_2023-02-11.csv",
+      "size_bytes": 39579270
+    },
+    {
+      "end_date": "2023-02-18 00:00:00+00:00",
+      "mtime_ns": 1783169628000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-02-11_to_2023-02-18.csv",
+      "size_bytes": 34518558
+    },
+    {
+      "end_date": "2023-02-25 00:00:00+00:00",
+      "mtime_ns": 1783169672000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-02-18_to_2023-02-25.csv",
+      "size_bytes": 31673812
+    },
+    {
+      "end_date": "2023-03-04 00:00:00+00:00",
+      "mtime_ns": 1783169708000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-02-25_to_2023-03-04.csv",
+      "size_bytes": 35287549
+    },
+    {
+      "end_date": "2023-03-11 00:00:00+00:00",
+      "mtime_ns": 1783169750000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-03-04_to_2023-03-11.csv",
+      "size_bytes": 37561796
+    },
+    {
+      "end_date": "2023-03-18 00:00:00+00:00",
+      "mtime_ns": 1783169818000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-03-11_to_2023-03-18.csv",
+      "size_bytes": 60228139
+    },
+    {
+      "end_date": "2023-03-25 00:00:00+00:00",
+      "mtime_ns": 1783169868000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-03-18_to_2023-03-25.csv",
+      "size_bytes": 47766243
+    },
+    {
+      "end_date": "2023-04-01 00:00:00+00:00",
+      "mtime_ns": 1783169898000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-03-25_to_2023-04-01.csv",
+      "size_bytes": 28225016
+    },
+    {
+      "end_date": "2023-04-08 00:00:00+00:00",
+      "mtime_ns": 1783169922000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-04-01_to_2023-04-08.csv",
+      "size_bytes": 22130103
+    },
+    {
+      "end_date": "2023-04-15 00:00:00+00:00",
+      "mtime_ns": 1783169950000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-04-08_to_2023-04-15.csv",
+      "size_bytes": 20164222
+    },
+    {
+      "end_date": "2023-04-22 00:00:00+00:00",
+      "mtime_ns": 1783169976000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-04-15_to_2023-04-22.csv",
+      "size_bytes": 21190124
+    },
+    {
+      "end_date": "2023-04-29 00:00:00+00:00",
+      "mtime_ns": 1783170008000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-04-22_to_2023-04-29.csv",
+      "size_bytes": 25845845
+    },
+    {
+      "end_date": "2023-05-06 00:00:00+00:00",
+      "mtime_ns": 1783170052000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-04-29_to_2023-05-06.csv",
+      "size_bytes": 30035934
+    },
+    {
+      "end_date": "2023-05-13 00:00:00+00:00",
+      "mtime_ns": 1783170082000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-05-06_to_2023-05-13.csv",
+      "size_bytes": 23686703
+    },
+    {
+      "end_date": "2023-05-20 00:00:00+00:00",
+      "mtime_ns": 1783170112000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-05-13_to_2023-05-20.csv",
+      "size_bytes": 22840716
+    },
+    {
+      "end_date": "2023-05-27 00:00:00+00:00",
+      "mtime_ns": 1783170146000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-05-20_to_2023-05-27.csv",
+      "size_bytes": 26604024
+    },
+    {
+      "end_date": "2023-06-03 00:00:00+00:00",
+      "mtime_ns": 1783170178000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-05-27_to_2023-06-03.csv",
+      "size_bytes": 25972679
+    },
+    {
+      "end_date": "2023-06-10 00:00:00+00:00",
+      "mtime_ns": 1783170210000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-06-03_to_2023-06-10.csv",
+      "size_bytes": 24956018
+    },
+    {
+      "end_date": "2023-06-17 00:00:00+00:00",
+      "mtime_ns": 1783170236000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-06-10_to_2023-06-17.csv",
+      "size_bytes": 24985084
+    },
+    {
+      "end_date": "2023-06-24 00:00:00+00:00",
+      "mtime_ns": 1783170258000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-06-17_to_2023-06-24.csv",
+      "size_bytes": 21221324
+    },
+    {
+      "end_date": "2023-07-01 00:00:00+00:00",
+      "mtime_ns": 1783170278000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-06-24_to_2023-07-01.csv",
+      "size_bytes": 19169664
+    },
+    {
+      "end_date": "2023-07-08 00:00:00+00:00",
+      "mtime_ns": 1783170312000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-07-01_to_2023-07-08.csv",
+      "size_bytes": 19746799
+    },
+    {
+      "end_date": "2023-07-15 00:00:00+00:00",
+      "mtime_ns": 1783170338000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-07-08_to_2023-07-15.csv",
+      "size_bytes": 20928904
+    },
+    {
+      "end_date": "2023-07-22 00:00:00+00:00",
+      "mtime_ns": 1783170366000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-07-15_to_2023-07-22.csv",
+      "size_bytes": 20345316
+    },
+    {
+      "end_date": "2023-07-29 00:00:00+00:00",
+      "mtime_ns": 1783170398000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-07-22_to_2023-07-29.csv",
+      "size_bytes": 25751825
+    },
+    {
+      "end_date": "2023-08-05 00:00:00+00:00",
+      "mtime_ns": 1783170434000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-07-29_to_2023-08-05.csv",
+      "size_bytes": 28798315
+    },
+    {
+      "end_date": "2023-08-12 00:00:00+00:00",
+      "mtime_ns": 1783170472000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-08-05_to_2023-08-12.csv",
+      "size_bytes": 30503549
+    },
+    {
+      "end_date": "2023-08-19 00:00:00+00:00",
+      "mtime_ns": 1783170512000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-08-12_to_2023-08-19.csv",
+      "size_bytes": 31881281
+    },
+    {
+      "end_date": "2023-08-26 00:00:00+00:00",
+      "mtime_ns": 1783170546000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-08-19_to_2023-08-26.csv",
+      "size_bytes": 28711217
+    },
+    {
+      "end_date": "2023-09-02 00:00:00+00:00",
+      "mtime_ns": 1783170584000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-08-26_to_2023-09-02.csv",
+      "size_bytes": 27711529
+    },
+    {
+      "end_date": "2023-09-09 00:00:00+00:00",
+      "mtime_ns": 1783170616000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-09-02_to_2023-09-09.csv",
+      "size_bytes": 28178488
+    },
+    {
+      "end_date": "2023-09-16 00:00:00+00:00",
+      "mtime_ns": 1783170654000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-09-09_to_2023-09-16.csv",
+      "size_bytes": 30515273
+    },
+    {
+      "end_date": "2023-09-23 00:00:00+00:00",
+      "mtime_ns": 1783170694000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-09-16_to_2023-09-23.csv",
+      "size_bytes": 31821365
+    },
+    {
+      "end_date": "2023-09-30 00:00:00+00:00",
+      "mtime_ns": 1783170742000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-09-23_to_2023-09-30.csv",
+      "size_bytes": 37163900
+    },
+    {
+      "end_date": "2023-10-07 00:00:00+00:00",
+      "mtime_ns": 1783170802000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-09-30_to_2023-10-07.csv",
+      "size_bytes": 42538508
+    },
+    {
+      "end_date": "2023-10-14 00:00:00+00:00",
+      "mtime_ns": 1783170848000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-10-07_to_2023-10-14.csv",
+      "size_bytes": 33756274
+    },
+    {
+      "end_date": "2023-10-21 00:00:00+00:00",
+      "mtime_ns": 1783170902000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-10-14_to_2023-10-21.csv",
+      "size_bytes": 41508426
+    },
+    {
+      "end_date": "2023-10-28 00:00:00+00:00",
+      "mtime_ns": 1783170980000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-10-21_to_2023-10-28.csv",
+      "size_bytes": 40699338
+    },
+    {
+      "end_date": "2023-11-04 00:00:00+00:00",
+      "mtime_ns": 1783171084000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-10-28_to_2023-11-04.csv",
+      "size_bytes": 32185619
+    },
+    {
+      "end_date": "2023-11-11 00:00:00+00:00",
+      "mtime_ns": 1783171140000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-11-04_to_2023-11-11.csv",
+      "size_bytes": 29005430
+    },
+    {
+      "end_date": "2023-11-18 00:00:00+00:00",
+      "mtime_ns": 1783171170000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-11-11_to_2023-11-18.csv",
+      "size_bytes": 25733795
+    },
+    {
+      "end_date": "2023-11-25 00:00:00+00:00",
+      "mtime_ns": 1783171192000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-11-18_to_2023-11-25.csv",
+      "size_bytes": 17345859
+    },
+    {
+      "end_date": "2023-12-02 00:00:00+00:00",
+      "mtime_ns": 1783171208000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-11-25_to_2023-12-02.csv",
+      "size_bytes": 10777831
+    },
+    {
+      "end_date": "2023-12-09 00:00:00+00:00",
+      "mtime_ns": 1783171222000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-12-02_to_2023-12-09.csv",
+      "size_bytes": 10656115
+    },
+    {
+      "end_date": "2023-12-16 00:00:00+00:00",
+      "mtime_ns": 1783171240000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-12-09_to_2023-12-16.csv",
+      "size_bytes": 12365042
+    },
+    {
+      "end_date": "2023-12-23 00:00:00+00:00",
+      "mtime_ns": 1783171258000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-12-16_to_2023-12-23.csv",
+      "size_bytes": 10934059
+    },
+    {
+      "end_date": "2023-12-30 00:00:00+00:00",
+      "mtime_ns": 1783171264000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-12-23_to_2023-12-30.csv",
+      "size_bytes": 5145658
+    },
+    {
+      "end_date": "2024-01-06 00:00:00+00:00",
+      "mtime_ns": 1783171282000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2023-12-30_to_2024-01-06.csv",
+      "size_bytes": 12421030
+    },
+    {
+      "end_date": "2024-01-13 00:00:00+00:00",
+      "mtime_ns": 1783171304000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-01-06_to_2024-01-13.csv",
+      "size_bytes": 16054444
+    },
+    {
+      "end_date": "2024-01-20 00:00:00+00:00",
+      "mtime_ns": 1783171330000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-01-13_to_2024-01-20.csv",
+      "size_bytes": 16343688
+    },
+    {
+      "end_date": "2024-01-27 00:00:00+00:00",
+      "mtime_ns": 1783171350000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-01-20_to_2024-01-27.csv",
+      "size_bytes": 14241390
+    },
+    {
+      "end_date": "2024-02-03 00:00:00+00:00",
+      "mtime_ns": 1783171370000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-01-27_to_2024-02-03.csv",
+      "size_bytes": 14249807
+    },
+    {
+      "end_date": "2024-02-10 00:00:00+00:00",
+      "mtime_ns": 1783171388000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-02-03_to_2024-02-10.csv",
+      "size_bytes": 12319347
+    },
+    {
+      "end_date": "2024-02-17 00:00:00+00:00",
+      "mtime_ns": 1783171404000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-02-10_to_2024-02-17.csv",
+      "size_bytes": 11961046
+    },
+    {
+      "end_date": "2024-02-24 00:00:00+00:00",
+      "mtime_ns": 1783171420000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-02-17_to_2024-02-24.csv",
+      "size_bytes": 11496625
+    },
+    {
+      "end_date": "2024-03-02 00:00:00+00:00",
+      "mtime_ns": 1783171434000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-02-24_to_2024-03-02.csv",
+      "size_bytes": 10824753
+    },
+    {
+      "end_date": "2024-03-09 00:00:00+00:00",
+      "mtime_ns": 1783171452000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-03-02_to_2024-03-09.csv",
+      "size_bytes": 12429428
+    },
+    {
+      "end_date": "2024-03-16 00:00:00+00:00",
+      "mtime_ns": 1783171468000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-03-09_to_2024-03-16.csv",
+      "size_bytes": 13021204
+    },
+    {
+      "end_date": "2024-03-23 00:00:00+00:00",
+      "mtime_ns": 1783171482000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-03-16_to_2024-03-23.csv",
+      "size_bytes": 11058172
+    },
+    {
+      "end_date": "2024-03-30 00:00:00+00:00",
+      "mtime_ns": 1783171492000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-03-23_to_2024-03-30.csv",
+      "size_bytes": 6790041
+    },
+    {
+      "end_date": "2024-04-06 00:00:00+00:00",
+      "mtime_ns": 1783171510000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-03-30_to_2024-04-06.csv",
+      "size_bytes": 12775086
+    },
+    {
+      "end_date": "2024-04-13 00:00:00+00:00",
+      "mtime_ns": 1783171534000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-04-06_to_2024-04-13.csv",
+      "size_bytes": 15624999
+    },
+    {
+      "end_date": "2024-04-20 00:00:00+00:00",
+      "mtime_ns": 1783171564000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-04-13_to_2024-04-20.csv",
+      "size_bytes": 20317696
+    },
+    {
+      "end_date": "2024-04-27 00:00:00+00:00",
+      "mtime_ns": 1783171586000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-04-20_to_2024-04-27.csv",
+      "size_bytes": 14990828
+    },
+    {
+      "end_date": "2024-05-04 00:00:00+00:00",
+      "mtime_ns": 1783171606000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-04-27_to_2024-05-04.csv",
+      "size_bytes": 14847773
+    },
+    {
+      "end_date": "2024-05-11 00:00:00+00:00",
+      "mtime_ns": 1783171618000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-05-04_to_2024-05-11.csv",
+      "size_bytes": 9739562
+    },
+    {
+      "end_date": "2024-05-18 00:00:00+00:00",
+      "mtime_ns": 1783171630000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-05-11_to_2024-05-18.csv",
+      "size_bytes": 9169304
+    },
+    {
+      "end_date": "2024-05-25 00:00:00+00:00",
+      "mtime_ns": 1783171644000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-05-18_to_2024-05-25.csv",
+      "size_bytes": 8955871
+    },
+    {
+      "end_date": "2024-06-01 00:00:00+00:00",
+      "mtime_ns": 1783171660000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-05-25_to_2024-06-01.csv",
+      "size_bytes": 10306941
+    },
+    {
+      "end_date": "2024-06-08 00:00:00+00:00",
+      "mtime_ns": 1783171678000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-06-01_to_2024-06-08.csv",
+      "size_bytes": 13324919
+    },
+    {
+      "end_date": "2024-06-15 00:00:00+00:00",
+      "mtime_ns": 1783171696000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-06-08_to_2024-06-15.csv",
+      "size_bytes": 12816741
+    },
+    {
+      "end_date": "2024-06-22 00:00:00+00:00",
+      "mtime_ns": 1783171710000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-06-15_to_2024-06-22.csv",
+      "size_bytes": 9723259
+    },
+    {
+      "end_date": "2024-06-29 00:00:00+00:00",
+      "mtime_ns": 1783171722000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-06-22_to_2024-06-29.csv",
+      "size_bytes": 9625058
+    },
+    {
+      "end_date": "2024-07-06 00:00:00+00:00",
+      "mtime_ns": 1783171740000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-06-29_to_2024-07-06.csv",
+      "size_bytes": 8979221
+    },
+    {
+      "end_date": "2024-07-13 00:00:00+00:00",
+      "mtime_ns": 1783171756000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-07-06_to_2024-07-13.csv",
+      "size_bytes": 9889292
+    },
+    {
+      "end_date": "2024-07-20 00:00:00+00:00",
+      "mtime_ns": 1783171772000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-07-13_to_2024-07-20.csv",
+      "size_bytes": 13237685
+    },
+    {
+      "end_date": "2024-07-27 00:00:00+00:00",
+      "mtime_ns": 1783171796000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-07-20_to_2024-07-27.csv",
+      "size_bytes": 17081630
+    },
+    {
+      "end_date": "2024-08-03 00:00:00+00:00",
+      "mtime_ns": 1783171824000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-07-27_to_2024-08-03.csv",
+      "size_bytes": 21187461
+    },
+    {
+      "end_date": "2024-08-10 00:00:00+00:00",
+      "mtime_ns": 1783171860000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-08-03_to_2024-08-10.csv",
+      "size_bytes": 29120317
+    },
+    {
+      "end_date": "2024-08-17 00:00:00+00:00",
+      "mtime_ns": 1783171878000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-08-10_to_2024-08-17.csv",
+      "size_bytes": 14139282
+    },
+    {
+      "end_date": "2024-08-24 00:00:00+00:00",
+      "mtime_ns": 1783171894000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-08-17_to_2024-08-24.csv",
+      "size_bytes": 11916579
+    },
+    {
+      "end_date": "2024-08-31 00:00:00+00:00",
+      "mtime_ns": 1783171914000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-08-24_to_2024-08-31.csv",
+      "size_bytes": 13894662
+    },
+    {
+      "end_date": "2024-09-07 00:00:00+00:00",
+      "mtime_ns": 1783171934000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-08-31_to_2024-09-07.csv",
+      "size_bytes": 16322204
+    },
+    {
+      "end_date": "2024-09-14 00:00:00+00:00",
+      "mtime_ns": 1783171956000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-09-07_to_2024-09-14.csv",
+      "size_bytes": 17676124
+    },
+    {
+      "end_date": "2024-09-21 00:00:00+00:00",
+      "mtime_ns": 1783171972000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-09-14_to_2024-09-21.csv",
+      "size_bytes": 15664176
+    },
+    {
+      "end_date": "2024-09-28 00:00:00+00:00",
+      "mtime_ns": 1783171988000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-09-21_to_2024-09-28.csv",
+      "size_bytes": 14276688
+    },
+    {
+      "end_date": "2024-10-05 00:00:00+00:00",
+      "mtime_ns": 1783172010000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-09-28_to_2024-10-05.csv",
+      "size_bytes": 17451558
+    },
+    {
+      "end_date": "2024-10-12 00:00:00+00:00",
+      "mtime_ns": 1783172034000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-10-05_to_2024-10-12.csv",
+      "size_bytes": 13960037
+    },
+    {
+      "end_date": "2024-10-19 00:00:00+00:00",
+      "mtime_ns": 1783172046000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-10-12_to_2024-10-19.csv",
+      "size_bytes": 9454225
+    },
+    {
+      "end_date": "2024-10-26 00:00:00+00:00",
+      "mtime_ns": 1783172060000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-10-19_to_2024-10-26.csv",
+      "size_bytes": 11626703
+    },
+    {
+      "end_date": "2024-11-02 00:00:00+00:00",
+      "mtime_ns": 1783172076000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-10-26_to_2024-11-02.csv",
+      "size_bytes": 15088591
+    },
+    {
+      "end_date": "2024-11-09 00:00:00+00:00",
+      "mtime_ns": 1783172098000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-11-02_to_2024-11-09.csv",
+      "size_bytes": 15167023
+    },
+    {
+      "end_date": "2024-11-16 00:00:00+00:00",
+      "mtime_ns": 1783172118000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-11-09_to_2024-11-16.csv",
+      "size_bytes": 14873066
+    },
+    {
+      "end_date": "2024-11-23 00:00:00+00:00",
+      "mtime_ns": 1783172138000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-11-16_to_2024-11-23.csv",
+      "size_bytes": 17482008
+    },
+    {
+      "end_date": "2024-11-30 00:00:00+00:00",
+      "mtime_ns": 1783172154000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-11-23_to_2024-11-30.csv",
+      "size_bytes": 13346030
+    },
+    {
+      "end_date": "2024-12-07 00:00:00+00:00",
+      "mtime_ns": 1783172170000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-11-30_to_2024-12-07.csv",
+      "size_bytes": 12711435
+    },
+    {
+      "end_date": "2024-12-14 00:00:00+00:00",
+      "mtime_ns": 1783172188000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-12-07_to_2024-12-14.csv",
+      "size_bytes": 11712585
+    },
+    {
+      "end_date": "2024-12-21 00:00:00+00:00",
+      "mtime_ns": 1783172204000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-12-14_to_2024-12-21.csv",
+      "size_bytes": 13633037
+    },
+    {
+      "end_date": "2024-12-28 00:00:00+00:00",
+      "mtime_ns": 1783172216000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-12-21_to_2024-12-28.csv",
+      "size_bytes": 8860098
+    },
+    {
+      "end_date": "2025-01-04 00:00:00+00:00",
+      "mtime_ns": 1783172234000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2024-12-28_to_2025-01-04.csv",
+      "size_bytes": 12717966
+    },
+    {
+      "end_date": "2025-01-11 00:00:00+00:00",
+      "mtime_ns": 1783172252000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-01-04_to_2025-01-11.csv",
+      "size_bytes": 13275364
+    },
+    {
+      "end_date": "2025-01-18 00:00:00+00:00",
+      "mtime_ns": 1783172264000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-01-11_to_2025-01-18.csv",
+      "size_bytes": 11577995
+    },
+    {
+      "end_date": "2025-01-25 00:00:00+00:00",
+      "mtime_ns": 1783172276000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-01-18_to_2025-01-25.csv",
+      "size_bytes": 8945947
+    },
+    {
+      "end_date": "2025-02-01 00:00:00+00:00",
+      "mtime_ns": 1783172292000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-01-25_to_2025-02-01.csv",
+      "size_bytes": 13345306
+    },
+    {
+      "end_date": "2025-02-08 00:00:00+00:00",
+      "mtime_ns": 1783172306000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-02-01_to_2025-02-08.csv",
+      "size_bytes": 15071411
+    },
+    {
+      "end_date": "2025-02-15 00:00:00+00:00",
+      "mtime_ns": 1783172322000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-02-08_to_2025-02-15.csv",
+      "size_bytes": 11952809
+    },
+    {
+      "end_date": "2025-02-22 00:00:00+00:00",
+      "mtime_ns": 1783172334000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-02-15_to_2025-02-22.csv",
+      "size_bytes": 11515212
+    },
+    {
+      "end_date": "2025-03-01 00:00:00+00:00",
+      "mtime_ns": 1783172354000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-02-22_to_2025-03-01.csv",
+      "size_bytes": 19654679
+    },
+    {
+      "end_date": "2025-03-08 00:00:00+00:00",
+      "mtime_ns": 1783172388000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-03-01_to_2025-03-08.csv",
+      "size_bytes": 31336031
+    },
+    {
+      "end_date": "2025-03-15 00:00:00+00:00",
+      "mtime_ns": 1783172410000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-03-08_to_2025-03-15.csv",
+      "size_bytes": 21594689
+    },
+    {
+      "end_date": "2025-03-22 00:00:00+00:00",
+      "mtime_ns": 1783172426000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-03-15_to_2025-03-22.csv",
+      "size_bytes": 17369738
+    },
+    {
+      "end_date": "2025-03-29 00:00:00+00:00",
+      "mtime_ns": 1783172448000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-03-22_to_2025-03-29.csv",
+      "size_bytes": 21942788
+    },
+    {
+      "end_date": "2025-04-05 00:00:00+00:00",
+      "mtime_ns": 1783172576000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-03-29_to_2025-04-05.csv",
+      "size_bytes": 30443861
+    },
+    {
+      "end_date": "2025-04-12 00:00:00+00:00",
+      "mtime_ns": 1783172642000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-04-05_to_2025-04-12.csv",
+      "size_bytes": 25324683
+    },
+    {
+      "end_date": "2025-04-19 00:00:00+00:00",
+      "mtime_ns": 1783172678000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-04-12_to_2025-04-19.csv",
+      "size_bytes": 16414961
+    },
+    {
+      "end_date": "2025-04-26 00:00:00+00:00",
+      "mtime_ns": 1783172712000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-04-19_to_2025-04-26.csv",
+      "size_bytes": 24882740
+    },
+    {
+      "end_date": "2025-05-03 00:00:00+00:00",
+      "mtime_ns": 1783172752000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-04-26_to_2025-05-03.csv",
+      "size_bytes": 23515195
+    },
+    {
+      "end_date": "2025-05-10 00:00:00+00:00",
+      "mtime_ns": 1783172812000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-05-03_to_2025-05-10.csv",
+      "size_bytes": 20186425
+    },
+    {
+      "end_date": "2025-05-17 00:00:00+00:00",
+      "mtime_ns": 1783172852000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-05-10_to_2025-05-17.csv",
+      "size_bytes": 17985575
+    },
+    {
+      "end_date": "2025-05-24 00:00:00+00:00",
+      "mtime_ns": 1783172890000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-05-17_to_2025-05-24.csv",
+      "size_bytes": 18975825
+    },
+    {
+      "end_date": "2025-05-31 00:00:00+00:00",
+      "mtime_ns": 1783172932000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-05-24_to_2025-05-31.csv",
+      "size_bytes": 17583470
+    },
+    {
+      "end_date": "2025-06-07 00:00:00+00:00",
+      "mtime_ns": 1783172974000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-05-31_to_2025-06-07.csv",
+      "size_bytes": 19502512
+    },
+    {
+      "end_date": "2025-06-14 00:00:00+00:00",
+      "mtime_ns": 1783173008000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-06-07_to_2025-06-14.csv",
+      "size_bytes": 17890304
+    },
+    {
+      "end_date": "2025-06-21 00:00:00+00:00",
+      "mtime_ns": 1783173038000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-06-14_to_2025-06-21.csv",
+      "size_bytes": 18974705
+    },
+    {
+      "end_date": "2025-06-28 00:00:00+00:00",
+      "mtime_ns": 1783173062000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-06-21_to_2025-06-28.csv",
+      "size_bytes": 16359848
+    },
+    {
+      "end_date": "2025-07-05 00:00:00+00:00",
+      "mtime_ns": 1783173084000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-06-28_to_2025-07-05.csv",
+      "size_bytes": 13062318
+    },
+    {
+      "end_date": "2025-07-12 00:00:00+00:00",
+      "mtime_ns": 1783173106000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-07-05_to_2025-07-12.csv",
+      "size_bytes": 15591403
+    },
+    {
+      "end_date": "2025-07-19 00:00:00+00:00",
+      "mtime_ns": 1783173128000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-07-12_to_2025-07-19.csv",
+      "size_bytes": 14497977
+    },
+    {
+      "end_date": "2025-07-26 00:00:00+00:00",
+      "mtime_ns": 1783173154000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-07-19_to_2025-07-26.csv",
+      "size_bytes": 15932212
+    },
+    {
+      "end_date": "2025-08-02 00:00:00+00:00",
+      "mtime_ns": 1783173184000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-07-26_to_2025-08-02.csv",
+      "size_bytes": 18979894
+    },
+    {
+      "end_date": "2025-08-09 00:00:00+00:00",
+      "mtime_ns": 1783173210000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-08-02_to_2025-08-09.csv",
+      "size_bytes": 17018332
+    },
+    {
+      "end_date": "2025-08-16 00:00:00+00:00",
+      "mtime_ns": 1783173230000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-08-09_to_2025-08-16.csv",
+      "size_bytes": 13429420
+    },
+    {
+      "end_date": "2025-08-23 00:00:00+00:00",
+      "mtime_ns": 1783173250000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-08-16_to_2025-08-23.csv",
+      "size_bytes": 12009475
+    },
+    {
+      "end_date": "2025-08-30 00:00:00+00:00",
+      "mtime_ns": 1783173268000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-08-23_to_2025-08-30.csv",
+      "size_bytes": 11882433
+    },
+    {
+      "end_date": "2025-09-06 00:00:00+00:00",
+      "mtime_ns": 1783173288000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-08-30_to_2025-09-06.csv",
+      "size_bytes": 14758684
+    },
+    {
+      "end_date": "2025-09-13 00:00:00+00:00",
+      "mtime_ns": 1783173308000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-09-06_to_2025-09-13.csv",
+      "size_bytes": 13272130
+    },
+    {
+      "end_date": "2025-09-20 00:00:00+00:00",
+      "mtime_ns": 1783173330000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-09-13_to_2025-09-20.csv",
+      "size_bytes": 15328820
+    },
+    {
+      "end_date": "2025-09-27 00:00:00+00:00",
+      "mtime_ns": 1783173354000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-09-20_to_2025-09-27.csv",
+      "size_bytes": 15570589
+    },
+    {
+      "end_date": "2025-10-04 00:00:00+00:00",
+      "mtime_ns": 1783173372000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-09-27_to_2025-10-04.csv",
+      "size_bytes": 14459984
+    },
+    {
+      "end_date": "2025-10-11 00:00:00+00:00",
+      "mtime_ns": 1783173390000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-10-04_to_2025-10-11.csv",
+      "size_bytes": 14380323
+    },
+    {
+      "end_date": "2025-10-18 00:00:00+00:00",
+      "mtime_ns": 1783173418000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-10-11_to_2025-10-18.csv",
+      "size_bytes": 24207524
+    },
+    {
+      "end_date": "2025-10-25 00:00:00+00:00",
+      "mtime_ns": 1783173438000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-10-18_to_2025-10-25.csv",
+      "size_bytes": 15106619
+    },
+    {
+      "end_date": "2025-11-01 00:00:00+00:00",
+      "mtime_ns": 1783173474000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-10-25_to_2025-11-01.csv",
+      "size_bytes": 16456911
+    },
+    {
+      "end_date": "2025-11-08 00:00:00+00:00",
+      "mtime_ns": 1783173518000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-11-01_to_2025-11-08.csv",
+      "size_bytes": 19133160
+    },
+    {
+      "end_date": "2025-11-15 00:00:00+00:00",
+      "mtime_ns": 1783173546000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-11-08_to_2025-11-15.csv",
+      "size_bytes": 18937593
+    },
+    {
+      "end_date": "2025-11-22 00:00:00+00:00",
+      "mtime_ns": 1783173588000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-11-15_to_2025-11-22.csv",
+      "size_bytes": 28357470
+    },
+    {
+      "end_date": "2025-11-29 00:00:00+00:00",
+      "mtime_ns": 1783173608000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-11-22_to_2025-11-29.csv",
+      "size_bytes": 14983795
+    },
+    {
+      "end_date": "2025-12-06 00:00:00+00:00",
+      "mtime_ns": 1783173632000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-11-29_to_2025-12-06.csv",
+      "size_bytes": 15286938
+    },
+    {
+      "end_date": "2025-12-13 00:00:00+00:00",
+      "mtime_ns": 1783173656000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-12-06_to_2025-12-13.csv",
+      "size_bytes": 15735826
+    },
+    {
+      "end_date": "2025-12-20 00:00:00+00:00",
+      "mtime_ns": 1783173684000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-12-13_to_2025-12-20.csv",
+      "size_bytes": 17797259
+    },
+    {
+      "end_date": "2025-12-27 00:00:00+00:00",
+      "mtime_ns": 1783173696000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-12-20_to_2025-12-27.csv",
+      "size_bytes": 6273898
+    },
+    {
+      "end_date": "2026-01-03 00:00:00+00:00",
+      "mtime_ns": 1783173710000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2025-12-27_to_2026-01-03.csv",
+      "size_bytes": 9817424
+    },
+    {
+      "end_date": "2026-01-10 00:00:00+00:00",
+      "mtime_ns": 1783173730000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-01-03_to_2026-01-10.csv",
+      "size_bytes": 14380535
+    },
+    {
+      "end_date": "2026-01-17 00:00:00+00:00",
+      "mtime_ns": 1783173752000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-01-10_to_2026-01-17.csv",
+      "size_bytes": 12015462
+    },
+    {
+      "end_date": "2026-01-24 00:00:00+00:00",
+      "mtime_ns": 1783173780000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-01-17_to_2026-01-24.csv",
+      "size_bytes": 19906252
+    },
+    {
+      "end_date": "2026-01-31 00:00:00+00:00",
+      "mtime_ns": 1783173802000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-01-24_to_2026-01-31.csv",
+      "size_bytes": 20940487
+    },
+    {
+      "end_date": "2026-02-07 00:00:00+00:00",
+      "mtime_ns": 1783173836000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-01-31_to_2026-02-07.csv",
+      "size_bytes": 29457818
+    },
+    {
+      "end_date": "2026-02-14 00:00:00+00:00",
+      "mtime_ns": 1783173880000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-02-07_to_2026-02-14.csv",
+      "size_bytes": 23744649
+    },
+    {
+      "end_date": "2026-02-21 00:00:00+00:00",
+      "mtime_ns": 1783173918000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-02-14_to_2026-02-21.csv",
+      "size_bytes": 18229701
+    },
+    {
+      "end_date": "2026-02-28 00:00:00+00:00",
+      "mtime_ns": 1783173944000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-02-21_to_2026-02-28.csv",
+      "size_bytes": 22706281
+    },
+    {
+      "end_date": "2026-03-07 00:00:00+00:00",
+      "mtime_ns": 1783174002000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-02-28_to_2026-03-07.csv",
+      "size_bytes": 45130428
+    },
+    {
+      "end_date": "2026-03-14 00:00:00+00:00",
+      "mtime_ns": 1783174058000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-03-07_to_2026-03-14.csv",
+      "size_bytes": 41643968
+    },
+    {
+      "end_date": "2026-03-21 00:00:00+00:00",
+      "mtime_ns": 1783174110000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-03-14_to_2026-03-21.csv",
+      "size_bytes": 33998089
+    },
+    {
+      "end_date": "2026-03-28 00:00:00+00:00",
+      "mtime_ns": 1783174162000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-03-21_to_2026-03-28.csv",
+      "size_bytes": 42790613
+    },
+    {
+      "end_date": "2026-04-04 00:00:00+00:00",
+      "mtime_ns": 1783174210000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-03-28_to_2026-04-04.csv",
+      "size_bytes": 32213314
+    },
+    {
+      "end_date": "2026-04-11 00:00:00+00:00",
+      "mtime_ns": 1783174262000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-04-04_to_2026-04-11.csv",
+      "size_bytes": 33157903
+    },
+    {
+      "end_date": "2026-04-18 00:00:00+00:00",
+      "mtime_ns": 1783174290000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-04-11_to_2026-04-18.csv",
+      "size_bytes": 22374414
+    },
+    {
+      "end_date": "2026-04-25 00:00:00+00:00",
+      "mtime_ns": 1783174332000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-04-18_to_2026-04-25.csv",
+      "size_bytes": 31829855
+    },
+    {
+      "end_date": "2026-05-02 00:00:00+00:00",
+      "mtime_ns": 1783174376000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-04-25_to_2026-05-02.csv",
+      "size_bytes": 29647090
+    },
+    {
+      "end_date": "2026-05-09 00:00:00+00:00",
+      "mtime_ns": 1783174422000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-05-02_to_2026-05-09.csv",
+      "size_bytes": 35136374
+    },
+    {
+      "end_date": "2026-05-16 00:00:00+00:00",
+      "mtime_ns": 1783174468000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-05-09_to_2026-05-16.csv",
+      "size_bytes": 32069440
+    },
+    {
+      "end_date": "2026-05-23 00:00:00+00:00",
+      "mtime_ns": 1783174516000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-05-16_to_2026-05-23.csv",
+      "size_bytes": 37873587
+    },
+    {
+      "end_date": "2026-05-30 00:00:00+00:00",
+      "mtime_ns": 1783174546000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-05-23_to_2026-05-30.csv",
+      "size_bytes": 23065454
+    },
+    {
+      "end_date": "2026-06-06 00:00:00+00:00",
+      "mtime_ns": 1783174598000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-05-30_to_2026-06-06.csv",
+      "size_bytes": 38554468
+    },
+    {
+      "end_date": "2026-06-13 00:00:00+00:00",
+      "mtime_ns": 1783174678000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-06-06_to_2026-06-13.csv",
+      "size_bytes": 58411557
+    },
+    {
+      "end_date": "2026-06-20 00:00:00+00:00",
+      "mtime_ns": 1783174744000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-06-13_to_2026-06-20.csv",
+      "size_bytes": 56170096
+    },
+    {
+      "end_date": "2026-06-27 00:00:00+00:00",
+      "mtime_ns": 1783174826000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-06-20_to_2026-06-27.csv",
+      "size_bytes": 61101275
+    },
+    {
+      "end_date": "2026-07-04 00:00:00+00:00",
+      "mtime_ns": 1783174892000000000,
+      "path": "assets/DAX/curated/ticks/dax_ticks_2026-06-27_to_2026-07-04.csv",
+      "size_bytes": 47335155
+    }
+  ],
+  "tick_catalog_metadata_digest": "3758b6160eca5cfa4ee7110ed98799934453d1bbfc6701739279d46282021eb1",
+  "tick_provenance_level": "metadata_signature_only",
+  "trade_geometry": {
+    "barrier_contract": "pt_price_above_entry_sl_price_below_entry",
+    "barrier_reference": "Event_Vol",
+    "barrier_reference_units": "return_fraction",
+    "calendar_time": true,
+    "entry_timing": "after_closed_proxy_information_bar",
+    "geometry_contract_version": "trade_geometry_v1",
+    "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+    "pt_multiplier": 2.0,
+    "reward_risk_ratio": 2.0,
+    "sl_multiplier": 1.0,
+    "tick_resolution_price": "mid",
+    "tie_policy": "sl_first",
+    "vertical_horizon_bars": 1000,
+    "vertical_horizon_hours": 24.0
+  },
+  "training_authority": "AUDIT_ONLY_TASK2A_NOT_YET_AUTHORIZED",
+  "unresolved_count": 0,
+  "unresolved_target_policy": "NO_LABEL_ASSIGNED. Task 2A does not coerce stale/no-entry/data-gap/right-censored rows to 0 or to a loss. AFML/MLAM do not define these Quantara execution/data semantics; Task 2B must freeze the universal population rule first."
+}

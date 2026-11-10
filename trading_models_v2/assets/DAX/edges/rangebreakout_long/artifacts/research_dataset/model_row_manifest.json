@@ -1,0 +1,66 @@
+{
+  "barrier_hit_distribution": {
+    "pt": 0.20754716981132076,
+    "sl": 0.3623499142367067,
+    "vertical": 0.43010291595197253
+  },
+  "economic_meta_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+  "edge_id": "DAX/rangebreakout_long",
+  "fallback_tie_policy": "sl_first",
+  "feature_count": 187,
+  "feature_nan_rows_dropped": 67,
+  "labeling_stats": {
+    "ambiguous_same_bar_count": 0,
+    "events_dropped_horizon": 0,
+    "events_dropped_invalid_target": 0,
+    "events_dropped_missing_timestamp": 0,
+    "events_labeled": 2399,
+    "events_seen": 2399,
+    "fallback_resolved_count": 0,
+    "tick_resolved_count": 0
+  },
+  "live_scoring_must_not_use_label_columns": true,
+  "long_barrier_contract": "pt_price_above_entry_sl_price_below_entry",
+  "meta_label_distribution": {
+    "0": 0.4879931389365352,
+    "1": 0.5120068610634648
+  },
+  "meta_label_semantics": "1 iff realized_r > 0.0; else 0",
+  "notes": [
+    "Labels are research/model-row outputs only, not live candidate-event fields.",
+    "1R target is Event_Vol from the clock-trigger event row.",
+    "Every T30 trigger is a long.",
+    "Same-bar PT/SL ambiguity is resolved with raw tick MID path where available, matching V1.",
+    "Canonical Quantara V3 meta_label is economic: 1 iff realized_r > 0.0. PT-hit identity is preserved separately in pt_hit_label."
+  ],
+  "primary_side_rule": "hourly (on the hour, UTC), the last close above the max hourly close of the 10 days before the last full hour (new 10-day closing high) -> LONG",
+  "pt_hit_label_distribution": {
+    "0": 0.7924528301886793,
+    "1": 0.20754716981132076
+  },
+  "pt_hit_label_semantics": "1 iff barrier_hit == 'pt'; else 0",
+  "pt_multiplier": 2.0,
+  "required_rows_dropped": 0,
+  "resolution_source_distribution": {
+    "ohlc": 0.5698970840480274,
+    "vertical": 0.43010291595197253
+  },
+  "row_builder": "rangebreakout_long_v1_1r_triple_barrier_model_rows",
+  "rows_after_feature_nan_filter": 2332,
+  "rows_after_required_filter": 2399,
+  "rows_candidate_events_input": 2399,
+  "rows_labeled_events": 2399,
+  "side_value": 1,
+  "sl_multiplier": 1.0,
+  "tick_resolution_price": "mid",
+  "uses_future_information_for_labels": true,
+  "vertical_exit_economics": {
+    "count": 1003,
+    "mean_realized_r": 0.3883667152222262,
+    "median_realized_r": 0.3564273139190485,
+    "positive_count": 710,
+    "positive_rate_within_vertical": 0.707876370887338,
+    "rate": 0.43010291595197253
+  },
+  "vertical_horizon_hours": 24.0
+}

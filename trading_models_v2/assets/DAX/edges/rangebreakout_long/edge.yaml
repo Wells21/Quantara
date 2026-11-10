@@ -1,0 +1,96 @@
+schema_version: v2.1
+edge_id: DAX/rangebreakout_long
+asset: DAX
+family: rangebreakout
+side_name: long
+side_value: 1
+edge_stem: dax_rangebreakout_long
+status: deployability_pass
+runtime_py: runtime.py
+
+bar_contract:
+ bar_type: standard_quote_tick
+ threshold_unit: ticks
+ proxy_value_policy: backward_compatible_tick_count_only
+
+alpha_contract:
+ candidate_event_generator: rangebreakout_long_v1_t30_clock_trigger
+ primary_side_rule: "hourly (on the hour, UTC), the last close above the max hourly close of the 10 days before the last full hour (new 10-day closing high) -> LONG"
+ edge_specific_features_allowed: false
+ requires_ffd: true
+ requires_regime: true
+
+labeling:
+ row_builder: rangebreakout_long_v1_1r_triple_barrier_model_rows
+ vertical_horizon: 1000  # legacy bar-count field required by the edge.yaml contract; labels use vertical_horizon_hours
+ vertical_horizon_hours: 24.0  # LOCKED 2026-11-10 Gate C winner H8_E150_V24_PT2_SL1 (full history era-scaled +0.161 R; PBO 0.044, Prob 0.010; DSR 1.000; stress +0.156 R; 2022+ +0.149 R)
+ pt_multiplier: 2.0
+ sl_multiplier: 1.0
+ tie_policy: sl_first
+ tick_resolution_price: mid
+ long_barrier_contract: pt_price_above_entry_sl_price_below_entry
+ live_scoring_must_not_use_label_columns: true
+
+research:
+ cv: combinatorial_purged_cv
+ n_folds: 5
+ n_test_folds: 2
+ manual_embargo_size: 100
+ weights: class_weight_mode_x_event_vol_x_average_uniqueness
+
+probability:
+ flow: raw_probability -> sigmoid calibrated_probability -> AFML bet size -> calibrated-threshold decision
+ final_edge_threshold_space: calibrated_probability
+ final_live_threshold_source: allocator_live_manifest
+
+runtime_contract:
+ required_functions:
+   - load_contract
+   - validate_environment
+   - build_features
+   - generate_candidate_events
+   - build_model_rows
+   - load_model
+   - load_calibrator
+   - score
+   - explain_missing_features
+ dashboard_may_call:
+   - validate_environment
+   - build_features
+   - generate_candidate_events
+   - build_model_rows
+   - score
+ dashboard_must_not_compute_features: true
+
+notes:
+ - DAX/rangebreakout_long is the T30 long (Gate 0 PASS under D090 2026-11-10 (prospective card T30, test 43)).
+ - Trigger: hourly (on the hour, UTC), the last close above the max hourly close of the 10 days before the last full hour (new 10-day closing high) -> LONG. Implementation shared/edges/thesis_triggers.py (Gate 0 parity IDENTICAL).
+ - Session_*, Clock_Signal and Event_Vol are event/control/context fields, not model-input schema features; the generic feature_schema.json is copied verbatim.
+ - Geometry LOCKED 2026-11-10: H8_E150_V24_PT2_SL1 (LOCKED 2026-11-10 Gate C winner H8_E150_V24_PT2_SL1 (full history era-scaled +0.161 R; PBO 0.044, Prob 0.010; DSR 1.000; stress +0.156 R; 2022+ +0.149 R)).
+
+# Thesis card -- AFML Ch.1 s.1.3.1.3 (p.7) strategist station; QUANTARA_MLDP_DOCTRINE principle 1.
+thesis:
+  schema_version: "thesis_card_v1"
+  written_utc: "2026-11-10"
+  provenance: "pre_registered"
+  review_status: "gate0_d090_pass_2026-11-10 (owner standing search order)"
+  card: "docs/mldp/campaign/NASDAQ_2026-11/T30_trading_range_breakout/PREREGISTRATION.md"
+  trigger_summary: "LONG: hourly (on the hour, UTC), the last close above the max hourly close of the 10 days before the last full hour (new 10-day closing high) -> LONG; locked H8_E150_V24_PT2_SL1."
+  mechanism: "Trend-following funds enter on trading-range breakouts; the break of the recent range continues (Brock, Lakonishok and LeBaron 1992 JF)."
+  who_loses_and_why: "Range traders and mean-reversion liquidity providers who sell the top (buy the bottom) of the recent range and are run over by systematic trend-following flow."
+  regimes:
+    should_work:
+      - "trending regimes with large CTA participation"
+    should_fail:
+      - "choppy range-bound regimes (false breaks) and one-off news gaps"
+  counterfactuals:
+    C1:
+      statement: "Drift-neutral C1: the same long in the upper half of the 10-day range without a break should do worse."
+      test: "gate0_tool T30 C1 (D090 verdict file beside the card)."
+  falsifiers:
+    F1:
+      statement: "The post-Gate C D090 re-check fails at the locked cell."
+      test: "gate0_tool GATE0_CELL + gate0_verdict_d090.py."
+    F2:
+      statement: "Live per-bet results fail the decommission rule for a sustained period."
+      test: "decommission rule on live realized bets."
