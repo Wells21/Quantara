@@ -1,0 +1,58 @@
+NASDAQ {"LONG": {"drift_month_matched": [0.01552, false]}, "SHORT": {"drift_month_matched": [0.01188, false]}} 1.2
+US500 {"LONG": {"drift_month_matched": [0.01838, false]}, "SHORT": {"drift_month_matched": [0.08904, false]}} 2.3
+DAX {"LONG": {"drift_month_matched": [0.03553, false]}, "SHORT": {"drift_month_matched": [0.00953, false]}} 3.4
+JPN {"LONG": {"drift_month_matched": [0.01226, false]}, "SHORT": {"drift_month_matched": [0.05363, false]}} 4.6
+HK {"LONG": {"drift_month_matched": [0.07018, false]}, "SHORT": {"drift_month_matched": [0.01292, false]}} 5.6
+XAUUSD {"LONG": {"drift_month_matched": [0.03686, false]}, "SHORT": {"drift_month_matched": [-0.02013, false]}} 7.5
+GBPJPY {"LONG": {"drift_month_matched": [0.03624, false]}, "SHORT": {"drift_month_matched": [0.04523, false]}} 8.8
+USDMXN {"LONG": {"drift_month_matched": [0.04989, false]}, "SHORT": {"drift_month_matched": [-0.01561, false]}} 10.2
+USOIL {"LONG": {"drift_month_matched": [0.12033, false]}, "SHORT": {"drift_month_matched": [0.00307, false]}} 11.0
+BTCUSD {"LONG": {"drift_month_matched": [-0.08082, false]}, "SHORT": {"drift_month_matched": [-0.03174, false]}} 12.0
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 5874,
+   "drift_month_matched": {
+    "diff": 0.02869,
+    "se": 0.01964,
+    "lower_bound_1p645": -0.00362,
+    "PASS": false,
+    "lower_bound_tiered": 0.00355,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.0473,
+     "se": 0.02517,
+     "lower_bound_1p645": 0.0059,
+     "PASS": true,
+     "n": 2494
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 6886,
+   "drift_month_matched": {
+    "diff": 0.01686,
+    "se": 0.01754,
+    "lower_bound_1p645": -0.01199,
+    "PASS": false,
+    "lower_bound_tiered": -0.01199,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.00814,
+     "se": 0.02144,
+     "lower_bound_1p645": -0.02713,
+     "PASS": false,
+     "n": 3191
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}

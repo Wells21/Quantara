@@ -1,0 +1,58 @@
+NASDAQ {"LONG": {"drift_month_matched": [0.01087, false]}, "SHORT": {"drift_month_matched": [-0.00864, false]}} 1.4
+US500 {"LONG": {"drift_month_matched": [0.03248, false]}, "SHORT": {"drift_month_matched": [0.0986, true]}} 2.6
+DAX {"LONG": {"drift_month_matched": [0.05037, false]}, "SHORT": {"drift_month_matched": [0.01174, false]}} 3.9
+JPN {"LONG": {"drift_month_matched": [0.049, false]}, "SHORT": {"drift_month_matched": [0.03732, false]}} 5.2
+HK {"LONG": {"drift_month_matched": [0.06356, false]}, "SHORT": {"drift_month_matched": [0.02492, false]}} 6.4
+XAUUSD {"LONG": {"drift_month_matched": [0.0218, false]}, "SHORT": {"drift_month_matched": [0.0006, false]}} 9.2
+GBPJPY {"LONG": {"drift_month_matched": [0.03584, false]}, "SHORT": {"drift_month_matched": [0.04968, false]}} 10.8
+USDMXN {"LONG": {"drift_month_matched": [0.03021, false]}, "SHORT": {"drift_month_matched": [0.02253, false]}} 12.3
+USOIL {"LONG": {"drift_month_matched": [0.0852, false]}, "SHORT": {"drift_month_matched": [0.0422, false]}} 13.2
+BTCUSD {"LONG": {"drift_month_matched": [-0.063, false]}, "SHORT": {"drift_month_matched": [0.00832, false]}} 14.5
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 11182,
+   "drift_month_matched": {
+    "diff": 0.02951,
+    "se": 0.01425,
+    "lower_bound_1p645": 0.00608,
+    "PASS": true,
+    "lower_bound_tiered": 0.01127,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.03176,
+     "se": 0.01801,
+     "lower_bound_1p645": 0.00212,
+     "PASS": true,
+     "n": 4846
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 13220,
+   "drift_month_matched": {
+    "diff": 0.0249,
+    "se": 0.01253,
+    "lower_bound_1p645": 0.00429,
+    "PASS": true,
+    "lower_bound_tiered": 0.00429,
+    "PASS_tiered": true
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.01732,
+     "se": 0.01593,
+     "lower_bound_1p645": -0.00889,
+     "PASS": false,
+     "n": 6042
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}

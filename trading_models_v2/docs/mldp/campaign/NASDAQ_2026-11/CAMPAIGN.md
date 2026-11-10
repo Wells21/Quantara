@@ -156,3 +156,4 @@ D092 PBO: XAUUSD/roundlevelcascade_short PBO 0.351, Prob 0.379 -> PASS; lock H4_
 T30 Gate C (full, era-scaled): JPN/rangebreakout_long 3/120 > 0 (best +0.017 R); 2022+ 75/120 (best +0.100) -> PBO.
 T30 PBO: JPN/rangebreakout_long PBO 0.031, Prob[OOS<=0] 0.633 -> KILLED_PBO, archived.
 D092 post-PBO: XAUUSD/roundlevelcascade_short DSR 0.559 (PSR 0.915, E[K] 8) -> KILLED_DSR, archived. D092 re-read batch closed: 1 survivor (DAX/closehedgingflow_long, lifecycle running).
+| T31 | failed 5-day range breakout (trapped breakout traders), all 10 assets, aimed at shorts | long + short | H4_E150_V24 | Gate 0 FAIL 2026-11-10 (test 44), every asset and side (best SHORT: US500 z 2.07 but 1.80/wk; XAUUSD 0.94; most shorts <= 0.9) |
