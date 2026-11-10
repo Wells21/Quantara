@@ -278,6 +278,26 @@ def t29(ts, close, side):
     return f[["pos", "ref_ns", "signal"]].reset_index(drop=True)
 
 
+T32_DAYS, T32_Z = "5D", 1.5
+
+
+def t32(ts, close, side):
+    """T32 overextension reversal (gate0_tool.t32_events): hourly close z vs the prior 5 days' mean / std; SHORT at the
+    first cross up through +1.5, LONG at the first cross down through -1.5; entry = first bar at or after the hour end."""
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    z = (hc - hc.rolling(T32_DAYS, closed="left").mean()) / hc.rolling(T32_DAYS, closed="left").std()
+    z = z[(hc.index >= hc.index[0] + pd.Timedelta(T32_DAYS)) & np.isfinite(z.to_numpy())]
+    prev = z.shift(1)
+    mask = ((z <= -T32_Z) & (prev > -T32_Z)) if side == 1 else ((z >= T32_Z) & (prev < T32_Z))
+    sel = z.index[mask.to_numpy()]
+    t = sel.asi8 if hasattr(sel, "asi8") else sel.view("int64")
+    pb, pe = _at_or_before(ts, t), _at_or_after(ts, t)
+    ok = (pb >= 0) & (pe >= 0)
+    f = pd.DataFrame({"pos": pe[ok], "ref_ns": t[ok], "signal": z.to_numpy()[mask.to_numpy()][ok]})
+    return f.drop_duplicates("pos").sort_values("pos").reset_index(drop=True)
+
+
 T30_DAYS = "10D"
 
 
@@ -364,6 +384,8 @@ def entries(thesis: str, asset: str, side: int, ts: np.ndarray, close: np.ndarra
         return t28(ts, close, side)
     if thesis == "T29":
         return t29(ts, close, side)
+    if thesis == "T32":
+        return t32(ts, close, side)
     if thesis == "T30":
         return t30(ts, close, side)
     if thesis == "T1c":
