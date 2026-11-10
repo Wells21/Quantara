@@ -163,3 +163,6 @@ T30 PBO: DAX L PBO 0.044 / Prob 0.010 PASS, lock H8_E150_V24_PT2_SL1 (+0.161 ful
 T32 Gate A (120 cells): USOIL/overextension_long best gross +0.096, 82/120 net > 0 (max +0.073, H8_E150_V96_PT2_SL1) -> Gate C.
 PROMOTED 2026-11-10: DAX/closehedgingflow_long -> config/edge_universe.json (2 edges). Task 2A 1573/1573 +0.051R; Steps 01-09 PASS; CV leakage OK; Gate D v4.1 FAIL (D1 F1 0.580 vs 0.701, D2 FAIL, AUC 0.50) reported only (D091). Step 00d next.
 T30 post-PBO: DAX/rangebreakout_long DSR 1.000 (PSR 1.000, E[K] 4) PASS, stress +0.156 R (break-even ~10.3x), D090 re-check PASS (z 3.94) -> LOCKED H8_E150_V24_PT2_SL1, lifecycle. NASDAQ/rangebreakout_long DSR 0.920 (PSR 0.987, E[K] 3) KILLED_DSR; BTCUSD/rangebreakout_long DSR 0.840 (PSR 0.9995, E[K] 6, SR* 0.67/yr) KILLED_DSR; archived. DAX/closehedgingflow_long 00d: net +0.051 R (pre +0.086, swap 0.035).
+T32 Gate C (full, era-scaled): USOIL/overextension_long 76/120 > 0 (best +0.079 R); 2022+ 36/120 (best +0.047) -> PBO.
+T32 PBO: USOIL/overextension_long PBO 0.454, Prob 0.448 -> PASS (both near 0.5); lock H8_E150_V48_PT2_SL1 (+0.078 R full; 2022+ +0.047 R, 2.23/wk) -> DSR, stress, D090 re-check.
+T32 post-PBO: USOIL/overextension_long DSR 0.789 (PSR 0.904, E[K] 3) -> KILLED_DSR; D090 re-check at the lock also FAIL (C1 z 0.94); stress PASS. Archived. T32 has no surviving edge.
