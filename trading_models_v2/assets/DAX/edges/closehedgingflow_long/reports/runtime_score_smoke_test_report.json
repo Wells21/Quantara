@@ -1,0 +1,85 @@
+{
+  "created_at": "2026-11-10T15:31:52+00:00",
+  "deployable": false,
+  "edge_id": "DAX/closehedgingflow_long",
+  "findings": [
+    {
+      "code": "SCORE_COLUMNS_PRESENT",
+      "message": "All required score columns are present.",
+      "severity": "PASS"
+    },
+    {
+      "code": "LATEST_ONLY_ONE_ROW",
+      "message": "latest_only=True returned exactly one scored row.",
+      "severity": "PASS"
+    },
+    {
+      "code": "NO_FORBIDDEN_LABEL_COLUMNS",
+      "message": "Score output contains no research label columns.",
+      "severity": "PASS"
+    },
+    {
+      "code": "RAW_PROBABILITY_RANGE",
+      "message": "raw_probability=0.5049969471208202",
+      "severity": "PASS"
+    },
+    {
+      "code": "CALIBRATED_PROBABILITY_RANGE",
+      "message": "calibrated_probability=0.552050511095997",
+      "severity": "PASS"
+    },
+    {
+      "code": "AFML_BET_SIZE_RANGE",
+      "message": "afml_bet_size=0.1136540487412605",
+      "severity": "PASS"
+    },
+    {
+      "code": "THRESHOLD_DECISION_MATCHES",
+      "message": "approved_signal matches calibrated_probability >= selected_threshold.",
+      "severity": "PASS"
+    }
+  ],
+  "latest_signal": {
+    "Datetime": "2026-07-03 14:32:57.320000+00:00",
+    "afml_bet_size": 0.1136540487412605,
+    "approved_signal": true,
+    "calibrated_probability": 0.552050511095997,
+    "event_id": "DAX/closehedgingflow_long|2026-07-03T14:32:57.320000+00:00|T1c",
+    "raw_probability": 0.5049969471208202,
+    "selected_threshold": 0.48,
+    "side": 1,
+    "signal_id": "DAX/closehedgingflow_long|2026-07-03T14:32:57.320000+00:00|thr_0.4800"
+  },
+  "next_ordered_step_if_pass": "08_probability_calibration_afml_replay_audit.py",
+  "runtime_manifest": {
+    "approved_signals": 1,
+    "candidate_row_manifest": {
+      "candidate_events_input": 1632,
+      "contains_research_labels": false,
+      "edge_id": "DAX/closehedgingflow_long",
+      "row_builder": "closehedgingflow_long_live_candidate_model_rows_no_labels",
+      "rows_after_selected_feature_filter": 1574,
+      "rows_before_selected_feature_filter": 1632,
+      "scoring_owner": "shared.scoring.edge_scorer.EdgeScorer",
+      "selected_feature_count": 176,
+      "uses_future_information": false
+    },
+    "deployable": false,
+    "edge_id": "DAX/closehedgingflow_long",
+    "probability_flow": "raw_probability -> sigmoid calibrated_probability -> AFML bet size -> calibrated-threshold decision",
+    "rows_scored": 1,
+    "runtime_status": "SCORING_DELEGATED_TO_SHARED_EDGE_SCORER_REPLAY_AUDIT_REQUIRED",
+    "scoring_owner": "shared.scoring.edge_scorer.EdgeScorer",
+    "selected_feature_count": 176,
+    "selected_threshold": 0.48,
+    "threshold_probability_column": "calibrated_probability"
+  },
+  "script": "shared/edges/runtime_score_smoke_test.py",
+  "smoke_test_status": "PASS",
+  "summary": {
+    "approved_signals": 1,
+    "fail_count": 0,
+    "pass_count": 7,
+    "rows_scored": 1
+  }
+}

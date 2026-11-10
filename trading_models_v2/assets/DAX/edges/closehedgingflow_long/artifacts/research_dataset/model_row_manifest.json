@@ -1,0 +1,67 @@
+{
+  "barrier_hit_distribution": {
+    "pt": 0.062301335028607754,
+    "sl": 0.23394787031150668,
+    "vertical": 0.7037507946598855
+  },
+  "economic_meta_label_contract_version": "quantara_v3_gross_economic_meta_label_v1",
+  "edge_id": "DAX/closehedgingflow_long",
+  "fallback_tie_policy": "sl_first",
+  "feature_count": 187,
+  "feature_nan_rows_dropped": 58,
+  "labeling_stats": {
+    "ambiguous_same_bar_count": 1,
+    "events_dropped_horizon": 1,
+    "events_dropped_invalid_target": 0,
+    "events_dropped_missing_timestamp": 0,
+    "events_labeled": 1631,
+    "events_seen": 1632,
+    "fallback_resolved_count": 0,
+    "tick_resolved_count": 1
+  },
+  "live_scoring_must_not_use_label_columns": true,
+  "long_barrier_contract": "pt_price_above_entry_sl_price_below_entry",
+  "meta_label_distribution": {
+    "0": 0.46153846153846156,
+    "1": 0.5384615384615384
+  },
+  "meta_label_semantics": "1 iff realized_r > 0.0; else 0",
+  "notes": [
+    "Labels are research/model-row outputs only, not live candidate-event fields.",
+    "1R target is Event_Vol from the clock-trigger event row.",
+    "Every T1c trigger is a long.",
+    "Same-bar PT/SL ambiguity is resolved with raw tick MID path where available, matching V1.",
+    "Canonical Quantara V3 meta_label is economic: 1 iff realized_r > 0.0. PT-hit identity is preserved separately in pt_hit_label."
+  ],
+  "primary_side_rule": "first bar closing at or after 16:30 Berlin (1 h before the 17:30 close) on a weekday (<= 30 min), log(close / last close at or before the previous weekday's 17:30) > 0 -> LONG",
+  "pt_hit_label_distribution": {
+    "0": 0.9376986649713922,
+    "1": 0.062301335028607754
+  },
+  "pt_hit_label_semantics": "1 iff barrier_hit == 'pt'; else 0",
+  "pt_multiplier": 2.0,
+  "required_rows_dropped": 0,
+  "resolution_source_distribution": {
+    "ohlc": 0.2956134774316593,
+    "tick": 0.0006357279084551812,
+    "vertical": 0.7037507946598855
+  },
+  "row_builder": "closehedgingflow_long_v1_1r_triple_barrier_model_rows",
+  "rows_after_feature_nan_filter": 1573,
+  "rows_after_required_filter": 1631,
+  "rows_candidate_events_input": 1632,
+  "rows_labeled_events": 1631,
+  "side_value": 1,
+  "sl_multiplier": 1.0,
+  "tick_resolution_price": "mid",
+  "uses_future_information_for_labels": true,
+  "vertical_exit_economics": {
+    "count": 1107,
+    "mean_realized_r": 0.3191435760492096,
+    "median_realized_r": 0.281381216899181,
+    "positive_count": 749,
+    "positive_rate_within_vertical": 0.6766034327009937,
+    "rate": 0.7037507946598855
+  },
+  "vertical_horizon_hours": 16.0
+}

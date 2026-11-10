@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-11-10T15:09:38+00:00",
+  "deployable": false,
+  "edge_id": "DAX/closehedgingflow_long",
+  "findings": [
+    {
+      "code": "EDGE_CONTRACTS_VALID",
+      "details": {
+        "edge_yaml": {
+          "edge_id": "DAX/closehedgingflow_long",
+          "edge_stem": "dax_closehedgingflow_long",
+          "full_edge_yaml_contract": true,
+          "status": "research_in_progress"
+        },
+        "fail_closed": {
+          "edge_id": "DAX/closehedgingflow_long",
+          "fail_closed": true,
+          "status": "research_in_progress"
+        },
+        "model_input_schema": {
+          "edge_id": "DAX/closehedgingflow_long",
+          "model_input_order_locked": true,
+          "selected_feature_count": 176
+        },
+        "runtime_api": {
+          "required_functions": [
+            "load_contract",
+            "validate_environment",
+            "build_features",
+            "generate_candidate_events",
+            "build_model_rows",
+            "load_model",
+            "load_calibrator",
+            "score",
+            "explain_missing_features"
+          ],
+          "runtime_py": "C:\\Users\\Administrator\\Desktop\\Trading Models\\trading_models_v2\\assets\\DAX\\edges\\closehedgingflow_long\\runtime.py"
+        }
+      },
+      "message": "Edge identity, runtime API, and fail-closed contracts are valid.",
+      "severity": "PASS"
+    },
+    {
+      "code": "SCORING_ARTIFACTS_READY",
+      "details": {
+        "afml_sizing_method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+        "break_even_probability": 0.47822361935374785,
+        "calibrator_method": "sigmoid_platt_logit",
+        "edge_id": "DAX/closehedgingflow_long",
+        "geometry_hash": "accd3c009d8fbe0ba8b7e2a14bb598a2cf7f59420aefc63149e4ef4588671393",
+        "model_input_column_count": 176,
+        "payoff_context_id": "1a1404ce873b00a99563d57f96970e40bb9d52240891424b1e155edfd9f5586f",
+        "payoff_context_version": "quantara_v3_threshold_payoff_context_v1",
+        "payoff_profile_version": "quantara_v3_empirical_exact_executable_payoff_v1",
+        "reward_risk_ratio": 1.0910719578245838,
+        "selected_feature_count": 176,
+        "status": "PASS",
+        "threshold": 0.48,
+        "threshold_probability_column": "calibrated_probability"
+      },
+      "message": "Canonical scoring artifacts are present and internally consistent.",
+      "severity": "PASS"
+    },
+    {
+      "code": "SELECTED_FEATURES_EXISTS",
+      "message": "Found selected_features: assets/DAX/edges/closehedgingflow_long/artifacts/selected_features.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "MODEL_INPUT_SCHEMA_EXISTS",
+      "message": "Found model_input_schema: assets/DAX/edges/closehedgingflow_long/contracts/model_input_schema.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "MODEL_EXISTS",
+      "message": "Found model: assets/DAX/edges/closehedgingflow_long/artifacts/model/dax_closehedgingflow_long_meta_model.pkl",
+      "severity": "PASS"
+    },
+    {
+      "code": "CALIBRATOR_EXISTS",
+      "message": "Found calibrator: assets/DAX/edges/closehedgingflow_long/artifacts/calibration/probability_calibrator_sigmoid_side_long.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "SELECTED_THRESHOLD_EXISTS",
+      "message": "Found selected_threshold: assets/DAX/edges/closehedgingflow_long/artifacts/thresholds/dax_closehedgingflow_long_selected_threshold.json",
+      "severity": "PASS"
+    },
+    {
+      "code": "RUNTIME_PY_EXISTS",
+      "message": "Found runtime_py: assets/DAX/edges/closehedgingflow_long/runtime.py",
+      "severity": "PASS"
+    }
+  ],
+  "next_ordered_step_if_fail": "fix failed contracts/artifacts before smoke test",
+  "next_ordered_step_if_pass": "07_runtime_score_smoke_test.py",
+  "runtime_patch_applied": false,
+  "script_stage": "06_verify_runtime_scoring_ready",
+  "sot_rule": "Step 06 verifies runtime scoring readiness and never patches runtime.py.",
+  "summary": {
+    "fail_count": 0,
+    "pass_count": 8
+  },
+  "verification_status": "PASS"
+}

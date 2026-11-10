@@ -1,0 +1,122 @@
+{
+  "created_at": "2026-11-10T15:54:28+00:00",
+  "deployable": false,
+  "edge_id": "DAX/closehedgingflow_long",
+  "findings": [
+    {
+      "code": "NO_FORBIDDEN_LABEL_COLUMNS",
+      "message": "Runtime score output contains no research label columns.",
+      "severity": "PASS"
+    },
+    {
+      "code": "SCORE_PROBABILITY_COLUMNS_PRESENT",
+      "message": "Runtime score output has raw, calibrated, payoff-aware AFML, sizing-contract, and approved-signal columns.",
+      "severity": "PASS"
+    },
+    {
+      "code": "RUNTIME_RESEARCH_OVERLAP_PRESENT",
+      "message": "Runtime/research overlap rows: 1,573",
+      "severity": "PASS"
+    },
+    {
+      "code": "EXTRA_RUNTIME_ROWS_AFTER_RESEARCH_LABEL_HORIZON",
+      "extra_runtime_rows": 1,
+      "message": "Runtime has extra scoreable rows that research labels may have dropped due to vertical-horizon availability.",
+      "severity": "WARN"
+    },
+    {
+      "code": "SELECTED_FEATURE_REPLAY_EXACT",
+      "message": "Selected features replay within tolerance. max_abs_diff=1.907e-06",
+      "severity": "PASS"
+    },
+    {
+      "code": "PAYOFF_CONTEXT_ID_REPLAY",
+      "message": "payoff_context_id mismatches=0",
+      "severity": "PASS"
+    },
+    {
+      "code": "RAW_PROBABILITY_REPLAY",
+      "message": "Raw replay max diff: 0.000e+00",
+      "severity": "PASS"
+    },
+    {
+      "code": "CALIBRATED_PROBABILITY_REPLAY",
+      "message": "Calibrated replay max diff: 0.000e+00",
+      "severity": "PASS"
+    },
+    {
+      "code": "AFML_PAYOFF_CONTRACT_REPLAY",
+      "message": "reward_risk_max_diff=0.000e+00; break_even_max_diff=0.000e+00; sizing_method_mismatches=0",
+      "severity": "PASS"
+    },
+    {
+      "code": "AFML_PAYOFF_COMPONENTS_REPLAY",
+      "message": "economic_strength_max_diff=0.000e+00; effective_probability_max_diff=0.000e+00",
+      "severity": "PASS"
+    },
+    {
+      "code": "AFML_BET_SIZE_REPLAY",
+      "message": "AFML replay max diff: 0.000e+00",
+      "severity": "PASS"
+    },
+    {
+      "code": "THRESHOLD_DECISION_REPLAY",
+      "message": "Threshold mismatches: 0",
+      "severity": "PASS"
+    }
+  ],
+  "metrics": {
+    "afml_economic_strength_replay_max_diff": 0.0,
+    "afml_effective_probability_replay_max_diff": 0.0,
+    "afml_replay_max_diff": 0.0,
+    "afml_sizing_method": "empirical_exact_executable_break_even_rescaled_afml_v1",
+    "afml_sizing_method_mismatches": 0,
+    "approved_rate": 0.9822109275730623,
+    "approved_signals": 1546,
+    "break_even_probability": 0.47822361935374785,
+    "break_even_replay_max_diff": 0.0,
+    "calibrated_replay_max_diff": 0.0,
+    "extra_runtime_rows": 1,
+    "missing_runtime_research_rows": 0,
+    "raw_replay_max_diff": 0.0,
+    "research_model_rows": 1573,
+    "research_overlap_rows": 1573,
+    "reward_risk_ratio": 1.0910719578245838,
+    "reward_risk_replay_max_diff": 0.0,
+    "runtime_rows_scored": 1574,
+    "selected_feature_max_abs_diff": 1.9073486328125e-06,
+    "selected_feature_max_diff_feature": "Lower_Wick_to_Body_Ratio",
+    "selected_threshold": 0.48,
+    "threshold_mismatches": 0
+  },
+  "replay_audit_status": "PASS",
+  "runtime_manifest": {
+    "approved_signals": 1546,
+    "candidate_row_manifest": {
+      "candidate_events_input": 1632,
+      "contains_research_labels": false,
+      "edge_id": "DAX/closehedgingflow_long",
+      "row_builder": "closehedgingflow_long_live_candidate_model_rows_no_labels",
+      "rows_after_selected_feature_filter": 1574,
+      "rows_before_selected_feature_filter": 1632,
+      "scoring_owner": "shared.scoring.edge_scorer.EdgeScorer",
+      "selected_feature_count": 176,
+      "uses_future_information": false
+    },
+    "deployable": false,
+    "edge_id": "DAX/closehedgingflow_long",
+    "probability_flow": "raw_probability -> sigmoid calibrated_probability -> AFML bet size -> calibrated-threshold decision",
+    "rows_scored": 1574,
+    "runtime_status": "SCORING_DELEGATED_TO_SHARED_EDGE_SCORER_REPLAY_AUDIT_REQUIRED",
+    "scoring_owner": "shared.scoring.edge_scorer.EdgeScorer",
+    "selected_feature_count": 176,
+    "selected_threshold": 0.48,
+    "threshold_probability_column": "calibrated_probability"
+  },
+  "script": "shared/edges/probability_calibration_afml_replay_audit.py",
+  "summary": {
+    "fail_count": 0,
+    "pass_count": 11,
+    "warn_count": 1
+  }
+}

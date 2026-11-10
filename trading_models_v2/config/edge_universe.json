@@ -13,6 +13,18 @@
       "threshold_unit": "ticks",
       "candidate_event_generator": "roundlevelcascade_long_v1_first_close_beyond_untouched_round_level",
       "notes": "Promoted 2026-11-09 under D091 (Gate D not a gate). Edge level: Gate 0 T13 PASS; Gate C full history era-scaled PASS, lock H8_E150_V4_PT1_SL1 +0.070R (CI +0.036..+0.105), 2022+ +0.094R; PBO 0.140 / Prob 0.022; DSR 0.992; stress PASS +0.069R; D090 re-check at the locked cell PASS (C1 z 2.71, 2022+ C1 +0.041, 3.02 events/week); Task 2A 1909/1909 +0.075R; Steps 01-09 complete (edge_manifest deployment_status PASS); CV leakage OK; label audit effN 1754. Gate D v4.1 diagnostic: D1 FAIL (F1 0.510 vs 0.719), D2 PASS, AUC 0.52 -- the allocator threshold decides use. Strategy risk (<= .10) and Gate E are deployment-stage gates after the allocator."
+    },
+    {
+      "asset": "DAX",
+      "family": "closehedgingflow",
+      "side": "long",
+      "enabled": true,
+      "status": "deployability_pass",
+      "bar_scope": "asset_level_shared_bars",
+      "bar_mode": "standard_quote_tick",
+      "threshold_unit": "ticks",
+      "candidate_event_generator": "closehedgingflow_long_v1_t1c_clock_trigger",
+      "notes": "Promoted 2026-11-10 under D091/D092/D093. Card T1c (owner-ordered POST-HOC re-test of T1, causal entry; Gate 0 re-read under D092 firing rate 2.56/wk) -- read with that status. Edge level: Gate A 120/120 net>0; Gate C full history era-scaled lock H8_E150_V16_PT2_SL1 +0.048R, 2022+ +0.042R; PBO 0.462 / Prob 0.198; DSR 0.977 (PSR 0.993, 121 trials, E[K] 2); stress x1.166 +0.045R PASS; D090 re-check at the lock PASS (C1 z 2.69); Task 2A 1573/1573 +0.051R; Steps 01-09 complete (edge_manifest deployment_status PASS); CV leakage OK. Gate D v4.1 diagnostic: D1 FAIL (F1 0.580 vs 0.701), D2 FAIL, AUC 0.50 -- the allocator threshold decides use. Strategy risk (<= .10) and Gate E are deployment-stage gates after the allocator."
     }
   ],
   "recert_2026_11_04_removed": {

@@ -1,0 +1,38 @@
+{
+  "edge_id": "DAX/closehedgingflow_long",
+  "audit_version": "afml_ch7_cv_leakage_audit_v1",
+  "written_utc": "2026-11-10T16:00:51Z",
+  "rows": 1573,
+  "embargo_observations": 100,
+  "purge_t1": "label_t1 (fallback gross_t1)",
+  "model": "Ch.6 sequential-bootstrap bagging, 50 trees, Step 02 best tree params",
+  "kfold10_unshuffled_no_purge": {
+    "auc": 0.4901,
+    "neg_log_loss_weighted": -0.6829
+  },
+  "kfold10_shuffled_no_purge": {
+    "auc": 0.4924,
+    "neg_log_loss_weighted": -0.6832
+  },
+  "purged_embargoed_k_sweep": {
+    "5": {
+      "auc": 0.4976,
+      "neg_log_loss_weighted": -0.6827
+    },
+    "10": {
+      "auc": 0.51,
+      "neg_log_loss_weighted": -0.6819
+    },
+    "20": {
+      "auc": 0.5071,
+      "neg_log_loss_weighted": -0.6813
+    },
+    "40": {
+      "auc": 0.4978,
+      "neg_log_loss_weighted": -0.6817
+    }
+  },
+  "shuffle_inflation_auc": -0.0176,
+  "k_sweep_auc_rises_monotonically": false,
+  "verdict": "OK"
+}
