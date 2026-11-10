@@ -1556,6 +1556,56 @@ def t31_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T32: overextension reversal (Bollinger z)
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T32_overextension_reversal/PREREGISTRATION.md (all 10 assets).
+# Hourly closes (right-labelled); z = (hc - mean) / std over the 5 days BEFORE that hour (closed='left'). Check at each
+# hour end where z first crosses up through +T32_Z (z >= Z and previous hour < Z): SHORT; first cross down through
+# -T32_Z: LONG. Entry = first bar closing at or after that hour end (<= 30 min), signal close <= 30 min stale.
+# C1 SHORT: first cross up through +1.0 (same direction of stretch, not extreme); C1 LONG: first cross down through -1.0.
+
+T32_DAYS, T32_Z, T32_Z_C1 = "5D", 1.5, 1.0
+
+
+def t32_events(ts: np.ndarray, close: np.ndarray) -> dict[str, pd.DataFrame]:
+    stale = MAX_STALE.value
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    m = hc.rolling(T32_DAYS, closed="left").mean()
+    sd = hc.rolling(T32_DAYS, closed="left").std()
+    z = (hc - m) / sd
+    z = z[(hc.index >= hc.index[0] + pd.Timedelta(T32_DAYS)) & np.isfinite(z.to_numpy())]
+    prev = z.shift(1)
+    sel = {"edge_S": (z >= T32_Z) & (prev < T32_Z), "c1_S": (z >= T32_Z_C1) & (prev < T32_Z_C1),
+           "edge_L": (z <= -T32_Z) & (prev > -T32_Z), "c1_L": (z <= -T32_Z_C1) & (prev > -T32_Z_C1)}
+    out = {}
+    for k, mask in sel.items():
+        t = z.index[mask.to_numpy()].asi8 if hasattr(z.index, "asi8") else z.index[mask.to_numpy()].view("int64")
+        pb = np.searchsorted(ts, t, side="right") - 1
+        pe = np.searchsorted(ts, t, side="left")
+        ok = (pb >= 0) & (pe < len(ts))
+        pb_c, pe_c = np.clip(pb, 0, None), np.clip(pe, 0, len(ts) - 1)
+        ok &= (t - ts[pb_c] <= stale) & (ts[pe_c] - t <= stale)
+        f = pd.DataFrame({"pos": pe_c[ok], "Datetime": pd.to_datetime(ts[pe_c[ok]], utc=True), "ref_ns": t[ok], "r": 0.0})
+        f = f.drop_duplicates("pos").sort_values("pos").reset_index(drop=True)
+        f["day"] = f.Datetime.dt.normalize().dt.tz_localize(None)
+        out[k] = f
+    return out
+
+
+def t32_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    ev = t32_events(lab.ts, lab.cl)
+    sets = {}
+    for side, name, k in ((1, "LONG", "L"), (-1, "SHORT", "S")):
+        out = []
+        for f in (ev[f"edge_{k}"], ev[f"c1_{k}"]):
+            f = f.copy()
+            f["realized_r"] = lab.label(f.pos.to_numpy(dtype=int), np.full(len(f), side))
+            out.append(f)
+        sets[name] = {"edge": out[0], "C1": out[1]}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T26: realized skewness / lottery demand
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T26_realized_skewness_lottery/PREREGISTRATION.md (all 10 assets).
 
@@ -1765,6 +1815,8 @@ def t29_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
 THESES: dict[str, dict] = {
     # D093 (owner 2026-11-10): cards from T30 on pre-register their Gate 0 cell with EWM 150 (the only span left in the
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
+    "T32": {"build": t32_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T32_overextension_reversal/PREREGISTRATION.md"},
     "T31": {"build": t31_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T31_failed_range_breakout/PREREGISTRATION.md"},
     "T30": {"build": t30_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
