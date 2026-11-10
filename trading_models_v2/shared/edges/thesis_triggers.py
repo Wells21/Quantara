@@ -278,6 +278,36 @@ def t29(ts, close, side):
     return f[["pos", "ref_ns", "signal"]].reset_index(drop=True)
 
 
+T30_DAYS = "10D"
+
+
+def t30(ts, close, side):
+    """T30 10-day trading-range breakout (gate0_tool.t30_events): hourly UTC checks; LONG when the close is a new
+    10-day closing high (above the max hourly close of the 10 days before the last full hour), SHORT on a new low."""
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    hi = hc.rolling(T30_DAYS, closed="left").max().to_numpy()
+    lo = hc.rolling(T30_DAYS, closed="left").min().to_numpy()
+    warm = (hc.index[0] + pd.Timedelta(T30_DAYS)).value
+    day0 = (ts[0] // DAY_NS + 1) * DAY_NS
+    t = np.array([day0 + h * HOUR_NS + k * DAY_NS for k in range(int((ts[-1] - day0) // DAY_NS)) for h in range(24)],
+                 dtype="int64")
+    pb, pe = _at_or_before(ts, t), _at_or_after(ts, t)
+    ok = (pb >= 0) & (pe >= 0) & (t >= warm)
+    t, pb, pe = t[ok], pb[ok], pe[ok]
+    hix = hc.index.asi8 if hasattr(hc.index, "asi8") else hc.index.view("int64")
+    ph = np.searchsorted(hix, t, side="right") - 1
+    phc = np.clip(ph, 0, None)
+    h = np.where(ph >= 0, hi[phc], np.nan)
+    l = np.where(ph >= 0, lo[phc], np.nan)
+    c = close[pb]
+    f = pd.DataFrame({"pos": pe, "ref_ns": t, "c": c, "h": h, "l": l})
+    f = f[np.isfinite(f.h) & np.isfinite(f.l) & (f.h > f.l)].drop_duplicates("pos").sort_values("pos")
+    f = f[f.c > f.h] if side == 1 else f[f.c < f.l]
+    f["signal"] = np.log(f.c / (f.h if side == 1 else f.l))
+    return f[["pos", "ref_ns", "signal"]].reset_index(drop=True)
+
+
 # T1c (session-close hedging flow, causal entry): gate0_tool REF table, entry 1 h before the session close.
 T1C_REF = {"NASDAQ": (NY, [("2000-01-01", "16:00")]), "US500": (NY, [("2000-01-01", "16:00")]),
            "DAX": ("Europe/Berlin", [("2000-01-01", "17:30")]),
@@ -334,6 +364,8 @@ def entries(thesis: str, asset: str, side: int, ts: np.ndarray, close: np.ndarra
         return t28(ts, close, side)
     if thesis == "T29":
         return t29(ts, close, side)
+    if thesis == "T30":
+        return t30(ts, close, side)
     if thesis == "T1c":
         return t1c(ts, close, asset, side)
     raise TriggerError(f"unknown thesis {thesis}")

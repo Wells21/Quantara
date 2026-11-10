@@ -1,0 +1,58 @@
+NASDAQ {"LONG": {"drift_month_matched": [-0.02697, false]}, "SHORT": {"drift_month_matched": [-0.04549, false]}} 1.7
+US500 {"LONG": {"drift_month_matched": [-0.08507, false]}, "SHORT": {"drift_month_matched": [0.00852, false]}} 3.1
+DAX {"LONG": {"drift_month_matched": [0.04124, false]}, "SHORT": {"drift_month_matched": [0.05714, false]}} 4.7
+JPN {"LONG": {"drift_month_matched": [-0.04183, false]}, "SHORT": {"drift_month_matched": [-0.04648, false]}} 6.4
+HK {"LONG": {"drift_month_matched": [-0.00587, false]}, "SHORT": {"drift_month_matched": [-0.07487, false]}} 7.9
+XAUUSD {"LONG": {"drift_month_matched": [0.07176, true]}, "SHORT": {"drift_month_matched": [-0.06302, false]}} 10.3
+GBPJPY {"LONG": {"drift_month_matched": [-0.06048, false]}, "SHORT": {"drift_month_matched": [-0.00796, false]}} 12.6
+USDMXN {"LONG": {"drift_month_matched": [-0.00535, false]}, "SHORT": {"drift_month_matched": [-0.11882, false]}} 14.8
+USOIL {"LONG": {"drift_month_matched": [-0.1547, false]}, "SHORT": {"drift_month_matched": [-0.0765, false]}} 15.9
+BTCUSD {"LONG": {"drift_month_matched": [0.00571, false]}, "SHORT": {"drift_month_matched": [0.07203, false]}} 17.6
+{
+ "pooled": {
+  "LONG": {
+   "n_edge": 13711,
+   "drift_month_matched": {
+    "diff": -0.01563,
+    "se": 0.01626,
+    "lower_bound_1p645": -0.04237,
+    "PASS": false,
+    "lower_bound_tiered": -0.03644,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.04956,
+     "se": 0.01375,
+     "lower_bound_1p645": 0.02695,
+     "PASS": true,
+     "n": 123868
+    }
+   }
+  },
+  "SHORT": {
+   "n_edge": 9836,
+   "drift_month_matched": {
+    "diff": -0.03135,
+    "se": 0.0193,
+    "lower_bound_1p645": -0.06311,
+    "PASS": false,
+    "lower_bound_tiered": -0.0631,
+    "PASS_tiered": false
+   },
+   "counterfactuals": {
+    "C1": {
+     "diff": 0.02681,
+     "se": 0.01655,
+     "lower_bound_1p645": -0.00042,
+     "PASS": false,
+     "n": 99230
+    }
+   }
+  }
+ },
+ "verdict_NASDAQ": {
+  "LONG": "FAIL",
+  "SHORT": "FAIL"
+ }
+}
