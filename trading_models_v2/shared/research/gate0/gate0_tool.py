@@ -1606,6 +1606,51 @@ def t32_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T33: market intraday momentum
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T33_market_intraday_momentum/PREREGISTRATION.md (5 equity indices).
+# Weekday d (in the index's own time zone): r1 = log(close at the last bar at or before open(d) + 30 min / close at the
+# last bar at or before the previous weekday's session close REF); entry = first bar closing at or after REF(d) - 30 min
+# (<= 30 min after). Edge on side s: sign(r1) == s. C1: sign(r1) == -s, same side, same entry time (cause removed).
+
+T33_OPEN = {"NASDAQ": ("America/New_York", "09:30"), "US500": ("America/New_York", "09:30"),
+            "DAX": ("Europe/Berlin", "09:00"), "JPN": ("Asia/Tokyo", "09:00"), "HK": ("Asia/Hong_Kong", "09:30")}
+T33_FIRST, T33_LAST = pd.Timedelta(minutes=30), pd.Timedelta(minutes=30)
+
+
+def t33_days(lab: Labeler, asset: str) -> pd.DataFrame:
+    tz, hhmm = T33_OPEN[asset]
+    oh, om = map(int, hhmm.split(":"))
+    first = pd.Timestamp(lab.ts[0], tz="UTC").tz_convert(tz).normalize().tz_localize(None)
+    last = pd.Timestamp(lab.ts[-1], tz="UTC").tz_convert(tz).normalize().tz_localize(None)
+    days = [d for d in pd.date_range(first, last, freq="D") if d.weekday() < 5]
+    rows = []
+    for prev, day in zip(days[:-1], days[1:]):
+        op = pd.Timestamp(year=day.year, month=day.month, day=day.day, hour=oh, minute=om, tz=tz).tz_convert("UTC")
+        ps = _pos_at_or_before(lab.ts, op + T33_FIRST)
+        pp = _pos_at_or_before(lab.ts, _ref_time(asset, prev))
+        pe = _pos_at_or_after(lab.ts, _ref_time(asset, day) - T33_LAST)
+        if ps < 0 or pp < 0 or pe < 0 or not (pp < ps < pe):
+            continue
+        r = float(np.log(lab.cl[ps] / lab.cl[pp]))
+        if r == 0 or not np.isfinite(r):
+            continue
+        rows.append({"day": day, "pos": pe, "Datetime": pd.Timestamp(lab.ts[pe], tz="UTC"), "r": r})
+    return pd.DataFrame(rows)
+
+
+def t33_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    days = t33_days(lab, asset)
+    sets = {}
+    for side, name in ((1, "LONG"), (-1, "SHORT")):
+        edge = days[np.sign(days.r) == side].copy()
+        inv = days[np.sign(days.r) == -side].copy()
+        for f in (edge, inv):
+            f["realized_r"] = lab.label(f.pos.to_numpy(), np.full(len(f), side))
+        sets[name] = {"edge": edge, "C1": inv}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T26: realized skewness / lottery demand
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T26_realized_skewness_lottery/PREREGISTRATION.md (all 10 assets).
 
@@ -1815,6 +1860,8 @@ def t29_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
 THESES: dict[str, dict] = {
     # D093 (owner 2026-11-10): cards from T30 on pre-register their Gate 0 cell with EWM 150 (the only span left in the
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
+    "T33": {"build": t33_sets, "cell": Cell(1.0, 150, 1.0), "counterfactuals": ["C1"], "universe": EQUITY_INDICES,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T33_market_intraday_momentum/PREREGISTRATION.md"},
     "T32": {"build": t32_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T32_overextension_reversal/PREREGISTRATION.md"},
     "T31": {"build": t31_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
