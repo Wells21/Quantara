@@ -194,10 +194,10 @@
       "trade_calc_mode": 4
     }
   },
-  "created_at": "2026-11-11T13:07:41+00:00",
+  "created_at": "2026-11-11T13:09:17+00:00",
   "download_plan": {
-    "calendar_row_upper_bound_all_symbols": 554037,
-    "calendar_row_upper_bound_per_symbol": 184679,
+    "calendar_row_upper_bound_all_symbols": 381789,
+    "calendar_row_upper_bound_per_symbol": 127263,
     "chunk_days": 180,
     "note": "This is a calendar upper bound. Actual Forex H1 rows are lower because weekends and market closures have no bars.",
     "required_series_count": 3,
@@ -226,7 +226,7 @@
     },
     "end": "2026-07-05T14:30:24.456000+00:00",
     "end_buffer_days": 3,
-    "start": "2005-06-10T16:23:22.751000+00:00",
+    "start": "2011-12-29T00:00:00+00:00",
     "start_buffer_days": 3
   },
   "sampling_rationale": "H1 is the default because currency conversion is used only for account-currency risk translation, not signal generation. Backward H1 lookup is sufficiently precise while remaining small.",
@@ -239,22 +239,20 @@
       "conversion_modes": [
         "direct_symbol"
       ],
-      "empty_chunk_count": 1,
-      "findings": [
-        "start_coverage_missing:first=2010-09-20 00:00:00+00:00:required=2005-06-10 16:23:22.751000+00:00"
-      ],
-      "first_timestamp": "2010-09-20T00:00:00+00:00",
+      "empty_chunk_count": 0,
+      "findings": [],
+      "first_timestamp": "2011-12-29T00:00:00+00:00",
       "last_timestamp": "2026-07-03T23:00:00+00:00",
       "max_gap_seconds": 284400.0,
-      "max_price": 1.49325,
-      "median_price": 1.148225,
+      "max_price": 1.39629,
+      "median_price": 1.13677,
       "min_price": 0.95398,
-      "mt5_request_count": 43,
+      "mt5_request_count": 30,
       "path": "EURUSD.csv",
       "point": 1e-05,
       "price_policy": "ask_open_adverse_for_direct_conversion_loss",
-      "row_count": 98088,
-      "status": "FAIL",
+      "row_count": 90135,
+      "status": "PASS",
       "symbol_resolution": "exact",
       "timeframe": "H1",
       "timeframe_seconds": 3600,
@@ -267,23 +265,20 @@
       "conversion_modes": [
         "inverse_symbol"
       ],
-      "empty_chunk_count": 1,
-      "findings": [
-        "start_coverage_missing:first=2010-01-28 00:00:00+00:00:required=2005-06-10 16:23:22.751000+00:00",
-        "gap_too_large:observed=9284400.0:allowed=432000"
-      ],
-      "first_timestamp": "2010-01-28T00:00:00+00:00",
+      "empty_chunk_count": 0,
+      "findings": [],
+      "first_timestamp": "2011-12-29T00:00:00+00:00",
       "last_timestamp": "2026-07-03T23:00:00+00:00",
-      "max_gap_seconds": 9284400.0,
+      "max_gap_seconds": 284400.0,
       "max_price": 7.85007,
-      "median_price": 7.77469,
+      "median_price": 7.7759,
       "min_price": 7.72482,
-      "mt5_request_count": 43,
+      "mt5_request_count": 30,
       "path": "USDHKD.csv",
       "point": 1e-05,
       "price_policy": "bid_open_adverse_for_inverse_conversion_loss",
-      "row_count": 98027,
-      "status": "FAIL",
+      "row_count": 89945,
+      "status": "PASS",
       "symbol_resolution": "exact",
       "timeframe": "H1",
       "timeframe_seconds": 3600,
@@ -296,22 +291,20 @@
       "conversion_modes": [
         "inverse_symbol"
       ],
-      "empty_chunk_count": 1,
-      "findings": [
-        "start_coverage_missing:first=2010-09-20 00:00:00+00:00:required=2005-06-10 16:23:22.751000+00:00"
-      ],
-      "first_timestamp": "2010-09-20T00:00:00+00:00",
+      "empty_chunk_count": 0,
+      "findings": [],
+      "first_timestamp": "2011-12-29T00:00:00+00:00",
       "last_timestamp": "2026-07-03T23:00:00+00:00",
       "max_gap_seconds": 284400.0,
       "max_price": 162.79,
-      "median_price": 110.673,
-      "min_price": 75.69,
-      "mt5_request_count": 43,
+      "median_price": 111.6855,
+      "min_price": 76.071,
+      "mt5_request_count": 30,
       "path": "USDJPY.csv",
       "point": 0.001,
       "price_policy": "bid_open_adverse_for_inverse_conversion_loss",
-      "row_count": 98099,
-      "status": "FAIL",
+      "row_count": 90144,
+      "status": "PASS",
       "symbol_resolution": "exact",
       "timeframe": "H1",
       "timeframe_seconds": 3600,
@@ -319,15 +312,11 @@
     }
   },
   "summary": {
-    "failed_series": [
-      "EURUSD",
-      "USDHKD",
-      "USDJPY"
-    ],
-    "failed_series_count": 3,
+    "failed_series": [],
+    "failed_series_count": 0,
     "required_series_count": 3,
-    "status": "FAIL",
-    "total_rows_written": 294214,
+    "status": "PASS",
+    "total_rows_written": 270224,
     "written_series_count": 3
   },
   "timeframe": "H1",
