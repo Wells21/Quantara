@@ -1606,6 +1606,55 @@ def t32_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T34: trend pullback
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T34_trend_pullback/PREREGISTRATION.md (all 10 assets).
+# Hourly closes; z vs the prior 5 days (closed='left'); m50 = mean of the prior 50 days' hourly closes (closed='left').
+# SHORT edge: hc < m50 and z first crosses up through +1.0; C1 SHORT: the same cross with hc > m50. LONG mirrors
+# (hc > m50, cross down through -1.0; C1 with hc < m50). Entry / staleness as T32.
+
+T34_DAYS, T34_TREND_DAYS, T34_Z = "5D", "50D", 1.0
+
+
+def t34_events(ts: np.ndarray, close: np.ndarray) -> dict[str, pd.DataFrame]:
+    stale = MAX_STALE.value
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    z = (hc - hc.rolling(T34_DAYS, closed="left").mean()) / hc.rolling(T34_DAYS, closed="left").std()
+    m50 = hc.rolling(T34_TREND_DAYS, closed="left").mean()
+    ok = (hc.index >= hc.index[0] + pd.Timedelta(T34_TREND_DAYS)) & np.isfinite(z.to_numpy()) & np.isfinite(m50.to_numpy())
+    z, m50, c = z[ok], m50[ok], hc[ok]
+    prev = z.shift(1)
+    up, dn = (z >= T34_Z) & (prev < T34_Z), (z <= -T34_Z) & (prev > -T34_Z)
+    sel = {"edge_S": up & (c < m50), "c1_S": up & (c > m50), "edge_L": dn & (c > m50), "c1_L": dn & (c < m50)}
+    out = {}
+    for k, mask in sel.items():
+        t = z.index[mask.to_numpy()].asi8 if hasattr(z.index, "asi8") else z.index[mask.to_numpy()].view("int64")
+        pb = np.searchsorted(ts, t, side="right") - 1
+        pe = np.searchsorted(ts, t, side="left")
+        ok = (pb >= 0) & (pe < len(ts))
+        pb_c, pe_c = np.clip(pb, 0, None), np.clip(pe, 0, len(ts) - 1)
+        ok &= (t - ts[pb_c] <= stale) & (ts[pe_c] - t <= stale)
+        f = pd.DataFrame({"pos": pe_c[ok], "Datetime": pd.to_datetime(ts[pe_c[ok]], utc=True), "ref_ns": t[ok], "r": 0.0})
+        f = f.drop_duplicates("pos").sort_values("pos").reset_index(drop=True)
+        f["day"] = f.Datetime.dt.normalize().dt.tz_localize(None)
+        out[k] = f
+    return out
+
+
+def t34_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    ev = t34_events(lab.ts, lab.cl)
+    sets = {}
+    for side, name, k in ((1, "LONG", "L"), (-1, "SHORT", "S")):
+        out = []
+        for f in (ev[f"edge_{k}"], ev[f"c1_{k}"]):
+            f = f.copy()
+            f["realized_r"] = lab.label(f.pos.to_numpy(dtype=int), np.full(len(f), side))
+            out.append(f)
+        sets[name] = {"edge": out[0], "C1": out[1]}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T33: market intraday momentum
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T33_market_intraday_momentum/PREREGISTRATION.md (5 equity indices).
 # Weekday d (in the index's own time zone): r1 = log(close at the last bar at or before open(d) + 30 min / close at the
@@ -1866,6 +1915,8 @@ THESES: dict[str, dict] = {
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
     "T33": {"build": t33_sets, "cell": Cell(1.0, 150, 1.0), "counterfactuals": ["C1"], "universe": EQUITY_INDICES,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T33_market_intraday_momentum/PREREGISTRATION.md"},
+    "T34": {"build": t34_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T34_trend_pullback/PREREGISTRATION.md"},
     "T32": {"build": t32_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T32_overextension_reversal/PREREGISTRATION.md"},
     "T31": {"build": t31_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
