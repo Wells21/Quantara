@@ -880,7 +880,7 @@
       "id": "D092",
       "priority": "P1",
       "title": "Firing rate lowered: every edge fires >= 2 times a week (2022+), was >= 3 (D089)",
-      "status": "APPROVED_2026-11-10 (owner: 'lets make the standing rule a fire rate greater than or equal to 2 instead of the current 3 because like you said the fire rate is becoming the bottlekneck'); IN FORCE",
+      "status": "APPROVED_2026-11-10 (owner: 'lets make the standing rule a fire rate greater than or equal to 2 instead of the current 3 because like you said the fire rate is becoming the bottlekneck'); IN FORCE | SHORT edges lowered to >= 1/week by D094 (owner 2026-11-11)",
       "book": "None -- the firing rate is our turnover rule for a prop-firm book, not a book test (AFML s.3.6 asks only for a high-recall primary).",
       "resolution": "Gate 0 item 5 (D090) requires >= 2 edge events per week on 2022-01-01 onward (shared/research/gate0/gate0_verdict_d090.py MIN_PER_WEEK = 2.0). Stored D090 verdicts re-read read-only under the new threshold; the firing rate does not select on returns, so the newly passing (asset, side) pairs go to Gate A: T1c DAX LONG 2.56/wk + SHORT 2.28/wk; T13 XAUUSD SHORT 2.35/wk; T22 HK LONG 2.28/wk + SHORT 2.52/wk, XAUUSD SHORT 2.45/wk. Their trials accumulate as usual (D050-A).",
       "why": "Under D090 most recent Gate 0 fails were firing-rate fails at about 2.3-2.5 events/week (one side, once a day). Every other Gate 0 item and all later gates are unchanged."
@@ -893,6 +893,15 @@
       "book": "AFML Ch.11-14 / MLAM s.8: every trial tried is paid for (D050-A unchanged); the grid itself is ours. DSR counts ONC clusters of trials (MLAM s.8.7.1 p.114), so the narrowing mostly saves run time; DSR changes little.",
       "resolution": "Grid = event-vol lookbacks 1,2,4,6,8 h x EWM 150 x verticals 1,2,4,8,16,24,48,96 h x PT:SL 1:1,1.5:1,2:1 = 120 cells, all searched and all paid (full-N PBO, all-trials DSR). Canonical: shared/research/gate_a_grid.sh (GRID_ARGS). No per-card holding-period band (owner declined). New Gate 0 cards pre-register the D075 cell with EWM 150 (4 h lookback, 24 h vertical, 1:1). Trials already spent stay counted.",
       "why": "Evidence 2026-11-10 over 50 full Gate C runs / 21 edges: EWM 100/150/200 cell results correlate 0.978-0.992 and every ONC cluster held the three spans equally (gold goldsessionflow DSR file); the 168 h vertical was reached by 0.3 % of trades (max 3.1 %) and its results track 96 h (corr 0.996, mean |diff| 0.003 R). Removing near-duplicates cuts Gate A/C run time ~3.4x."
+    },
+    {
+      "id": "D094",
+      "priority": "P1",
+      "title": "Firing rate for SHORT edges lowered to >= 1 event/week on 2022+ (longs stay >= 2, D092)",
+      "status": "APPROVED_2026-11-11 (owner: 'Lower the firing floor for shorts only, to at least 1 a week ... approved'); IN FORCE",
+      "book": "Not a book test: the firing rate is our prop-firm turnover rule. Every statistical gate (Gate 0 C1 z, Gate A-C, PBO, DSR, stress, D090 re-check) is unchanged.",
+      "resolution": "gate0_verdict_d090.py MIN_PER_WEEK = {LONG: 2.0, SHORT: 1.0}. Stored D090 verdicts re-read read-only; SHORT pairs failing only on the firing rate at >= 1/week go to Gate A: T13 USDMXN (1.32/wk, C1 z 2.46), T14 NASDAQ (1.59, z 1.35), T31 US500 (1.80, z 2.07). Trials accumulate (D050-A). Runbook Rev 51.",
+      "why": "Indices and gold drift up, so down-move theses fire less often; short cards beating their counterfactual were failing on firing rate alone (trend-pullback design: 0.81-1.51 shorts/week on every asset). Goal: 1 long + 1 short per asset."
     }
   ]
 }

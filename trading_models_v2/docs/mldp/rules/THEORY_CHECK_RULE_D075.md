@@ -34,7 +34,8 @@ own evidence.
 2. **Every other card counterfactual:** own diff > 0 on the full history.
 3. **Recency:** own C1 diff > 0 on 2022-01-01 onward.
 4. **Events:** >= 100 edge events, and >= 100 events in every counterfactual; else INCONCLUSIVE.
-5. **Firing rate:** >= 2 edge events per week on 2022-01-01 onward (D092, owner 2026-11-10; was >= 3 under D089).
+5. **Firing rate:** on 2022-01-01 onward, LONG >= 2 edge events per week (D092, owner 2026-11-10; was >= 3 under D089);
+   SHORT >= 1 per week (D094, owner 2026-11-11).
 6. **Universe:** only assets in the card's pre-registered universe get a verdict (the mechanism must exist there);
    the other assets are computed and reported as PLACEBO.
 

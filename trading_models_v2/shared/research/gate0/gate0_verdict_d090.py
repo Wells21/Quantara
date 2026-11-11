@@ -6,7 +6,8 @@ Gate 0 tests the THEORY on each asset's own events, per side. PASS on (asset, si
   2. full history: every other card counterfactual, own diff > 0;
   3. recency: own C1 diff > 0 on 2022-01-01 onward;
   4. >= 100 edge events and >= 100 events in every counterfactual (else INCONCLUSIVE);
-  5. firing rate: >= 2 edge events per week on 2022-01-01 onward (D092, owner 2026-11-10; was >= 3, D089).
+  5. firing rate on 2022-01-01 onward: LONG >= 2 edge events per week (D092, owner 2026-11-10; was >= 3, D089);
+     SHORT >= 1 per week (D094, owner 2026-11-11).
 Only assets in the card's pre-registered universe get a verdict (the mechanism must exist there); the rest are
 reported as PLACEBO.
 No pooling requirement: other assets need not agree; the pooled result is a diagnostic. The month-matched drift
@@ -28,7 +29,7 @@ import pandas as pd
 
 V2 = Path(__file__).resolve().parents[3]
 RECENT = pd.Timestamp("2022-01-01", tz="UTC")
-MIN_PER_WEEK = 2.0   # D092 (owner 2026-11-10); was 3.0 (D089)
+MIN_PER_WEEK = {"LONG": 2.0, "SHORT": 1.0}   # D094 (owner 2026-11-11): shorts >= 1/week; longs stay at D092 2.0 (was 3.0, D089)
 
 
 def data_end(asset: str) -> pd.Timestamp:
@@ -91,7 +92,7 @@ def verdict(thesis: str, out: Path, tag: str = "") -> dict:
                 row["verdict"] = "INCONCLUSIVE"
             else:
                 row["recency_ok"] = bool(c1r is not None and c1r > 0)
-                row["firing_ok"] = bool(per_week >= MIN_PER_WEEK)
+                row["firing_ok"] = bool(per_week >= MIN_PER_WEEK[name])
                 row["verdict"] = "PASS" if (t["verdict"] == "PASS" and row["recency_ok"] and row["firing_ok"]) else "FAIL"
             res["by_asset"][asset][name] = row
     p = out / f"gate0_{thesis}{tag}_verdict_d090.json"
