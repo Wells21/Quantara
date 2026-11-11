@@ -17,7 +17,7 @@ for spec in sys.argv[1:]:
     conf = g.THESES[th]
     sets, lab = conf["build"](asset, conf["cell"])
     ref = np.sort(sets["LONG" if side == 1 else "SHORT"]["edge"].pos.to_numpy(dtype=int))
-    got = np.sort(tt.entries(th, asset, side, lab.ts, lab.cl).pos.to_numpy(dtype=int))
+    got = np.sort(tt.entries(th, asset, side, lab.ts, lab.cl, high=lab.hi, low=lab.lo).pos.to_numpy(dtype=int))
     same = len(ref) == len(got) and bool((ref == got).all())
     bad += not same
     print(spec, "gate0", len(ref), "trigger", len(got), "IDENTICAL" if same else

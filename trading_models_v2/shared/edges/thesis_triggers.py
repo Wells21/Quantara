@@ -383,9 +383,132 @@ def t1c(ts, close, asset, side):
     return f.sort_values("pos").reset_index(drop=True)
 
 
-def entries(thesis: str, asset: str, side: int, ts: np.ndarray, close: np.ndarray) -> pd.DataFrame:
+# T13 / T14 / T31 SHORT edges (D094 re-read, owner 2026-11-11). Gate 0 cells are the cards' own (T13, T14: 1 h
+# Event_Vol, EWM 100, 1 h vertical; T31: 4 h, EWM 150, 24 h); where a trigger depends on Event_Vol it uses that FIXED
+# card cell, never the edge's (Gate C-locked) labelling geometry.
+T13_SPACING = {"NASDAQ": 100.0, "US500": 50.0, "DAX": 100.0, "JPN": 500.0, "HK": 500.0, "XAUUSD": 10.0,
+               "GBPJPY": 1.0, "USDMXN": 0.10, "USOIL": 1.0, "BTCUSD": 1000.0}
+T13_MAX_GAP_NS = pd.Timedelta(hours=2).value
+CARD_VOL_H, CARD_VOL_SPAN, MIN_VOL = 1.0, 100, 1e-8      # T13 / T14 Gate 0 cell Event_Vol
+
+
+def _card_vol(ts, close, hours=CARD_VOL_H, span=CARD_VOL_SPAN):
+    from shared.labels.calendar_time_barriers import calendar_time_event_vol
+    return calendar_time_event_vol(ts, close, hours=hours, ewm_span=span, min_vol=MIN_VOL)
+
+
+def t13(ts, close, asset, side, high, low):
+    """T13 round-level stop cascade (gate0_tool.t13_events): first close beyond the nearest round level (card spacing)
+    above the prior 24 h high (LONG) / below the prior 24 h low (SHORT); bar within 2 h of its predecessor."""
+    s = T13_SPACING[asset]
+    idx = pd.to_datetime(ts, utc=True)
+    h24 = pd.Series(high, index=idx).rolling("24h", closed="left").max().to_numpy()
+    l24 = pd.Series(low, index=idx).rolling("24h", closed="left").min().to_numpy()
+    cont = np.r_[False, np.diff(ts) <= T13_MAX_GAP_NS]
+    vol = _card_vol(ts, close)
+    ok = cont & np.isfinite(h24) & np.isfinite(l24) & np.isfinite(vol) & (vol > 0)
+    with np.errstate(invalid="ignore"):
+        if side == 1:
+            lvl = (np.floor(h24 / s) + 1.0) * s
+            pos = np.flatnonzero(ok & (close >= lvl))
+        else:
+            lvl = (np.ceil(l24 / s) - 1.0) * s
+            pos = np.flatnonzero(ok & (close <= lvl))
+    return pd.DataFrame({"pos": pos, "ref_ns": ts[pos], "signal": np.log(close[pos] / lvl[pos])})
+
+
+T14_Z, T14_REGIME_SPAN, T14_REGIME_DAYS, T14_REGIME_MIN_DAYS = 2.0, 1000, 250, 120
+T14_GAP_NS = HOUR_NS                                         # card vertical 1 h: one event per hour at most
+
+
+def t14(ts, close, side):
+    """T14 high-vol liquidity-provision reversal (gate0_tool.t14_frame / t14_sets): fresh |1 h return / prior Event_Vol|
+    >= 2 inside a high-volatility regime (24 h vol above its prior 250-day median); SHORT fades a rise, LONG a drop."""
+    vol = _card_vol(ts, close)
+    ref = np.searchsorted(ts, ts - HOUR_NS, side="right") - 1
+    ref_c = np.clip(ref, 0, None)
+    fresh = (ref >= 0) & ((ts - HOUR_NS) - ts[ref_c] <= MAX_STALE_NS)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        r = np.where(fresh, np.log(close / close[ref_c]), np.nan)
+        z = r / np.r_[np.nan, vol[:-1]]
+        z_prev = np.r_[np.nan, z[:-1]]
+        big = (np.abs(z) >= T14_Z) & (np.abs(z_prev) < T14_Z)
+    reg = _card_vol(ts, close, hours=24.0, span=T14_REGIME_SPAN)
+    dt = pd.to_datetime(ts, utc=True)
+    daily = pd.Series(reg, index=dt).groupby(dt.normalize()).last().dropna()
+    med = daily.rolling(f"{T14_REGIME_DAYS}D", min_periods=T14_REGIME_MIN_DAYS).median().shift(1, freq="D")
+    med_at = med.reindex(dt.normalize(), method="ffill").to_numpy()
+    known = np.isfinite(reg) & np.isfinite(med_at) & np.isfinite(z)
+    with np.errstate(invalid="ignore"):
+        cand = np.flatnonzero(big & (reg > med_at) & known & (np.sign(z) == -side))
+    keep, last = [], None
+    for p in cand:
+        if last is None or ts[p] - ts[last] >= T14_GAP_NS:
+            keep.append(p)
+            last = p
+    keep = np.asarray(keep, dtype=int)
+    return pd.DataFrame({"pos": keep, "ref_ns": ts[keep], "signal": z[keep]})
+
+
+T31_DAYS, T31_WIN_NS = "5D", pd.Timedelta(hours=24).value
+
+
+def _range_checks(ts, close, days):
+    """gate0_tool.t30_events: hourly UTC checks, prior-window hourly-close max / min (closed='left'), deduped."""
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    hi = hc.rolling(days, closed="left").max().to_numpy()
+    lo = hc.rolling(days, closed="left").min().to_numpy()
+    warm = (hc.index[0] + pd.Timedelta(days)).value
+    day0 = (ts[0] // DAY_NS + 1) * DAY_NS
+    t = np.array([day0 + h * HOUR_NS + k * DAY_NS for k in range(int((ts[-1] - day0) // DAY_NS)) for h in range(24)],
+                 dtype="int64")
+    pb, pe = _at_or_before(ts, t), _at_or_after(ts, t)
+    ok = (pb >= 0) & (pe >= 0) & (t >= warm)
+    t, pb, pe = t[ok], pb[ok], pe[ok]
+    hix = hc.index.asi8 if hasattr(hc.index, "asi8") else hc.index.view("int64")
+    ph = np.searchsorted(hix, t, side="right") - 1
+    phc = np.clip(ph, 0, None)
+    f = pd.DataFrame({"pos": pe, "ref_ns": t, "c": close[pb], "h": np.where(ph >= 0, hi[phc], np.nan),
+                      "l": np.where(ph >= 0, lo[phc], np.nan)})
+    f = f[np.isfinite(f.h) & np.isfinite(f.l) & (f.h > f.l)].drop_duplicates("pos").sort_values("pos")
+    return f.reset_index(drop=True)
+
+
+def t31(ts, close, side):
+    """T31 failed 5-day range breakout (gate0_tool.t31_events): SHORT = first hourly check within 24 h after an
+    up-break (close > prior 5-day high) at which the close is back below the broken level; then disarmed. LONG mirrors."""
+    f = _range_checks(ts, close, T31_DAYS)
+    c, H, L, t = f.c.to_numpy(), f.h.to_numpy(), f.l.to_numpy(), f.ref_ns.to_numpy()
+    brk = (c > H) if side == -1 else (c < L)
+    fail, last_t, level, armed = [], None, None, False
+    for i in range(len(c)):
+        if brk[i]:
+            last_t, level, armed = t[i], (H[i] if side == -1 else L[i]), True
+            continue
+        if armed and t[i] - last_t <= T31_WIN_NS:
+            if (side == -1 and c[i] < level) or (side == 1 and c[i] > level):
+                fail.append(i)
+                armed = False
+        elif armed:
+            armed = False
+    g = f.iloc[fail]
+    return pd.DataFrame({"pos": g.pos.to_numpy(), "ref_ns": g.ref_ns.to_numpy(),
+                         "signal": np.log(g.c.to_numpy() / (g.h.to_numpy() if side == -1 else g.l.to_numpy()))})
+
+
+def entries(thesis: str, asset: str, side: int, ts: np.ndarray, close: np.ndarray,
+            high: np.ndarray | None = None, low: np.ndarray | None = None) -> pd.DataFrame:
     ts = np.asarray(ts, dtype="int64")
     close = np.asarray(close, dtype="float64")
+    if thesis == "T13":
+        if high is None or low is None:
+            raise TriggerError("T13 needs high and low")
+        return t13(ts, close, asset, side, np.asarray(high, dtype="float64"), np.asarray(low, dtype="float64"))
+    if thesis == "T14":
+        return t14(ts, close, side)
+    if thesis == "T31":
+        return t31(ts, close, side)
     if thesis == "T18":
         tz, sched = (T18_CLOSE if side == 1 else T18_OPEN)[asset]
         return _clock(ts, tz, tz, sched)
