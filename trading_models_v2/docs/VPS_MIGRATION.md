@@ -46,3 +46,19 @@ scripts -> run `portfolio_live/` scripts -> trade, **without redoing any edge re
 - 00d CSV for XAUUSD/roundlevelcascade_long committed (ad4cae78). Git still treats the broker_repricing/<firm>/
   folders as ignored, so add each newly promoted edge's 00d CSV with `git add -f <file>` (once tracked, it stays
   tracked). Only edges in config/edge_universe.json; the old CSVs in that folder stay out.
+
+## Status 2026-11-11 -- FULL ALLOCATOR VERIFIED ON A FRESH CLONE
+- Fresh clone of Wells21/Quantara (3 edges: XAUUSD/roundlevelcascade_long, DAX/closehedgingflow_long,
+  DAX/rangebreakout_long) ran 01 -> 02 -> 03 -> 04b -> 04bb -> 04c -> 04d -> 05 -> 06 -> 07 -> 07b -> 07b_geometry
+  -> 07c -> 08 -> 08b -> 08c -> 09 -> 10 -> 11, every step rc 0 (venv39; 11 Monte Carlo ~18 min). Nothing copied in
+  from this VPS. Step 09 is the owner's manual variant choice; the test ran it with its defaults (--full-single).
+- Step 00b (MT5 conversion history EURUSD / USDHKD / USDJPY) is committed in
+  portfolio_allocator/config/broker_conversions. Moneta's MT5 server holds FX history only from 2010, and USDHKD
+  has 1-3.5 month holes in 2011, so the files start 2012-01-01 (`00b ... --start 2012-01-01`, manifest PASS).
+  Enough for today's edges (gold is USD, DAX trades start 2014). A future HK / JPN / EUR-profit edge with
+  trades before 2012 would fail 04b with missing_prior_conversion -> rerun 00b and decide then.
+- Every promoted edge must carry its all-trials DSR record at
+  `assets/<ASSET>/edges/<edge>/artifacts/feature_importance_audit/ch14_dsr_all_trials.json` (copy of the
+  post-PBO `logs/<edge>_<ASSET>_dsr_full_era.json`; `git add -f`), or step 07b stops.
+- Promotion checklist per edge: edge folder + edge_universe.json entry + 00d CSV (git add -f) + DSR record
+  (git add -f), then commit and push.
