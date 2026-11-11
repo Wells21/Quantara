@@ -1606,6 +1606,58 @@ def t32_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
     return sets, lab
 
 
+# --------------------------------------------------------------------------- T35: moving-average band cross
+# Card: docs/mldp/campaign/NASDAQ_2026-11/T35_moving_average_band_cross/PREREGISTRATION.md (all 10 assets).
+# Hourly closes; m = mean of the prior 20 days' hourly closes (closed='left'); band b = 0.5 %. SHORT edge: first close
+# below m (1 - b) (previous close >= previous m (1 - b)); C1 SHORT: close crosses below m but stays >= m (1 - b).
+# LONG mirrors. Entry / staleness as T32.
+
+T35_DAYS, T35_BAND = "20D", 0.005
+
+
+def t35_events(ts: np.ndarray, close: np.ndarray) -> dict[str, pd.DataFrame]:
+    stale = MAX_STALE.value
+    s = pd.Series(close, index=pd.to_datetime(ts, utc=True))
+    hc = s.resample("1h", label="right", closed="right").last().dropna()
+    m = hc.rolling(T35_DAYS, closed="left").mean()
+    ok = (hc.index >= hc.index[0] + pd.Timedelta(T35_DAYS)) & np.isfinite(m.to_numpy())
+    c, m = hc[ok], m[ok]
+    pc, pm = c.shift(1), m.shift(1)
+    b = T35_BAND
+    sel = {"edge_S": (c < m * (1 - b)) & (pc >= pm * (1 - b)),
+           "c1_S": (c < m) & (pc >= pm) & (c >= m * (1 - b)),
+           "edge_L": (c > m * (1 + b)) & (pc <= pm * (1 + b)),
+           "c1_L": (c > m) & (pc <= pm) & (c <= m * (1 + b))}
+    out = {}
+    for k, mask in sel.items():
+        idx = c.index[mask.to_numpy()]
+        t = idx.asi8 if hasattr(idx, "asi8") else idx.view("int64")
+        pb = np.searchsorted(ts, t, side="right") - 1
+        pe = np.searchsorted(ts, t, side="left")
+        okk = (pb >= 0) & (pe < len(ts))
+        pb_c, pe_c = np.clip(pb, 0, None), np.clip(pe, 0, len(ts) - 1)
+        okk &= (t - ts[pb_c] <= stale) & (ts[pe_c] - t <= stale)
+        f = pd.DataFrame({"pos": pe_c[okk], "Datetime": pd.to_datetime(ts[pe_c[okk]], utc=True), "ref_ns": t[okk], "r": 0.0})
+        f = f.drop_duplicates("pos").sort_values("pos").reset_index(drop=True)
+        f["day"] = f.Datetime.dt.normalize().dt.tz_localize(None)
+        out[k] = f
+    return out
+
+
+def t35_sets(asset: str, cell: Cell) -> tuple[dict, Labeler]:
+    lab = Labeler(load_bars(asset), cell)
+    ev = t35_events(lab.ts, lab.cl)
+    sets = {}
+    for side, name, k in ((1, "LONG", "L"), (-1, "SHORT", "S")):
+        out = []
+        for f in (ev[f"edge_{k}"], ev[f"c1_{k}"]):
+            f = f.copy()
+            f["realized_r"] = lab.label(f.pos.to_numpy(dtype=int), np.full(len(f), side))
+            out.append(f)
+        sets[name] = {"edge": out[0], "C1": out[1]}
+    return sets, lab
+
+
 # --------------------------------------------------------------------------- T34: trend pullback
 # Card: docs/mldp/campaign/NASDAQ_2026-11/T34_trend_pullback/PREREGISTRATION.md (all 10 assets).
 # Hourly closes; z vs the prior 5 days (closed='left'); m50 = mean of the prior 50 days' hourly closes (closed='left').
@@ -1915,6 +1967,8 @@ THESES: dict[str, dict] = {
     # Gate A grid, shared/research/gate_a_grid.sh). Cards T1-T29 keep their pre-registered EWM 100 cell.
     "T33": {"build": t33_sets, "cell": Cell(1.0, 150, 1.0), "counterfactuals": ["C1"], "universe": EQUITY_INDICES,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T33_market_intraday_momentum/PREREGISTRATION.md"},
+    "T35": {"build": t35_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
+            "card": "docs/mldp/campaign/NASDAQ_2026-11/T35_moving_average_band_cross/PREREGISTRATION.md"},
     "T34": {"build": t34_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
             "card": "docs/mldp/campaign/NASDAQ_2026-11/T34_trend_pullback/PREREGISTRATION.md"},
     "T32": {"build": t32_sets, "cell": Cell(4.0, 150, 24.0), "counterfactuals": ["C1"], "universe": ASSETS,
